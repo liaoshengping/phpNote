@@ -15,5 +15,5 @@ function readTxt()
 foreach (readTxt() as $key => $value) {
     # code...
     sleep(1);
-    echo $value;
+    echo $value.'<br />';
 }

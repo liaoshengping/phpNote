@@ -14,5 +14,5 @@ function createRange($number){
 $data =createRange(10);
 foreach($data as $value){
     sleep(1);//这里停顿1秒，我们后续有用
-    echo $value.'<br />';
+    echo $value.PHP_EOL;
 }
