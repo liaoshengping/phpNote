@@ -1,5 +1,10 @@
 {
     "require": {
-        "itxiao6/upload": "dev-master"
+        "itxiao6/upload": "dev-master",
+        "wythe/logistics": "^0.0.4",
+        "dzer/yii2-express": "^1.3",
+        "xu42/kuaidi100": "^1.0",
+        "liaosp/guzzle-tool": "^2.0",
+        "liaosp/express": "^2.0"
     }
 }

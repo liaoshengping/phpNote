@@ -6,7 +6,18 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
+    'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'dzer\\express\\' => array($vendorDir . '/dzer/yii2-express/src'),
+    'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'Xu42\\KuaiDi100\\' => array($vendorDir . '/xu42/kuaidi100/src'),
+    'Wythe\\Logistics\\' => array($vendorDir . '/wythe/logistics/src'),
     'Qiniu\\' => array($vendorDir . '/qiniu/php-sdk/src/Qiniu'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
+    'Liaosp\\Express\\' => array($vendorDir . '/liaosp/express/src'),
     'Itxiao6\\Upload\\' => array($vendorDir . '/itxiao6/upload/src'),
+    'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
+    'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
+    'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
 );
