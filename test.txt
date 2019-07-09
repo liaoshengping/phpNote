@@ -1,0 +1,2356 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gbk" />
+<title>鹭岛生活_厦门民生_厦门本地最新草根信息_厦门小鱼社区_厦门小鱼网_厦门最热论坛</title>
+<meta name="generator" content="厦门小鱼网" />
+<meta name="description" content="鹭岛生活是厦门小鱼社区人气最旺的民生版块,日均发帖1万以上,关注厦门民生,关注你我身边事,关注厦门最快最新的本地草根信息,关注厦门生活信息,就从关注鹭岛民生开始" />
+<meta name="keywords" content="鹭岛民生,鹭岛生活,厦门民生" />
+<meta property="qc:admins" content="274121572260561306375" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="http://www.xmfish.com/styles/chanel/www/headernav-1.css" />
+<!--[if IE 9 ]>
+<meta name="msapplication-task" content="name=网站首页; action-uri=http://bbs.xmfish.com; icon-uri=http://bbs.xmfish.com/favicon.ico" />
+<meta name="msapplication-task" content="name=个人中心; action-uri=http://bbs.xmfish.com/u.php; icon-uri=http://bbs.xmfish.com/images/ico/home.ico" />
+<meta name="msapplication-task" content="name=我的帖子; action-uri=http://bbs.xmfish.com/apps.php?q=article; icon-uri=http://bbs.xmfish.com/images/ico/post.ico" />
+<meta name="msapplication-task" content="name=消息中心; action-uri=http://bbs.xmfish.com/message.php; icon-uri=http://bbs.xmfish.com/images/ico/mail.ico" />
+<meta name="msapplication-task" content="name=我的设置; action-uri=http://bbs.xmfish.com/profile.php; icon-uri=http://bbs.xmfish.com/images/ico/edit.ico" />
+<![endif]-->
+<link rel='archives' title='厦门小鱼社区_厦门小鱼网' href='http://bbs.xmfish.com/simple/' />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://bbs.xmfish.com/rss.php?fid=6" />
+<base id="headbase" href="http://bbs.xmfish.com/" />
+<!--link rel="stylesheet" type="text/css" href="data/style/xmfish.css" /-->
+<link rel="stylesheet" href="images/pw_core.css?v=151020" />
+<link rel="stylesheet" type="text/css" href="data/bbscache/wind_wind.css" />
+<script type="text/javascript" src="/apps/rt/www/js/jquery.xmfish.17.08.min.js?t=1.0"></script>
+<script type="text/javascript" src="/template/xmfish/images/headernav/xmfishsrch.js" charset="utf-8"></script>
+<SCRIPT type="text/javascript" language="JavaScript" src="js/core/core.js"></SCRIPT>
+<script type="text/javascript" language="JavaScript" src="js/pw_ajax.js"></script>
+<script language="JavaScript">var imgpath = 'images';var verifyhash = '5cbb797f';var modeimg = '';var modeBase = '';var winduid = '';var windid	= '';var groupid	= 'guest';var basename = '';var temp_basename = '';var db_shiftstyle = '1';
+function shiftStyle(){
+if(db_shiftstyle == 1){
+if (getObj('widthCfg').innerHTML=='[切换到宽版]') {
+if(!getObj('fullscreenStyle')) {
+var l = document.createElement('link');
+l.id="fullscreenStyle";
+l.rel="stylesheet";
+l.type="text/css";
+l.href="images/fullscreen.css";
+l.media="all";
+document.body.appendChild(l);
+}else {
+getObj('fullscreenStyle').disabled = false;
+}
+getObj('widthCfg').innerHTML='[切换到窄版]';
+var widthCfg = 1;
+} else {
+var widthCfg = 0;
+getObj('fullscreenStyle').disabled=true;
+getObj('widthCfg').innerHTML='[切换到宽版]';
+}
+SetCookie('widthCfg',widthCfg);
+if(goTop){
+goTop.setStyle();
+}
+}
+};
+</script>
+<script>
+  var _czc = _czc || [];
+  _czc.push(['_setAccount','36693']);
+</script>
+<script type="text/javascript">
+_czc.push(["_setCustomVar","是否会员","0",0]);
+</script>
+</head>
+<body onKeyDown="try{keyCodes(event);}catch(e){}" style="padding-top: 0;">
+
+<link rel="stylesheet" href="/apps/rt/www/header.css" />
+<div class="header1" id="header">
+<div class="wrap">
+<ul class="fl">
+<li class="city sd-wrap"><a class="nav-link" href="http://www.xmfish.com">厦门小鱼<i></i></a>
+<div class="sd-panel">
+<ol>
+<li><a class="house" href="http://fangzi.xmfish.com/" target="_blank" >房产</a></li>
+<li><a class="home" href="http://jiaju.xiaoyu.com/home/index" target="_blank" >家装</a></li>
+<li><a class="car" href="http://auto.xmfish.com/" target="_blank" >汽车</a></li>
+<li><a class="food" href="http://food.xmfish.com/" target="_blank" >美食</a></li>
+<li><a class="baby" href="http://bbs.xmfish.com/thread-htm-fid-75.html" target="_blank" >亲子</a></li>
+<li><a class="lady" href="http://lady.xiaoyu.com/" target="_blank" >丽人</a></li>
+<li><a class="tourism" href="http://travel.xiaoyu.com/" target="_blank" >旅游</a></li>
+<li><a class="healthy" href="http://www.xiaoyu.com/health/index" target="_blank" >健康</a></li>
+<li><a class="finance" href="http://8.xiaoyu.com" target="_blank" >金融</a></li>
+<li><a class="marry" href="http://marry.xmfish.com/" target="_blank" >婚嫁</a></li>
+</ol>
+</div><!--/end .sd-panel-->
+</li>
+<li><a class="nav-link" href="http://bbs.xmfish.com/" rel="external nofollow">社区</a></li>
+<li><a class="nav-link" href="http://info.xmfish.com/" rel="external nofollow">分类</a></li>
+  
+<li><a class="nav-link" href="http://app.xmfish.com/" rel="external nofollow">手机</a></li>	 
+</ul>
+<div class="search ulib-r3" id="search-down">
+<form method="get" action="http://s.xmfish.com/s" name="top_search" id="top_search"><input type="hidden" name="type" value="thread"><input onkeyup="changeSearch(jQuery(this).val());" class="search-txt fl slight" type="text" value="" id="search" name="keyword" /><a class="search-btn fr" href="javascript:jQuery('#top_search').submit();" rel="external nofollow">搜索</a></form>
+<label class="header-label" style="display: block;">搜帖子、用户或商家...</label>
+<style>.header-label{ position:absolute;margin-top:2px;margin-left: 5px; left:0; color:#ccc;display:block;width: 130px; cursor:text; font-size:12px; }</style>
+<div class="sd-panel" style="display:none;"></div>
+</div>
+<ul class="fr" style="z-index:100;position: relative;">
+ <li><a class="nav-link" href="/login.php" rel="external nofollow">登录</a></li>
+ <li><a class="nav-link" href="/register.php" rel="external nofollow">注册</a></li>
+  </ul>
+</div>
+</div>
+<script language="javascript"> 
+jQuery(document).ready(function(){
+jQuery('.search-txt').each(function() {
+if(jQuery(this).val()){
+jQuery('.header-label').hide();
+}else{
+jQuery('.header-label').click(function(){
+jQuery(this).hide().siblings('form').find('.search-txt').focus();
+});
+jQuery('.search-txt').focus(function(){
+jQuery(this).parent().siblings('.header-label').hide();
+});
+jQuery('.search-txt').blur(function(){var txt = jQuery(this).val();
+if(txt){
+jQuery(this).parent().siblings('.header-label').hide();
+}else{
+jQuery(this).parent().siblings('.header-label').show();
+}
+});
+}
+});
+});
+ 
+jQuery(document).ready(function(){
+jQuery('#header .sd-wrap').hover(function(){
+jQuery(this).addClass('active');
+},function(){
+jQuery(this).removeClass('active');
+});  
+jQuery('.switch_city .sct,.switch_city .city_list').hover(
+function(){
+jQuery('.switch_city .city_list').show();
+},function(){
+jQuery('.switch_city .city_list').hide();
+});
+});
+function changeSearch(keyword){
+if(keyword != ''){
+keyword = keyword.substring(0,8);
+var str = '<ol><li><a href="http://s.xmfish.com/s?keyword='+keyword+'&type=thread">搜"<span class="serious">'+keyword+'</span>"相关的帖子</a></li><li><a href="http://s.xmfish.com/s?keyword='+keyword+'&type=user">搜"<span class="serious">'+keyword+'</span>"相关的人</a></li><li><a href="http://s.xmfish.com/s?keyword='+keyword+'&type=biz">搜"<span class="serious">'+keyword+'</span>"相关的商家</a></li></ol>';
+jQuery('#search-down .sd-panel').html(str);
+jQuery('#search-down .sd-panel').show();
+}else{
+jQuery('#search-down .sd-panel').hide();
+}
+}
+</script>
+ 
+
+<style>
+body{padding:0;}
+#fish-top-skin{width:100%;height:318px;background:url('http://www.xmfish.com/images/chanel/www/index2/2014theme-6.1.jpg') no-repeat center 0;}
+.xmfish-theme{position:absolute;display:block;top:40px;left:50%;width:227px;height:80px;margin-left:232px;background:url('http://www.xmfish.com/images/chanel/www/index2/xmfish-spring-theme.png') no-repeat 0 0;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='http://www.xmfish.com/images/chanel/www/index2/xmfish-spring-theme.png');text-indent:-999em;overflow:hidden;z-index:2;}
+.t_2014_subject{position:absolute;top:0;left:50%;width:300px;margin-left:-480px;}
+.t_2014_subject h2{position:relative;z-index:0;}
+.t_2014_subject h2 a{display:block;position:absolute;top:71px;width:145px;height:30px;background:url('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-145-30.png');background-image:-webkit-image-set('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-145-30.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-290-60.png') 2x);background-image:-moz-image-set('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-145-30.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-290-60.png') 2x);background-image:-ms-image-set('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-145-30.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-290-60.png') 2x);background-image:-o-image-set('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-145-30.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-290-60.png') 2x);background-repeat:no-repeat;background-size:100% auto;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='http://www.xmfish.com/images/chanel/www/index2/xiaoyulogo-145-30.png');overflow:hidden;text-indent:-999em;z-index:0;}
+.header1 div.wrap{ width:1000px; }
+.t_2014_subject h3{position:relative;z-index:0;}
+.t_2014_subject h3 a{display:block;position:absolute;top:71px;width:145px;height:30px;background:url('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white.png');background-image:-webkit-image-set('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white2X.png') 2x);background-image:-moz-image-set('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white2X.png') 2x);background-image:-ms-image-set('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white2X.png') 2x);background-image:-o-image-set('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white.png') 1x,url('http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white2X.png') 2x);background-repeat:no-repeat;background-size:100% auto;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='http://www.xmfish.com/images/chanel/www/index2/campaign/xiaoyulogo_160818_white.png');overflow:hidden;text-indent:-999em;z-index:0;}
+.switch_city{position:absolute;top:74px;left:155px;width:100%;}
+.reletive{position:relative;}
+.t_2014_tab_star{position:absolute;top:-3px;right:1px;color:#f50;font-size:14px;-webkit-animation:animations 3s ease-out;-moz-animation:animations 3s ease-out;-o-animation:animations 3s ease-out;-ms-animation:animations 3s ease-out;animation:animations 3s ease-out;-webkit-animation-iteration-count:infinite;-moz-animation-iteration-count:infinite;-o-animation-iteration-count:infinite;-ms-animation-iteration-count:infinite;animation-iteration-count:infinite;font-style:normal;}
+#head{margin-top:-185px;}
+.t_2014_tab_holder ul li{position:relative;}
+.t_2014_tab_holder li .t_2014_n_star{position:absolute;top:0;right:0;color:#f50;-webkit-animation:animations 3s ease-out;-moz-animation:animations 3s ease-out;-o-animation:animations 3s ease-out;-ms-animation:animations 3s ease-out;animation:animations 3s ease-out;-webkit-animation-iteration-count:infinite;-moz-animation-iteration-count:infinite;-o-animation-iteration-count:infinite;-ms-animation-iteration-count:infinite;animation-iteration-count:infinite;font-style:normal;}
+.go-link-skin{display: none}
+</style>
+
+
+<style type="text/css">
+.ywqs-qrdoe{
+display:none;
+position:fixed;
+left:20px;
+width:161px;
+height:320px;
+z-index:10;
+bottom:220px; 
+background:url("http://www.xmfish.com/images/chanel/www/yuwangqingshen/qwqs_flag_qrcode.png");
+}
+.ywqs-qrdoe-pop-close{display:block;position:absolute;top:-10px;right:-10px;width:36px;height:36px;border-radius:20px;background:#c65f5d;color:#fff;font-size:24px;line-height:34px;text-align:center;text-decoration:none;*line-height:36px;font-weight:200;}
+.ywqs-qrdoe-open{display:block;position:fixed;left:10px;bottom:400px;width:20px;padding:10px 8px;background:#c65f5d;font-size:18px;color:#fff; text-align:center;line-height:20px;border-radius:5px;z-index:10;}
+.ywqs-qrdoe-pop-close:hover,
+.ywqs-qrdoe-open:hover{text-decoration:none;color:#fff;}
+</style>
+
+<div id="fish-top-skin"></div>
+<a href="http://www.xiaoyu.com/zt/2019/year16" class="go-link-skin" target="_blank"></a>
+ <span class="xmfish-theme"></span>
+<!--a class="bobing-theme" href="http://bobing.xmfish.com/" target="_blank"></a-->
+<div class="t_2014_subject">
+<header>
+<h2 class="fl"><a href="http://www.xiaoyu.com/switch?area=63">厦门小鱼网</a></h2>
+<div class="switch_city switch_city_index" style="top:79px;">
+<strong class="sc">厦门</strong>
+<span class="sct">[切换城市]</span>
+<div class="city_list">
+<a href="http://www.xiaoyu.com/switch?area=62">漳州</a>
+<a href="http://www.xiaoyu.com/switch?area=68">泉州</a>
+<a href="http://www.xiaoyu.com/switch?area=59">晋江</a>
+<a href="http://www.xiaoyu.com/switch?area=53">福州</a>
+</div>
+</div>
+</header>
+</div>
+
+<div>
+<div id="head" style="background-color:#fff;">
+<script>
+function hide()
+{
+document.getElementById('diebian').style.display = 'none';
+}
+</script>
+<div class="wrap">
+<!--导航-->
+<nav>
+<div class="t_2014_navpanel" style="position:relative;z-index:2;">
+<div class="t_2014_tab_holder clear">
+<ul class="fl clear">
+<li><a href="http://www.xmfish.com" rel="external nofollow">首页</a></li>
+<li class="active"><a target="_blank" href="http://bbs.xmfish.com">社区</a></li>
+<li><a target="_blank" href="http://bbs.xmfish.com/u.php" rel="external nofollow">我的空间</a></li>
+<li><a target="_blank" href="http://app.xmfish.com/">手机客户端</a></li>
+<!--li><a href="http://zouqi.xiaoyu.com/" target="_blank">同城活动</a></li-->
+<li><a href="http://news.xiaoyu.com" target="_blank">小鱼关注</a></li>
+</ul>
+<div class="fr follow_us">
+关注我们：
+<span class="follow_us_weibo clear" title="小鱼官方微博">
+<a href="http://widget.weibo.com/dialog/follow.php?fuid=1747501965" target="_blank">
+<em class="fl weibo_focus">加关注</em>
+<em class="fr weibo_sum"><i class="plus_arr1"></i><i class="plus_arr2"></i>14.8万</em>
+</a>
+</span>
+<span class="follow_us_weixin" onMouseOver="jQuery('.fish_weixin').show();" onMouseOut="jQuery('.fish_weixin').hide();" href="javascript:" title="小鱼官方微信">
+<div class="fish_weixin">
+<span class="weixin-arrow-wrap"></span>
+<span class="weixin-arrow"></span>
+<img src="http://www.xmfish.com/images/chanel/www/index2/weixin-code.jpg" alt="关注小鱼官方微信">
+</div>
+</span>
+</div>
+</div>
+<div class="t_2014_nav_holder clear">
+<dl class="t_2014_n_life">
+<dt><span><a style="color:#085bb0;" href="http://bbs.xmfish.com" target="_blank"><i class="icon"></i>社区</a></span></dt>
+<dd>
+<ul class="clear">
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-6.html" target="_blank">鹭岛生活</a></li>
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-27.html" target="_blank">谈天说地</a></li>
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-472.html" target="_blank">鱼鱼爆料</a></li>
+</ul>
+<ul class="clear">
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-143.html" target="_blank">鱼网情深</a></li>
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-9.html" target="_blank">心情故事</a></li>
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-14.html" target="_blank">上班一族</a></li>
+</ul>
+</dd>
+</dl>
+<dl class="t_2014_n_consume">
+<dt><span><i class="icon"></i>消费</span></dt>
+<dd>
+<ul class="clear">
+<li><a href="http://fangzi.xmfish.com/" target="_blank">房产楼市</a></li>
+<li><a href="http://jiaju.xiaoyu.com/" target="_blank">家居装饰</a></li>
+<li><a href="http://auto.xmfish.com" target="_blank">小鱼汽车</a></li>
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-75.html" target="_blank">小鱼亲子</a></li>
+<li><a href="http://8.xiaoyu.com" target="_blank">小鱼金融</a></li>
+</ul>
+<ul class="clear">
+<li><a href="http://food.xmfish.com" target="_blank">美食吃货</a></li>
+<li><a href="http://travel.xiaoyu.com" target="_blank">小鱼旅游</a></li>
+<li><a href="http://lady.xiaoyu.com" target="_blank">时尚丽人</a></li>
+<li><a href="http://www.xiaoyu.com/health/index" target="_blank">小鱼健康</a></li>
+<li><a href="http://marry.xmfish.com/" target="_blank">小鱼婚嫁</a></li>
+</ul>
+</dd>
+</dl>
+<!--dl class="t_2014_n_preferential">
+<dt><span><i class="icon"></i>优惠</span></dt>
+<dd>
+<ul class="clear">
+<li><a href="http://card.xiaoyu.com/" target="_blank">小鱼卡</a></li>
+<li><a href="http://8.xiaoyu.com/" target="_blank">小鱼金融</a></li>
+</ul>
+<ul class="clear">
+<li><a href="http://bbs.xmfish.com/hack.php?H_name=jingpai" target="_blank" _hover-ignore="1">小鱼币</a></li>
+<li><a href="http://auto.xmfish.com/#sale-car" target="_blank">特惠汽车</a></li>
+</ul>
+</dd>
+</dl-->
+<dl class="t_2014_n_service">
+<dt><span><a style="color:#085bb0;" href="http://info.xmfish.com" target="_blank"><i class="icon"></i>分类</a></span></dt>
+<dd>
+<ul class="clear">
+<li><a href="http://bbs.xmfish.com/thread-htm-fid-55.html" target="_blank">物尽</a></li>
+<li><a href="http://fangzi.xmfish.com/web/search_hire.html" target="_blank">租房</a></li>
+<li><a href="http://bbs.xmfish.com/index-htm-m-bbs-cateid-4.html" target="_blank">兴趣</a></li>
+<li><a href="http://fangzi.xmfish.com/web/sell2.html" target="_blank">二手房</a></li>
+</ul>
+<ul class="clear">
+<li><a href="http://job.xmfish.com/" target="_blank">求职</a></li>
+<li><a href="http://hot.xmfish.com/chanel/market/" target="_blank">集市</a></li>
+<li><a href="http://info.xmfish.com/chanel/fuwu/classlist.html?fid=355" target="_blank">教育</a></li>
+<li><a href="http://auto.xmfish.com/usedcar" target="_blank">二手车</a></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+</nav>
+<!--导航结束-->
+</div>
+<div class="bbs_headcrumb clear">
+<div style="float:left;padding-left:10px;">欢迎您，游客！</div>
+<ul class="fr det_opt">
+<li><a id="widthCfg" href="javascript:shiftStyle();" style="color:#0299e0;" rel="external nofollow">[切换到宽版]</a></li>
+<li><a href="http://s.xmfish.com/s" rel="external nofollow">搜索</a></li><li></li>
+<li><a href="http://s.xmfish.com/s?sch_time=newatc" rel="external nofollow">最新帖子</a></li>
+<li><a href="http://top.xmfish.com/" style="color:#f00;" rel="external nofollow">社区热帖</a></li>
+<li><a href="http://s.xmfish.com/s?digest=1" rel="external nofollow">精华区</a></li>
+<li><a id="td_KEYhack" href="javascript:;">社区工具<i class="i_v">▼</i></a></li>
+  <div style="display:none;" class="menu menu-post cc" id="menu_KEYhack">
+<div style="width:9em;" class="menu-b">
+<p><a id="td_KEYhack_shop" href="hack.php?H_name=shop" rel="external nofollow">鱼鱼大卖场认证</a></p>
+<p><a id="td_KEYhack_toolcenter" href="hack.php?H_name=toolcenter" rel="external nofollow">道具中心</a></p>
+<p><a id="td_KEYhack_medal" href="hack.php?H_name=medal" rel="external nofollow">勋章中心</a></p>
+<p><a id="td_KEY179" href="jobcenter.php" rel="external nofollow" >任务中心</a></p>
+</div>
+  </div>
+</ul>
+</div>
+<div class="cmp_v">
+<span class="cmp_sp1">
+<iframe allowtransparency="true" frameborder="0" src="http://cms.xmfish.com/chanel/www/cpm.html"
+style="height: 20px" scrolling="no" width="100%" marginwidth="0" marginheight="0"></iframe>
+</span>
+</div>
+<div style="clear:both"></div>
+<div style="margin-bottom:2px">
+
+<script type="text/javascript" src="http://cmm.xmfish.com/bshw/161.js" charset="utf-8"></script>
+
+</div>
+<div class="wrap">
+<div id="header">
+<script language="javascript">
+var timeoutSpecifyId = {};
+var navBStyle = '';
+function tmpClose(elementId) {
+timeoutSpecifyId[elementId] = setTimeout(function() {
+getObj(elementId).style.display = 'none';
+}, 100);
+}
+function tmpHideAllCross(currentSubMenuId,showNavB) {
+if(!getObj('navB')) return;
+if (showNavB) {
+getObj('navB').style.display = '';
+}
+var elements = getElementsByClassName('navB', getObj('navB'));
+if(elements.length){
+for (i=0; i<elements.length; i++) {
+if (elements[i].id != '' && elements[i].id != currentSubMenuId) elements[i].style.display = 'none';
+}
+}
+}
+function ctrlSubMenu(parentId, subMenuId) {
+try {
+clearTimeout(timeoutSpecifyId[subMenuId]);
+tmpHideAllCross(subMenuId,true);
+getObj(subMenuId).style.display = '';
+getObj(parentId).onmouseout = function() {
+tmpClose(subMenuId);
+ timeoutSpecifyId[parentId] = setTimeout(function() {
+if (navBStyle) {
+getObj('navB').style.display = 'none';
+}
+}, 100);
+getObj(parentId).onmouseout = '';
+};
+getObj(subMenuId).onmouseout = function() {
+tmpClose(subMenuId);
+if (navBStyle) {
+getObj('navB').style.display = 'none';
+}
+};
+getObj(subMenuId).onmouseover = function() {
+clearTimeout(timeoutSpecifyId[subMenuId]);
+clearTimeout(timeoutSpecifyId[parentId]);
+getObj(subMenuId).style.display = '';
+getObj('navB').style.display = '';
+};
+}catch(e){}
+}
+</script>
+</div>
+
+<div class="main-wrap">
+<div id="main">
+
+
+<div style="margin-bottom:4px;text-align:center;"><script type="text/javascript" src="http://cmm.xmfish.com/bshw/98.js" charset="utf-8"></script></div>
+<div style="margin-bottom:4px;text-align:center;"><script type="text/javascript" src="http://cmm.xmfish.com/bshw/1322.js" charset="utf-8"></script></div>
+<style>
+table.ppo_ad {border-top:#a9daf7 1px solid;border-left:#a9daf7 1px solid; }
+table.ppo_ad td {border-right:#a9daf7 1px solid;border-bottom:#a9daf7 1px solid; line-height:12px;}
+</style>
+<div style="margin-top:5px;text-align:center;"><script type="text/javascript" src="http://cmm.xmfish.com/bshw/220.js" charset="utf-8"></script></div>
+
+<!--ads end-->
+<!--家居装饰商家 begin-->
+
+
+<!--家居装饰商家 end-->
+<!--房产搜索 begin-->
+
+
+
+<!--家居装饰商家 end-->
+<div id="breadCrumb" class="cc">
+<img id="td_cate" src="images/wind/thread/home.gif" title="快速跳转至其他版块" onClick="return pwForumList(false,false,null,this);" class="cp breadHome" /><em class="breadEm"></em><a href="http://bbs.xmfish.com/" title="厦门小鱼社区_厦门小鱼网" style="font-weight:bold;">厦门小鱼社区_厦门小鱼网</a><em>&gt;</em><a href="thread-htm-fid-6.html">鹭岛生活</a>
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+<td valign="top">
+</div>
+</td>
+<td valign="top" width="100%">
+<div>
+</div>
+<link rel="stylesheet" href="/images/fish_side.css" />
+<div id="pw_content">
+<!--//dengbw 有左侧不显示侧栏 2012-03-05
+f_tree cc sideClose = 0 ? 'f_tree cc' : f_tree cc sideClose;
+print <<<EOT
+-->
+<div id="sidebar" class="f_tree cc sideClose">
+<style type="text/css">
+.sidebar{width:130px;}
+.content_thread{margin-left:130px; _margin-left:0;border-left:1px solid #c2deec;}
+.content_ie{float:right;width:100%; overflow:hidden;}
+.switch{margin-left:130px;}
+.switch{margin-left:100px;}
+.sideClose .switch{margin-left:0;}
+.sideClose .sidebar{display:none;}
+.fastpost .floot_left{width:0;border:0;display:none;}
+.sideClose .fastpost .floot_left{background:none;width:160px;display:table-cell;*display:block;}
+.sideClose .fastpost .t{margin-bottom:0;}
+.sidePd10{padding:0px;}
+.content_thread .hB{padding-left:20px;}
+.threadInfo td{padding-left:5px;}
+.sideClose .content_thread .sidePd10{padding:0;}
+.sideClose .content_thread .hB{padding-left:10px;}
+.sideClose .threadInfo td{padding-left:1px;}
+.f_tree .floot_left{width:100px;}
+.f_tree .floot_left .pic{width:90px;height:90px;}
+.sideClose .floot_left{display:none;}
+</style>
+<span class="fl" style="position:relative;"><a href="javascript:;" class="switch mr10" title="侧栏开关" onclick="toggleSidebar()">侧栏开关</a></span>
+<div class="sidebar">
+<div class="forum_info">
+<ul class="forum_info_sub">
+<li><a href="thread-htm-fid-494.html" target="_blank"><span><font style="font-size:14px">小鱼问答</font></span></a></li>
+</ul>
+  </div>
+<!--div class="jion_food">
+<a href="#"><img src="img/t.gif" style="background:url(img/jion_food.jpg)" width="120" height="77" alt="加入小鱼美食团" /></a>
+</div-->
+<style>
+.history_note_pannel {position:absolute;margin:-38px 0 0 4px;background-color:#fdfcd8;border:#919079 1px solid;color:#4e4e4e;font-size:12px;padding:8px;line-height:17px;moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;box-shadow: 0 1px 2px 1px rgba(170,170,170,0.5);z-index:1;}
+.fr {float:right;}
+.history_note_pannel .ulib-arrow-wrap1,.history_note_pannel .ulib-arrow1 {position:absolute;top:14px;left:-20px;border:10px dashed transparent;border-right-style:solid;border-right-color:#919079;font-size:0;line-height:0;text-indent:-999em;}
+.history_note_pannel .ulib-arrow1{left:-19px;border-right-color:#fdfcd8;border-right-color:#fdfcd8;}
+.history_note_pannel .history_note_close {display:block;padding-top:3px;font-weight:bold;color:#197eb4;text-align:right;cursor:pointer;}
+.history_note_pannel .history_note_close:hover{text-decoration:underline;}
+.history_note_pannel a {display:inline;float:none;width:auto;height:auto;margin:0;padding:0;background:none;color:#4e4e4e;text-indent:0;}
+.history_note_pannel a:hover {text-decoration:underline;}
+</style>
+<script>
+function close_history_note_pannel()
+{
+document.getElementById('history_note_pannel').style.display = 'none';
+var exdate=new Date();　　　
+exdate.setDate(exdate.getDate() + 365);
+document.cookie="userPostt=7;expires="+exdate.toGMTString();
+}
+window.onload=function(){
+var disp=false;
+var strCookie=document.cookie;
+var arrCookie=strCookie.split("; ");
+for(var i=0;i<arrCookie.length;i++){
+var arr=arrCookie[i].split("=");
+if(arr[0]=='userPostt'){
+disp=true;   
+}
+}
+if(!disp){
+document.getElementById('history_note_pannel').style.display = 'block';
+}
+}
+</script>
+<div class="myposts">
+<ul class="mynotes">
+<li>
+<a class="myhistory" href="javascript:;" title="最近浏览的帖子" onclick="showViewLog('pw_ajax.php?action=readlog','',this.id);"><span>最近浏览</span></a>
+<span class="fr">
+<div id="history_note_pannel" style="display:none" class="history_note_pannel">
+<span class="ulib-arrow-wrap1"></span>
+<span class="ulib-arrow1"></span>
+<span>点击这里可以查看<br />浏览过的帖子</span>
+<span class="history_note_close" onclick="close_history_note_pannel();">我知道了</span>
+</div>
+</span>
+</li>
+</ul>
+</div>
+<div class="sideForum" id="sideForum">
+<dl class="one">
+<dt>我的收藏</dt>
+<dd>
+<ul class="pw_ulD" id="shortcutforum">
+</ul>
+</dd>
+</dl>
+<dl class="one">
+<dt>≡城事生活≡</dt>
+<dd>
+<ul class="forum_theme">
+<li class="current"><a href="thread-htm-fid-6.html" rel="external nofollow">鹭岛生活</a></li>
+<li ><a href="thread-htm-fid-472.html" rel="external nofollow">鱼鱼爆料</a></li>
+<li ><a href="thread-htm-fid-27.html" rel="external nofollow">谈天说地</a></li>
+<li ><a href="thread-htm-fid-14.html" rel="external nofollow">上班一族</a></li>
+<li ><a href="thread-htm-fid-495.html" rel="external nofollow">小鱼温度</a></li>
+</ul>
+</dd>
+</dl>
+<dl class="one">
+<dt>≡情感丽人≡</dt>
+<dd>
+<ul class="forum_theme">
+<li ><a href="thread-htm-fid-9.html" rel="external nofollow">心情故事</a></li>
+<li ><a href="thread-htm-fid-143.html" rel="external nofollow">鱼网情深</a></li>
+<li ><a href="thread-htm-fid-486.html" rel="external nofollow">时尚丽人</a></li>
+</ul>
+</dd>
+</dl>
+<dl class="one">
+<dt>≡人生大事≡</dt>
+<dd>
+<ul class="forum_theme">
+<li ><a href="thread-htm-fid-375.html" rel="external nofollow">吃喝玩乐</a></li>
+<li ><a href="thread-htm-fid-75.html" rel="external nofollow">亲子乐园</a></li>
+<li ><a href="thread-htm-fid-147.html" rel="external nofollow">房产聚焦</a></li>
+<li ><a href="thread-htm-fid-17.html" rel="external nofollow">小鱼健康</a></li>
+<li ><a href="thread-htm-fid-136.html" rel="external nofollow">结婚喜事</a></li>
+<li ><a href="thread-htm-fid-165.html" rel="external nofollow">家居装饰</a></li>
+<li ><a href="thread-htm-fid-267.html" rel="external nofollow">轻车熟路</a></li>
+</ul>
+</dd>
+</dl>
+<dl class="one">
+<dt>≡便民分类≡</dt>
+<dd>
+<ul class="forum_theme">
+<li ><a href="thread-htm-fid-55.html" rel="external nofollow">物尽其用</a></li>
+<li ><a href="thread-htm-fid-260.html" rel="external nofollow">求职招聘</a></li>
+<li ><a href="thread-htm-fid-83.html" rel="external nofollow">鱼鱼集市</a></li>
+<li ><a href="thread-htm-fid-238.html" rel="external nofollow">厦门拼车</a></li>
+<li ><a href="thread-htm-fid-356.html" rel="external nofollow">生活服务</a></li>
+<li ><a href="thread-htm-fid-357.html" rel="external nofollow">商务服务</a></li>
+<li ><a href="thread-htm-fid-355.html" rel="external nofollow">教育培训</a></li>
+<li ><a href="thread-htm-fid-395.html" rel="external nofollow">商家活动</a></li>
+</ul>
+</dd>
+</dl>
+<dl class="one">
+<dt>≡娱乐爱好≡</dt>
+<dd>
+<ul class="forum_theme">
+<li ><a href="thread-htm-fid-465.html" rel="external nofollow">我爱下厨房</a></li>
+<li ><a href="thread-htm-fid-25.html" rel="external nofollow">我们爱运动</a></li>
+<li ><a href="thread-htm-fid-51.html" rel="external nofollow">鱼游天下</a></li>
+<li ><a href="thread-htm-fid-366.html" rel="external nofollow">我是花草控</a></li>
+<li ><a href="thread-htm-fid-11.html" rel="external nofollow">影视娱乐圈</a></li>
+<li ><a href="thread-htm-fid-218.html" rel="external nofollow">简单学理财</a></li>
+<li ><a href="thread-htm-fid-16.html" rel="external nofollow">流光摄影志</a></li>
+<li ><a href="thread-htm-fid-81.html" rel="external nofollow">萌宠小世界</a></li>
+<li ><a href="thread-htm-fid-71.html" rel="external nofollow">读书时间</a></li>
+<li ><a href="thread-htm-fid-69.html" rel="external nofollow">舞者沙龙</a></li>
+<li ><a href="thread-htm-fid-26.html" rel="external nofollow">数码科技 </a></li>
+<li ><a href="thread-htm-fid-36.html" rel="external nofollow">游戏玩家</a></li>
+</ul>
+</dd>
+</dl>
+<dl class="one">
+<dt>≡会员天地≡</dt>
+<dd>
+<ul class="forum_theme">
+<li ><a href="thread-htm-fid-113.html" rel="external nofollow">新鱼上路</a></li>
+<li ><a href="thread-htm-fid-139.html" rel="external nofollow">老鱼之家</a></li>
+</ul>
+</dd>
+</dl>
+<dl class="one">
+<dt>≡社区管理≡</dt>
+<dd>
+<ul class="forum_theme">
+<li ><a href="thread-htm-fid-39.html" rel="external nofollow">疑问建议</a></li>
+<li ><a href="thread-htm-fid-116.html" rel="external nofollow">版主申请</a></li>
+<li ><a href="thread-htm-fid-44.html" rel="external nofollow">不良记录</a></li>
+<li ><a href="thread-htm-fid-12.html" rel="external nofollow">【旧帖回收】</a></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<script type="text/javascript">
+/*侧栏版块展开动态*/
+window.onReady(function(){
+var div = document.getElementById("sideForum");
+var tt = div.getElementsByTagName("dt");
+for(i=0; i<tt.length; i++){
+tt[i].index = i;
+tt[i].onclick= function(){
+document.cookie='hide_'+this.index+'='+(this.parentNode.className == 'one' ? 1 : 0);
+this.parentNode.className = this.parentNode.className == 'one'?'':'one';
+}
+}
+var sfs = document.getElementById('shortcutforum').getElementsByTagName('li');
+for (i=0;i<sfs.length;i++) {
+sfs[i].onmouseover=function(){this.className='hover';}
+sfs[i].onmouseout=function(){this.className='';}
+}
+});
+function toggleSidebar(){
+var sidebar = getObj('sidebar');
+var toggle = (sidebar.className == 'f_tree cc sideClose') ? 0: 1;
+SetCookie('toggle',toggle);
+getObj('sidebar').className = (sidebar.className == 'f_tree cc')?"f_tree cc sideClose":'f_tree cc';
+//getObj('header_floot_left').style.display = toggle ? '' : 'none';
+}
+</script>
+<div class="content_thread cc">
+<div class="content_ie">
+<div class="mb10">
+<div class="clear">
+<dl class="fl forum_subject">
+  <dt class="fl">
+ <a href="thread-htm-fid-6.html" rel="external nofollow"><img src="http://img.xmfish.com/attachment/forumlogo/6.png" width="48" height="48" /></a>
+  </dt>
+  <dd class="fl">
+<div class="clear">
+<h3 class="fl forum_subject_name"><font style="font-size:14px">鹭岛生活</font></h3>
+<ul class="forum_info_opt fl">
+<li class="forum_info_keep"><span id="shortcut"><a href="javascript:;" onclick="shortCut();" title="收藏本版" class="keep mr10">收藏</a></span></li>
+<li class="forum_info_rss"><a href="rss-htm-fid-6.html" target="_blank" title="订阅本版"><span>订阅</span></a></li>
+<li class="forum_info_competence"><a href="profile.php?action=permission&fid=6" target="_blank" title="查看在本版的权限" rel="external nofollow"><span>权限</span></a></li>
+</ul>
+</div>
+<div class="board-moderator clear"><span class="fl">版主：</span>
+<span class="fl bm-list">
+<a href="/u.php?uid=58644" target="_blank" rel="external nofollow">含沙</a>
+<a href="/u.php?uid=9360" target="_blank" rel="external nofollow">山鹰</a>
+<a href="http://bbs.xmfish.com/read-htm-tid-1613744.html" target="_blank" style="color: red;">申请版主</a>
+</span>
+</div>
+<div class="board-count">今日：<span class="num">3116</span>&nbsp;&nbsp;主题：<span class="num">282929</span>&nbsp;&nbsp;贴数：<span class="num">7201517</span></div>
+  </dd>
+</dl>
+<ul class="forum-opt">
+<li class="sub_post"><a href="post.php?fid=6" class="forum-opt-thread" rel="external nofollow">发表帖子</a>
+</li>
+</ul>
+</div>
+<div class="board-children clear">
+<span class="fl" style="text-indent: 55px;">子版块：</span>
+<span class="bc-list fl">
+<a href="thread-htm-fid-494.html"><font style="font-size:14px">小鱼问答</font></a>
+</span>
+</div>
+<!-- 
+-->
+ 
+</div>
+<div class="sidePd10">
+</div>
+<div class="sidePd10">
+<div class="mb10">
+<div class="h">
+<a class="closeicon fr" style="cursor:pointer;" onClick="return IndexDeploy('ann',0);"><img id="img_ann" alt="展开收起" src="images/wind/index/cate_fold.gif" /></a><h3>版块公告</h3>
+</div>
+<div id="cate_ann" class="announcement_tx" style="">
+<table width="100%" style="table-layout:fixed;"><tr><td>
+<div class="p10">
+<font size="2"><b>本版设置以下主题分类，请鱼鱼们尊重社区分版制度、按版发帖</b><span style="color:#0000ff ">：</span></font><br /><font size="2"><span style="color:#0000ff "><b><span style="color:#ff0000 ">如果你发布了优秀的原创文章，想申请上小鱼首页头条，请私信@鱼班长！</span></b></span></font><br /><font size="2"><span style="color:#0000ff ">【社会新闻】：厦门各类资讯转载及厦门人共同关注的国内外社会事件</span></font><br /><font size="2"><span style="color:#0000ff ">【本地杂谈】：对厦门发生的一些事件或者社会现象的看法、讨论&nbsp;&nbsp;</span></font><br /><font size="2"><span style="color:#0000ff ">【鱼友互助】：小鱼会员之间的生活问题互相帮助或经验分享</span></font><br /><font size="2"><span style="color:#0000ff ">【交通出行】：在厦门日常生活出行涉及的城区交通问题等</span></font><br /><font size="2"><span style="color:#0000ff ">【家长里短】：家庭邻里日常生活琐事难以决断的，到这里听听大家的意见</span></font><br /><font size="2"> <span style="color:#0000ff ">【寻人找物】：发布生活中丢失的物品或捡到的物品信息，及发布寻人启事等</span></font><br /><span style="color:#0000ff "><b>不符合以上分类的话题，请自觉发到社区其他的相应版块，否则将被移除，谢谢大家配合！<font size="2"><b><b><span style="color:#ff0000 "><br /></span></b></b></font></b></span><br /><span style="color:red "><font size="2">1、八卦娱乐、闲谈等泛话题，请发到<a rel="external nofollow" href="http://bbs.xmfish.com/thread-htm-fid-27.html" target="_blank" onclick="return checkUrl(this)" id="url_1_1560418037">[谈天说地]</a> 版块；</font></span><br /><span style="color:#ff0000 "><font size="2"><span style="background-color:#f8f8f8 "><font face="tahoma, verdana ">2、做菜做饭、晒菜品等话题请发到</font></span></font><a rel="external nofollow" href="http://bbs.xmfish.com/thread-htm-fid-376.html" target="_blank" onclick="return checkUrl(this)" id="url_2_1560418037">[我爱下厨房]</a><font size="2"><span style="background-color:#f8f8f8 "><font face="tahoma, verdana ">专版，吃货探店、分享美食好店请移步</font></span></font></span><a rel="external nofollow" href="http://bbs.xmfish.com/thread-htm-fid-376.html" target="_blank" onclick="return checkUrl(this)" id="url_3_1560418037">[吃喝玩乐]</a><font size="2"><span style="color:#ff0000 "><span style="background-color:#f8f8f8 "><font face="tahoma, verdana ">专版</font></span></span></font><font size="2"><span style="background-color:#f8f8f8 "><span style="color:#ff0000 "><font face="tahoma, verdana ">；</font></span></span></font><br /><span style="color:red "><font size="2">3、有关汽车、住房、家居、结婚、亲子这五类信息，都请发至<a rel="external nofollow" href="http://bbs.xmfish.com/index-htm-m-bbs-cateid-183.html" target="_blank" onclick="return checkUrl(this)" id="url_4_1560418037">≡人生大事≡</a>相应的版块；<font size="2"><br />4、对社区的任何疑问或建议，请一律发到 <a rel="external nofollow" href="http://bbs.xmfish.com/thread-htm-fid-39.html" target="_blank" onclick="return checkUrl(this)" id="url_5_1560418037">[疑问建议]</a> 版块；<br /></font></font></span><br /><font size="2"><span style="color:red ">其他未尽事宜，详见</span></font><a rel="external nofollow" href="http://bbs.xmfish.com/thread-1610760-1-1.html" target="_blank" onclick="return checkUrl(this)" id="url_6_1560418037">鹭版置顶版规公告帖</a><font size="2"><span style="color:red ">。</span></font>
+<div class="tar"><a class="s4" href="notice.php?fid=6#185">更多</a></div>
+</div>
+</td></tr></table>
+</div>
+</div>	
+</div>
+<div style="clear:both;"></div>
+<div id="cc">
+<div class="cc"></div>
+
+
+<!--健康话题 begin-->
+<!--健康话题 end-->
+<!--法在身边 begin-->
+<!--法在身边 end-->
+<div class="sidePd10">
+<style>
+.bbs_clear:after{content:".";height:0;visibility:hidden;display:block;clear:both;}
+.bbs_clear{*height:1%;}
+ul.posts_tab{float:left;margin-top:10px;border-left:#cfcfcf 1px solid;}
+ul.posts_tab li{float:left;position:relative;margin:0;padding:0;border-top:#1595de 2px solid;}
+ul.posts_tab li a{float:left;display:inline-block;margin:0;padding:0 12px;background-color:#f7f7f7;background-image:-webkit-linear-gradient(top,#fcfcfc,#eee);background-image:-moz-linear-gradient(top,#fcfcfc,#eee);background-image:-ms-linear-gradient(top,#fcfcfc,#eee);background-image:-o-linear-gradient(top,#fcfcfc,#eee);background-image:linear-gradient(top,#fcfcfc,#eee);border-right:#cfcfcf 1px solid;line-height:28px;}
+ul.posts_tab li.current a{background-color:#fff;background-image:-webkit-linear-gradient(top,#f7f7f7,#fff);background-image:-moz-linear-gradient(top,#f7f7f7,#fff);background-image:-ms-linear-gradient(top,#f7f7f7,#fff);background-image:-o-linear-gradient(top,#f7f7f7,#fff);background-image:linear-gradient(top,#f7f7f7,#fff);font-weight:bold;}
+ul.posts_tab li a:hover{text-decoration:none;}
+ul.posts_tab li .tab-arrow{position:absolute;left:32px;top:0;border:8px dashed transparent;border-top-style:solid;border-top-color:#ff7804;font-size: 0;line-height:0;text-indent:-999em;}
+ul.posts_tab li .tab-new{position:absolute;top:-8px;left:30px;width:28px;width:26px\9;margin:0 auto;padding:0 0 1px 0;background:#ff7804;moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;-webkit-text-size-adjust:none;font-size:10px;-webkit-transform:scale(0.8);-o-transform:scale(1);text-align:center;line-height:1.1em;color:#fff;z-index:1;}
+.child_boards_tab{padding:7px 0;border-top:#cfcfcf 1px solid;border-bottom:#14a0de 4px solid;background-color:#f3f3f3;background-image:-webkit-linear-gradient(top,#fff,#edecea);background-image:-moz-linear-gradient(top,#fff,#edecea);background-image:-ms-linear-gradient(top,#fff,#edecea);background-image:-o-linear-gradient(top,#fff,#edecea);background-image:linear-gradient(top,#fff,#edecea);}
+.child_boards_tab li{float:left;}
+.child_boards_tab li a{display:inline-block;padding: 0 10px;line-height:22px;}
+.child_boards_tab li.current a{background-color:#1195dd;color:#fff;}
+</style>
+<div class="bbs_clear">
+<div style="padding-top:4px;float:right;">
+<div class="pages"><a href="thread-htm-fid-6-page-1.html" rel="external nofollow">&laquo;</a><a href="thread-htm-fid-6-page-997.html" rel="external nofollow">997</a><a href="thread-htm-fid-6-page-998.html" rel="external nofollow">998</a><a href="thread-htm-fid-6-page-999.html" rel="external nofollow">999</a><b>1000</b><a href="thread-htm-fid-6-page-1000.html" rel="external nofollow">&raquo;</a><span class="fl" style="float:none;">共4716页</span><span class="pagesone"><input type="text" size="3" onkeydown="javascript: if(event.keyCode==13){var value = parseInt(this.value);var page=(value>4716) ? 4716 : value;  location='thread.php?fid=6&page='+page+''; return false;}"><button onclick="javascript:var value = parseInt(this.previousSibling.value); var page=(value>4716) ? 4716 : value;  location='thread.php?fid=6&page='+page+''; return false;">Go</button></span></div>
+<form name="sF" action="http://s.xmfish.com/s#submit" method="post" onsubmit="if(this.keyword.value=='版内搜索')this.keyword.value=''">
+<input type="hidden" value="2" name="step"/>
+<input type="hidden" value="AND" name="method"/>
+<input type="hidden" value="thread" name="type"/>
+<input type="hidden" value="5cbb797f" name="verify">
+<input type="hidden" value="1" name="sch_area"/>
+<input type="hidden" value="6" name="fid"/>
+<input type="hidden" value="all" name="sch_time"/>
+<div class="pages fl">
+<span class="pagesone">
+<input type="text" class="s6" style="width:90px;" name="keyword" onfocus="if(this.value=='版内搜索') this.value='';" onblur="if(this.value=='') this.value='版内搜索';" value="版内搜索" />
+<button name="submit" type="submit">搜索</button>
+</span>
+</div>
+</form>
+</div>
+<ul class="posts_tab bbs_clear">
+<li class="current"><a href="thread-htm-fid-6-search-all.html#tabA">全部</a></li>
+<li ><a href="thread-htm-fid-6-ott-1.html" >存档</a></li>
+<li  id="thread_type_digest"><a href="thread-htm-fid-6-search-digest.html#tabA" rel="external nofollow">精华</a></li>
+<li ><a href="thread-htm-fid-6-special-1.html#tabA" >投票</a></li>
+<li >
+<a href="thread-htm-fid-6-special-5.html#tabA" >辩论</a>
+</li>
+<li >
+<a href="thread-htm-fid-6-search-img.html#tabA" >看图
+<span class="tab-arrow"></span>
+<div class="tab-new">new</div>
+</a>
+</li>
+</ul>
+</div>
+<div id="ajaxtable">
+<div class="bbs_clear">
+<ul class="child_boards_tab bbs_clear" style="display:none;" id="id_allpcid">
+</ul>
+<ul class="child_boards_tab bbs_clear" style="display:none;" id="id_allactmid">
+</ul>
+<ul class="child_boards_tab bbs_clear" style="display:none;" id="id_allmodelid">
+</ul>
+<ul class="child_boards_tab bbs_clear" id="id_all">
+ <li id="thread_type_all"><a href="thread-htm-fid-6-search-all.html#tabA" >全部</a></li>
+<li id="thread_type_1018"><a href="thread-htm-fid-6-type-1018.html#tabA" >社会新闻</a></li>
+<li id="thread_type_753"><a href="thread-htm-fid-6-type-753.html#tabA" >本地杂谈</a></li>
+<li id="thread_type_1"><a href="thread-htm-fid-6-type-1.html#tabA" >鱼友互助</a></li>
+<li id="thread_type_755"><a href="thread-htm-fid-6-type-755.html#tabA" >交通出行</a></li>
+<li id="thread_type_757"><a href="thread-htm-fid-6-type-757.html#tabA" >家长里短</a></li>
+<li id="thread_type_1291"><a href="thread-htm-fid-6-type-1291.html#tabA" >寻人找物</a></li>
+<li id="thread_type_1298"><a href="thread-htm-fid-6-type-1298.html#tabA" >小鱼代言人</a></li>
+</ul>
+</div>
+<div class="z threadCommon">
+
+<style type="text/css">
+.add_eggs{background:url(images/pwicon/add_allbgs.png) no-repeat 0px -156px;height:16px;padding-left:16px;display:inline-block;}
+.add_flower{background:url(images/pwicon/add_allbgs.png) no-repeat 0px -172px;height:16px;padding-left:16px;display:inline-block;}
+.windthread_new{background:url(images/wind/windthread_allbgs.png) no-repeat 0px 0px;width:23px;padding-top:8px;display:inline-block;}
+.windthread_multipage{background:url(images/wind/windthread_allbgs.png) no-repeat -23px 0px;width:8px;padding-top:11px;display:inline-block;}
+.windthread_anc_png{background:url(images/wind/windthread_allbgs.png) no-repeat -36px 0px;width:14px;padding-top:14px;display:inline-block;}
+.windthread_digest_2{background:url(images/wind/windthread_allbgs.png) no-repeat -53px 0px;width:18px;padding-top:16px;display:inline-block;}
+.windthread_digest_3{background:url(images/wind/windthread_allbgs.png) no-repeat -74px 0px;width:18px;padding-top:16px;display:inline-block;}
+.windthread_digest{background:url(images/wind/windthread_allbgs.png) no-repeat -94px 0px;width:18px;padding-top:16px;display:inline-block;}
+.windthread_digest_1{background:url(images/wind/windthread_allbgs.png) no-repeat -114px 0px;width:18px;padding-top:16px;display:inline-block;}
+.windthread_zip{background:url(images/wind/windthread_allbgs.png) no-repeat -133px 0px;width:16px;padding-top:15px;display:inline-block;}
+.windthread_music{background:url(images/wind/windthread_allbgs.png) no-repeat -151px 0px;width:16px;padding-top:15px;display:inline-block;}
+.windthread_txt{background:url(images/wind/windthread_allbgs.png) no-repeat -169px 0px;width:16px;padding-top:13px;display:inline-block;}
+.windthread_img{background:url(images/wind/windthread_allbgs.png) no-repeat -188px 0px;width:16px;padding-top:14px;display:inline-block;}
+.windthread_attc{background:url(images/wind/windthread_allbgs.png) no-repeat -205px 0px;width:16px;padding-top:18px;display:inline-block;}
+.windthread_anc{background:url(images/wind/windthread_allbgs.png) no-repeat -222px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_headtopic_1{background:url(images/wind/windthread_allbgs.png) no-repeat -241px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_headtopic_3{background:url(images/wind/windthread_allbgs.png) no-repeat -260px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_headtopic_2{background:url(images/wind/windthread_allbgs.png) no-repeat -279px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_active{background:url(images/wind/windthread_allbgs.png) no-repeat -295px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_activelock{background:url(images/wind/windthread_allbgs.png) no-repeat -311px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_debate{background:url(images/wind/windthread_allbgs.png) no-repeat -327px 0px;width:16px;padding-top:12px;display:inline-block;}
+.windthread_debatelock{background:url(images/wind/windthread_allbgs.png) no-repeat -343px 0px;width:16px;padding-top:12px;display:inline-block;}
+.windthread_reward{background:url(images/wind/windthread_allbgs.png) no-repeat -359px 0px;width:15px;padding-top:16px;display:inline-block;}
+.windthread_rewardlock{background:url(images/wind/windthread_allbgs.png) no-repeat -376px 0px;width:15px;padding-top:16px;display:inline-block;}
+.windthread_topicclose{background:url(images/wind/windthread_allbgs.png) no-repeat -392px 0px;width:16px;padding-top:15px;display:inline-block;}
+.windthread_topichot{background:url(images/wind/windthread_allbgs.png) no-repeat -408px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_topiclock{background:url(images/wind/windthread_allbgs.png) no-repeat -425px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_topicnew{background:url(images/wind/windthread_allbgs.png) no-repeat -441px 0px;width:15px;padding-top:17px;display:inline-block;}
+.windthread_trade{background:url(images/wind/windthread_allbgs.png) no-repeat -456px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_tradelock{background:url(images/wind/windthread_allbgs.png) no-repeat -472px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_vote{background:url(images/wind/windthread_allbgs.png) no-repeat -488px 0px;width:16px;padding-top:16px;display:inline-block;}
+.windthread_votelock{background:url(images/wind/windthread_allbgs.png) no-repeat -504px 0px;width:16px;padding-top:16px;display:inline-block;}
+</style>
+<table width="100%" style="table-layout:fixed;">
+<tbody id="threadlist">
+<tr class="tr2 l_th">
+<td class="icon" width="40" style="padding:0;">&nbsp;</td>
+<td class="subject" style="padding-left:0;">
+<label class="fr mr10 cp" for="newwindows"><input style="padding:0;margin:-1px 3px 0 0;" name="newwindows" id="newwindows" type="checkbox"checked value="1" onclick="xinchuang()" />新窗</label>
+<script language="JavaScript">
+var orderThreadsClass = {
+orderThreads : function(orderway){
+var orderway = orderway || 'lastpost';
+var form = document.createElement("form");
+form.action = "thread.php?fid=6&search=all&page=1000#tabA";
+form.method = "post";
+var h_type = this.createInput("hidden","type","0");
+var h_search = this.createInput("hidden","search","1000");
+var h_special = this.createInput("hidden","special","0");
+var h_orderway = this.createInput("hidden","orderway",orderway);
+var h_asc = this.createInput("hidden","asc","DESC");
+form.appendChild(h_type);
+form.appendChild(h_search);
+form.appendChild(h_special);
+form.appendChild(h_orderway);
+form.appendChild(h_asc);
+document.body.appendChild(form);
+setTimeout(function(){/*ie6*/
+form.submit();
+},0);
+return false;
+},
+createInput : function(type,name,value){
+var hidden = document.createElement("input");
+hidden.type = type;
+hidden.name = name;
+hidden.value = value;//↓
+return hidden;
+}
+}
+function orderThreads(orderway){
+orderThreadsClass.orderThreads(orderway);
+}
+</script>
+<span class="mr20">排序：<a href="javascript:;" title="按发表时间排序" onclick="orderThreads('postdate');" id="thread_sort_postdate" ><span>最新发帖</span></a>&nbsp;|&nbsp;<a href="javascript:;" title="按最后回复时间排序" onclick="orderThreads('lastpost');" id="thread_sort_lastpost" class='link_down current'><span>最后回复</span></a></span></td>
+<td class="author">作者</td>
+<td width="80">回复</td>
+<td class="author">最后发表</td>
+</tr>
+
+<style type="text/css">
+.thread_inner_img{margin:0 auto;}
+.read_inner_img{margin:0 auto;}
+.read_inner_img img{width:950px;}
+.thread_inner_img img{width:800px;}
+</style>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568788.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568788">
+<a href="read-htm-tid-15568788.html" name="readlinkt" target="_blank" id="a_ajax_15568788" class="subject_t f14">恭喜[表情][表情][表情]老哥工厂乔迁之喜</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +3 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1717749" rel="external nofollow">晶莹剔透jjjj</a><p>2018-08-12</p></td>
+<td class="num"><em>8</em>/1448</td>
+<td class="author"><a href="u.php?username=%B2%BB%D6%AA%B5%C0%D4%F5%C3%B4%D7%A2%B2%E1" rel="external nofollow">不知道怎么注册</a><p><a href="read-htm-tid-15568788-page-e.html#a" title="2018-08-13 01:00" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568506.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568506">
+<a href="thread-htm-fid-6-type-1291.html" class="f14 s4 view" rel="external nofollow">[寻人找物]</a>
+<a href="read-htm-tid-15568506.html" name="readlinkt" target="_blank" id="a_ajax_15568506" class="subject_t f14">[08-12]厦门哪里有定做金饰店啊！</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=1783171" rel="external nofollow">我是陆仁贾</a><p>2018-08-12</p></td>
+<td class="num"><em>4</em>/468</td>
+<td class="author"><a href="u.php?username=%C3%C0%C0%F6%E6%CF%B6%F0" rel="external nofollow">美丽嫦娥</a><p><a href="read-htm-tid-15568506-page-e.html#a" title="2018-08-13 00:51" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568618.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568618">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15568618.html" name="readlinkt" target="_blank" id="a_ajax_15568618" class="subject_t f14">[08-12]这样卖唱的好赚吗</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=559653" rel="external nofollow">厦门学生公寓</a><p>2018-08-12</p></td>
+<td class="num"><em>4</em>/558</td>
+<td class="author"><a href="u.php?username=%C5%E4%B3%B5%D4%BF%B3%D7" rel="external nofollow">配车钥匙</a><p><a href="read-htm-tid-15568618-page-e.html#a" title="2018-08-13 00:39" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15466169.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15466169">
+<a href="read-htm-tid-15466169.html" name="readlinkt" target="_blank" id="a_ajax_15466169" class="subject_t f14">同安哪里有小孩学围棋的</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1374098" rel="external nofollow">hanhan26</a><p>2018-06-28</p></td>
+<td class="num"><em>1</em>/411</td>
+<td class="author"><a href="u.php?username=cmyyy" rel="external nofollow">cmyyy</a><p><a href="read-htm-tid-15466169-page-e.html#a" title="2018-08-13 00:35" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15496389.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15496389">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15496389.html" name="readlinkt" target="_blank" id="a_ajax_15496389" class="subject_t f14">海沧哪里有教幼儿围棋</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1914284" rel="external nofollow">咛咛</a><p>2018-07-12</p></td>
+<td class="num"><em>1</em>/380</td>
+<td class="author"><a href="u.php?username=cmyyy" rel="external nofollow">cmyyy</a><p><a href="read-htm-tid-15496389-page-e.html#a" title="2018-08-13 00:35" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15557174.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15557174">
+<a href="read-htm-tid-15557174.html" name="readlinkt" target="_blank" id="a_ajax_15557174" class="subject_t f14">海沧生活区哪有围棋培训</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2088157" rel="external nofollow">xiaozhang51</a><p>2018-08-07</p></td>
+<td class="num"><em>2</em>/428</td>
+<td class="author"><a href="u.php?username=cmyyy" rel="external nofollow">cmyyy</a><p><a href="read-htm-tid-15557174-page-e.html#a" title="2018-08-13 00:34" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568844.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568844">
+<a href="read-htm-tid-15568844.html" name="readlinkt" target="_blank" id="a_ajax_15568844" class="subject_t f14">想养一只法斗</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2141176" rel="external nofollow">法斗宝宝</a><p>2018-08-12</p></td>
+<td class="num"><em>1</em>/300</td>
+<td class="author"><a href="u.php?username=%D6%EC%B4%CF" rel="external nofollow">朱聪</a><p><a href="read-htm-tid-15568844-page-e.html#a" title="2018-08-13 00:29" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15482899.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15482899">
+<a href="read-htm-tid-15482899.html" name="readlinkt" target="_blank" id="a_ajax_15482899" class="subject_t f14">海沧临港新城</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2137853" rel="external nofollow">海沧区临港新城</a><p>2018-07-05</p></td>
+<td class="num"><em>2</em>/994</td>
+<td class="author"><a href="u.php?username=%BF%B5%B6%B9" rel="external nofollow">康豆</a><p><a href="read-htm-tid-15482899-page-e.html#a" title="2018-08-13 00:24" rel="external nofollow">2018-08-13 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15522034.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15522034">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15522034.html" name="readlinkt" target="_blank" id="a_ajax_15522034" class="subject_t f14">[07-23]厦门中山路奶茶店达百家 “网红奶茶”能火多久？</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +11 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15522034.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15522034-page-2.html" target="_blank" rel="external nofollow">2</a> <a href="read-htm-tid-15522034-page-3.html" target="_blank" rel="external nofollow">3</a> <a href="read-htm-tid-15522034-page-4.html" target="_blank" rel="external nofollow">4</a> <a href="read-htm-tid-15522034-page-5.html" target="_blank" rel="external nofollow">5</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=1097949" rel="external nofollow">陌冷紫</a><p>2018-07-23</p></td>
+<td class="num"><em>124</em>/13318</td>
+<td class="author"><a href="u.php?username=%C3%DE%C3%DE%BB%A8%CC%C7" rel="external nofollow">棉棉花糖</a><p><a href="read-htm-tid-15522034-page-e.html#a" title="2018-08-12 23:50" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568933.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568933">
+<a href="read-htm-tid-15568933.html" name="readlinkt" target="_blank" id="a_ajax_15568933" class="subject_t f14">求助！！</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=214456" rel="external nofollow">无音之乐</a><p>2018-08-12</p></td>
+<td class="num"><em>0</em>/82</td>
+<td class="author"><a href="u.php?username=%CE%DE%D2%F4%D6%AE%C0%D6" rel="external nofollow">无音之乐</a><p><a href="read-htm-tid-15568933-page-e.html#a" title="2018-08-12 23:44" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15363246.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15363246">
+<a href="read-htm-tid-15363246.html" name="readlinkt" target="_blank" id="a_ajax_15363246" class="subject_t f14">厦门有共享汽车么</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=873732" rel="external nofollow">羽翱</a><p>2018-05-15</p></td>
+<td class="num"><em>19</em>/3249</td>
+<td class="author"><a href="u.php?username=%B5%C8%CE%D2%B5%C4%D0%A1%E0%BD%E0%BD" rel="external nofollow">等我的小嘟嘟</a><p><a href="read-htm-tid-15363246-page-e.html#a" title="2018-08-12 23:40" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15566077.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15566077">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15566077.html" name="readlinkt" target="_blank" id="a_ajax_15566077" class="subject_t f14">[08-11]七夕快到了，想买束花送老婆不知道厦门哪里有卖花的最好包邮？</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=198358" rel="external nofollow">baloma</a><p>2018-08-11</p></td>
+<td class="num"><em>8</em>/617</td>
+<td class="author"><a href="u.php?username=%B0%E8%CC%C7%CE%F7%BA%EC%CA%C1" rel="external nofollow">拌糖西红柿</a><p><a href="read-htm-tid-15566077-page-e.html#a" title="2018-08-12 23:36" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15560893.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15560893">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15560893.html" name="readlinkt" target="_blank" id="a_ajax_15560893" class="subject_t f14">[08-09]俄罗斯禁用微信了</a>&nbsp; <span class="s2 w"></span>  <i class="windthread_img" alt="img" align="absmiddle"></i> 
+</td>
+<td class="author"><a href="u.php?uid=1943928" rel="external nofollow">咱小老百姓</a><p>2018-08-09</p></td>
+<td class="num"><em>12</em>/1662</td>
+<td class="author"><a href="u.php?username=%B9%D4%B9%D4%B9%D4" rel="external nofollow">乖乖乖</a><p><a href="read-htm-tid-15560893-page-e.html#a" title="2018-08-12 23:36" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568224.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568224">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15568224.html" name="readlinkt" target="_blank" id="a_ajax_15568224" class="subject_t f14">厦门成人大学在哪里报名</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2123120" rel="external nofollow">鱼忘8秒</a><p>2018-08-12</p></td>
+<td class="num"><em>7</em>/893</td>
+<td class="author"><a href="u.php?username=%EC%CD%C9%AD" rel="external nofollow">焱森</a><p><a href="read-htm-tid-15568224-page-e.html#a" title="2018-08-12 23:28" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568914.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568914">
+<a href="read-htm-tid-15568914.html" name="readlinkt" target="_blank" id="a_ajax_15568914" class="subject_t f14">泡菜小龙虾，你吃过吗？</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +2 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1323703" rel="external nofollow">retty932200</a><p>2018-08-12</p></td>
+<td class="num"><em>0</em>/334</td>
+<td class="author"><a href="u.php?username=retty932200" rel="external nofollow">retty932200</a><p><a href="read-htm-tid-15568914-page-e.html#a" title="2018-08-12 23:26" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568872.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568872">
+<a href="read-htm-tid-15568872.html" name="readlinkt" target="_blank" id="a_ajax_15568872" class="subject_t f14">求教</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2134911" rel="external nofollow">阿卷1106</a><p>2018-08-12</p></td>
+<td class="num"><em>1</em>/241</td>
+<td class="author"><a href="u.php?username=%D2%C5%CA%A7%B5%C4%B7%E7" rel="external nofollow">遗失的风</a><p><a href="read-htm-tid-15568872-page-e.html#a" title="2018-08-12 23:21" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568710.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568710">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15568710.html" name="readlinkt" target="_blank" id="a_ajax_15568710" class="subject_t f14">[08-12]你对我的谎言，得到是我的诀别</a>&nbsp; <span class="s2 w"></span>  <i class="windthread_img" alt="img" align="absmiddle"></i> 
+</td>
+<td class="author"><a href="u.php?uid=1152426" rel="external nofollow">小晓城</a><p>2018-08-12</p></td>
+<td class="num"><em>2</em>/545</td>
+<td class="author"><a href="u.php?username=sanpride" rel="external nofollow">sanpride</a><p><a href="read-htm-tid-15568710-page-e.html#a" title="2018-08-12 23:12" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568717.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568717">
+<a href="read-htm-tid-15568717.html" name="readlinkt" target="_blank" id="a_ajax_15568717" class="subject_t f14">有没有人有2018年理科高考志愿填报的那本书？</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=17466" rel="external nofollow">张吴记</a><p>2018-08-12</p></td>
+<td class="num"><em>2</em>/427</td>
+<td class="author"><a href="u.php?username=%D5%C5%CE%E2%BC%C7" rel="external nofollow">张吴记</a><p><a href="read-htm-tid-15568717-page-e.html#a" title="2018-08-12 23:12" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15565835.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15565835">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15565835.html" name="readlinkt" target="_blank" id="a_ajax_15565835" class="subject_t f14">[08-11]是不是有很多人现在准备卖房跑路了</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +10 )</span>   
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15565835.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15565835-page-2.html" target="_blank" rel="external nofollow">2</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=1251793" rel="external nofollow">沙丁鱼沙丁鱼</a><p>2018-08-11</p></td>
+<td class="num"><em>55</em>/11395</td>
+<td class="author"><a href="u.php?username=zhang1985" rel="external nofollow">zhang1985</a><p><a href="read-htm-tid-15565835-page-e.html#a" title="2018-08-12 23:06" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568856.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568856">
+<a href="read-htm-tid-15568856.html" name="readlinkt" target="_blank" id="a_ajax_15568856" class="subject_t f14">第一次报青少年宫跆拳道</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=552862" rel="external nofollow">幸福天使宝贝</a><p>2018-08-12</p></td>
+<td class="num"><em>0</em>/370</td>
+<td class="author"><a href="u.php?username=%D0%D2%B8%A3%CC%EC%CA%B9%B1%A6%B1%B4" rel="external nofollow">幸福天使宝贝</a><p><a href="read-htm-tid-15568856-page-e.html#a" title="2018-08-12 22:56" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15564409.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15564409">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15564409.html" name="readlinkt" target="_blank" id="a_ajax_15564409" class="subject_t f14">我是正义人士还是大愤青</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +14 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15564409.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15564409-page-2.html" target="_blank" rel="external nofollow">2</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=2099814" rel="external nofollow">lxm小明哥</a><p>2018-08-10</p></td>
+<td class="num"><em>49</em>/4984</td>
+<td class="author"><a href="u.php?username=%CE%D2%CA%C7%C5%A3%C5%A3%B0%D6" rel="external nofollow">我是牛牛爸</a><p><a href="read-htm-tid-15564409-page-e.html#a" title="2018-08-12 22:47" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15567822.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567822">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15567822.html" name="readlinkt" target="_blank" id="a_ajax_15567822" class="subject_t f14">[08-12]谁才是第三者</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +1 )</span>   
+</td>
+<td class="author"><a href="u.php?uid=2120812" rel="external nofollow">永恒是个屁</a><p>2018-08-12</p></td>
+<td class="num"><em>11</em>/942</td>
+<td class="author"><a href="u.php?username=%C6%B7%C5%C6%C0%D6%D4%B0" rel="external nofollow">品牌乐园</a><p><a href="read-htm-tid-15567822-page-e.html#a" title="2018-08-12 22:43" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568236.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568236">
+<a href="read-htm-tid-15568236.html" name="readlinkt" target="_blank" id="a_ajax_15568236" class="subject_t f14">生活</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +1 )</span>   
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2146879" rel="external nofollow">筱雨之家</a><p>2018-08-12</p></td>
+<td class="num"><em>7</em>/441</td>
+<td class="author"><a href="u.php?username=%D2%BB%D0%A6%D2%BB%C9%FA" rel="external nofollow">一笑一生</a><p><a href="read-htm-tid-15568236-page-e.html#a" title="2018-08-12 22:35" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568233.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568233">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15568233.html" name="readlinkt" target="_blank" id="a_ajax_15568233" class="subject_t f14">[08-12]厦门哪里有学煲仔饭的地方</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=1106968" rel="external nofollow">满堂香香</a><p>2018-08-12</p></td>
+<td class="num"><em>2</em>/287</td>
+<td class="author"><a href="u.php?username=%C8%E7%B9%FB%D4%AD%C0%B4" rel="external nofollow">如果原来</a><p><a href="read-htm-tid-15568233-page-e.html#a" title="2018-08-12 22:34" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15567890.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567890">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15567890.html" name="readlinkt" target="_blank" id="a_ajax_15567890" class="subject_t f14">[08-12]有爱国画的吗、</a>&nbsp; <span class="s2 w"></span>  <i class="windthread_img" alt="img" align="absmiddle"></i> 
+</td>
+<td class="author"><a href="u.php?uid=1586121" rel="external nofollow">神秘感悟</a><p>2018-08-12</p></td>
+<td class="num"><em>3</em>/458</td>
+<td class="author"><a href="u.php?username=%B9%C2%D3%EA%D0%C7%BF%D5" rel="external nofollow">孤雨星空</a><p><a href="read-htm-tid-15567890-page-e.html#a" title="2018-08-12 22:27" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15566429.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15566429">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15566429.html" name="readlinkt" target="_blank" id="a_ajax_15566429" class="subject_t f14">[08-11]学长带头骗学妹：借3千竟要还110万！对方还发来这种照片，女大学生崩溃……</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +3 )</span>   
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15566429.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15566429-page-2.html" target="_blank" rel="external nofollow">2</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=1629647" rel="external nofollow">悠悠人生路</a><p>2018-08-11</p></td>
+<td class="num"><em>41</em>/5402</td>
+<td class="author"><a href="u.php?username=%C3%EE%D2%F4%B8%F3%D6%F7" rel="external nofollow">妙音阁主</a><p><a href="read-htm-tid-15566429-page-e.html#a" title="2018-08-12 22:19" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568667.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568667">
+<a href="thread-htm-fid-6-type-1291.html" class="f14 s4 view" rel="external nofollow">[寻人找物]</a>
+<a href="read-htm-tid-15568667.html" name="readlinkt" target="_blank" id="a_ajax_15568667" class="subject_t f14">转发一个寻人启事</a>&nbsp; <span class="s2 w"></span>  <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2100720" rel="external nofollow">大众原厂改装</a><p>2018-08-12</p></td>
+<td class="num"><em>4</em>/475</td>
+<td class="author"><a href="u.php?username=%D2%BB%CC%F5%D3%D0%D0%C5%C4%EE%B5%C4%D3%E3" rel="external nofollow">一条有信念的鱼</a><p><a href="read-htm-tid-15568667-page-e.html#a" title="2018-08-12 22:18" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-13905178.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_13905178">
+<a href="thread-htm-fid-6-type-755.html" class="f14 s4 view" rel="external nofollow">[交通出行]</a>
+<a href="read-htm-tid-13905178.html" name="readlinkt" target="_blank" id="a_ajax_13905178" class="subject_t f14">[12-28]请记住：拆掉座椅是违法行为</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=1293662" rel="external nofollow">qzlxy</a><p>2016-12-28</p></td>
+<td class="num"><em>11</em>/1285</td>
+<td class="author"><a href="u.php?username=openlive" rel="external nofollow">openlive</a><p><a href="read-htm-tid-13905178-page-e.html#a" title="2018-08-12 22:08" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15463974.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15463974">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15463974.html" name="readlinkt" target="_blank" id="a_ajax_15463974" class="subject_t f14">[06-27]不是说人少了吗？在杏林找了几天的房子都找不到~！！</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +2 )</span>   
+</td>
+<td class="author"><a href="u.php?uid=818721" rel="external nofollow">蜘蛛网落花</a><p>2018-06-27</p></td>
+<td class="num"><em>26</em>/2295</td>
+<td class="author"><a href="u.php?username=%D6%A9%D6%EB%CD%F8%C2%E4%BB%A8" rel="external nofollow">蜘蛛网落花</a><p><a href="read-htm-tid-15463974-page-e.html#a" title="2018-08-12 22:06" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568694.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568694">
+<a href="thread-htm-fid-6-type-755.html" class="f14 s4 view" rel="external nofollow">[交通出行]</a>
+<a href="read-htm-tid-15568694.html" name="readlinkt" target="_blank" id="a_ajax_15568694" class="subject_t f14">厦禾路大堵车</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +2 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1347466" rel="external nofollow">张小小城</a><p>2018-08-12</p></td>
+<td class="num"><em>3</em>/624</td>
+<td class="author"><a href="u.php?username=%BE%B0%C6%BD" rel="external nofollow">景平</a><p><a href="read-htm-tid-15568694-page-e.html#a" title="2018-08-12 22:01" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15563218.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15563218">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15563218.html" name="readlinkt" target="_blank" id="a_ajax_15563218" class="subject_t f14">[08-10]为什么厦门的公交车不装窗帘</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +2 )</span>   
+</td>
+<td class="author"><a href="u.php?uid=1482666" rel="external nofollow">小落尘</a><p>2018-08-10</p></td>
+<td class="num"><em>29</em>/1087</td>
+<td class="author"><a href="u.php?username=%B9%BD%C1%B9%BE%CD%B0%AE" rel="external nofollow">菇凉就爱</a><p><a href="read-htm-tid-15563218-page-e.html#a" title="2018-08-12 21:54" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568616.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568616">
+<a href="read-htm-tid-15568616.html" name="readlinkt" target="_blank" id="a_ajax_15568616" class="subject_t f14">保佑我钱包在公司抽屉</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=582282" rel="external nofollow">木头哥哥</a><p>2018-08-12</p></td>
+<td class="num"><em>1</em>/278</td>
+<td class="author"><a href="u.php?username=%D0%A1%B3%C2%CA%C7%CE%D2" rel="external nofollow">小陈是我</a><p><a href="read-htm-tid-15568616-page-e.html#a" title="2018-08-12 21:53" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15566082.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15566082">
+<a href="read-htm-tid-15566082.html" name="readlinkt" target="_blank" id="a_ajax_15566082" class="subject_t f14">【如何改善孩子的体质】</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2147175" rel="external nofollow">悾悾汝野</a><p>2018-08-11</p></td>
+<td class="num"><em>2</em>/368</td>
+<td class="author"><a href="u.php?username=linqiurong" rel="external nofollow">linqiurong</a><p><a href="read-htm-tid-15566082-page-e.html#a" title="2018-08-12 21:47" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15500016.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15500016">
+<img src="images/post/emotion/11.gif" alt="11" align="absmiddle"> 
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15500016.html" name="readlinkt" target="_blank" id="a_ajax_15500016" class="subject_t f14">[07-13]厦门高中部太少了，没考上高中怎么办呢？上不了高中的家长们进来聊聊你们的想法。</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +2 )</span>   
+</td>
+<td class="author"><a href="u.php?uid=452154" rel="external nofollow">呵呵嘻嘻</a><p>2018-07-13</p></td>
+<td class="num"><em>25</em>/5226</td>
+<td class="author"><a href="u.php?username=%CC%A4%C3%CE%D1%B0%E7%E6" rel="external nofollow">踏梦寻珂</a><p><a href="read-htm-tid-15500016-page-e.html#a" title="2018-08-12 21:37" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568125.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568125">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15568125.html" name="readlinkt" target="_blank" id="a_ajax_15568125" class="subject_t f14">[08-12]厦门的培训机构小心一家做教育培训广告宣传共享的，有猫腻</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=2106637" rel="external nofollow">菇凉就爱</a><p>2018-08-12</p></td>
+<td class="num"><em>1</em>/450</td>
+<td class="author"><a href="u.php?username=%B9%BD%C1%B9%BE%CD%B0%AE" rel="external nofollow">菇凉就爱</a><p><a href="read-htm-tid-15568125-page-e.html#a" title="2018-08-12 21:32" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15567920.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567920">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15567920.html" name="readlinkt" target="_blank" id="a_ajax_15567920" class="subject_t f14">[08-12]震惊！厦门明发集团退市？厦门最大“鬼城”怎么办？</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +1 )</span>   
+</td>
+<td class="author"><a href="u.php?uid=1930517" rel="external nofollow">鹭岛笑笑生</a><p>2018-08-12</p></td>
+<td class="num"><em>3</em>/1390</td>
+<td class="author"><a href="u.php?username=%B5%E7%BB%B0%C1%E5%C9%F9" rel="external nofollow">电话铃声</a><p><a href="read-htm-tid-15567920-page-e.html#a" title="2018-08-12 21:25" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15539977.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15539977">
+<a href="thread-htm-fid-6-type-755.html" class="f14 s4 view" rel="external nofollow">[交通出行]</a>
+<a href="read-htm-tid-15539977.html" name="readlinkt" target="_blank" id="a_ajax_15539977" class="subject_t f14">厦门路边临时停车位，一小时内收2次费用合理吗？</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +2 )</span>   
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2040938" rel="external nofollow">某某1980</a><p>2018-07-31</p></td>
+<td class="num"><em>2</em>/807</td>
+<td class="author"><a href="u.php?username=%DF%ED%B5%BD" rel="external nofollow">唔到</a><p><a href="read-htm-tid-15539977-page-e.html#a" title="2018-08-12 21:17" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15507406.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15507406">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15507406.html" name="readlinkt" target="_blank" id="a_ajax_15507406" class="subject_t f14">表妹初中毕业，没考上高中，不知道该怎么办。</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2091847" rel="external nofollow">二手车夫人</a><p>2018-07-17</p></td>
+<td class="num"><em>28</em>/2416</td>
+<td class="author"><a href="u.php?username=xyqxyqxyq" rel="external nofollow">xyqxyqxyq</a><p><a href="read-htm-tid-15507406-page-e.html#a" title="2018-08-12 21:16" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15022797.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15022797">
+<a href="thread-htm-fid-6-type-1018.html" class="f14 s4 view" rel="external nofollow">[社会新闻]</a>
+<a href="read-htm-tid-15022797.html" name="readlinkt" target="_blank" id="a_ajax_15022797" class="subject_t f14">[12-18]路边停车收费不合法，是真的吗？那你敢不交吗？</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +5 )</span>   
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15022797.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15022797-page-2.html" target="_blank" rel="external nofollow">2</a> <a href="read-htm-tid-15022797-page-3.html" target="_blank" rel="external nofollow">3</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=1643641" rel="external nofollow">盈愉</a><p>2017-12-18</p></td>
+<td class="num"><em>81</em>/23309</td>
+<td class="author"><a href="u.php?username=%DF%ED%B5%BD" rel="external nofollow">唔到</a><p><a href="read-htm-tid-15022797-page-e.html#a" title="2018-08-12 21:15" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15567737.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567737">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15567737.html" name="readlinkt" target="_blank" id="a_ajax_15567737" class="subject_t f14">[08-12]求问各位大侠，厦门哪里有卖全麦面粉，谢谢谢谢！！</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=133846" rel="external nofollow">herhui</a><p>2018-08-12</p></td>
+<td class="num"><em>5</em>/428</td>
+<td class="author"><a href="u.php?username=herhui" rel="external nofollow">herhui</a><p><a href="read-htm-tid-15567737-page-e.html#a" title="2018-08-12 21:15" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15567771.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567771">
+<a href="read-htm-tid-15567771.html" name="readlinkt" target="_blank" id="a_ajax_15567771" class="subject_t f14">货找车到东莞</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2111376" rel="external nofollow">花夏之恋</a><p>2018-08-12</p></td>
+<td class="num"><em>6</em>/458</td>
+<td class="author"><a href="u.php?username=%D0%A1%D7%D4%C0%B4%D2%B2" rel="external nofollow">小自来也</a><p><a href="read-htm-tid-15567771-page-e.html#a" title="2018-08-12 21:10" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568627.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568627">
+<a href="read-htm-tid-15568627.html" name="readlinkt" target="_blank" id="a_ajax_15568627" class="subject_t f14">太美的七夕礼物哈哈</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +1 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1994791" rel="external nofollow">XXMei</a><p>2018-08-12</p></td>
+<td class="num"><em>1</em>/373</td>
+<td class="author"><a href="u.php?username=%B6%AC%BC%BE%C1%B5%D1%A9" rel="external nofollow">冬季恋雪</a><p><a href="read-htm-tid-15568627-page-e.html#a" title="2018-08-12 20:31" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15566373.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15566373">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15566373.html" name="readlinkt" target="_blank" id="a_ajax_15566373" class="subject_t f14">[08-11]骚扰太多</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=1074017" rel="external nofollow">贝贝罗</a><p>2018-08-11</p></td>
+<td class="num"><em>7</em>/637</td>
+<td class="author"><a href="u.php?username=lqqcoolman" rel="external nofollow">lqqcoolman</a><p><a href="read-htm-tid-15566373-page-e.html#a" title="2018-08-12 20:11" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15474010.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15474010">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15474010.html" name="readlinkt" target="_blank" id="a_ajax_15474010" class="subject_t f14">[07-02]想找个小提琴老师</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=175404" rel="external nofollow">二千万</a><p>2018-07-02</p></td>
+<td class="num"><em>8</em>/846</td>
+<td class="author"><a href="u.php?username=%D0%A1%B0%AE%C8%D5%D3%EF" rel="external nofollow">小爱日语</a><p><a href="read-htm-tid-15474010-page-e.html#a" title="2018-08-12 20:03" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15515738.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15515738">
+<a href="read-htm-tid-15515738.html" name="readlinkt" target="_blank" id="a_ajax_15515738" class="subject_t f14">鱼鱼们说说前埔小学怎么样</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1808400" rel="external nofollow">honey归</a><p>2018-07-20</p></td>
+<td class="num"><em>10</em>/1610</td>
+<td class="author"><a href="u.php?username=%B9%FB%D7%D3%BA%FC" rel="external nofollow">果子狐</a><p><a href="read-htm-tid-15515738-page-e.html#a" title="2018-08-12 19:59" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15562907.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15562907">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15562907.html" name="readlinkt" target="_blank" id="a_ajax_15562907" class="subject_t f14">叫代驾叫到以前的朋友，好尴尬！</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +7 )</span>   
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15562907.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15562907-page-2.html" target="_blank" rel="external nofollow">2</a> <a href="read-htm-tid-15562907-page-3.html" target="_blank" rel="external nofollow">3</a> <a href="read-htm-tid-15562907-page-4.html" target="_blank" rel="external nofollow">4</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=983812" rel="external nofollow">摔锅亮亮</a><p>2018-08-10</p></td>
+<td class="num"><em>96</em>/15352</td>
+<td class="author"><a href="u.php?username=superlixiang" rel="external nofollow">superlixiang</a><p><a href="read-htm-tid-15562907-page-e.html#a" title="2018-08-12 19:58" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15523911.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15523911">
+<a href="read-htm-tid-15523911.html" name="readlinkt" target="_blank" id="a_ajax_15523911" class="subject_t f14">前埔附近的午托机构？</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=2058419" rel="external nofollow">哈me就哈自己</a><p>2018-07-24</p></td>
+<td class="num"><em>1</em>/321</td>
+<td class="author"><a href="u.php?username=dfgha" rel="external nofollow">dfgha</a><p><a href="read-htm-tid-15523911-page-e.html#a" title="2018-08-12 19:57" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-14657614.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_14657614">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-14657614.html" name="readlinkt" target="_blank" id="a_ajax_14657614" class="subject_t f14">对保的驾校不满意，怎样把驾照的钱退掉？</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1959216" rel="external nofollow">爱睡觉的????</a><p>2017-08-17</p></td>
+<td class="num"><em>4</em>/478</td>
+<td class="author"><a href="u.php?username=%B0%AE%CB%AF%BE%F5%B5%C4" rel="external nofollow">爱睡觉的</a><p><a href="read-htm-tid-14657614-page-e.html#a" title="2018-08-12 19:55" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15563677.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15563677">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15563677.html" name="readlinkt" target="_blank" id="a_ajax_15563677" class="subject_t f14">[08-10]有因必有果，公交车上女孩不让座挨打，女孩不给乞丐钱被抢，。。</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage w'>( -3 )</span>   
+</td>
+<td class="author"><a href="u.php?uid=873315" rel="external nofollow">我爱厦门的海</a><p>2018-08-10</p></td>
+<td class="num"><em>9</em>/616</td>
+<td class="author"><a href="u.php?username=%D3%C4%C1%E9%BF%CD%D5%BB" rel="external nofollow">幽灵客栈</a><p><a href="read-htm-tid-15563677-page-e.html#a" title="2018-08-12 19:43" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15508803.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15508803">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15508803.html" name="readlinkt" target="_blank" id="a_ajax_15508803" class="subject_t f14">有分到集美新源小学的小鱼鱼吗？有的回个话，一起聊一聊</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +2 )</span>   
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=420178" rel="external nofollow">祝您愉快</a><p>2018-07-17</p></td>
+<td class="num"><em>9</em>/790</td>
+<td class="author"><a href="u.php?username=%C0%EE%B1%CC%D5%E490" rel="external nofollow">李碧珍90</a><p><a href="read-htm-tid-15508803-page-e.html#a" title="2018-08-12 19:34" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15567856.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567856">
+<a href="read-htm-tid-15567856.html" name="readlinkt" target="_blank" id="a_ajax_15567856" class="subject_t f14">求药</a>&nbsp; <span class="s2 w"></span>  
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1633273" rel="external nofollow">陈师姐</a><p>2018-08-12</p></td>
+<td class="num"><em>3</em>/388</td>
+<td class="author"><a href="u.php?username=%B3%C2%CA%A6%BD%E3" rel="external nofollow">陈师姐</a><p><a href="read-htm-tid-15567856-page-e.html#a" title="2018-08-12 18:23" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15568379.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15568379">
+<a href="read-htm-tid-15568379.html" name="readlinkt" target="_blank" id="a_ajax_15568379" class="subject_t f14">直行辅住是怎么意思</a>&nbsp; <span class="s2 w"></span>  <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1121958" rel="external nofollow">困货</a><p>2018-08-12</p></td>
+<td class="num"><em>1</em>/397</td>
+<td class="author"><a href="u.php?username=liujunlin" rel="external nofollow">liujunlin</a><p><a href="read-htm-tid-15568379-page-e.html#a" title="2018-08-12 18:23" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15563870.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15563870">
+<a href="thread-htm-fid-6-type-1.html" class="f14 s4 view" rel="external nofollow">[鱼友互助]</a>
+<a href="read-htm-tid-15563870.html" name="readlinkt" target="_blank" id="a_ajax_15563870" class="subject_t f14">[08-10]小孩社保</a>&nbsp; <span class="s2 w"></span>  <i class="windthread_img" alt="img" align="absmiddle"></i> 
+</td>
+<td class="author"><a href="u.php?uid=763661" rel="external nofollow">我喜欢动画</a><p>2018-08-10</p></td>
+<td class="num"><em>5</em>/906</td>
+<td class="author"><a href="u.php?username=%C3%C0%C0%F6%E6%CF%B6%F0" rel="external nofollow">美丽嫦娥</a><p><a href="read-htm-tid-15563870-page-e.html#a" title="2018-08-12 18:21" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15566392.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15566392">
+<a href="thread-htm-fid-6-type-1018.html" class="f14 s4 view" rel="external nofollow">[社会新闻]</a>
+<a href="read-htm-tid-15566392.html" name="readlinkt" target="_blank" id="a_ajax_15566392" class="subject_t f14">[08-11]把以前超生罚款拿来鼓励二胎，也许有办法提高人口数量</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +1 )</span>   
+</td>
+<td class="author"><a href="u.php?uid=1645276" rel="external nofollow">鱼的后裔</a><p>2018-08-11</p></td>
+<td class="num"><em>20</em>/875</td>
+<td class="author"><a href="u.php?username=%D6%C7%D5%CF%C5%AE%C9%F1" rel="external nofollow">智障女神</a><p><a href="read-htm-tid-15566392-page-e.html#a" title="2018-08-12 18:15" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15565712.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15565712">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15565712.html" name="readlinkt" target="_blank" id="a_ajax_15565712" class="subject_t f14">[08-11]亲爱的麻辣烫生意很好啊，加了几个青菜豆腐就快30块</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +4 )</span>   
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15565712.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15565712-page-2.html" target="_blank" rel="external nofollow">2</a> <a href="read-htm-tid-15565712-page-3.html" target="_blank" rel="external nofollow">3</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=1251793" rel="external nofollow">沙丁鱼沙丁鱼</a><p>2018-08-11</p></td>
+<td class="num"><em>62</em>/7144</td>
+<td class="author"><a href="u.php?username=%CD%C1%B7%CB%CF%C8%C9%FA" rel="external nofollow">土匪先生</a><p><a href="read-htm-tid-15565712-page-e.html#a" title="2018-08-12 18:11" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15567605.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567605">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15567605.html" name="readlinkt" target="_blank" id="a_ajax_15567605" class="subject_t f14">[08-12]来来来，说说你裸考厦门事业单位考几分</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=1482666" rel="external nofollow">小落尘</a><p>2018-08-12</p></td>
+<td class="num"><em>8</em>/766</td>
+<td class="author"><a href="u.php?username=%D0%A1%C2%E4%B3%BE" rel="external nofollow">小落尘</a><p><a href="read-htm-tid-15567605-page-e.html#a" title="2018-08-12 18:07" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15421632.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15421632">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15421632.html" name="readlinkt" target="_blank" id="a_ajax_15421632" class="subject_t f14">[06-08]今年好像又有两个大商场要开业吧，宝龙一城和万象城</a>&nbsp; <span class="s2 w"></span>  
+</td>
+<td class="author"><a href="u.php?uid=1251793" rel="external nofollow">沙丁鱼沙丁鱼</a><p>2018-06-08</p></td>
+<td class="num"><em>12</em>/2561</td>
+<td class="author"><a href="u.php?username=%BF%A7%E0%AC%C0%B1%BD%B7%BC%A6" rel="external nofollow">咖喱辣椒鸡</a><p><a href="read-htm-tid-15421632-page-e.html#a" title="2018-08-12 18:05" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="热门主题" href="read-htm-tid-15565174.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topichot" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15565174">
+<a href="thread-htm-fid-6-type-753.html" class="f14 s4 view" rel="external nofollow">[本地杂谈]</a>
+<a href="read-htm-tid-15565174.html" name="readlinkt" target="_blank" id="a_ajax_15565174" class="subject_t f14">有车的司机，我们交流一个话题：</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +4 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自Android客户端</a>]</span>
+<span class="w">  <i class="windthread_multipage" align="absmiddle" alt="pages"></i> <span class="tpage"> <a href="read-htm-tid-15565174.html" target="_blank" rel="external nofollow">1</a> <a href="read-htm-tid-15565174-page-2.html" target="_blank" rel="external nofollow">2</a> <a href="read-htm-tid-15565174-page-3.html" target="_blank" rel="external nofollow">3</a></span> </span>
+</td>
+<td class="author"><a href="u.php?uid=1857598" rel="external nofollow">凯美瑞接活</a><p>2018-08-11</p></td>
+<td class="num"><em>64</em>/7404</td>
+<td class="author"><a href="u.php?username=%C0%A7%BB%F5" rel="external nofollow">困货</a><p><a href="read-htm-tid-15565174-page-e.html#a" title="2018-08-12 17:53" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15565673.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15565673">
+<a href="read-htm-tid-15565673.html" name="readlinkt" target="_blank" id="a_ajax_15565673" class="subject_t f14">落户新政策求解</a>&nbsp; <span class="s2 w"></span>  <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=1218255" rel="external nofollow">佛光拂晓</a><p>2018-08-11</p></td>
+<td class="num"><em>2</em>/501</td>
+<td class="author"><a href="u.php?username=kecongbin" rel="external nofollow">kecongbin</a><p><a href="read-htm-tid-15565673-page-e.html#a" title="2018-08-12 17:32" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+  <tr class="tr3">
+<td class="icon tac">
+<a title="开放主题" href="read-htm-tid-15567454.html" name="readlink" rel="external nofollow" target="_blank"><i class="windthread_topicnew" align="absmiddle"></i></a>
+</td>
+<td class="subject" id="td_15567454">
+<a href="read-htm-tid-15567454.html" name="readlinkt" target="_blank" id="a_ajax_15567454" class="subject_t f14">集美哪里有游泳的地方求推荐</a>&nbsp; <span class="s2 w"></span> <span class='gray tpage'>( +1 )</span>   <i class="windthread_img" alt="img" align="absmiddle"></i> 
+<span class="w" style="">[<a href="http://app.xmfish.com" class="s6" rel="external nofollow" target="_blank">来自iPhone客户端</a>]</span>
+</td>
+<td class="author"><a href="u.php?uid=611759" rel="external nofollow">xmsgz</a><p>2018-08-12</p></td>
+<td class="num"><em>4</em>/594</td>
+<td class="author"><a href="u.php?username=%C6%AE%CA%C5%B5%C4%BB%D8%D2%E4" rel="external nofollow">飘逝的回忆</a><p><a href="read-htm-tid-15567454-page-e.html#a" title="2018-08-12 17:24" rel="external nofollow">2018-08-12 <span>&raquo;</span></a></p></td>
+</tr>
+
+</tbody>
+</table>
+<script LANGUAGE="JavaScript">
+function delload(){
+var objTrs = getElementsByClassName('tr3',getObj('threadlist'));
+var mover =	 function (){
+var delObj = getElementsByClassName('s6 w',this);
+if(delObj.length>0){
+delObj[0].style.display='';
+}
+};
+var mout = function (){
+var delObj = getElementsByClassName('s6 w',this);
+if(delObj.length>0){
+delObj[0].style.display='none';
+}
+};
+for (var i=0;i<objTrs.length ; i++ ){
+objTrs[i].onmouseover = mover;
+objTrs[i].onmouseout =  mout;
+}
+}
+window.onReady(delload);
+//判断是否选中新窗口
+function xinchuang() { //新窗
+var i;
+var val = document.getElementById("newwindows");
+var va  = document.getElementsByName("readlink");
+var vat  = document.getElementsByName("readlinkt");
+if (val.checked == true) { //选中
+for (i=0;i<va.length;i++) {
+var vaa = va[i].setAttribute("target","_blank");
+}
+for (i=0;i<vat.length;i++) {
+var vaat = vat[i].setAttribute("target","_blank");
+}
+SetCookie("newwindows",2);
+} else {
+for (i=0;i<va.length;i++) {
+var vaa = va[i].setAttribute("target","_self");
+}
+for (i=0;i<vat.length;i++) {
+var vaat = vat[i].setAttribute("target","_self");
+}
+SetCookie("newwindows",1);
+}
+}
+//自动加载
+//window.onReady(xinchuang);
+</script>
+</div>
+</div>
+</div>
+<div class="cc p10">
+<div class="fl" style="padding-top:4px;float:left;"><div class="pages"><a href="thread-htm-fid-6-page-1.html">&laquo;</a><a href="thread-htm-fid-6-page-997.html">997</a><a href="thread-htm-fid-6-page-998.html">998</a><a href="thread-htm-fid-6-page-999.html">999</a><b>1000</b><a href="thread-htm-fid-6-page-1000.html">&raquo;</a><span class="fl" style="float:none;">共4716页</span><span class="pagesone"><input type="text" size="3" onkeydown="javascript: if(event.keyCode==13){var value = parseInt(this.value);var page=(value>4716) ? 4716 : value;  location='thread.php?fid=6&page='+page+''; return false;}"><button onclick="javascript:var value = parseInt(this.previousSibling.value); var page=(value>4716) ? 4716 : value;  location='thread.php?fid=6&page='+page+''; return false;">Go</button></span><a href="thread-htm-fid-6-page-999.html">上一页</a><a href="thread-htm-fid-6-page-1001.html">下一页</a></div><a class="pages_refresh_btn" href="javascript:;" onclick="location.reload()">刷新</a></div>
+<ul class="forum-opt">
+<li class="sub_post"><a href="post.php?fid=6" class="forum-opt-thread" rel="external nofollow">发表帖子</a>
+</li>
+</ul>
+<div style="clear:both;"></div>
+</div>
+<script language="JavaScript">
+var fid = '6';
+var forumtitle = "<font style=\"font-size:14px\">鹭岛生活</font>";
+var imgok = "keep mr10";
+var imgno = "keepOn mr10";
+var myshortcut = false;
+if(typeof(shortcut_menu) == "undefined"){shortcut_menu={fid:new Array(),fname:new Array()};}
+function Fjump(value){
+if(value!=''){
+window.location=('http://bbs.xmfish.com/thread.php?fid='+value);
+}
+}
+function Ajump(value){
+if(value!= ''){
+window.location=('http://bbs.xmfish.com/u.php?username='+value);
+}
+}
+var totalpage = parseInt('1000');
+var page = parseInt('1000');
+if(totalpage > 1){
+document.onkeydown=function(e){
+var e = is_ie ? window.event : e;
+var tagname = is_ie ? e.srcElement.tagName : e.target.tagName;
+if(tagname == 'INPUT' || tagname == 'TEXTAREA'){
+return;
+}
+actualCode = e.keyCode ? e.keyCode : e.charCode;
+if(actualCode == 39 && page<totalpage) {
+window.location = 'thread.php?fid=6&search=&page=' + (page+1);
+}
+if(actualCode == 37 && page>1){
+window.location = 'thread.php?fid=6&search=&page=' + (page-1);
+}
+}
+}
+function unshortCut(fid){
+ajax.send('pw_ajax.php?action=shortcut&type=delete&fid='+fid,'',function(){
+var short = getObj("shortcut_side_"+fid),tmp_fid=new Array(),tmp_fname=new Array();
+short.parentNode.removeChild(short);
+for(var i=0;i<shortcut_menu.fid.length;i++){
+if(shortcut_menu.fid[i] == fid){
+shortcut_menu.fid.splice(i,1);
+shortcut_menu.fname.splice(i,1);
+}
+}
+ajax.guide();
+});
+}
+function shortCut() {
+ajax.send('pw_ajax.php?action=shortcut&fid='+fid,'',function(){
+ajax.guide();
+var rText = ajax.request.responseText.split('	');
+try {
+if (typeof(rText[1]) != 'undefined' && rText[1] == 'successok') {
+shortcut_menu.fid.push(fid);
+shortcut_menu.fname.push(forumtitle);
+getObj('shortcut').innerHTML = "<a href=\"javascript:;\" onclick=\"javascript:shortCut();\" title=\"将本版块移除出我的书签\" class=\"keepOn mr10\">已收藏</a>";
+var shortcutforum = getObj('shortcutforum');
+var forumBooks = getObj('forumBooks');
+if (myshortcut == false) {
+var shortcutname = getObj('shortcutname');
+shortcutname.innerHTML = "收藏的版块:&nbsp;";
+shortcutforum.innerHTML = "<li id=\"scf_"+fid+"\"><del onclick=\"unshortCut("+fid+");\">删除</del><a href=\"thread.php?fid="+fid+"\">"+forumtitle+"</a>&nbsp;</li>";
+forumBooks.innerHTML = "<li><a href=\"thread.php?fid="+fid+"\">"+forumtitle+"</a>&nbsp;</li>";
+} else {
+if (IsElement('shortcutforum')) {
+var li = document.createElement('li');
+li.id = 'shortcut_side_'+fid;
+li.innerHTML = '<del onclick=\"unshortCut('+fid+');\">删除</del><a href=\"thread.php?fid='+fid+'\">'+forumtitle+'</a>&nbsp;';
+shortcutforum.appendChild(li);
+}
+if (IsElement('forumBooks')) {
+var li = document.createElement('li');
+li.innerHTML = '<a href=\"thread.php?fid='+fid+'\">'+forumtitle+'</a>';
+forumBooks.appendChild(li);
+}
+}
+} else if (typeof(rText[1]) != 'undefined' && rText[1] == 'successno') {
+for(var i=0;i<shortcut_menu.fid.length;i++){
+if(shortcut_menu.fid[i] == fid){
+shortcut_menu.fid.splice(i,1);
+shortcut_menu.fname.splice(i,1);
+}
+}
+getObj('shortcut').innerHTML = "<a href=\"javascript:;\" onclick=\"javascript:shortCut();\" title=\"将本版块添加到我的书签\" class=\"keep mr10\">收藏</a>";
+if (IsElement('shortcut_side_'+fid)) {
+var thisnode = getObj('shortcut_side_'+fid);
+var shortcutforum = thisnode.parentNode;
+shortcutforum.removeChild(thisnode);
+var li = shortcutforum.childNodes;
+for (var i=0; i<li.length; i++) {
+if (li[i].nodeType == 1) {
+return false;
+}
+}
+myshortcut = false;
+var shortcutname = getObj('shortcutname');
+shortcutname.innerHTML = "热门版块:&nbsp;";
+shortcutforum.innerHTML = getObj('db_shortcutforum').innerHTML;
+}
+}
+}catch(e){}
+});
+}
+(function(){
+var isReady=false;
+var readyList= [];
+var timer;
+ready=function(fn) {
+if (isReady )
+fn.call( document);
+else
+readyList.push( function() { return fn.call(this);});
+return this;
+}
+var onDOMReady=function(){
+for(var i=0;i<readyList.length;i++){
+readyList[i].apply(document);
+}
+readyList = null;
+}
+var bindReady = function(evt){
+if(isReady) return;
+isReady=true;
+onDOMReady.call(window);
+if(document.removeEventListener){
+document.removeEventListener("DOMContentLoaded", bindReady, false);
+}else if(document.attachEvent){
+document.detachEvent("onreadystatechange", bindReady);
+if(window == window.top){
+clearInterval(timer);
+timer = null;
+}
+}
+};
+if(document.addEventListener){
+document.addEventListener("DOMContentLoaded", bindReady, false);
+}else if(document.attachEvent){
+document.attachEvent("onreadystatechange", function(){
+if((/loaded|complete/).test(document.readyState))
+bindReady();
+});
+if(window == window.top){
+timer = setInterval(function(){
+try{
+isReady||document.documentElement.doScroll('left');//在IE下用能否执行doScroll判断dom是否加载完毕
+}catch(e){
+return;
+}
+bindReady();
+},5);
+}
+}
+})();
+function showThreadUl(){
+var arrayType = Array('allmodelid','allpcid','allactmid','all');
+for (var i=0;i<4;i++) {
+if ('all'!=arrayType[i] && getObj('id_'+arrayType[i])) {
+getObj('id_'+arrayType[i]).style.display='none';
+}
+}
+if (getObj('id_all') != undefined ) {
+getObj('id_all').style.display='';
+}else{
+if (getObj('id_all')) {
+getObj('id_all').style.display='';
+}
+}
+}
+ready(showThreadUl);
+</script>
+<script language="JavaScript" src="js/Deploy.js"></script>
+<script language="JavaScript">
+setCurrent('thread_type_all','thread_type_all','current');
+/*显示or隐藏版主推荐的帖子的删除功能*/
+function show_del(o){
+var d = o.getElementsByTagName('del');
+if (d.length > 0) {
+d[0].style.display = (d[0].style.display == 'none') ? '' : 'none';
+}
+}
+/*发送请求删除版主推荐的帖子，请求成功后，删除节点*/
+function comments_del(o,params){
+ajax.send('pw_ajax.php?action=commend&fid='+params.fid+'&tid='+params.tid,'',function(){
+var rText = eval('('+ajax.request.responseText+')');
+if(true == rText.success){
+o.parentNode.removeChild(o);
+}
+});
+}
+</script>
+</div></div></div>
+</div>
+<div id="menu_forumlist" style="display:none;">
+<div class="sbar-box-a" style="width:700px;">
+<div class="sbar-title" style="cursor:pointer" onclick="try{pw_bottom.hiddenTab();read.close();}catch(e){read.close();}">
+<span class="adel">隐藏</span>
+<span id="title_forumlist" class="b">快速跳转</span>
+</div>
+<div class="sbar-box-b">
+<div class="forum-list-popout">
+<dl class="cc">
+<dt>
+<a href="index-htm-cateid-3.html" target="_blank" rel="external nofollow">≡城事生活≡</a>
+</dt>
+<dd class="cc">
+<a href="thread-htm-fid-6.html" target="_blank" onclick="return pwForumList(true,gIsPost,6,'',true);" rel="external nofollow"><span>鹭岛生活</span></a>
+<a href="thread-htm-fid-472.html" target="_blank" onclick="return pwForumList(true,gIsPost,472,'',true);" rel="external nofollow"><span>鱼鱼爆料</span></a>
+<a href="thread-htm-fid-27.html" target="_blank" onclick="return pwForumList(true,gIsPost,27,'',true);" rel="external nofollow"><span>谈天说地</span></a>
+<a href="thread-htm-fid-14.html" target="_blank" onclick="return pwForumList(true,gIsPost,14,'',true);" rel="external nofollow"><span>上班一族</span></a>
+<a href="thread-htm-fid-495.html" target="_blank" onclick="return pwForumList(true,gIsPost,495,'',true);" rel="external nofollow"><span>小鱼温度</span></a>
+</dd>
+</dl>
+<dl class="cc">
+<dt>
+<a href="index-htm-cateid-471.html" target="_blank" rel="external nofollow">≡情感丽人≡</a>
+</dt>
+<dd class="cc">
+<a href="thread-htm-fid-9.html" target="_blank" onclick="return pwForumList(true,gIsPost,9,'',true);" rel="external nofollow"><span>心情故事</span></a>
+<a href="thread-htm-fid-143.html" target="_blank" onclick="return pwForumList(true,gIsPost,143,'',true);" rel="external nofollow"><span>鱼网情深</span></a>
+<a href="thread-htm-fid-486.html" target="_blank" onclick="return pwForumList(true,gIsPost,486,'',true);" rel="external nofollow"><span>时尚丽人</span></a>
+</dd>
+</dl>
+<dl class="cc">
+<dt>
+<a href="index-htm-cateid-183.html" target="_blank" rel="external nofollow">≡人生大事≡</a>
+</dt>
+<dd class="cc">
+<a href="thread-htm-fid-375.html" target="_blank" onclick="return pwForumList(true,gIsPost,375,'',true);" rel="external nofollow"><span>吃喝玩乐</span></a>
+<a href="thread-htm-fid-75.html" target="_blank" onclick="return pwForumList(true,gIsPost,75,'',true);" rel="external nofollow"><span>亲子乐园</span></a>
+<a href="thread-htm-fid-147.html" target="_blank" onclick="return pwForumList(true,gIsPost,147,'',true);" rel="external nofollow"><span>房产聚焦</span></a>
+<a href="thread-htm-fid-17.html" target="_blank" onclick="return pwForumList(true,gIsPost,17,'',true);" rel="external nofollow"><span>小鱼健康</span></a>
+<a href="thread-htm-fid-136.html" target="_blank" onclick="return pwForumList(true,gIsPost,136,'',true);" rel="external nofollow"><span>结婚喜事</span></a>
+<a href="thread-htm-fid-165.html" target="_blank" onclick="return pwForumList(true,gIsPost,165,'',true);" rel="external nofollow"><span>家居装饰</span></a>
+<a href="thread-htm-fid-267.html" target="_blank" onclick="return pwForumList(true,gIsPost,267,'',true);" rel="external nofollow"><span>轻车熟路</span></a>
+</dd>
+</dl>
+<dl class="cc">
+<dt>
+<a href="index-htm-cateid-82.html" target="_blank" rel="external nofollow">≡便民分类≡</a>
+</dt>
+<dd class="cc">
+<a href="thread-htm-fid-55.html" target="_blank" onclick="return pwForumList(true,gIsPost,55,'',true);" rel="external nofollow"><span>物尽其用</span></a>
+<a href="thread-htm-fid-260.html" target="_blank" onclick="return pwForumList(true,gIsPost,260,'',true);" rel="external nofollow"><span>求职招聘</span></a>
+<a href="thread-htm-fid-83.html" target="_blank" onclick="return pwForumList(true,gIsPost,83,'',true);" rel="external nofollow"><span>鱼鱼集市</span></a>
+<a href="thread-htm-fid-238.html" target="_blank" onclick="return pwForumList(true,gIsPost,238,'',true);" rel="external nofollow"><span>厦门拼车</span></a>
+<a href="thread-htm-fid-356.html" target="_blank" onclick="return pwForumList(true,gIsPost,356,'',true);" rel="external nofollow"><span>生活服务</span></a>
+<a href="thread-htm-fid-357.html" target="_blank" onclick="return pwForumList(true,gIsPost,357,'',true);" rel="external nofollow"><span>商务服务</span></a>
+<a href="thread-htm-fid-355.html" target="_blank" onclick="return pwForumList(true,gIsPost,355,'',true);" rel="external nofollow"><span>教育培训</span></a>
+<a href="thread-htm-fid-395.html" target="_blank" onclick="return pwForumList(true,gIsPost,395,'',true);" rel="external nofollow"><span>商家活动</span></a>
+</dd>
+</dl>
+<dl class="cc">
+<dt>
+<a href="index-htm-cateid-4.html" target="_blank" rel="external nofollow">≡娱乐爱好≡</a>
+</dt>
+<dd class="cc">
+<a href="thread-htm-fid-465.html" target="_blank" onclick="return pwForumList(true,gIsPost,465,'',true);" rel="external nofollow"><span>我爱下厨房</span></a>
+<a href="thread-htm-fid-25.html" target="_blank" onclick="return pwForumList(true,gIsPost,25,'',true);" rel="external nofollow"><span>我们爱运动</span></a>
+<a href="thread-htm-fid-51.html" target="_blank" onclick="return pwForumList(true,gIsPost,51,'',true);" rel="external nofollow"><span>鱼游天下</span></a>
+<a href="thread-htm-fid-366.html" target="_blank" onclick="return pwForumList(true,gIsPost,366,'',true);" rel="external nofollow"><span>我是花草控</span></a>
+<a href="thread-htm-fid-11.html" target="_blank" onclick="return pwForumList(true,gIsPost,11,'',true);" rel="external nofollow"><span>影视娱乐圈</span></a>
+<a href="thread-htm-fid-218.html" target="_blank" onclick="return pwForumList(true,gIsPost,218,'',true);" rel="external nofollow"><span>简单学理财</span></a>
+<a href="thread-htm-fid-16.html" target="_blank" onclick="return pwForumList(true,gIsPost,16,'',true);" rel="external nofollow"><span>流光摄影志</span></a>
+<a href="thread-htm-fid-81.html" target="_blank" onclick="return pwForumList(true,gIsPost,81,'',true);" rel="external nofollow"><span>萌宠小世界</span></a>
+<a href="thread-htm-fid-71.html" target="_blank" onclick="return pwForumList(true,gIsPost,71,'',true);" rel="external nofollow"><span>读书时间</span></a>
+<a href="thread-htm-fid-69.html" target="_blank" onclick="return pwForumList(true,gIsPost,69,'',true);" rel="external nofollow"><span>舞者沙龙</span></a>
+<a href="thread-htm-fid-26.html" target="_blank" onclick="return pwForumList(true,gIsPost,26,'',true);" rel="external nofollow"><span>数码科技 </span></a>
+<a href="thread-htm-fid-36.html" target="_blank" onclick="return pwForumList(true,gIsPost,36,'',true);" rel="external nofollow"><span>游戏玩家</span></a>
+</dd>
+</dl>
+<dl class="cc">
+<dt>
+<a href="index-htm-cateid-155.html" target="_blank" rel="external nofollow">≡会员天地≡</a>
+</dt>
+<dd class="cc">
+<a href="thread-htm-fid-113.html" target="_blank" onclick="return pwForumList(true,gIsPost,113,'',true);" rel="external nofollow"><span>新鱼上路</span></a>
+<a href="thread-htm-fid-139.html" target="_blank" onclick="return pwForumList(true,gIsPost,139,'',true);" rel="external nofollow"><span>老鱼之家</span></a>
+</dd>
+</dl>
+<dl class="cc">
+<dt>
+<a href="index-htm-cateid-2.html" target="_blank" rel="external nofollow">≡社区管理≡</a>
+</dt>
+<dd class="cc">
+<a href="thread-htm-fid-39.html" target="_blank" onclick="return pwForumList(true,gIsPost,39,'',true);" rel="external nofollow"><span>疑问建议</span></a>
+<a href="thread-htm-fid-116.html" target="_blank" onclick="return pwForumList(true,gIsPost,116,'',true);" rel="external nofollow"><span>版主申请</span></a>
+<a href="thread-htm-fid-44.html" target="_blank" onclick="return pwForumList(true,gIsPost,44,'',true);" rel="external nofollow"><span>不良记录</span></a>
+<a href="thread-htm-fid-12.html" target="_blank" onclick="return pwForumList(true,gIsPost,12,'',true);" rel="external nofollow"><span>【旧帖回收】</span></a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+   </td>
+  </tr>
+</table>
+<div style="margin-top:8px;"></div>
+<!--add ad start-->
+<style type="text/css">
+.adv-960{
+width:960px;
+height: 90px;
+}
+.adv-960 img{
+max-width:100%;
+height:90px;
+}
+</style>
+<div class="adv-960" style="position: relative;">
+<a class="um2cmspic" href="http://bbs.xmfish.com/srv.php?&action=adlink&a=ad.bbs.thread.ksft&t=ad&f=web&tid=0&fid=6&url=http%3A%2F%2Fjiaju.xiaoyu.com%2Fhome%2Fjzbao%3Fpos_id%3D290%26pos_name%3D%E6%9D%BF%E5%9D%97%E9%A6%96%E9%A1%B5%E5%BF%AB%E9%80%9F%E5%8F%91%E5%B8%96%E4%B8%8A%E6%96%B9%E9%80%9A%E6%A0%8F" target="_blank"><img src="http://simg.mo.xiaoyu.com/quan/2019_06/26ee1f7c49c7eddc1505af065ee309e7.jpg">
+<span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span>
+</a>
+</div>
+<!--add ad end-->
+
+
+
+<script type="text/javascript" src="http://cmm.xmfish.com/bshw/272.js" charset="utf-8"></script>
+
+<div class="sidePd10" style="margin-top:8px;">
+<div class="fastpost">
+</div>
+</div>
+</div></div><!--.main-wrap,#main End-->
+<div class="main-wrap" style="width:960px;">
+<script type="text/javascript" src="http://cmm.xmfish.com/bshw/1264.js" charset="utf-8"></script>
+</div>
+
+<style>
+.footer { margin-bottom:0;}
+div.f_box ul li { width:inherit;}
+</style>	
+
+<script type="text/javascript" src="http://www.xiaoyu.com/zt/2019/year16/js?fid=6"></script>
+
+<style>
+/* Shortcut */
+.shortcut_panel {width:20px;}
+.s_menu { border-top:#0393dc 3px solid;}
+.s_menu p { display:inline-block; width:20px; margin:0; padding:0; filter:alpha(opacity=70); -moz-opacity:0.70;opacity:0.70; background-color:#f8f8f8;}
+.s_menu:hover p { -moz-opacity:1;opacity:1; filter:none;}
+.s_menu p a { display:block; padding:5px 0; border:#e7e7e7 1px solid; border-top:none; text-decoration:none; text-align:center; color:#333 !important;}
+.s_menu p a:hover{ border:#0da3ef 1px solid; border-top:none; text-decoration:none; color:#fff !important;}
+.s_menu p a.feedback {line-height:16px;}
+.s_menu p a.feedback:hover { background:#0da3ef;}
+</style>
+
+<script language="JavaScript" src="/js/global.js"></script>
+</div>
+<!-- 右下弹窗 -->
+</div>
+
+<style type="text/css">
+input{margin:0;padding:0;border:0 none;}
+.b_clear:before, .b_clear:after { content: ""; display: table; }
+.b_clear:after { clear: both; }
+.b_clear { zoom: 1; }
+.b_login * { margin: 0; padding: 0; border: 0; list-style: none; }
+.b_login { display: none; width: 100%; height: 80px; position: fixed; left: 0; bottom: 0; _position: absolute; _bottom: 0;  _left: 0;_margin-top: expression(0 - parseInt(this.offsetHeight/ 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop ) + 'px' ); background:rgb(0,0,0); background: rgba(0,0,0,0.8); z-index: 99; font-size: 12px; }
+.b_slogen { float: left; width: 270px; height: 80px; /*background-image: url(/images/b_0.gif);*/ background-repeat: no-repeat; background-position: 0 0; }
+.b_slogen a{ display:block; width: 412px; height: 80px; text-indent:-999em;}
+.b_loginbar { float: left; width: 507px; height: 80px; border-right: 1px dashed #666; }
+.b_txtbar { margin-top: 18px; line-height: 26px; }
+.b_txtbar li { float: left; width:190px; height:25px; text-align: center; }
+.b_txtbar li a { display: inline-block; height: 26px; margin-bottom: 7px; color: #fff; text-decoration: none; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; text-shadow: 1px 1px 1px rgba(0,0,0,.3); }
+.b_txtbar li button { width: 60px; height:25px; line-height:25px; border: 1px solid #0082cd; background: #0072e7; background: -moz-linear-gradient(top, #00b4ff, #0072e7); background: -webkit-gradient(linear, top, from(#00b4ff), color-stop(#0072e7)); background: -webkit-linear-gradient(top, #00b4ff, #0072e7); background: -ms-linear-gradient(top, #00b4ff, #0072e7); background: -o-linear-gradient(top, #00b4ff, #0072e7); background: linear-gradient(top, #00b4ff, #0072e7); box-shadow: inset 0 1px 1px #33e6ff; color:#fff; cursor:pointer;-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;  }
+.b_txtbar li button:hover { background: #00b4ff; background: -moz-linear-gradient(top, #0072e7, #00b4ff); background: -webkit-gradient(linear, top, from(#0072e7), color-stop(#00b4ff)); background: -webkit-linear-gradient(top, #0072e7, #00b4ff); background: -ms-linear-gradient(top, #0072e7, #00b4ff); background: -o-linear-gradient(top, #0072e7, #00b4ff); background: linear-gradient(top, #0072e7, #00b4ff); box-shadow: none; }
+.b_txtbar li input{ padding-left:45px; width:130px; height:25px; line-height:25px; margin-right:15px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; box-shadow:inset 0 1px 1px #dfdfdf; }
+.b_txtbar li input.b_text{ background:url(/images/b_input_icon.gif) #fff 5px top no-repeat;}
+.b_txtbar li input.b_pass{ background:url(/images/b_input_icon.gif) #fff 5px bottom no-repeat;}
+.b_link { margin-top:7px; }
+.b_link li { float: left; width:175px; padding-right:15px; line-height:20px; color: #999; }
+.b_link li a { color: #0099e6; text-decoration: none; }
+.b_link li a:hover { text-decoration: underline; }
+.b_qrcode { float: left; width: 182px; height: 80px; }
+.b_qrcode dl { margin-left: 17px; }
+.b_qrcode dd { float: left; height: 80px; width: 48px;*width:54px; padding: 0 8px; margin: 0 4px; text-align: center; color: #999; cursor: pointer; }
+.b_qrcode dd img { margin-top: 9px; margin-bottom: 6px; }
+.b_login .b_sina, .b_login .b_close { background-image: url("/images/b_icon_bg.png"); background-repeat: no-repeat; }
+.b_login .b_sina { padding-left: 19px; background-position: 0 -40px; }
+.b_login .b_close { display: block; width: 18px; height: 18px; background-position: 0 -72px; color: #fff; position: absolute; top: 2px; right: 50%; margin-right: -480px; cursor: pointer; }
+.b_qrcode_detail { padding: 0; margin: 0; list-style: none; position: fixed; bottom: 90px;left: 50%; margin-left: 300px; z-index: 100; text-align: center; _position: absolute; _bottom: 90px; _left: 85px;_margin-top: expression(0 - parseInt(this.offsetHeight/ 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop ) + 'px' ); }
+.b_qrcode_detail li { display: none; border: 1px solid #ccc\9; width: 176px; height: 200px; background-color: #f1f0f6; box-shadow: 0 0 3px rgba(100,100,100,0.7); }
+.b_qrcode_detail span { display: inline-block; margin: 15px 0 10px; font-size: 14px; font-weight: bold; color: #019ade; }
+/*弹框*/
+a {outline: none; /* for Forefox */ }
+a {star:expression(this.onFocus=this.blur()); /* for Ie*/ }
+.box_clear:before, .box_clear:after { content: ""; display: table; }
+.box_clear:after { clear: both; }
+.box_clear { zoom: 1; }
+.login_msg{ margin-top:10px; }
+.login_msg .login_con { padding:5px 30px; width: 260px; }
+.login_msg .login_con .login_txt, .login_msg .login_con .login_btn{ width: 256px; height: 32px; overflow: hidden; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; border: none; border: 1px solid #ccc; line-height: 32px; text-indent: 9px; box-shadow: inset 0 1px 1px #dfdfdf; font-size: 14px; }
+.login_msg .login_con .login_txt{ text-indent:44px; }
+.login_user { background: url(/images/login_input_icon.gif) top left no-repeat; }
+.login_pass { background: url(/images/login_input_icon.gif) bottom left no-repeat; }
+.login_msg .login_con .login_li_input { margin-top: 15px; position: relative; height: 36px; width: 100%; }
+.login_msg .login_con .login_li_input span { display: inline-block; position: absolute; left: 0; top: 0; color: #c7c7c7; width: 100%; height: 36px; line-height: 36px; cursor: text; text-indent: 44px; }
+.login_msg .login_con .login_li_input input{ position:absolute; left:0; top:0; }
+.login_msg .login_con .login_li_text { line-height: 1.2; margin: 12px 0; }
+.login_msg .login_con .login_li_text input { vertical-align: middle; padding:0; margin: 0; }
+.login_msg .login_con .login_li_text a { color: #0099e6; }
+.login_msg .login_con .login_li_btn{ position:relative; height:36px; width:100%; }
+.login_msg .login_con .login_li_btn input{ position:absolute; left:0; top:0; }
+.login_msg .login_con .login_ask { position: relative; height: 34px; width: 278px\9; display: block; background-color: #f5f5f5; color: #aaa; }
+.login_msg .login_con .login_ask:hover { text-decoration: none; }
+.login_msg .login_con .login_btn { width: 258px; height: 36px; background-color: #0072e7; background-image: -webkit-linear-gradient(top, #00b4ff, #0072e7); background-image: -moz-linear-gradient(top, #00b4ff, #0072e7); background-image: -ms-linear-gradient(top, #00b4ff, #0072e7); background-image: -o-linear-gradient(top, #00b4ff, #0072e7); background-image: linear-gradient(top, #00b4ff, #0072e7); border-color: #0082cd; color: #fff; font-size: 14px; font-weight: bold; letter-spacing: 15px; cursor: pointer; }
+.login_msg .login_con .login_btn_hover { background-color: #1e8dff; background-image: -webkit-linear-gradient(top, #4bcaff, #1e8dff); background-image: -moz-linear-gradient(top, #4bcaff, #1e8dff); background-image: -ms-linear-gradient(top, #4bcaff, #1e8dff); background-image: -o-linear-gradient(top, #4bcaff, #1e8dff); background-image: linear-gradient(top, #4bcaff, #1e8dff); border-color: #11a6fb; }
+.login_msg .login_con .login_error { display:none; position: absolute; top: -35px; z-index: 10; height: 31px; width: 280px; }
+.login_error_div { position: absolute; padding-right: 5px; width: 271px; width: 273px\9; height: 24px; line-height: 24px; text-indent: 29px; border: 1px solid #ff8080; background-color: #fff2f2; background-image: url(/images/login_icon.gif); background-repeat: no-repeat; background-position: -70px -56px; color: #666; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+.login_error_b { font-weight: normal; }
+.login_error_em { display: inline-block; margin-top: 5px; width: 13px; height: 13px; line-height: 13px; text-indent: 0; text-align: center; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; cursor: pointer; }
+.login_error_em_hover { background-color: #ff7741; color: #fff; }
+.login_msg .login_con i.login_error_i1 { display: none/9; position: absolute; left: 128px; top: 26px; width: 0; height: 0; border-width: 6px; border-style: solid; border-color: #ff8080 transparent transparent; _border-color: #ff8080 #fff #fff; }
+.login_msg .login_con i.login_error_i2 { display: none/9; position: absolute; left: 128px; top: 25px; width: 0; height: 0; border-width: 6px; border-style: solid; border-color: #fff2f2 transparent transparent; _border-color: #fff2f2 #fff #fff; }
+</style>
+<!--[if lte IE 6]>
+<style>
+.b_login {
+_POSITION: absolute;
+_width:expression(document.documentElement.clientWidth);
+_TOP:expression(offsetParent.scrollTop+document.documentElement.clientHeight-this.offsetHeight);
+}
+</style>
+<![endif]-->
+<div class="b_login" id="b_login">
+<div style="width:960px;margin:0 auto;">
+<div class="b_slogen"></div>
+<div class="b_loginbar">
+<div class="b_txtbar">
+<form autocomplete="off" accept-charset="utf-8" onsubmit="document.charset='utf-8'; return false" id='loginForm' name="login" method="post" action="http://www.xiaoyu.com/login">
+<script>
+jQuery(function(){
+jQuery('input[type="hidden"][name="jumpurl"]').val(window.location.href+'');
+});
+</script>
+<script>
+jQuery(function() {
+var url = '';
+var href = window.location.href;
+var index1 = href.indexOf("?jumpurl=");
+var idnex2 = href.indexOf("jumpurl=");
+if(index1 > 0) {
+href = href.substring(0, index1);
+}  else if(idnex2 > 0) {
+href = href.substring(0, index2);
+}
+if(url == '' || url == null) {
+var jumpurl = document.getElementById('jumpurl');
+jumpurl.value = href;
+}
+var loginurl = document.getElementById('loginurl');
+loginurl.value =href;
+jQuery('.b_txtbar li button[type="submit"]').click(function(){
+var username = jQuery('input[name="username"]').val();
+var password = jQuery('input[name="password"]').val();
+if(username=='' || username==null) {
+alert('请填写用户名');
+return false;
+}
+if(password=='' || password==null) {
+alert('请填写密码');
+return false;
+}
+jQuery('#loginForm').submit();
+});
+});
+</script>
+<input type="hidden" id="jumpurl" value="" name="jumpurl" />
+<input type="hidden" name="action" value="bbs"/>
+<input type="hidden" name="bbs_id" value="63"/>
+<input type="hidden" id="loginurl" name="loginurl" value=""/>
+<ul class="b_clear">
+<li><input type="text" placeholder="用户名/手机号" name="username" class="b_text" /></li>
+<li><input type="text" placeholder="请输入密码" onfocus="this.type='password'" name="password" class="b_pass" /></li>
+<li style="width:60px;"><button type="submit">登录</button></li>
+</ul>
+</form>
+</div>
+<div class="b_link">
+<ul class="b_clear">
+<li class="b_clear"><label for="b_remember" class="fl"><a class="fr" href="http://www.xiaoyu.com/sendpwdbyemail?forum_id=63" target="_blank" rel="external nofollow">找回密码</a></li>
+<li style="text-align:right;">还没有账号？ <a href="http://www.xiaoyu.com/register?bbs_id=63&url=" target="_blank" rel="external nofollow">立即注册</a></li>
+</ul>
+</div>
+</div>
+<div class="b_qrcode">
+<dl>
+<dd><img src="/images/b_qrcode.gif" /> <span>客户端</span> </dd>
+<dd><img src="/images/b_qrcode.gif" /> <span>小鱼微信</span> </dd>
+</dl>
+</div>
+<b id="b_close" class="b_close"></b></div>
+</div>
+<div style="width:960px;margin:0 auto;">
+<ul class="b_qrcode_detail" style="">
+<li><span>扫一扫下载客户端</span> <img src="/images/b_mobile.jpg" /> </li>
+<li><span>关注小鱼微信帐号</span> <img src="/images/b_weixin.jpg" /> </li>
+</ul>
+</div>
+<script src="/js/jquery/jquery.cookie.js"></script>
+<script type="text/javascript">
+jQuery(function(jQuery){
+var if_bottom_close = jQuery.cookie('if_bottom_close');
+if(if_bottom_close > 0) {
+return false;
+}
+setTimeout(function(){jQuery("#b_login").fadeIn("slow");},5000);
+jQuery("#b_close").click(function(){
+jQuery("#b_login").stop().fadeOut("slow");
+jQuery.cookie('if_bottom_close', 1);
+});
+jQuery('.b_qrcode dd').hover(function(){
+var i=jQuery('.b_qrcode dd').index(this);
+jQuery(this).css('backgroundColor','#444');
+jQuery('.b_qrcode_detail li').eq(i).show();
+},function(){
+var i=jQuery('.b_qrcode dd').index(this);
+jQuery(this).css('backgroundColor','transparent');
+jQuery('.b_qrcode_detail li').eq(i).hide();
+});
+var k = Math.round(Math.random()*2);
+jQuery('.b_slogen').css('backgroundImage','url(/images/b_'+k+'.gif)');
+});
+</script>
+<script type="text/javascript">
+jQuery(function($){
+jQuery('.box_main dd ul li').hover(function(){
+jQuery(this).css('background','#f5f5f5').siblings('li').css('background','#fff');
+});
+jQuery('.box_ask').click(function(){
+if(jQuery(this).siblings('ul').hasClass('box_disb')){
+jQuery(this).siblings('ul').removeClass('box_disb');
+jQuery(this).find('i').removeClass('active');
+}else{
+jQuery(this).siblings('ul').addClass('box_disb');
+jQuery(this).find('i').addClass('active');
+}
+});
+jQuery('.box_main dd ul li').click(function(){
+var li_id = jQuery(this).attr('data-value');
+var li_txt = jQuery(this).text();
+jQuery('.box_ask').attr('data-value',li_id);
+jQuery('.box_ask').find('span').text(li_txt);
+jQuery(this).parent('ul').removeClass('box_disb');
+jQuery('.box_ask').find('i').removeClass('active');
+jQuery("#question").val(li_id);
+if(li_id=='-1'){
+jQuery('.box_ask').parent('dd').addClass('box_custom')
+jQuery('.box_xm_anquan_dd').removeClass('box_disn');
+}else{
+jQuery('.box_ask').parent('dd').removeClass('box_custom')
+jQuery('.box_xm_anquan_dd').addClass('box_disn');
+}
+});
+jQuery('.box_main dt a').hover(function(){
+jQuery(this).animate({right: '0px'}, "fast");
+},function(){
+jQuery(this).animate({right: '5px'}, "fast");
+});
+jQuery('.box_main dt a').click(function(){
+jQuery(this).parents('dl').hide().siblings('dl').show();
+});
+jQuery('.box_btn').hover(function(){
+jQuery(this).addClass('box_btn_hover');
+},function(){
+jQuery(this).removeClass('box_btn_hover');
+});
+});
+function changeurl(frm){
+frm.jumpurl.value = location.href;
+return true;
+}
+</script>
+<link rel="stylesheet" href="http://cms.xmfish.com/styles/chanel/www/footer.css" type="text/css">
+<div class="footer">
+<div class="wrap clear" style="width: 960px; margin: 0 auto;">
+<div class="f_box f_box_left"><a href="http://www.xmfish.com/" target="_blank" rel="external nofollow"><img alt="厦门小鱼网" class="lazy" data-original="http://www.xmfish.com/images/chanel/www/f_logo.gif"></a></div>
+<div class="f_box f_box_middle">
+<ul class="clear">
+<li><a href="http://special.xmfish.com/help/index.html" target="_blank" rel="external nofollow">关于我们</a>|</li>
+<li><a href="http://special.xmfish.com/help/job.html" target="_blank" rel="external nofollow">加入我们</a>|</li>
+<li><a href="http://special.xmfish.com/help/contact.html" target="_blank" rel="external nofollow">联系我们</a>|</li>
+<li><a href="http://special.xmfish.com/help/service.html" target="_blank" rel="external nofollow">商务合作</a>|</li>
+<li><a href="http://special.xmfish.com/help/map.html" target="_blank">网站地图</a>|</li>
+<li><a href="http://special.xmfish.com/help/help.html" target="_blank" rel="external nofollow">帮助中心</a>|</li>
+<li><a href="http://special.xmfish.com/help/law.html" target="_blank" rel="external nofollow">法律声明</a></li>
+</ul>
+<p>小鱼网不良信息举报电话：0592-2517171-1921&nbsp;&nbsp;19959278001&nbsp;&nbsp;&nbsp;&nbsp;举报邮箱：xmfish@xmfish.com</p>
+<p>&copy;2003-2014 <a href="http://www.xmfish.com/">小鱼网</a> 版权所有，并保留所有权利。<br/><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35020302000108" rel="external nofollow"><img class="lazy" data-original="http://www.beian.gov.cn/img/ghs.png" style="vertical-align: middle;margin-right: 5px;">闽公网安备35020302000108号</a> <a target="_blank" href="http://www.miitbeian.gov.cn/" rel="external nofollow">闽ICP备05000086号-2</a> <a target="_blank" href="http://special.xmfish.com/help/icp.html" rel="external nofollow">闽B2-20170142</a></p>
+</div>
+<div class="f_box f_box_right"> <a target="_blank" href="http://www.cyberpolice.cn/wfjb" rel="external nofollow"><img style="vertical-align: middle;" class="f_box_police lazy" data-original="http://www.xmfish.com/images/chanel/www/police.gif"></a><a href="http://www.12377.cn" target="_blank" style="background:url('http://www.xmfish.com/images/chanel/www/12377.gif') no-repeat; display:inline-block; text-align:left; height: 33px; padding: 4px 0 4px 45px; width: 83px;vertical-align: middle;">中国互联网<br/>举报中心</a></div>
+<div style="height:3px"></div>
+</div>
+</div>
+<script src="/wap/js/jquery.lazyload.js"></script>
+<script>
+jQuery(function(){
+jQuery("img.lazy").lazyload({ placeholder : "/wap/images/load.gif", effect : "show",skip_invisible : false, threshold : 500});
+});
+</script>
+<script src="http://bbs.xmfish.com/js/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://cms2.xmfish.com/chanel/www/print_activ_bar"></script>
+</body>
+</html>
+<div style="display:none">
+<script src="http://v8.cnzz.com/stat.php?id=36693&web_id=36693" language="JavaScript"></script><script src="http://s4.cnzz.com/stat.php?id=3284&web_id=3284" language="JavaScript"></script><script src="http://s95.cnzz.com/stat.php?id=1671686&web_id=1671686" language="JavaScript"></script>
+</div>
+<script language="JavaScript" src="/js/app_global.js"></script>
+<script language="JavaScript">
+var openmenu = {'td_sort' : 'menu_sort','td_KEYhack' : 'menu_KEYhack','td_KEYsort' : 'menu_KEYsort','td_myforum':'menu_myforum','td_post' : 'menu_post','td_post1' : 'menu_post','td_special' : 'menu_special'};
+window.onReady(function(){read.InitMenu();});
+WINDOW_LOADED=1;
+</script>
+<script>
+ajax.send("y.php?action=sync", "");
+</script>

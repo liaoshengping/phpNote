@@ -6,9 +6,8 @@
 //    echo $i.PHP_EOL;
 //}
 //echo $result;
-echo (file_get_contents('http://hgyp888.1688.com/'));
-exit;
 
+echo "hello world";exit;
 function getUrl($url){
     $result = file_get_contents($url);
     if(! mb_check_encoding($result, 'utf-8')) {
