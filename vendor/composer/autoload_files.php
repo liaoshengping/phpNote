@@ -19,5 +19,11 @@ return array(
     '841780ea2e1d6545ea3a253239d59c05' => $vendorDir . '/qiniu/php-sdk/src/Qiniu/functions.php',
     'fe62ba7e10580d903cc46d808b5961a4' => $vendorDir . '/tightenco/collect/src/Collect/Support/helpers.php',
     'caf31cc6ec7cf2241cb6f12c226c3846' => $vendorDir . '/tightenco/collect/src/Collect/Support/alias.php',
+    'f40cb564d92ad0e78b0bfdf9b86c5768' => $vendorDir . '/fukuball/jieba-php/src/class/Jieba.php',
+    'a778fafb0619406705f6fd4bb3ec7d5b' => $vendorDir . '/fukuball/jieba-php/src/class/JiebaAnalyse.php',
+    '06c61fd667b7f3d9ee59d805e51017e7' => $vendorDir . '/fukuball/jieba-php/src/class/Finalseg.php',
+    '750aa4fdf8bfc24d7baef293581bec73' => $vendorDir . '/fukuball/jieba-php/src/class/Posseg.php',
+    '6ca3f08a814c4fd9d5830fc6808a9488' => $vendorDir . '/fukuball/jieba-php/src/vendor/multi-array/MultiArray.php',
+    '4d5ee3c1cc66ee941937c247fe6b7d6e' => $vendorDir . '/fukuball/jieba-php/src/vendor/multi-array/Factory/MultiArrayFactory.php',
     '9b552a3cc426e3287cc811caefa3cf53' => $vendorDir . '/topthink/think-helper/src/helper.php',
 );

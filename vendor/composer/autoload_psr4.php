@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'wxkxklmyt\\' => array($vendorDir . '/wxkxklmyt/pscws4/src'),
     'think\\helper\\' => array($vendorDir . '/topthink/think-helper/src'),
     'dzer\\express\\' => array($vendorDir . '/dzer/yii2-express/src'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),

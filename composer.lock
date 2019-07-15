@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f78673ffb3c1f695ebfa2979ab674cc5",
+    "content-hash": "a861f48473565f4d6f71f1eaf635caff",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -753,6 +753,62 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
+            "name": "fukuball/jieba-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fukuball/jieba-php.git",
+                "reference": "d73898ced25d570a9dbd584603d423bf23ddb7fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fukuball/jieba-php/zipball/d73898ced25d570a9dbd584603d423bf23ddb7fd",
+                "reference": "d73898ced25d570a9dbd584603d423bf23ddb7fd",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">= 5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7|~6.0",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "1.5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/class/Jieba.php",
+                    "src/class/JiebaAnalyse.php",
+                    "src/class/Finalseg.php",
+                    "src/class/Posseg.php",
+                    "src/vendor/multi-array/MultiArray.php",
+                    "src/vendor/multi-array/Factory/MultiArrayFactory.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fukuball",
+                    "email": "fukuball@gmail.com"
+                }
+            ],
+            "description": "結巴中文分詞（PHP 版本）：做最好的 PHP 中文分詞、中文斷詞組件",
+            "keywords": [
+                "Jieba",
+                "php"
+            ],
+            "time": "2019-06-11T03:35:52+00:00"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "6.3.3",
             "source": {
@@ -958,12 +1014,12 @@
             "version": "3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ivanakimov/hashids.php.git",
+                "url": "https://github.com/vinkla/hashids.git",
                 "reference": "b6c61142bfe36d43740a5419d11c351dddac0458"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/b6c61142bfe36d43740a5419d11c351dddac0458",
+                "url": "https://api.github.com/repos/vinkla/hashids/zipball/b6c61142bfe36d43740a5419d11c351dddac0458",
                 "reference": "b6c61142bfe36d43740a5419d11c351dddac0458",
                 "shasum": "",
                 "mirrors": [
@@ -2868,6 +2924,45 @@
             "time": "2019-03-14T09:28:59+00:00"
         },
         {
+            "name": "wxkxklmyt/pscws4",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wxkxklmyt/pscws4.git",
+                "reference": "b81e40fb8b5427eb5ed410f1e0f6adaaaa660b3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wxkxklmyt/pscws4/zipball/b81e40fb8b5427eb5ed410f1e0f6adaaaa660b3f",
+                "reference": "b81e40fb8b5427eb5ed410f1e0f6adaaaa660b3f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "wxkxklmyt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "我的梦",
+                    "email": "519468341@qq.com"
+                }
+            ],
+            "description": "基于PSCWS4的中文分词工具",
+            "time": "2017-12-22T08:56:36+00:00"
+        },
+        {
             "name": "wythe/logistics",
             "version": "v0.0.4",
             "source": {
@@ -3129,7 +3224,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "itxiao6/upload": 20
+        "itxiao6/upload": 20,
+        "fukuball/jieba-php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

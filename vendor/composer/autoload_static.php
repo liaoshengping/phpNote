@@ -20,6 +20,12 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         'fe62ba7e10580d903cc46d808b5961a4' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/helpers.php',
         'caf31cc6ec7cf2241cb6f12c226c3846' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/alias.php',
+        'f40cb564d92ad0e78b0bfdf9b86c5768' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/Jieba.php',
+        'a778fafb0619406705f6fd4bb3ec7d5b' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/JiebaAnalyse.php',
+        '06c61fd667b7f3d9ee59d805e51017e7' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/Finalseg.php',
+        '750aa4fdf8bfc24d7baef293581bec73' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/Posseg.php',
+        '6ca3f08a814c4fd9d5830fc6808a9488' => __DIR__ . '/..' . '/fukuball/jieba-php/src/vendor/multi-array/MultiArray.php',
+        '4d5ee3c1cc66ee941937c247fe6b7d6e' => __DIR__ . '/..' . '/fukuball/jieba-php/src/vendor/multi-array/Factory/MultiArrayFactory.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
     );
 
@@ -28,6 +34,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             'yii\\composer\\' => 13,
             'yii\\' => 4,
+        ),
+        'w' => 
+        array (
+            'wxkxklmyt\\' => 10,
         ),
         't' => 
         array (
@@ -140,6 +150,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'wxkxklmyt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wxkxklmyt/pscws4/src',
         ),
         'think\\helper\\' => 
         array (
