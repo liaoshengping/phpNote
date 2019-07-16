@@ -1,4 +1,5 @@
 <?php
+//内存太大了，弃用
 ini_set('memory_limit', '1024M');
 include ("../../vendor/autoload.php");
 use Fukuball\Jieba\Jieba;

@@ -7,7 +7,7 @@ $ql = \QL\QueryList::getInstance();
 
 
 
-$url = 'https://detail.1688.com/offer/593520740375.html?spm=a261b.2187593.1998088710.1.40401576ReRZWk&tracelog=p4p&clickid=2cee3d4469b14b77997252b6cd152be5&sessionid=5e9215d17fbb2978cf990d6fd6185159';
+$url = 'https://detail.1688.com/offer/535867721312.html?spm=a26qs.11040298.jb30n1mb.1.2da06418zB7IYe';
 $html = \QL\QueryList::get($url)->getHtml();
 $sku = \QL\QueryList::html($html)
     // 设置采集规则

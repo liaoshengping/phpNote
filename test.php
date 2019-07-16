@@ -1,7 +1,30 @@
 <?php
 include ("vendor/autoload.php");
-
-
+$obj = new stdClass();
+$obj->name ='jane';
+$obj->years = '11';
+$big = new stdClass();
+$big->sum = $obj;
+echo json_encode($big);exit;
+$email = '2324<BR>';
+var_dump(filter_var($email,FILTER_SANITIZE_STRIPPED));
+exit;
+$data =utf8_strlen('中文');
+// 计算中文字符串长度
+function utf8_strlen($string = null) {
+// 将字符串分解为单元
+    preg_match_all("/./us", $string, $match);
+// 返回单元个数
+return count($match[0]);
+}
+echo $data;exit;
+$service = new FBAInboundServiceMWS_Client(
+    3,
+    3,
+    3,
+    3,
+    []);
+var_dump($service);
 $json =<<<JSON
 {
   "result": 1,

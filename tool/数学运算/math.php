@@ -1,7 +1,7 @@
 <?php
 //乘法：1*100 =100
-$sum =bcmul(1,100,1);
-echo $sum.PHP_EOL;
+$sum =bcmul(1,100,2);
+echo ($sum).PHP_EOL;
 //加法  1.2322323423 +483984
 $sum = bcadd(1.23234234,1.232234234,2);
 echo $sum.PHP_EOL;

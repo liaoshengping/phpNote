@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'UpdateHelper\\' => array($vendorDir . '/kylekatarnls/update-helper/src'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
+    'PHPQRCode' => array($vendorDir . '/aferrandini/phpqrcode/lib'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
     'GuzzleTool\\' => array($vendorDir . '/liaosp/guzzle-tool/src'),
 );

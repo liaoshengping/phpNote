@@ -1,0 +1,28 @@
+{
+  "name": "wpos2/mws",
+  "description": "Amazon Marketplace Web Service (MWS) Libraries",
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [{
+    "name": "Amazon Technologies, Inc",
+    "homepage": "https://developer.amazonservices.com/"
+  }, {
+    "name": "Walts TV Dev Team",
+    "role": "Developors, adapting source code to fit environment and business needs"
+  }],
+  "autoload": {
+    "classmap": [
+      "src/MarketplaceWebService/",
+      "src/MarketplaceWebServiceOrders/",
+      "src/MarketplaceWebServiceProducts/",
+      "src/MWSFinancesService/",
+      "src/FBAInboundServiceMWS/",
+      "src/FBAInventoryServiceMWS/",
+      "src/FBAOutboundServiceMWS/",
+      "src/MWSMerchantFulfillmentService/",
+      "src/MWSRecommendationsSectionService/",
+      "src/MarketplaceWebServiceSellers/",
+      "src/MWSSubscriptionsService/"
+    ]
+  }
+}
