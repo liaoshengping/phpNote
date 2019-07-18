@@ -3,7 +3,8 @@
 include ("vendor/autoload.php");
 $ql = \QL\QueryList::getInstance();
 //$ql->use();
-
+\Liaosp\Express\Channel\Test::test();
+exit;
 
 
 

@@ -40,6 +40,7 @@ return array(
     'Overtrue\\PackageBuilder\\' => array($vendorDir . '/overtrue/package-builder/src'),
     'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Liaosp\\Tool\\' => array($vendorDir . '/liaosp/tool/src'),
     'Liaosp\\Express\\' => array($vendorDir . '/liaosp/express/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Jaeger\\' => array($vendorDir . '/jaeger/g-http/src'),

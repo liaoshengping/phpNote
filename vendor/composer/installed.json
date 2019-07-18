@@ -2209,6 +2209,50 @@
         "description": "curl"
     },
     {
+        "name": "liaosp/tool",
+        "version": "v1.1",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/liaoshengping/composer-tool.git",
+            "reference": "7bd1acf37813aa154513e2788b3b8f380114838e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/liaoshengping/composer-tool/zipball/7bd1acf37813aa154513e2788b3b8f380114838e",
+            "reference": "7bd1acf37813aa154513e2788b3b8f380114838e",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=7.0"
+        },
+        "time": "2019-07-18T08:42:08+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Liaosp\\Tool\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "liaosp",
+                "email": "1194008361@qq.com"
+            }
+        ],
+        "description": "php工具箱"
+    },
+    {
         "name": "monolog/monolog",
         "version": "1.24.0",
         "version_normalized": "1.24.0.0",

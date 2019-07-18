@@ -110,6 +110,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         ),
         'L' => 
         array (
+            'Liaosp\\Tool\\' => 12,
             'Liaosp\\Express\\' => 15,
             'League\\Flysystem\\' => 17,
         ),
@@ -294,6 +295,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Liaosp\\Tool\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/liaosp/tool/src',
         ),
         'Liaosp\\Express\\' => 
         array (

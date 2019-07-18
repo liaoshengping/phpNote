@@ -7,7 +7,7 @@
 //}
 //echo $result;
 
-echo "hello world";exit;
+echo "hello worldss";exit;
 function getUrl($url){
     $result = file_get_contents($url);
     if(! mb_check_encoding($result, 'utf-8')) {

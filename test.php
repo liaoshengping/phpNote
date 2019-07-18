@@ -1,5 +1,10 @@
 <?php
 include ("vendor/autoload.php");
+$obj = new \Liaosp\Tool\Spider\Wechat\WxCrawler();
+//$obj->setAntiLeech('');
+$data =$obj->crawByUrl('https://mp.weixin.qq.com/s?timestamp=1563437558&src=3&ver=1&signature=FIUv1dgs8cmQWLd3A1OlV5x3Ln5Nmz8b5zOQw9*WuwQdXmJolSxfDZku2UW6-vsiBIA5GfaTS1NR6fEN8*6ubmySiAStgwqQ-vkfYZR9igI6KtgjOEHZPEyNk98nNjaoguA0v0tBkT4z76-ye1cEnzaJuhgYc9WAPVxiw-y32z4=');
+echo ($data['content_html']);
+exit;
 $obj = new stdClass();
 $obj->name ='jane';
 $obj->years = '11';

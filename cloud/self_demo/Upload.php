@@ -49,6 +49,9 @@ class Upload
      */
     public static function __callStatic($name, $arguments)
     {
+        if(empty(self::$example[self::$driver])){
+            throw new Exception(' Driver "'.self::$driver.'" not find !!!');
+        }
         return self::$example[self::$driver] -> $name(...$arguments);
     }
 
@@ -73,11 +76,9 @@ class Upload
     {
         return self::$driver = ($name===null)?self::$driver:$name;
     }
-
-
 }
 
-Upload::set_driver('Alioss');
+Upload::set_driver('YOUpaiyun');
 $key = 'kakkaka';
 $secret = 'kakkak';
 $buff = 'sldfjdskf';

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11578fcf5ac641cbfb59c8e043c95a48",
+    "content-hash": "c5511b890a7587f4af08927a97045b23",
     "packages": [
         {
             "name": "aferrandini/phpqrcode",
@@ -2138,6 +2138,48 @@
             ],
             "description": "curl",
             "time": "2019-01-25T07:35:34+00:00"
+        },
+        {
+            "name": "liaosp/tool",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liaoshengping/composer-tool.git",
+                "reference": "7bd1acf37813aa154513e2788b3b8f380114838e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liaoshengping/composer-tool/zipball/7bd1acf37813aa154513e2788b3b8f380114838e",
+                "reference": "7bd1acf37813aa154513e2788b3b8f380114838e",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Liaosp\\Tool\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "liaosp",
+                    "email": "1194008361@qq.com"
+                }
+            ],
+            "description": "php工具箱",
+            "time": "2019-07-18T08:42:08+00:00"
         },
         {
             "name": "monolog/monolog",
