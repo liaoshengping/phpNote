@@ -17,7 +17,11 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
+        '66453932bc1be9fb2f910a27947d11b6' => __DIR__ . '/..' . '/alibabacloud/client/src/Functions.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         'fe62ba7e10580d903cc46d808b5961a4' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/helpers.php',
         'caf31cc6ec7cf2241cb6f12c226c3846' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/alias.php',
@@ -43,7 +47,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         ),
         't' => 
         array (
-            'think\\helper\\' => 13,
+            'think\\' => 6,
         ),
         'd' => 
         array (
@@ -51,6 +55,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         ),
         'c' => 
         array (
+            'clagiordano\\weblibs\\configmanager\\' => 34,
             'cebe\\markdown\\' => 14,
         ),
         'X' => 
@@ -79,6 +84,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\Console\\' => 26,
+            'Stringy\\' => 8,
             'Singiu\\WordBan\\' => 15,
         ),
         'R' => 
@@ -102,6 +108,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'O' => 
         array (
             'Overtrue\\PackageBuilder\\' => 24,
+            'Ofan\\' => 5,
             'OSS\\' => 4,
         ),
         'M' => 
@@ -116,6 +123,8 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         ),
         'J' => 
         array (
+            'JmesPath\\' => 9,
+            'Jiemo\\Mobile\\' => 13,
             'Jaeger\\' => 7,
         ),
         'I' => 
@@ -157,6 +166,12 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
             'Cache\\Adapter\\Filesystem\\' => 25,
             'Cache\\Adapter\\Common\\' => 21,
         ),
+        'A' => 
+        array (
+            'AlibabaCloud\\Client\\' => 20,
+            'AlibabaCloud\\' => 13,
+            'Adbar\\' => 6,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -172,13 +187,17 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/wxkxklmyt/pscws4/src',
         ),
-        'think\\helper\\' => 
+        'think\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-helper/src',
         ),
         'dzer\\express\\' => 
         array (
             0 => __DIR__ . '/..' . '/dzer/yii2-express/src',
+        ),
+        'clagiordano\\weblibs\\configmanager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/clagiordano/weblibs-configmanager/src',
         ),
         'cebe\\markdown\\' => 
         array (
@@ -244,6 +263,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Stringy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/danielstjules/stringy/src',
+        ),
         'Singiu\\WordBan\\' => 
         array (
             0 => __DIR__ . '/..' . '/singiu/wordban/src',
@@ -288,6 +311,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/overtrue/package-builder/src',
         ),
+        'Ofan\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/invoice/phonelocation/src',
+        ),
         'OSS\\' => 
         array (
             0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
@@ -307,6 +334,14 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
+        ),
+        'JmesPath\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
+        ),
+        'Jiemo\\Mobile\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jiemo/mobile/src',
         ),
         'Jaeger\\' => 
         array (
@@ -395,6 +430,18 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'Cache\\Adapter\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/cache/adapter-common',
+        ),
+        'AlibabaCloud\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alibabacloud/client/src',
+        ),
+        'AlibabaCloud\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alibabacloud/sdk/src',
+        ),
+        'Adbar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/adbario/php-dot-notation/src',
         ),
     );
 

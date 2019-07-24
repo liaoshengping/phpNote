@@ -21,6 +21,11 @@
         "wpos2/mws": "^0.1.3",
         "hanson/vbot": "^2.0",
         "singiu/wordban": "^1.0",
-        "liaosp/tool": "^1.0"
+        "liaosp/tool": "^1.0",
+        "jiemo/mobile": "^1.2",
+        "alibabacloud/sdk": "^1.7",
+        "invoice/phonelocation": "^1.2"
+    },
+    "require-dev": {
     }
 }
