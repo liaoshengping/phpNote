@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 1.7.48 - 2019-7-26
+- Generated 2019-05-24 for `cusanalytic_sc_online`.
+
+
+## 1.7.47 - 2019-7-26
+- Generated 2019-05-24 for `cusanalytic_sc_online`.
+
+
+## 1.7.46 - 2019-7-25
+- Api createKey add optional parameter `ProtectionLevel`.
+- Api describeKey add a field `ProtectionLevel` in the response.
+- Add Api `DescribeService`.
+
+
+## 1.7.45 - 2019-7-25
+- App-related actions support tag authentication.
+
+
 ## 1.7.44 - 2019-7-23
 - Supported CreationOption of CreateDBCluster with `CloneFromPolarDB `,`CloneFromRDS`,`MigrationFromRDS`.
 

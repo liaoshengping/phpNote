@@ -4,7 +4,7 @@
 <a href=" https://www.aliyun.com"><img src="https://aliyunsdk-pages.alicdn.com/icons/AlibabaCloud.svg"></a>
 </p>
 
-<h1 align="center">Alibaba Cloud CloudAPI SDK for PHP</h1>
+<h1 align="center">Alibaba Cloud CusanalyticScOnline SDK for PHP</h1>
 
 If [Alibaba Cloud SDK for PHP][sdk] is installed, there is no need to install the product dependency package. This product dependency package is only part of the synchronization from [Alibaba Cloud SDK for PHP][sdk], and its namespace and usage are consistent with [Alibaba Cloud SDK for PHP][sdk].
 
@@ -16,7 +16,7 @@ composer require alibabacloud/sdk
 The product can also be installed only:
 > The version of this product is always synchronized with [Alibaba Cloud SDK for PHP][sdk] to ensure that it can switch with [Alibaba Cloud SDK for PHP][sdk] at any time without changing the business code, although the code between different versions of this product may not change.
 ```
-composer require alibabacloud/cloudapi
+composer require alibabacloud/cusanalyticsconline
 ```
 
 ***
