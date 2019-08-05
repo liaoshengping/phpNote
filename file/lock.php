@@ -8,7 +8,7 @@
     //加锁
    flock($file,LOCK_EX);
 //    {
-        sleep(100);
+        sleep(5);
 //        echo 'kkk';
 //        //TODO 执行业务代码
 //        flock($file,LOCK_UN);//解锁
