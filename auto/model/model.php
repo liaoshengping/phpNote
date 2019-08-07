@@ -1,10 +1,10 @@
 <?php
+
 $arr = [
     'id',
     'name',
 ];
 $data ='';
-
 
 foreach($arr as $key=>$value){
     $data.= 'public static function findOneBy'.ucfirst($value).PHP_EOL;
