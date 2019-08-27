@@ -1,5 +1,67 @@
 # CHANGELOG
 
+## 1.7.62 - 2019-8-7
+- Generated 2018-03-13 for `retailcloud`.
+
+
+## 1.7.61 - 2019-8-6
+- Supported GetMediaMeta for IMM.
+
+
+## 1.7.60 - 2019-8-6
+- Supported GetMediaMeta for IMM.
+
+
+## 1.7.59 - 2019-8-6
+- Supported GetMediaMeta for IMM.
+
+
+## 1.7.58 - 2019-8-6
+- Supported GetMediaMeta for IMM.
+
+
+## 1.7.57 - 2019-8-6
+- Supported GetMediaMeta for IMM.
+
+
+## 1.7.56 - 2019-8-5
+- GetOrderDetail add originalConfig param.
+
+
+## 1.7.55 - 2019-8-5
+- GetOrderDetail add originalConfig param.
+
+
+## 1.7.54 - 2019-8-5
+- Modify DBS API DescribeFullBackupList.
+
+
+## 1.7.53 - 2019-8-2
+- SubscribeBillToOSSRequest add multAccountRelSubscribe, bucketOwnerId.
+- UnsubscribeBillToOSSRequest add multAccountRelSubscribe.
+
+
+## 1.7.52 - 2019-7-31
+- Endpoint auto route.
+
+
+## 1.7.51 - 2019-7-30
+- Suport ImportCredentials api.
+
+
+## 1.7.50 - 2019-7-30
+- Suport ImportCredentials api.
+
+
+## 1.7.49 - 2019-7-29
+- Supported group API.
+- Supported device APIs.
+- Supported stream APIs.
+- Supported template APIs.
+- Supported record APIs.
+- Supported domain APIs.
+
+
 ## 1.7.48 - 2019-7-26
 - Generated 2019-05-24 for `cusanalytic_sc_online`.
 

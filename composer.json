@@ -24,7 +24,8 @@
         "liaosp/tool": "^1.0",
         "jiemo/mobile": "^1.2",
         "alibabacloud/sdk": "^1.7",
-        "invoice/phonelocation": "^1.2"
+        "invoice/phonelocation": "^1.2",
+        "firebase/php-jwt": "^5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "6.2"
