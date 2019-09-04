@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'UpdateHelper\\' => array($vendorDir . '/kylekatarnls/update-helper/src'),
+    'Pimple' => array($vendorDir . '/pimple/pimple/src'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'PHPQRCode' => array($vendorDir . '/aferrandini/phpqrcode/lib'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),

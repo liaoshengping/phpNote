@@ -1,0 +1,12 @@
+{
+    "name": "qiu41/meituan-dispatch",
+    "authors": [
+        {
+            "name": "廖",
+            "email": "lsp@nongline.com"
+        }
+    ],
+    "require": {
+        "hanson/foundation-sdk": "^3.0"
+    }
+}

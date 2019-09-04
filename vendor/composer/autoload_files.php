@@ -7,8 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
-    '0d59ee240a4cd96ddbb4ff164fccea4d' => $vendorDir . '/symfony/polyfill-php73/bootstrap.php',
     '25072dd6e2470089de65ae7bf11d3109' => $vendorDir . '/symfony/polyfill-php72/bootstrap.php',
+    'f598d06aa772fa33d905e87be6398fb1' => $vendorDir . '/symfony/polyfill-intl-idn/bootstrap.php',
+    '0d59ee240a4cd96ddbb4ff164fccea4d' => $vendorDir . '/symfony/polyfill-php73/bootstrap.php',
     '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     '72579e7bd17821bb1321b87411366eae' => $vendorDir . '/illuminate/support/helpers.php',
     '7b11c4dc42b3b3023073cb14e519683c' => $vendorDir . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -32,5 +33,7 @@ return array(
     '6ca3f08a814c4fd9d5830fc6808a9488' => $vendorDir . '/fukuball/jieba-php/src/vendor/multi-array/MultiArray.php',
     '4d5ee3c1cc66ee941937c247fe6b7d6e' => $vendorDir . '/fukuball/jieba-php/src/vendor/multi-array/Factory/MultiArrayFactory.php',
     'c355e0897882ebe62200c783fabb8783' => $vendorDir . '/hanson/vbot/src/Support/helpers.php',
+    'f0e7e63bbb278a92db02393536748c5f' => $vendorDir . '/overtrue/wechat/src/Kernel/Support/Helpers.php',
+    '6747f579ad6817f318cc3a7e7a0abb93' => $vendorDir . '/overtrue/wechat/src/Kernel/Helpers.php',
     '9b552a3cc426e3287cc811caefa3cf53' => $vendorDir . '/topthink/think-helper/src/helper.php',
 );

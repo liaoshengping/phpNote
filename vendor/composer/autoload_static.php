@@ -8,8 +8,9 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -33,6 +34,8 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         '6ca3f08a814c4fd9d5830fc6808a9488' => __DIR__ . '/..' . '/fukuball/jieba-php/src/vendor/multi-array/MultiArray.php',
         '4d5ee3c1cc66ee941937c247fe6b7d6e' => __DIR__ . '/..' . '/fukuball/jieba-php/src/vendor/multi-array/Factory/MultiArrayFactory.php',
         'c355e0897882ebe62200c783fabb8783' => __DIR__ . '/..' . '/hanson/vbot/src/Support/helpers.php',
+        'f0e7e63bbb278a92db02393536748c5f' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Support/Helpers.php',
+        '6747f579ad6817f318cc3a7e7a0abb93' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Helpers.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
     );
 
@@ -81,15 +84,24 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Contracts\\EventDispatcher\\' => 34,
+            'Symfony\\Contracts\\Cache\\' => 24,
+            'Symfony\\Component\\VarExporter\\' => 30,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Process\\' => 26,
+            'Symfony\\Component\\Mime\\' => 23,
+            'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Console\\' => 26,
+            'Symfony\\Component\\Cache\\' => 24,
+            'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Stringy\\' => 8,
             'Singiu\\WordBan\\' => 15,
         ),
@@ -114,6 +126,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         ),
         'O' => 
         array (
+            'Overtrue\\Socialite\\' => 19,
             'Overtrue\\PackageBuilder\\' => 24,
             'Ofan\\' => 5,
             'OSS\\' => 4,
@@ -164,6 +177,8 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'E' => 
         array (
             'Express\\' => 8,
+            'EasyWeChat\\' => 11,
+            'EasyWeChatComposer\\' => 19,
         ),
         'D' => 
         array (
@@ -250,6 +265,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
+        'Symfony\\Polyfill\\Intl\\Idn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
@@ -261,6 +280,18 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'Symfony\\Contracts\\Service\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/service-contracts',
+        ),
+        'Symfony\\Contracts\\EventDispatcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts',
+        ),
+        'Symfony\\Contracts\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/cache-contracts',
+        ),
+        'Symfony\\Component\\VarExporter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-exporter',
         ),
         'Symfony\\Component\\VarDumper\\' => 
         array (
@@ -274,6 +305,14 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
         ),
+        'Symfony\\Component\\Mime\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/mime',
+        ),
+        'Symfony\\Component\\HttpFoundation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
         'Symfony\\Component\\Finder\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
@@ -282,9 +321,21 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
+        'Symfony\\Component\\EventDispatcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Symfony\\Component\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/cache',
+        ),
+        'Symfony\\Bridge\\PsrHttpMessage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
         ),
         'Stringy\\' => 
         array (
@@ -333,6 +384,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'Predis\\' => 
         array (
             0 => __DIR__ . '/..' . '/predis/predis/src',
+        ),
+        'Overtrue\\Socialite\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/socialite/src',
         ),
         'Overtrue\\PackageBuilder\\' => 
         array (
@@ -438,6 +493,14 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/crazephper/baidu-express/src',
         ),
+        'EasyWeChat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/wechat/src',
+        ),
+        'EasyWeChatComposer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easywechat-composer/easywechat-composer/src',
+        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -498,6 +561,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         ),
         'P' => 
         array (
+            'Pimple' => 
+            array (
+                0 => __DIR__ . '/..' . '/pimple/pimple/src',
+            ),
             'Parsedown' => 
             array (
                 0 => __DIR__ . '/..' . '/erusev/parsedown',
