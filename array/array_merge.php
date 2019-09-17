@@ -10,14 +10,13 @@ class demo
     public function createMenu(array &$config)
     {
         $config = array_filter($config);
-        $config = array_merge([
+        $config = array_merge([//默认值
             'title' => 'Foo',
             'body' => 'body',
             'buttonText' => 'Baz',
             'cancellable' => true,
         ], $config);
     }
-
 }
 //实例
 $menuConfig = [
@@ -30,3 +29,4 @@ $menuConfig = [
 $obj = new demo();
 $obj->createMenu($menuConfig);
 
+var_dump($menuConfig);

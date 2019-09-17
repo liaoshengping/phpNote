@@ -59,10 +59,19 @@ class demo3{
 //$obj = new demo1();
 //$obj->index();
 
-$obj = new demo3();
-$client = [
-    ['username'=>'liaosp','status'=>1,'email'=>'liaosp@qq.com'],
-    ['username'=>'mm','status'=>1,'email'=>'mm@qq.com'],
-];
-$obj->emailClients($client);
+//$obj = new demo3();
+//$client = [
+//    ['username'=>'liaosp','status'=>1,'email'=>'liaosp@qq.com'],
+//    ['username'=>'mm','status'=>1,'email'=>'mm@qq.com'],
+//];
+//$obj->emailClients($client);
 
+function demo4(){
+    $arr = [1,2,3];
+    $function = function(&$value,$key){
+        $value++;
+    };
+    array_walk($arr,$function);
+    var_dump($arr);
+}
+demo4();
