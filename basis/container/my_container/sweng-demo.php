@@ -56,8 +56,6 @@ class DbServiceProvider implements Provider
         $container['db'] = function () {
             return new DB();
         };
-
-
     }
 }
 
