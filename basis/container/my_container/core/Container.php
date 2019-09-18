@@ -1,5 +1,9 @@
 <?php
 
+namespace core;
+
+use interfaces\Provider;
+
 class Container implements \ArrayAccess
 {
     private $values = array();
@@ -8,6 +12,7 @@ class Container implements \ArrayAccess
     public function serviceRegister(Provider $provider)
     {
         $provider->serviceProvider($this);
+
         return $this;
     }
 
