@@ -2,14 +2,14 @@
 
 
 $obj = new DFA();
-$obj->addKeyWord('王八蛋');
-$obj->addKeyWord('王八羔子');
-$obj->addKeyWord('香烟');
-$obj->addKeyWord('狗儿子');
+$obj->addKeyWord('周杰伦的歌');
+$obj->addKeyWord('林俊杰');
+$obj->addKeyWord('周杰伦的老婆');
+$obj->addKeyWord('老盖伦的女儿');
 $obj->getHashMap();
 
-var_dump($obj->searchKey('王八蛋'));
-var_dump($obj->searchKey('王八羔子'));
+var_dump($obj->searchKey('林俊杰'));
+//var_dump($obj->searchKey('盖伦'));
 
 /**
  * Class DFA   DFA 算法  确定有穷自动机
@@ -20,7 +20,7 @@ class DFA
 
     public function getHashMap()
     {
-        print_r($this->arrHashMap);
+        return $this->arrHashMap;
     }
 
     public function addKeyWord($strWord)
@@ -70,9 +70,4 @@ class DFA
         return false;
     }
 }
-//
-//---------------------
-//作者：xpisme
-//来源：CSDN
-//原文：https://blog.csdn.net/u013303402/article/details/79218554
-//版权声明：本文为博主原创文章，转载请附上博文链接！
+
