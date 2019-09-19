@@ -9,9 +9,17 @@
 $app = new Application();
 $app->db->test();
 ```
+一般框架都有容器这个概念，当基础类多了，会很零散，所以得有一个东西能收纳这些功能。
 
+ 零散的代码就好像在农村里生活一样，如果你对当地熟的话，其实也还好，自己知道就是比较麻烦一点，可能在去目的地的时候要花费一点时间。找你这个代码要一定的时间。
 
+如果你在城里就不一样了， 有大型的商场里面啥都有，吃喝拉撒一条龙服务。只要进入了商场就非常多的指向标，小地图规划。这边提到的地图规划，就好像idea中的提示代码：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190919140948711.png)
+进入某个商场，参加具体某个项目，比如去餐厅，服务员会拿出具体的菜单给你过目：
 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190919141735950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIyODIzNTgx,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2019091914013532.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIyODIzNTgx,size_16,color_FFFFFF,t_70)
+总的来说把一个大型的服务装进一个容器中，以这个容器为入口，程序的扩展性强，想让商场哪家倒闭就倒闭，新开一家就新开一家。
 
 # 容器类
 
