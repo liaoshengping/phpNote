@@ -4,7 +4,7 @@
 namespace core;
 
 
-class Base extends Container
+class ContainerBase extends Container
 {
     protected $provider = [];
 

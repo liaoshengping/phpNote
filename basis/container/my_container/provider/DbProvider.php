@@ -9,8 +9,8 @@ class DbProvider implements Provider
 {
     public function serviceProvider(Container $container,array $values = array())
     {
-        $container['db'] = function(){
-            return new \functions\Db();
+        $container['db'] = function($container){
+            return new \functions\Db($container);
         };
 
     }

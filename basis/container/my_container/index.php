@@ -4,6 +4,6 @@ include('Loder.php');
 
 $app = new Application();
 
-$app->sale->lists();
+$app->sale->setSum(2);
 
 

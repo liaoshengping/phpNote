@@ -1,5 +1,5 @@
 <?php
-use core\Base;
+use core\ContainerBase;
 
 /**
  * Class Application
@@ -7,7 +7,7 @@ use core\Base;
  * @property \functions\Order order
  * @property \functions\Sale sale
  */
-class Application extends Base
+class Application extends ContainerBase
 {
     /**
      * 服务提供者

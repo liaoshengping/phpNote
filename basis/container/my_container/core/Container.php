@@ -4,8 +4,13 @@ namespace core;
 
 use interfaces\Provider;
 
+/**
+ * Class Container
+ * @package core
+ */
 class Container implements \ArrayAccess
 {
+    private $instances =array();
     private $values = array();
     public $register;
 
@@ -23,8 +28,12 @@ class Container implements \ArrayAccess
 
     public function offsetGet($offset)
     {
+        if(isset($this->instances[$offset])){
+            return $this->instances[$offset];
+        }
         $raw = $this->values[$offset];
         $val = $this->values[$offset] = $raw($this);
+        $this->instances[$offset] = $val;
         return $val;
     }
 
