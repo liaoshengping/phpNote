@@ -10,4 +10,7 @@ class Db extends BaseClient
         $this->app->sale->lists();
         echo 'hello im db class';
     }
+    public function test(){
+        echo '我是中间件调用的方法222';
+    }
 }

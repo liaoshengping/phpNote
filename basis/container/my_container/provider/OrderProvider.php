@@ -4,16 +4,16 @@
 namespace provider;
 
 
-use core\Container;
-use functions\Order;
+use core\Container as 容器;
+use functions\Order as Dingdan;
 use interfaces\Provider;
 
 class OrderProvider implements Provider
 {
-    public function serviceProvider(Container $container)
+    public function serviceProvider(容器 $container)
     {
-        $container['order'] = function (){
-            return new Order();
+        $container['order'] = function(){
+            return new Dingdan();
         };
     }
 }

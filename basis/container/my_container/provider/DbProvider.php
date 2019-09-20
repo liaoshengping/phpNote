@@ -12,6 +12,5 @@ class DbProvider implements Provider
         $container['db'] = function($container){
             return new \functions\Db($container);
         };
-
     }
 }

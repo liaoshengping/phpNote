@@ -2,8 +2,7 @@
 
 include('Loder.php');
 
-$app = new Application();
+$app = new Application(['spicy'=>'不加辣']);
 
-$app->sale->setSum(2);
-
+$app->curl->request();
 

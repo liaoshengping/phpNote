@@ -8,8 +8,12 @@ class ContainerBase extends Container
 {
     protected $provider = [];
 
-    public function __construct()
+    public $params = array();
+
+    public function __construct($params =array())
     {
+        $this->params = $params;
+
         $provider_callback = function ($provider) {
             $obj =new $provider;
             $this->serviceRegister($obj);
