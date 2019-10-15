@@ -29,4 +29,11 @@ $menuConfig = [
 $obj = new demo();
 $obj->createMenu($menuConfig);
 
-var_dump($menuConfig);
+//var_dump($menuConfig);
+
+
+//正常操作数组
+$arr = [1,2,3];
+$arr2 = [1,2,33];
+$newArr = array_merge($arr,$arr2);
+var_dump($newArr);
