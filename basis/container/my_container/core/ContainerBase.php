@@ -23,6 +23,7 @@ class ContainerBase extends Container
 
     public function __get($id)
     {
+
         return $this->offsetGet($id);
 
     }

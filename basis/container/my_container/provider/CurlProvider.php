@@ -6,7 +6,7 @@ namespace provider;
 
 use core\Container;
 use functions\Curl;
-use functions\Dining;
+use functions\LajiLaji;
 use interfaces\Provider;
 
 class CurlProvider implements Provider
@@ -16,6 +16,9 @@ class CurlProvider implements Provider
     {
         $container['curl'] = function ($container){
             return new Curl($container);
+        };
+        $container['lajiLaji'] = function ($container){
+            return new LajiLaji($container);
         };
     }
 }

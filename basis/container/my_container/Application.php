@@ -8,6 +8,7 @@ use core\ContainerBase;
  * @property \functions\Sale sale
  * @property \functions\Dining dining
  * @property \functions\Curl curl
+ * @property \functions\LajiLaji lajiLaji
  */
 class Application extends ContainerBase
 {
