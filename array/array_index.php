@@ -35,7 +35,7 @@ class array_index{
                 $value = static::getValue($element, $key);
                 if ($value !== null) {
                     if (is_float($value)) {
-                        $value = StringHelper::floatToString($value);
+                        $value = self::floatToString($value);
                     }
                     $lastArray[$value] = $element;
                 }
@@ -79,6 +79,13 @@ class array_index{
         }
 
         return $default;
+    }
+
+    public static function floatToString($number)
+    {
+        // . and , are the only decimal separators known in ICU data,
+        // so its safe to call str_replace here
+        return str_replace(',', '.', (string) $number);
     }
 }
 
