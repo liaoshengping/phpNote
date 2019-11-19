@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="unit" tests="2" assertions="0" failures="0" errors="0" time="0.003469">
+    <testcase name="testMe" class="models\LoginTest" file="E:\linuxdir\php\phpNote\测试\codecept\tests\unit\models\LoginTest.php" line="23" assertions="0" time="0.002933"/>
+    <testcase name="testYOU" class="models\LoginTest" file="E:\linuxdir\php\phpNote\测试\codecept\tests\unit\models\LoginTest.php" line="28" assertions="0" time="0.000536"/>
+  </testsuite>
+</testsuites>

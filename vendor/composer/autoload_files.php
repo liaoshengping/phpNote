@@ -26,6 +26,7 @@ return array(
     '841780ea2e1d6545ea3a253239d59c05' => $vendorDir . '/qiniu/php-sdk/src/Qiniu/functions.php',
     'fe62ba7e10580d903cc46d808b5961a4' => $vendorDir . '/tightenco/collect/src/Collect/Support/helpers.php',
     'caf31cc6ec7cf2241cb6f12c226c3846' => $vendorDir . '/tightenco/collect/src/Collect/Support/alias.php',
+    '180092cfc969a12e06f2132a203a3184' => $vendorDir . '/codeception/verify/src/Codeception/function.php',
     'f40cb564d92ad0e78b0bfdf9b86c5768' => $vendorDir . '/fukuball/jieba-php/src/class/Jieba.php',
     'a778fafb0619406705f6fd4bb3ec7d5b' => $vendorDir . '/fukuball/jieba-php/src/class/JiebaAnalyse.php',
     '06c61fd667b7f3d9ee59d805e51017e7' => $vendorDir . '/fukuball/jieba-php/src/class/Finalseg.php',

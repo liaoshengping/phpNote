@@ -27,6 +27,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         'fe62ba7e10580d903cc46d808b5961a4' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/helpers.php',
         'caf31cc6ec7cf2241cb6f12c226c3846' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/alias.php',
+        '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
         'f40cb564d92ad0e78b0bfdf9b86c5768' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/Jieba.php',
         'a778fafb0619406705f6fd4bb3ec7d5b' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/JiebaAnalyse.php',
         '06c61fd667b7f3d9ee59d805e51017e7' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/Finalseg.php',
@@ -173,6 +174,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
+            'Facebook\\WebDriver\\' => 19,
         ),
         'E' => 
         array (
@@ -190,6 +192,8 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'C' => 
         array (
             'Curl\\' => 5,
+            'Codeception\\PHPUnit\\' => 20,
+            'Codeception\\' => 12,
             'Cache\\TagInterop\\' => 17,
             'Cache\\Adapter\\Filesystem\\' => 25,
             'Cache\\Adapter\\Common\\' => 21,
@@ -489,6 +493,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
+        'Facebook\\WebDriver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/facebook/webdriver/lib',
+        ),
         'Express\\' => 
         array (
             0 => __DIR__ . '/..' . '/crazephper/baidu-express/src',
@@ -520,6 +528,14 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'Curl\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-curl-class/php-curl-class/src/Curl',
+        ),
+        'Codeception\\PHPUnit\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeception/phpunit-wrapper/src',
+        ),
+        'Codeception\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeception/verify/src/Codeception',
         ),
         'Cache\\TagInterop\\' => 
         array (

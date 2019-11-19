@@ -34,6 +34,8 @@ class Msg
         $class = new $obj($obj,$name);
 
         $class->{$name}();
+
+        $class->push();
     }
 
 }

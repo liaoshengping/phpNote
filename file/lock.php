@@ -1,20 +1,39 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4: */
+// +----------------------------------------------------------------------+
+// | PHP version 5                                                        |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 1997-2004 The PHP Group                                |
+// +----------------------------------------------------------------------+
+// | This source file is subject to version 3.0 of the PHP license,       |
+// | that is bundled with this package in the file LICENSE, and is        |
+// | available through the world-wide-web at the following url:           |
+// | http://www.php.net/license/3_0.txt.                                  |
+// | If you did not receive a copy of the PHP license and are unable to   |
+// | obtain it through the world-wide-web, please send a note to          |
+// | license@php.net so we can mail you a copy immediately.               |
+// +----------------------------------------------------------------------+
+// | Authors: Original Author <author@example.com>                        |
+// |          Your Name <you@example.com>                                 |
+// +----------------------------------------------------------------------+
+//
+// $Id:$
 /**
  *  阻塞模式（后面的进程会一直等待前面的进程执行完毕）
  */
- function crateOrder()
-{
-    $file = fopen(__DIR__.'/lock.txt','w+');
+function crateOrder() {
+    $file = fopen(__DIR__ . '/lock.txt', 'w+');
     //加锁
-   flock($file,LOCK_EX);
-//    {
-        sleep(5);
-//        echo 'kkk';
-//        //TODO 执行业务代码
-//        flock($file,LOCK_UN);//解锁
-//    }
-//    //关闭文件
-//    fclose($file);
-}
+    flock($file, LOCK_EX);
+    //    {
+    sleep(5);
+    //        echo 'kkk';
+    //        //TODO 执行业务代码
+    //        flock($file,LOCK_UN);//解锁
+    //    }
+    //    //关闭文件
+    //    fclose($file);
 
+}
 crateOrder();
+

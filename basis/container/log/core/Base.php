@@ -19,6 +19,6 @@ class Base
     }
 
     public function push(){
-
+        echo '发送前的处理';
     }
 }

@@ -6,7 +6,7 @@ include ("vendor/autoload.php");
 //\Liaosp\Express\Channel\Test::test();
 //exit;
 
-
+//basedir=D:/phpstudy_pro/Extensions/MySQL5.7.26/
 
 $url = 'https://detail.1688.com/offer/599153448526.html?spm=b26110380.sw1688.mof001.432.5a172888Xm4xmn';
 $html = \QL\QueryList::get($url)->getHtml();

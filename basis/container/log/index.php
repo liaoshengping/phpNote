@@ -2,4 +2,12 @@
 require "Loder.php";
 
 
-\core\Msg::sales()->submitSale();
+use core\Msg;
+
+
+Msg::sales()->submitSale();
+
+
+
+Msg::order()->userCreateOrder();
+
