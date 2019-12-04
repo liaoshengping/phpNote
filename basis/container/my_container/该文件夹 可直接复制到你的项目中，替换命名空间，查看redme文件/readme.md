@@ -2,7 +2,7 @@
 
 替换  空间
 
-App\Services\AliOpen\
+App\Services\AliOpen
 
 替换成你的空间
 
