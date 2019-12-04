@@ -29,6 +29,6 @@ class Application extends ContainerBase
         \provider\OrderProvider::class,
         \provider\SaleProvider::class,
         \provider\DiningProvider::class,
-        //...其他服务
+        //...其他服务提供者
     ];
 }
