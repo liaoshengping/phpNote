@@ -10,7 +10,7 @@
  * 20191207170144000+0800
  * @param $time
  */
- function aliTimeToPHPTime($time){
+ function timeToPHPTime($time){
     $year = substr($time,0,4);
     $month = substr($time,4,2);
     $day = substr($time,6,2);
