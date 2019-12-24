@@ -5,9 +5,9 @@
 
     $url='http://gw.api.alibaba.com/openapi';
 
-    $appKey='3937604';
+    $appKey='393760*';
 
-    $appSecret ='0RsvFZYVQd';
+    $appSecret ='0RsvFZYVQ*';
 
     #回调URL
 
