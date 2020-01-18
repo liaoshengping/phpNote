@@ -140,6 +140,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             'Liaosp\\Tool\\' => 12,
             'Liaosp\\Express\\' => 15,
+            'Liaosp\\AliOpen\\' => 15,
             'League\\Flysystem\\' => 17,
         ),
         'J' => 
@@ -192,6 +193,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'C' => 
         array (
             'Curl\\' => 5,
+            'Crasphb\\' => 8,
             'Codeception\\PHPUnit\\' => 20,
             'Codeception\\' => 12,
             'Cache\\TagInterop\\' => 17,
@@ -417,6 +419,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             0 => __DIR__ . '/..' . '/liaosp/express/src',
         ),
+        'Liaosp\\AliOpen\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/liaosp/ali_open/src',
+        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -528,6 +534,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'Curl\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-curl-class/php-curl-class/src/Curl',
+        ),
+        'Crasphb\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phprookiehbb/pagination/src',
         ),
         'Codeception\\PHPUnit\\' => 
         array (

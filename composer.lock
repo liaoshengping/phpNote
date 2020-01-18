@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7e232e89d4dc5b9347fec521e0af4d1",
+    "content-hash": "ed0d7ab6e618ad9d69582d3409230269",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -1617,6 +1617,7 @@
                 "selenium",
                 "webdriver"
             ],
+            "abandoned": "php-webdriver/webdriver",
             "time": "2019-06-13T08:02:18+00:00"
         },
         {
@@ -2933,6 +2934,45 @@
             "time": "2019-06-18T20:09:29+00:00"
         },
         {
+            "name": "liaosp/ali_open",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liaoshengping/ali_open.git",
+                "reference": "f356c57a2f9697e5cb638daec3b6ef7f0e5fc48a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liaoshengping/ali_open/zipball/f356c57a2f9697e5cb638daec3b6ef7f0e5fc48a",
+                "reference": "f356c57a2f9697e5cb638daec3b6ef7f0e5fc48a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Liaosp\\AliOpen\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "liaosp.top",
+                    "email": "1194008361@qq.com"
+                }
+            ],
+            "description": "阿里巴巴开放平台sdk ，签名算法",
+            "time": "2019-12-19T13:17:16+00:00"
+        },
+        {
             "name": "liaosp/express",
             "version": "v2.0",
             "source": {
@@ -3914,6 +3954,56 @@
                 }
             ],
             "time": "2017-07-14T14:27:02+00:00"
+        },
+        {
+            "name": "phprookiehbb/pagination",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phprookiehbb/Pagination.git",
+                "reference": "819129d910ffb5b9c2632b1a25f69262f5cd6f13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phprookiehbb/Pagination/zipball/819129d910ffb5b9c2632b1a25f69262f5cd6f13",
+                "reference": "819129d910ffb5b9c2632b1a25f69262f5cd6f13",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Crasphb\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "crasphb",
+                    "email": "646054215@qq.com"
+                }
+            ],
+            "description": "适用于所有程序的数组分页，内置分页样式,可定制样式,稍微修改一下可使用与所有的情形下的数组分页",
+            "keywords": [
+                "array",
+                "pagination",
+                "tp5"
+            ],
+            "time": "2019-05-22T02:44:55+00:00"
         },
         {
             "name": "phpspec/prophecy",
