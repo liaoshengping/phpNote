@@ -9,7 +9,7 @@
  * 感谢 dosgo 提供的 ngrok-php 原版程序
  *
  */
-ConsoleOut("欢迎使用内网穿透 sunny-php v1.38\r\nCtrl+C 退出");
+ConsoleOut("欢迎使用内网穿透 sunny-php v1.38\r\nCtrl+C  exit");
 set_time_limit(0);//设置执行时间
 ignore_user_abort(true);
 error_reporting(E_ALL^E_NOTICE^E_WARNING);
