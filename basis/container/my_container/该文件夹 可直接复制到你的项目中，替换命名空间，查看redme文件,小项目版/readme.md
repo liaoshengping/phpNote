@@ -6,6 +6,8 @@ App\Services\AliOpen
 
 替换成你的空间
 
+eg:App\Service\Application
+
 测试：
 
 ````
