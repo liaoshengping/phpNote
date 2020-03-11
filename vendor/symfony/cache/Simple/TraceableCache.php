@@ -12,6 +12,7 @@
 namespace Symfony\Component\Cache\Simple;
 
 use Psr\SimpleCache\CacheInterface as Psr16CacheInterface;
+use Symfony\Component\Cache\Adapter\TraceableAdapter;
 use Symfony\Component\Cache\PruneableInterface;
 use Symfony\Component\Cache\ResettableInterface;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -58,6 +59,8 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
 
     /**
      * {@inheritdoc}
+     *
+     * @return bool
      */
     public function has($key)
     {
@@ -71,6 +74,8 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
 
     /**
      * {@inheritdoc}
+     *
+     * @return bool
      */
     public function delete($key)
     {
@@ -84,6 +89,8 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
 
     /**
      * {@inheritdoc}
+     *
+     * @return bool
      */
     public function set($key, $value, $ttl = null)
     {
@@ -97,6 +104,8 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
 
     /**
      * {@inheritdoc}
+     *
+     * @return bool
      */
     public function setMultiple($values, $ttl = null)
     {
@@ -124,6 +133,8 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
 
     /**
      * {@inheritdoc}
+     *
+     * @return iterable
      */
     public function getMultiple($keys, $default = null)
     {
@@ -152,6 +163,8 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
 
     /**
      * {@inheritdoc}
+     *
+     * @return bool
      */
     public function clear()
     {
@@ -165,6 +178,8 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
 
     /**
      * {@inheritdoc}
+     *
+     * @return bool
      */
     public function deleteMultiple($keys)
     {
@@ -222,7 +237,7 @@ class TraceableCache implements Psr16CacheInterface, PruneableInterface, Resetta
         }
     }
 
-    private function start($name)
+    private function start(string $name): TraceableCacheEvent
     {
         $this->calls[] = $event = new TraceableCacheEvent();
         $event->name = $name;

@@ -1,6 +1,16 @@
 <?php
 
+$sum = 9/11;
+echo round(8*$sum,2);exit;
 
+
+$lastDate = date('Y-m-d', strtotime('last day'));
+echo $lastDate;exit;
+    $date = '2019';
+
+    var_dump(is_numeric($date));exit;
+    $date = strtotime($date);
+    var_dump(date("Y",$date));exit;
     #拼接获取Code的URL
 
     $url='http://gw.api.alibaba.com/openapi';

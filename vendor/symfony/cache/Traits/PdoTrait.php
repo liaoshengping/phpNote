@@ -14,6 +14,7 @@ namespace Symfony\Component\Cache\Traits;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Driver\ServerInfoAwareConnection;
+use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Exception\TableNotFoundException;
 use Doctrine\DBAL\Schema\Schema;
 use Symfony\Component\Cache\Exception\InvalidArgumentException;
@@ -40,7 +41,7 @@ trait PdoTrait
     private $connectionOptions = [];
     private $namespace;
 
-    private function init($connOrDsn, $namespace, $defaultLifetime, array $options, ?MarshallerInterface $marshaller)
+    private function init($connOrDsn, string $namespace, int $defaultLifetime, array $options, ?MarshallerInterface $marshaller)
     {
         if (isset($namespace[0]) && preg_match('#[^-+.A-Za-z0-9]#', $namespace, $match)) {
             throw new InvalidArgumentException(sprintf('Namespace contains "%s" but only characters in [-+.A-Za-z0-9] are allowed.', $match[0]));
@@ -386,8 +387,15 @@ trait PdoTrait
     private function getConnection()
     {
         if (null === $this->conn) {
-            $this->conn = new \PDO($this->dsn, $this->username, $this->password, $this->connectionOptions);
-            $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            if (strpos($this->dsn, '://')) {
+                if (!class_exists(DriverManager::class)) {
+                    throw new InvalidArgumentException(sprintf('Failed to parse the DSN "%s". Try running "composer require doctrine/dbal".', $this->dsn));
+                }
+                $this->conn = DriverManager::getConnection(['url' => $this->dsn]);
+            } else {
+                $this->conn = new \PDO($this->dsn, $this->username, $this->password, $this->connectionOptions);
+                $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            }
         }
         if (null === $this->driver) {
             if ($this->conn instanceof \PDO) {
@@ -395,6 +403,7 @@ trait PdoTrait
             } else {
                 switch ($this->driver = $this->conn->getDriver()->getName()) {
                     case 'mysqli':
+                        throw new \LogicException(sprintf('The adapter "%s" does not support the mysqli driver, use pdo_mysql instead.', static::class));
                     case 'pdo_mysql':
                     case 'drizzle_pdo_mysql':
                         $this->driver = 'mysql';
@@ -419,10 +428,7 @@ trait PdoTrait
         return $this->conn;
     }
 
-    /**
-     * @return string
-     */
-    private function getServerVersion()
+    private function getServerVersion(): string
     {
         if (null === $this->serverVersion) {
             $conn = $this->conn instanceof \PDO ? $this->conn : $this->conn->getWrappedConnection();

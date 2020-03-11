@@ -21,7 +21,7 @@
         "nesbot/carbon": "^1.21",
         "symfony/console": "3.*|4.*",
         "monolog/monolog": "^1.22",
-        "endroid/qr-code": "^3.6",
+        "aferrandini/phpqrcode": "^1.0",
         "illuminate/config": "^5.4",
         "illuminate/cache": "^5.4",
         "illuminate/filesystem": "^5.4",
