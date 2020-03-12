@@ -95,6 +95,7 @@ return array(
     'Cache\\Adapter\\Common\\' => array($vendorDir . '/cache/adapter-common'),
     'AlibabaCloud\\Client\\' => array($vendorDir . '/alibabacloud/client/src'),
     'AlibabaCloud\\' => array($vendorDir . '/alibabacloud/sdk/src'),
+    'Algolia\\AlgoliaSearch\\' => array($vendorDir . '/algolia/algoliasearch-client-php/src'),
     'Adbar\\' => array($vendorDir . '/adbario/php-dot-notation/src'),
     '' => array($vendorDir . '/nesbot/carbon/src'),
 );

@@ -26,6 +26,8 @@ return array(
     '841780ea2e1d6545ea3a253239d59c05' => $vendorDir . '/qiniu/php-sdk/src/Qiniu/functions.php',
     'fe62ba7e10580d903cc46d808b5961a4' => $vendorDir . '/tightenco/collect/src/Collect/Support/helpers.php',
     'caf31cc6ec7cf2241cb6f12c226c3846' => $vendorDir . '/tightenco/collect/src/Collect/Support/alias.php',
+    '979dffec6fa5205cabd2c2cd1e9e6b3a' => $vendorDir . '/algolia/algoliasearch-client-php/src/Http/Psr7/functions.php',
+    '6783aef8c489bbc166eee2536fe605d5' => $vendorDir . '/algolia/algoliasearch-client-php/src/functions.php',
     '180092cfc969a12e06f2132a203a3184' => $vendorDir . '/codeception/verify/src/Codeception/function.php',
     'f40cb564d92ad0e78b0bfdf9b86c5768' => $vendorDir . '/fukuball/jieba-php/src/class/Jieba.php',
     'a778fafb0619406705f6fd4bb3ec7d5b' => $vendorDir . '/fukuball/jieba-php/src/class/JiebaAnalyse.php',

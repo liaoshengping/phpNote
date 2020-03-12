@@ -27,6 +27,8 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         'fe62ba7e10580d903cc46d808b5961a4' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/helpers.php',
         'caf31cc6ec7cf2241cb6f12c226c3846' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/alias.php',
+        '979dffec6fa5205cabd2c2cd1e9e6b3a' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/Http/Psr7/functions.php',
+        '6783aef8c489bbc166eee2536fe605d5' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/functions.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
         'f40cb564d92ad0e78b0bfdf9b86c5768' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/Jieba.php',
         'a778fafb0619406705f6fd4bb3ec7d5b' => __DIR__ . '/..' . '/fukuball/jieba-php/src/class/JiebaAnalyse.php',
@@ -205,6 +207,7 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         array (
             'AlibabaCloud\\Client\\' => 20,
             'AlibabaCloud\\' => 13,
+            'Algolia\\AlgoliaSearch\\' => 22,
             'Adbar\\' => 6,
         ),
     );
@@ -567,6 +570,10 @@ class ComposerStaticInit42fcd6834b405ca076b66d6426293d5b
         'AlibabaCloud\\' => 
         array (
             0 => __DIR__ . '/..' . '/alibabacloud/sdk/src',
+        ),
+        'Algolia\\AlgoliaSearch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src',
         ),
         'Adbar\\' => 
         array (

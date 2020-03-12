@@ -29,7 +29,8 @@
         "facebook/webdriver": "^1.7",
         "codeception/verify": "*",
         "liaosp/ali_open": "1.1.1",
-        "phprookiehbb/pagination": "^1.1"
+        "phprookiehbb/pagination": "^1.1",
+        "algolia/algoliasearch-client-php": "^2.6"
     },
     "require-dev": {
         "phpunit/phpunit": "6.2"
