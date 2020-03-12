@@ -1,6 +1,7 @@
 <?php
 
 
+use Algolia\AlgoliaSearch\SearchClient;
 
 require_once("../vendor/autoload.php");
 $client = Algolia\AlgoliaSearch\SearchClient::create(
@@ -10,6 +11,6 @@ $client = Algolia\AlgoliaSearch\SearchClient::create(
 
 $index = $client->initIndex('test');
 
-$objects = $index->search('建厦');
+$objects = $index->search('厦门工商');
 
 var_dump($objects);exit;
