@@ -16,7 +16,7 @@ class Container implements \ArrayAccess
      */
     protected $middlewares = array();
     private $instances =array();
-    private $values = array();
+    public $values = array();
     public $register;
 
     public function serviceRegister(Provider $provider)

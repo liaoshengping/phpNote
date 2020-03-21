@@ -23,8 +23,9 @@ class ContainerBase extends Container
 
     public function __get($id)
     {
-
+       if(!empty($this->provider[$id])){
+           return $this;
+       }
         return $this->offsetGet($id);
-
     }
 }

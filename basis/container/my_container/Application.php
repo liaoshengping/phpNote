@@ -9,6 +9,7 @@ use core\ContainerBase;
  * @property \functions\Dining dining
  * @property \functions\Curl curl
  * @property \functions\LajiLaji lajiLaji
+ * @property \provider\DiningProvider fandian
  */
 class Application extends ContainerBase
 {
@@ -28,7 +29,7 @@ class Application extends ContainerBase
         \provider\DbProvider::class,
         \provider\OrderProvider::class,
         \provider\SaleProvider::class,
-        \provider\DiningProvider::class,
+        'fandian'=>\provider\DiningProvider::class,
         //...其他服务提供者
     ];
 }
