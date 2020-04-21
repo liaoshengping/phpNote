@@ -20,6 +20,7 @@ $array = [
 
 //提取出标志中的关键字
 $temp_array = multi2array($array);//多维数组转化为一位数组
+
 $strPattern = "/(?<=【)[^】]+/";
 $arrMatches = [];
 preg_match_all($strPattern,implode('',$temp_array), $arrMatches);
@@ -32,6 +33,7 @@ $ready = $info = [
     'phone'=>'150909090909',
     'content'=>'我是信息',
 ];
+
 //多维数组替换
 foreach ($arrMatches[0] as $key=>$value){
     if(key_exists($value,$ready)){//如果存在信息则替换
