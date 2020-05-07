@@ -30,7 +30,8 @@
         "codeception/verify": "*",
         "liaosp/ali_open": "1.1.1",
         "phprookiehbb/pagination": "^1.1",
-        "algolia/algoliasearch-client-php": "^2.6"
+        "algolia/algoliasearch-client-php": "^2.6",
+        "php-ai/php-ml": "^0.8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "6.2"

@@ -1,5 +1,8 @@
 <?php
 
+$total_amount = bcmul(1, 1.00, 2);
+var_dump($total_amount);exit;
+
 $sum = 9/11;
 echo round(8*$sum,2);exit;
 
