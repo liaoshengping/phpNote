@@ -8,7 +8,7 @@ $config = new \Screenshot\Config();
 $config->setPort(8181);
 
 //修改默认端图片宽度
-$config->setWidth(600);
+$config->setWidth(1080);
 
 //修改默认端图片高度
 $config->setHeight(800);
