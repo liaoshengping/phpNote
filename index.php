@@ -7,7 +7,11 @@
 //}
 //echo $result;
 
-echo "hello worldss";exit;
+$res = strtotime('1970-01-01');
+
+echo $res;exit;
+
+//echo "hello worldss";exit;
 function getUrl($url){
     $result = file_get_contents($url);
     if(! mb_check_encoding($result, 'utf-8')) {

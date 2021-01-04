@@ -1,5 +1,18 @@
 <?php
 
+
+
+
+ $data = format_money("-50.233");
+var_dump((string)$data);exit;
+function format_money($money = null)
+{
+   return floatval($money);
+
+}
+
+exit;
+
 $total_amount = bcmul(1, 1.00, 2);
 var_dump($total_amount);exit;
 
