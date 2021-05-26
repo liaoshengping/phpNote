@@ -1,6 +1,72 @@
 <?php
+include ("vendor/autoload.php");
 
 
+
+
+
+exit;
+$tokenUrl = 'https://www.baidu.com/baidu?isource=infinity&iname=baidu&itype=web&tn=02003390_42_hao_pg&ie=utf-8&wd=%E5%BF%AB%E9%80%92';
+
+$client = new GuzzleHttp\Client();
+$res = $client->request('GET', $tokenUrl, [
+    'query' => ['wd' => 'QueryList'],
+    'headers' => [
+        'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
+        'Accept-Encoding' => 'gzip, deflate, br',
+    ]
+]);
+$html = $res->getBody();
+
+echo $html;
+exit;
+
+header('Content-type:text/html;charset=utf-8');
+$url = "http://www.baidu.com";
+var_dump(file_get_contents($url));exit;
+
+
+  function MoneyTrimSymbol($money)
+{
+    $money = floatval($money);
+    return $money >= 0 ? '¥' . $money : '-¥' . abs($money);
+}
+
+echo MoneyTrimSymbol(null);exit;
+
+
+$goods = ['name' => '222'];
+$list =['name2' => '234234','list' => [[123,12312,1231],[12312]]];
+
+$merge = array_merge($goods,$list);
+
+var_dump($merge);exit;
+
+
+$arr = array('5','2','0','1','3','1','4');
+
+function BubbleSort(array $arr)
+{
+    for ($i=0 ; $i <count($arr) ; $i++) {
+        //设置一个空变量
+        $data = '';
+        for ($j=$i ; $j < count($arr)-1 ; $j++) {
+
+            //if 5 >2  5拿出来  5的位置被下一位取代 下一位编程了5
+
+            if ($arr[$i] > $arr[$j+1]) {
+                $data      = $arr[$i];
+                $arr[$i]   = $arr[$j+1];
+                $arr[$j+1] = $data;
+            }
+        }
+    }
+    return $arr;
+}
+
+print_r(BubbleSort($arr));
+
+exit;
 
 
  $data = format_money("-50.233");

@@ -2,7 +2,7 @@
 include ("vendor/autoload.php");
 use PHPUnit\Framework\TestCase;
 
-class StackTest extends TestCase
+class phpunit extends TestCase
 {
     public function testEmpty()
     {
