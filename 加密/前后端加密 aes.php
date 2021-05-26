@@ -20,3 +20,17 @@ if (hash_equals($hmac, $calcmac)) //PHP 5.6+ 定时攻击安全性比较
 {
     echo $original_plaintext;//http://www.neter8.com/
 }
+
+//7.1 +
+
+$key = '我是密码';
+$plaintext = "http://www.neter8.com/";
+$cipher = "aes-128-gcm";
+$iv =222;
+if (in_array($cipher, openssl_get_cipher_methods())) {
+    $ciphertext = openssl_encrypt($plaintext, $cipher, $key, $options = 0, $iv, $tag);
+    //使用 $cipher, $iv, and $tag 解密
+    $original_plaintext = openssl_decrypt($ciphertext, $cipher, $key, $options = 0, $iv, $tag);
+    echo $original_plaintext;//http://www.neter8.com/
+}
+
