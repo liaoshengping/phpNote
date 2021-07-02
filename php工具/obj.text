@@ -1,0 +1,52 @@
+|字段|类型|允许空|默认|注释|
+ |:----    |:-------    |:--- |----|------      |
+ |print_item_id |int(10) |NO | NULL | 打印明细表
+  |
+ |print_item_no |varchar(32) |NO |  | 打印明细单号
+  |
+ |print_id |int(10) |NO | 0 | 打印ID
+  |
+ |print_no |varchar(32) |NO |  | 打印单号
+  |
+ |device_print_no |varchar(32) |NO |  | 设备打印单号
+  |
+ |store_id |int(10) |NO | 0 | 商店ID
+  |
+ |print_type |varchar(32) |NO |  | 打印类型
+  |
+ |print_object_id |int(10) |NO | 0 | 打印对象ID
+  |
+ |print_object_no |varchar(32) |NO |  | 打印对象号
+  |
+ |device_id |int(11) |NO | 0 | 设备ID
+  |
+ |device_no |varchar(32) |NO |  | 设备编号
+  |
+ |device_channel |varchar(32) |NO |  | 设备渠道
+  |
+ |device_sn |varchar(32) |NO |  | 设备SN
+  |
+ |print_content |longtext |YES | NULL | 打印内容
+  |
+ |print_times |smallint(5) |NO | 1 | 打印次数
+  |
+ |print_state |varchar(32) |NO |  | 打印状态
+  |
+ |print_state_msg |varchar(255) |NO |  | 打印状态信息
+  |
+ |is_auto_print |tinyint(1) |NO | 0 | 是否自动打印
+  |
+ |create_time |int(10) |NO | 0 | 创建时间
+  |
+ |update_time |int(10) |NO | 0 | 更新时间
+  |
+ |submit_time |int(10) |NO | 0 | 提交时间
+  |
+ |finished_time |int(10) |NO | 0 | 完成时间
+  |
+ |last_check_time |int(10) |NO | 0 | 最后检查时间
+  |
+ |check_times |smallint(5) |NO | 0 | 检查次数
+  |
+ |print_item_log_id |int(10) |NO | 0 | 打印明细日志ID
+  |
