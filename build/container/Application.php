@@ -3,6 +3,7 @@
 namespace container;
 
 use container\core\ContainerBase;
+use container\middlewares\CommandHandler;
 use container\middlewares\configHandler;
 use container\middlewares\FrameHandler;
 use container\provider\CommonProvider;
@@ -15,6 +16,7 @@ use container\provider\DiningProvider;
  */
 class Application extends ContainerBase
 {
+
     /**
      * 服务提供者
      * @var array
@@ -23,6 +25,7 @@ class Application extends ContainerBase
     {
         $this->pushMiddlewares(configHandler::class,'配置信息');
         $this->pushMiddlewares(FrameHandler::class,'框架信息初始化');
+        $this->pushMiddlewares(CommandHandler::class,'命令初始化');
 
         parent::__construct($params);
     }

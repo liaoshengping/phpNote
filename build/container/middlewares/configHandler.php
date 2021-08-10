@@ -16,7 +16,7 @@ class configHandler implements Middlewares
             echo $key."=>".$database.PHP_EOL;
         }
         //初始化
-        $app->db->init($datatabases[''],'' ,'','');
+        $app->db->init($datatabases['host'],$datatabases['username'] ,$datatabases['password'],$datatabases["database"]);
     }
 
 

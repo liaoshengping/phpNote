@@ -2,8 +2,13 @@
 
 include_once ("Loder.php");
 
-$app = new \container\Application(['你好']);
+$app = new \container\Application([
+    'argv'=>$argv
+]);
 
-$app->db->where("");
+$data =$app->db->table("bqb_item")->get();
+
+var_dump(count($data));
+
 
 

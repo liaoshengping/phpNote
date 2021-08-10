@@ -12,7 +12,8 @@ class FrameHandler implements Middlewares
 
     public function handle(Application $app)
     {
-        echo "³õÊ¼»¯¿ò¼Ü".PHP_EOL;
+
+        echo "åˆå§‹åŒ–".PHP_EOL;
 
     }
 }
