@@ -6,9 +6,9 @@ namespace config;
 //数据库信息
 
 return [
-    "database" => 'user',
-    "host" => "host",
+    "host" => "192.168.205.22",
+    "database" => 'yibage',
     "port" => "3306",
-    "username" => "username",
+    "username" => "root",
     "password" => "password"
 ];

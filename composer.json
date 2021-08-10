@@ -37,7 +37,8 @@
         "h4cc/wkhtmltopdf-amd64": "0.12.x",
         "mpdf/mpdf": "^8.0",
         "ph-7/obfuscator": "^2.0",
-        "lapuad/taobao-tmall_spider": "^1.0"
+        "lapuad/taobao-tmall_spider": "^1.0",
+        "prooph/event-sourcing": "^5.7"
     },
     "require-dev": {
         "phpunit/phpunit": "6.2"

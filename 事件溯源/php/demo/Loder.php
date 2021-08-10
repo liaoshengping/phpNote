@@ -15,6 +15,6 @@ spl_autoload_register(function ($class){
     if (is_file($file)) {
         require_once $file;
     } else {
-        echo "23333";
+//        echo "23333";
     }
 });

@@ -1,0 +1,43 @@
+|字段|类型|允许空|默认|注释||
+|:----    |:-------    |:--- |----|------      ||
+|coupon_id |int(10) unsigned |NO | NULL | 优惠券id||
+|coupon_no |varchar(32) |NO |  | 优惠券码||
+|discounts_id |int(10) unsigned |NO | 0 | 优惠ID|
+|discounts_no |varchar(32) |NO |  | 优惠编码|
+|discounts_type |varchar(32) |NO |  | 优惠类型 coupon_code.优惠码,full_reduction.满减,rebate.折扣,stand_ty.立减|
+|issue_type |varchar(32) |NO |  | 发放类型 platform.平台,store.商店|
+|issue_store_id |int(10) |YES | 0 | 店铺ID|
+|face_value |decimal(20,2) |NO | 0.00 | 优惠券面值|
+|rebate |smallint(5) |NO | 0 | 折扣|
+|store_available_type |varchar(32) |NO |  | 商店可用类型 all_store.所有商店,part_store.部分商店|
+|store_available_set |text |YES | NULL | 店铺可用集合|
+|store_unavailable_set |text |YES | NULL | 店铺不可用集合|
+|cate_available_type |varchar(32) |NO |  | 分类可用类型 all_cate.所有分类,part_cate.部分分类|
+|cate_available_set |text |YES | NULL | 可用分类集合|
+|cate_unavailable_set |text |YES | NULL | 不可用分类集合|
+|goods_available_type |varchar(32) |NO |  | 商品可用类型 all_goods.全部商品,part_goods.部分商品|
+|goods_available_set |text |YES | NULL | 商品可用集合|
+|goods_unavailable_set |text |YES | NULL | 商品不可用集合|
+|spec_available_set |text |YES | NULL | 规格可用集合|
+|spec_unavailable_set |text |YES | NULL | 规格不可用集合|
+|threshold_using_switch |tinyint(1) |NO | 0 | 使用门槛开关 0.关闭,1.开启|
+|threshold_amount |decimal(20,2) |NO | 0.00 | 门槛金额|
+|active_both_switch |tinyint(1) |NO | 0 | 活动并存开关 0.关闭,1.开启|
+|validity_begin_time |int(10) |NO | 0 | 固定有效期开始时间|
+|validity_end_time |int(10) |NO | 0 | 有效期结束时间|
+|tip_expire_time |int(10) |NO | 0 | 过期前提醒时间|
+|tip_count |tinyint(1) |NO | 0 | 已提醒次数|
+|tip_last_time |int(10) |NO | 0 | 最后提醒时间|
+|get_user_id |int(10) unsigned |YES | 0 | 获取用户ID|
+|order_id |int(10) |NO | 0 | 订单ID|
+|order_no |varchar(32) |NO |  | 订单号|
+|order_store_id |int(10) |NO | 0 | 订单商店ID|
+|coupon_state |varchar(32) |NO |  | 优惠券状态 get.领取,use.使用,cancel.作废,expire.过期|
+|charge_off_state |varchar(32) |NO |  | 核销状态|
+|get_time |int(10) |NO | 0 | 领取时间|
+|use_time |int(10) |NO | 0 | 使用时间|
+|cancel_time |int(10) |NO | 0 | 作废时间|
+|expire_time |int(10) |NO | 0 | 过期时间|
+|charge_off_time |int(10) |NO | 0 | 核销时间|
+|discounts_log_id |int(10) |NO | 0 | 优惠日志ID|
+|coupon_log_id |int(10) unsigned |NO | 0 | 优惠券日志ID|

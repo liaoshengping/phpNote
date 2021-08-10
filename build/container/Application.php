@@ -11,6 +11,7 @@ use container\provider\DiningProvider;
 /**
  * Class Application
  * @property \container\functions\Dining dining
+ * @property \container\functions\Pdos db
  */
 class Application extends ContainerBase
 {

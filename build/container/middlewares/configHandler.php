@@ -15,6 +15,8 @@ class configHandler implements Middlewares
         foreach ($datatabases as $key=>$database){
             echo $key."=>".$database.PHP_EOL;
         }
+        //初始化
+        $app->db->init($datatabases[''],'' ,'','');
     }
 
 

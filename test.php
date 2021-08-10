@@ -1,7 +1,27 @@
 <?php
+
+$a = "new string";
+
+xdebug_debug_zval('a');
+
+exit;
+
 include ("vendor/autoload.php");
 
+$commont = '状态(0:删除,1:待审核,2:正常)';
 
+$perg_result = array();
+
+preg_match("/([^\s]*)(?:\()(.*)(?:\))/i",$commont,$perg_result);
+
+var_dump($perg_result);exit;
+
+
+$name = '帮宝适清新帮拉拉裤XXL28片(15kg以上)加加大码婴儿纸尿裤尿不湿柔软透气';
+
+preg_match('/([A-Z]+)+(\d+)+片/',$name,$data);
+
+var_dump($data);exit;
 
 
 

@@ -4,7 +4,9 @@
 namespace event;
 
 
-class Cancled
+use Prooph\EventSourcing\AggregateChanged;
+
+class Cancled extends AggregateChanged
 {
 
 }

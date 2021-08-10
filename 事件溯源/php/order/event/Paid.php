@@ -4,7 +4,9 @@
 namespace event;
 
 
-class Paid
+use Prooph\EventSourcing\AggregateChanged;
+
+class Paid extends AggregateChanged
 {
 
 }

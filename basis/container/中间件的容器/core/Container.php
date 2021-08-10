@@ -75,11 +75,9 @@ class Container implements \ArrayAccess
      * @return array
      */
     public function pushMiddlewares($class_and_function,$name =''){
-        if(empty($this->middlewares)){
-            $this->middlewares[$name] = $class_and_function;
-        }else{
-            array_push($this->middlewares,[$name=>$class_and_function]);
-        }
+
+        $this->middlewares[$name] = $class_and_function;
+
         return $this->middlewares;
     }
 
