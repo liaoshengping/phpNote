@@ -75,9 +75,7 @@ class Container implements \ArrayAccess
      * @return array
      */
     public function pushMiddlewares($class_and_function,$name =''){
-
-            $this->middlewares[$name] = $class_and_function;
-
+         $this->middlewares[$name] = $class_and_function;
         return $this->middlewares;
     }
 

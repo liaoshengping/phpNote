@@ -1,0 +1,276 @@
+[
+    {
+        "name": "inhere/console",
+        "version": "v3.1.21",
+        "version_normalized": "3.1.21.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/inhere/php-console.git",
+            "reference": "8e39a95cb8a7875de271395bc8735cc358c67a26"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/inhere/php-console/zipball/8e39a95cb8a7875de271395bc8735cc358c67a26",
+            "reference": "8e39a95cb8a7875de271395bc8735cc358c67a26",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">7.2.0",
+            "toolkit/cli-utils": "~1.0",
+            "toolkit/stdlib": "~1.0",
+            "toolkit/sys-utils": "~1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^8.5 || ^9.1"
+        },
+        "suggest": {
+            "padraic/phar-updater": "A thing to make PHAR self-updating easy and secure.",
+            "symfony/process": "php process operation",
+            "text/template": "Single-Class string template engine for PHP5/7 supporting if/loops/filters"
+        },
+        "time": "2021-08-07T13:42:15+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Inhere\\Console\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "inhere",
+                "email": "in.798@qq.com",
+                "homepage": "http://www.yzone.net/"
+            }
+        ],
+        "description": "a php console library, provide console argument parse, console controller/command run, color style, user interactive, information show.",
+        "homepage": "https://github.com/inhere/php-console",
+        "keywords": [
+            "cli",
+            "color",
+            "command",
+            "command-line",
+            "console",
+            "console-application",
+            "console-color",
+            "phar"
+        ]
+    },
+    {
+        "name": "millionmile/get_env",
+        "version": "v1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://gitee.com/millionmile/get_env.git",
+            "reference": "5a1c3e1a8fd98d741668f0ce8fec310952de9c7c"
+        },
+        "require": {
+            "php": ">=7.0"
+        },
+        "time": "2020-10-15T08:29:26+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "MillionMile\\GetEnv\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "萬里",
+                "email": "810185932@qq.com"
+            }
+        ]
+    },
+    {
+        "name": "toolkit/cli-utils",
+        "version": "v1.2.10",
+        "version_normalized": "1.2.10.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-toolkit/cli-utils.git",
+            "reference": "909008ec32b33c6b248adb700f060ac27b588794"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-toolkit/cli-utils/zipball/909008ec32b33c6b248adb700f060ac27b588794",
+            "reference": "909008ec32b33c6b248adb700f060ac27b588794",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">7.1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5"
+        },
+        "suggest": {
+            "inhere/console": "a lightweight php console application library."
+        },
+        "time": "2021-08-06T14:39:02+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Toolkit\\Cli\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "inhere",
+                "email": "in.798@qq.com",
+                "homepage": "http://github.com/inhere"
+            }
+        ],
+        "description": "useful cli tool library of the php",
+        "homepage": "https://github.com/php-toolkit/cli-utils",
+        "keywords": [
+            "cli",
+            "command-line",
+            "library",
+            "php",
+            "tool"
+        ]
+    },
+    {
+        "name": "toolkit/stdlib",
+        "version": "v1.0.17",
+        "version_normalized": "1.0.17.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-toolkit/stdlib.git",
+            "reference": "234bbaff905ccc804680c6486d84d283db27405b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-toolkit/stdlib/zipball/234bbaff905ccc804680c6486d84d283db27405b",
+            "reference": "234bbaff905ccc804680c6486d84d283db27405b",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">7.1.0"
+        },
+        "suggest": {
+            "inhere/php-validate": "Very lightweight data validate tool"
+        },
+        "time": "2021-08-07T02:34:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Toolkit\\Stdlib\\": "src/"
+            },
+            "files": [
+                "src/func.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "inhere",
+                "email": "in.798@qq.com",
+                "homepage": "http://www.yzone.net/"
+            }
+        ],
+        "description": "some stdlib tool library of the php",
+        "homepage": "https://github.com/php-toolkit/stdlib",
+        "keywords": [
+            "array",
+            "library",
+            "object",
+            "php",
+            "string",
+            "tool"
+        ]
+    },
+    {
+        "name": "toolkit/sys-utils",
+        "version": "v1.2.7",
+        "version_normalized": "1.2.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-toolkit/sys-utils.git",
+            "reference": "c294cca060b7ba8b4b161bf33df76a344e0b8796"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-toolkit/sys-utils/zipball/c294cca060b7ba8b4b161bf33df76a344e0b8796",
+            "reference": "c294cca060b7ba8b4b161bf33df76a344e0b8796",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">7.1.0",
+            "toolkit/stdlib": "~1.0"
+        },
+        "suggest": {
+            "inhere/console": "a lightweight php console application library.",
+            "inhere/php-validate": "Very lightweight data validate tool"
+        },
+        "time": "2021-07-25T16:01:25+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Toolkit\\Sys\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "inhere",
+                "email": "in.798@qq.com",
+                "homepage": "http://www.yzone.net/"
+            }
+        ],
+        "description": "some system tool library of the php",
+        "homepage": "https://github.com/php-toolkit/sys-utils",
+        "keywords": [
+            "library",
+            "php",
+            "tool"
+        ]
+    }
+]

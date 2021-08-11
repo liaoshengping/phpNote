@@ -3,13 +3,10 @@
 
 namespace config;
 
-
-
 return [
-    "host" => "192.168.205.22",
-    "database" => 'yibage',
-    "port" => "3306",
-
-    "username" => "root",
-    "password" => "123456"
+    "host" => env("host","192.168.205.22"),
+    "database" => env("yibage",'yibage'),
+    "port" => env("port","3306"),
+    "username" => env("username","root"),
+    "password" => env("password","123456")
 ];

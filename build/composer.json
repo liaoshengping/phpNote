@@ -1,0 +1,13 @@
+{
+    "name": "qiu41/build",
+    "authors": [
+        {
+            "name": "廖",
+            "email": "1194008361@qq.com"
+        }
+    ],
+    "require": {
+        "inhere/console": "^3.1",
+        "millionmile/get_env": "^1.0"
+    }
+}
