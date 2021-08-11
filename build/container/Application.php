@@ -43,5 +43,9 @@ class Application extends ContainerBase
     public function run()
     {
 
+        $data = $this->table->current_table_info;
+
+        var_dump($data);
+
     }
 }

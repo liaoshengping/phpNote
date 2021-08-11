@@ -44,7 +44,7 @@ class CommandHandler implements Middlewares
                     Show::aList($this->help, 'Instructions');
                     throw new \Exception("please fill in the table name");
                 }
-
+                $app->table->queryCurrentTableInfo($argvs[2]);
                 break;
             default:
                 Show::aList($this->help, 'Instructions');
