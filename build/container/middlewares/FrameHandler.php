@@ -14,12 +14,13 @@ class FrameHandler implements Middlewares
     public function handle(Application $app)
     {
         //生成BaseModel
-        switch (config('frame')){
+        switch (config('frame')) {
             case THINKPHP:
-
+                break;
+            case GOLANG;
                 break;
             default:
-                throw new \Exception('没有配置 该框架的配置'.config('frame'));
+                throw new \Exception('没有配置 该框架的配置' . config('frame'));
                 break;
         }
 

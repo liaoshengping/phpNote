@@ -17,7 +17,7 @@ const WORK_NAME = 'yibage';
 
 
 return [
-    "frame" => THINKPHP,
+    "frame" => GOLANG,
     'frame_path'=>FRAME_PATH,
     'frame_controller_path'=> FRAME_PATH ."/application/". WORK_NAME.'/controller/',
     'frame_modebase_path'=> FRAME_PATH .'/application/common/model/base/',
