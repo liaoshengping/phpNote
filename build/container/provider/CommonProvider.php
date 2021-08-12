@@ -7,8 +7,11 @@ namespace container\provider;
 use container\core\Container;
 use container\functions\Dining;
 use container\functions\Pdos;
+use container\functions\php\PHPCommon;
+use container\functions\Struct;
 use container\functions\Table;
 use container\functions\tool\Console;
+use container\functions\tool\Tool;
 use container\interfaces\Provider;
 
 class CommonProvider implements Provider
@@ -25,6 +28,15 @@ class CommonProvider implements Provider
 
         $container['table'] = function ($container){
             return new Table($container);
+        };
+        $container['struct'] = function ($container){
+            return new Struct($container);
+        };
+        $container['phpcommon'] = function ($container){
+            return new PHPCommon($container);
+        };
+        $container['tool'] = function ($container){
+            return new Tool($container);
         };
     }
 }

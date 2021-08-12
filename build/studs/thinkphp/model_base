@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by liaosp
+ * Des: this is auto build
+ */
+
+namespace {{namespace}};
+use think\Model;
+use {{namespace}}\BaseModel;
+
+/**
+ * Class {{ClassName}}
+{{property}}
+ */
+class {{ClassName}} extends BaseModel
+{
+
+
+   protected $table = '{{table_name}}';
+
+    {{rule}}
+
+    {{enums}}
+
+
+
+    protected $autoWriteTimestamp = true;
+    protected $createTime = 'created_at';
+    protected $updateTime = 'updated_at';
+
+
+
+}

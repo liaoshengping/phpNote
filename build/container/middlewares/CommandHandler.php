@@ -16,7 +16,7 @@ class CommandHandler implements Middlewares
      * @var array
      */
     public $help = [
-        'table+table_name' => 'Generate basic database model', // key-value
+        'model+table_name' => 'Generate basic database model', // key-value
         'name2' => 'value text 2',
     ];
 
@@ -28,8 +28,6 @@ class CommandHandler implements Middlewares
     {
         $app->console->init();
 
-//        Show::aList($this->help,'使用说明');
-
         $argvs = $app->params['argv'];
 //        $userInput = Interact::readln('Your name:');
 //        Show::block('是你输入的是', 'success', 'error');
@@ -37,19 +35,22 @@ class CommandHandler implements Middlewares
             Show::aList($this->help, 'Instructions');
             throw new \Exception("please fill in the parameter");
         }
-
         switch ($argvs[1]) {
-            case 'table':
+            case 'model':
                 if (empty($argvs[2])) {
-                    Show::aList($this->help, 'Instructions');
-                    throw new \Exception("please fill in the table name");
+                    Show::aList($this->help, '指示');
+                    throw new \Exception("请填写表名");
                 }
                 $app->table->queryCurrentTableInfo($argvs[2]);
                 break;
             default:
-                Show::aList($this->help, 'Instructions');
-                throw new \Exception("Non-existent instruction:" . $argvs[1]);
+                Show::aList($this->help, '指示');
+                throw new \Exception("不存在的指令:" . $argvs[1]);
                 break;
         }
+
+
+
+        $app->todo = $argvs[1];
     }
 }
