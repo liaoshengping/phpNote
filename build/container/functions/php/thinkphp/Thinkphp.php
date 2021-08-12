@@ -8,6 +8,24 @@ use container\functions\php\PHPCommon;
 
 class Thinkphp extends PHPCommon
 {
+
+
+
+    //生成验证规则
+    public function validateData($field){
+        if (empty($field)){
+            return false;
+        }
+        $result = '';
+        preg_match("/(?:rule)+(?:\[)(.*)(?:\])/i", $field, $result);
+
+        if (empty($result[1])){
+            return false;
+        }
+        return $result[1];
+
+    }
+
     /**
      * 处理枚举
      */

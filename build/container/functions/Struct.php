@@ -21,6 +21,7 @@ class Struct extends BaseClient
             throw new \Exception("空的数据库结构");
         }
 
+
         foreach ($table as $item) {
             $struct_one = [
                 'name' => $item['COLUMN_NAME'],
@@ -28,7 +29,7 @@ class Struct extends BaseClient
                 'comment' => $item['COLUMN_COMMENT'],
             ];
 
-            $this->struct[$item['COLUMN_NAME']] = $struct_one;
+            $this->struct[] = $struct_one;
         }
 
     }

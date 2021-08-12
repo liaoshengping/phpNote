@@ -3,6 +3,7 @@
 namespace container;
 
 use container\core\ContainerBase;
+use container\functions\php\thinkphp\Thinkphp;
 use container\middlewares\CommandHandler;
 use container\middlewares\configHandler;
 use container\middlewares\FrameHandler;
@@ -51,13 +52,9 @@ class Application extends ContainerBase
 
     public function run()
     {
-
-     $this->thinkphp->init();
-
-
-//        $data = $this->table->current_table_info;
-
-//        var_dump($data);
-
+        /**
+         * @var Thinkphp
+         */
+        $this->{$this->frame}->run();
     }
 }

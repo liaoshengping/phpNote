@@ -36,16 +36,14 @@ class Table extends BaseClient
         }
         $this->app->className = $this->app->tool->struct($new_table_name);
 
-
         $databaseInfo = $this->app->db->query("select
 	* 
 FROM INFORMATION_SCHEMA.COLUMNS
-where table_name = '{$table_name}'");
+where table_name = '{$table_name}' ORDER BY ORDINAL_POSITION ASC");
 
         if (!empty($databaseInfo)) {
             $this->current_table_info = $databaseInfo;
         }
-
         Show::block("查询成功：" . $table_name, 'info', 'success');
 
         //处理该表

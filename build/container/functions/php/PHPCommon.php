@@ -10,33 +10,34 @@ class PHPCommon extends BaseClient
      * 模型
      * @var
      */
-    public $modelTemplate;
+    public $modeBselTemplate;
 
-    public $className;
+    public $classBaseName;
 
 
     /**
      * 模型初始化
      */
-    public function init()
+    public function run()
     {
 
-        $table_name = $this->app->table->table_name;
 
+        $this->classBaseName = $this->app->className."Base";
         //覆盖即可
-
         $this->app->frame;
 
-        $this->modelTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base');
+        $this->modeBselTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base');
 
         //namespace
         $this->renameBaseModelNamespace();
 
         //类名
-        $this->modelTemplate = str_replace('{{ClassName}}', $this->app->className, $this->modelTemplate);
-        $this->modelTemplate = str_replace('{{table_name}}', $this->app->table->table_name, $this->modelTemplate);
+        $this->modeBselTemplate = str_replace('{{ClassName}}', $this->classBaseName, $this->modeBselTemplate);
+        $this->modeBselTemplate = str_replace('{{table_name}}', $this->app->table->table_name, $this->modeBselTemplate);
 
 
+        //规则
+        $this->rule();
 
         $this->modelRemark();
 
@@ -51,7 +52,36 @@ class PHPCommon extends BaseClient
      */
     public function renameBaseModelNamespace()
     {
-        $this->modelTemplate = str_replace('{{namespace}}', config('base_model_namespace_path'), $this->modelTemplate);
+        $this->modeBselTemplate = str_replace('{{namespace}}', config('base_model_namespace_path'), $this->modeBselTemplate);
+    }
+
+    /**
+     * 规则
+     */
+    public function rule(){
+        $rules =[];
+        foreach ($this->app->struct->struct as $item) {
+            $rule =$this->validateData($item["comment"]);
+            if ($rule) {
+                $rules[$item['name']] = $rule;
+            }
+        }
+
+        $strRule = 'public $rule = [];';
+
+        if ($rules){
+            $strRuleKeyValue = ''.PHP_EOL;
+            foreach ($rules as $name => $rule){
+                $strRuleKeyValue.= "           '".$name."' => "."'".$rule."',".PHP_EOL;
+            }
+            $strRule = 'public $rule = [
+               '.$strRuleKeyValue.'
+            ];';
+        }
+
+        //替换规则
+        $this->modeBselTemplate = str_replace('{{rule}}', $strRule,  $this->modeBselTemplate);
+
     }
 
 
@@ -61,10 +91,11 @@ class PHPCommon extends BaseClient
     public function modelRemark()
     {
         $propertys = '';
+
         foreach ($this->app->struct->struct as $item) {
             $propertys .= " * @property $" . $item['name'] . "  " . $item["comment"] . PHP_EOL;
         }
-        $this->modelTemplate = str_replace('{{property}}', $propertys, $this->modelTemplate);
+        $this->modeBselTemplate = str_replace('{{property}}', $propertys, $this->modeBselTemplate);
 
     }
 
@@ -83,14 +114,7 @@ class PHPCommon extends BaseClient
         //枚举
         $enums = $this->handleEnums($enums);
 
-        $this->modelTemplate = str_replace('{{enums}}', $enums, $this->modelTemplate);
-
-
-    }
-
-    public function build()
-    {
-        echo $this->modelTemplate;
+        $this->modeBselTemplate = str_replace('{{enums}}', $enums, $this->modeBselTemplate);
     }
 
 
@@ -136,6 +160,16 @@ class PHPCommon extends BaseClient
         return false;
 
 
+    }
+
+    /**
+     * 最终生成
+     */
+    public function build()
+    {
+        $frame_modebase_path = config('frame_modebase_path').'/'.$this->classBaseName.'.php';
+
+        file_put_contents($frame_modebase_path,$this->modeBselTemplate);
     }
 
 

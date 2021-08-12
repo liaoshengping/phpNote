@@ -16,8 +16,9 @@ class CommandHandler implements Middlewares
      * @var array
      */
     public $help = [
-        'model+table_name' => 'Generate basic database model', // key-value
-        'name2' => 'value text 2',
+        'model  table_name' => '生成模型', // key-value
+        'modelbase  table_name' => '只生成模型的base', // key-value
+        'modelapi  tablename' => '生成api和模型',//
     ];
 
     /**
@@ -33,7 +34,7 @@ class CommandHandler implements Middlewares
 //        Show::block('是你输入的是', 'success', 'error');
         if (count($argvs) < 2) {
             Show::aList($this->help, 'Instructions');
-            throw new \Exception("please fill in the parameter");
+            throw new \Exception("输入参数上面介绍的参数");
         }
         switch ($argvs[1]) {
             case 'model':
@@ -48,8 +49,6 @@ class CommandHandler implements Middlewares
                 throw new \Exception("不存在的指令:" . $argvs[1]);
                 break;
         }
-
-
 
         $app->todo = $argvs[1];
     }
