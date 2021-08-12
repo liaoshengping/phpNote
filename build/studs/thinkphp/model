@@ -1,0 +1,19 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liaosp
+ * Des: can do
+ */
+
+namespace {{namespace}};
+use think\Model;
+use {{model_base}};
+
+/**
+ * Class {{ClassName}}
+ * @package app\common\model
+ */
+class {{ClassName}} extends {{extends}}
+{
+
+}

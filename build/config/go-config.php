@@ -23,6 +23,7 @@ return [
     'frame_modebase_path'=> FRAME_PATH .'/application/common/model/base/',
     'frame_mode_path'=> FRAME_PATH ."/application/". WORK_NAME.'/controller/',
     'base_model_namespace_path'=>"app\common\model\base",
+    'model_namespace_path'=>"app\common\model\base",
     "fornt" => "",
     "enum_path" => "",//没有则不创建，或在model中定义,
     "database_name" => "database",
