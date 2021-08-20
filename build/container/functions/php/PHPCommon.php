@@ -25,6 +25,9 @@ class PHPCommon extends BaseClient
         $this->classModelName = $this->app->className;
         //覆盖即可
         $this->app->frame;
+        if (!is_dir(APP_PATH . "/studs/" . $this->app->frame )){
+            throw new \Exception("请添加模版".APP_PATH . "/studs/" . $this->app->frame . '/model_base');
+        }
         $this->modeBaseTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base');
         $this->modeTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model');
         //namespace
@@ -129,9 +132,13 @@ class PHPCommon extends BaseClient
                 $enums[] = $enum;
             }
         }
+        if (!empty($enums)){
+            //枚举
+            $enums = $this->handleEnums($enums);
+        }else{
+            $enums = '';
+        }
 
-        //枚举
-        $enums = $this->handleEnums($enums);
 
         $this->modeBaseTemplate = str_replace('{{enums}}', $enums, $this->modeBaseTemplate);
     }
@@ -186,7 +193,16 @@ class PHPCommon extends BaseClient
      */
     public function buildModelBase()
     {
+        if (!is_dir(config('frame_modebase_path'))){
+            mkdir(config('frame_modebase_path'),0777);
+        }
+
+        if (!is_file(config('frame_modebase_path').'/BaseModel.php')){
+            file_put_contents(config('frame_modebase_path').'/BaseModel.php', file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base_base'));
+        }
+
         $frame_modebase_path = config('frame_modebase_path') . $this->classBaseName . '.php';
+//        echo $frame_modebase_path;exit;
 
         file_put_contents($frame_modebase_path, $this->modeBaseTemplate);
 
@@ -203,6 +219,24 @@ class PHPCommon extends BaseClient
 
         Show::block('生成成功' . $frame_mode_path, 'success', 'success');
     }
+
+    //生成验证规则
+    public function validateData($field){
+        if (empty($field)){
+            return false;
+        }
+        $result = '';
+        preg_match("/(?:rule)+(?:\[)(.*)(?:\])/i", $field, $result);
+
+        if (empty($result[1])){
+            return false;
+        }
+        return $result[1];
+
+    }
+
+
+
 
 
 }

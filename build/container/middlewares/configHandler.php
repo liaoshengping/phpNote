@@ -1,6 +1,7 @@
 <?php
 namespace container\middlewares;
 
+use common\cache;
 use container\Application;
 use container\core\ContainerBase;
 use container\interfaces\Middlewares;
@@ -12,14 +13,14 @@ class configHandler implements Middlewares
 
     public function handle(Application $app)
     {
-        $datatabases  = include_once(__DIR__.'\..\..\config\database.php');
-        Show::panel($datatabases, '数据库配置信息',[]);
         // 先输出消息，再读取
 //        $userInput = Interact::readln('Your name:');
 //
 //        Show::block('是你输入的是'.$userInput,'success','warning');
 
-        $app->db->init($datatabases['host'],$datatabases['username'] ,$datatabases['password'],$datatabases["database"]);
+        $app->db->init(config('host'),config('username'),config('password'),config('database'));
+        //记录当前表明
+
         //所有表
 //        $data = $app->db->query("select table_name from information_schema.tables where table_schema='" . $datatabases["database"] . "'");
 //

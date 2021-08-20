@@ -19,6 +19,8 @@ class FrameHandler implements Middlewares
                 break;
             case GOLANG;
                 break;
+            case LARAVEL:
+                break;
             default:
                 throw new \Exception('没有配置 该框架的配置' . config('frame'));
                 break;

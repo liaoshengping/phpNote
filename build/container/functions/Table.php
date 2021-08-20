@@ -4,6 +4,7 @@
 namespace container\functions;
 
 
+use common\cache;
 use container\core\BaseClient;
 use Inhere\Console\Util\Show;
 
@@ -11,6 +12,7 @@ class Table extends BaseClient
 {
 
     public $table_name;
+
     /**
      * 当前财讯表
      * @var
@@ -35,16 +37,17 @@ class Table extends BaseClient
             $new_table_name = str_replace($prefix, '', $table_name);
         }
         $this->app->className = $this->app->tool->struct($new_table_name);
+        $db_name =config('database');
 
-        $databaseInfo = $this->app->db->query("select
-	* 
-FROM INFORMATION_SCHEMA.COLUMNS
-where table_name = '{$table_name}' ORDER BY ORDINAL_POSITION ASC");
+        $databaseInfo = $this->app->db->query("select * from information_schema.columns
+where table_schema = '{$db_name}'
+and table_name = '{$table_name}' ORDER BY ORDINAL_POSITION ASC");
 
 
         if (empty($databaseInfo)){
-            throw new \Exception("查询不到数据库数据");
+            throw new \Exception("查询不到数据库数据:".$table_name);
         }
+
         if (!empty($databaseInfo)) {
             $this->current_table_info = $databaseInfo;
         }

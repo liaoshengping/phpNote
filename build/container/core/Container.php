@@ -3,6 +3,8 @@
 namespace container\core;
 
 
+use container\Application;
+
 /**
  * Class Container
  * @package container\core
@@ -35,6 +37,9 @@ class Container implements \ArrayAccess
         if(isset($this->instances[$offset])){
             return $this->instances[$offset];
         }
+        /**
+         * @var Application  run 方法的问题
+         */
         $raw = $this->values[$offset];
         $val = $this->values[$offset] = $raw($this);
         $this->instances[$offset] = $val;

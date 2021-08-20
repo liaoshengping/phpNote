@@ -26,6 +26,6 @@ return [
     'model_namespace_path'=>"app\common\model\base",
     "fornt" => "",
     "enum_path" => "",//没有则不创建，或在model中定义,
-    "database_name" => "database",
+    "database_file_name" => "database",
     'prefix' =>"",
 ];

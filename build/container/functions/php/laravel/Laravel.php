@@ -1,14 +1,11 @@
 <?php
 
-
-namespace container\functions\php\thinkphp;
-
+namespace container\functions\php\laravel;
 
 use container\functions\php\PHPCommon;
 
-class Thinkphp extends PHPCommon
+class Laravel extends PHPCommon
 {
-
     /**
      * 处理枚举
      */
@@ -22,7 +19,7 @@ class Thinkphp extends PHPCommon
         foreach ($enums as $enumData) {
             $strAppend .= "'" . $enumData['key'] . "_name',";
         }
-        $result .= 'protected $append = [
+        $result .= 'protected $appends = [
             ' . $strAppend . '
     ];';
 
@@ -83,7 +80,7 @@ class Thinkphp extends PHPCommon
             $result .= str_replace('{{keyName}}', $enumData['key'] . '修改器', $str) . PHP_EOL;
             $function_name = ucfirst($this->app->tool->struct($enumData['key']));
             $strFunction = '
-    public function get' . $function_name . 'NameAttr()
+    public function get' . $function_name . 'NameAttribute()
     {
        return $this->get' . $function_name . 'Params($this["' . $enumData['key'] . '"]);
     }';
