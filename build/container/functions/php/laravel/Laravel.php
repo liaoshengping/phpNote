@@ -25,7 +25,7 @@ class Laravel extends PHPCommon
 
         $baseStr = '
     /**
-     * {{keyName}} 
+     * {{keyName}}
      */
     ';
 
