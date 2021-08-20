@@ -7,6 +7,8 @@ use Inhere\Console\Util\Show;
 
 class PHPCommon extends BaseClient
 {
+    use ControllerTemplateCommon;
+
     /**
      * 模型
      * @var
@@ -15,6 +17,17 @@ class PHPCommon extends BaseClient
     public $modeTemplate;
     public $classBaseName;
     public $classModelName;
+    /**
+     *  控制器
+     */
+    public $controllerTemplate;
+    public $controllerFunctionSection;//方法部分往这边塞方法
+
+    /**
+     * 文档
+     */
+    public $documentController;
+
     /**
      * 模型初始化
      */
@@ -25,8 +38,8 @@ class PHPCommon extends BaseClient
         $this->classModelName = $this->app->className;
         //覆盖即可
         $this->app->frame;
-        if (!is_dir(APP_PATH . "/studs/" . $this->app->frame )){
-            throw new \Exception("请添加模版".APP_PATH . "/studs/" . $this->app->frame . '/model_base');
+        if (!is_dir(APP_PATH . "/studs/" . $this->app->frame)) {
+            throw new \Exception("请添加模版" . APP_PATH . "/studs/" . $this->app->frame . '/model_base');
         }
         $this->modeBaseTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base');
         $this->modeTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model');
@@ -53,11 +66,47 @@ class PHPCommon extends BaseClient
                 $this->buildModel();
                 break;
             case 'modelapi':
+                $this->buildModel();
+                $this->buildController();
+//                $this->buildValidate();
+//                $this->buildRedpository();
+//                 $this->buildDocument(); //创建接口文档
                 break;
 
         }
 
 
+    }
+
+    public function buildController()
+    {
+        $temp = [];
+        $this->pushTemplate($temp, $this->buildStoreController() ?? []);
+        $this->pushTemplate($temp, $this->buildShowController() ?? []);
+        $this->pushTemplate($temp, $this->buildListsController() ?? []);
+        $this->pushTemplate($temp, $this->buildEditController() ?? []);
+        $this->pushTemplate($temp, $this->buildDelController() ?? []);
+
+        foreach ($temp as $item) {
+            $this->controllerFunctionSection .= $item['template'];
+        }
+
+        echo $this->controllerFunctionSection;exit;
+
+    }
+
+    /**
+     *
+     * @param $temp
+     * @param $obj
+     */
+    public function pushTemplate(&$temp, $obj)
+    {
+        if (empty($obj)) {
+            return;
+        } else {
+            $temp[] = $obj;
+        }
     }
 
     /**
@@ -68,10 +117,10 @@ class PHPCommon extends BaseClient
         $this->modeBaseTemplate = str_replace('{{namespace}}', config('base_model_namespace_path'), $this->modeBaseTemplate);
         $this->modeTemplate = str_replace('{{namespace}}', config('model_namespace_path'), $this->modeTemplate);
 
-        $useBaseName = config('base_model_namespace_path').'\\'.$this->classBaseName;
-        $this->modeTemplate = str_replace('{{model_base}}',$useBaseName, $this->modeTemplate);
-        $this->modeTemplate = str_replace('{{ClassName}}',$this->classModelName, $this->modeTemplate);
-        $this->modeTemplate = str_replace('{{extends}}',$this->classBaseName, $this->modeTemplate);
+        $useBaseName = config('base_model_namespace_path') . '\\' . $this->classBaseName;
+        $this->modeTemplate = str_replace('{{model_base}}', $useBaseName, $this->modeTemplate);
+        $this->modeTemplate = str_replace('{{ClassName}}', $this->classModelName, $this->modeTemplate);
+        $this->modeTemplate = str_replace('{{extends}}', $this->classBaseName, $this->modeTemplate);
 
     }
 
@@ -132,10 +181,10 @@ class PHPCommon extends BaseClient
                 $enums[] = $enum;
             }
         }
-        if (!empty($enums)){
+        if (!empty($enums)) {
             //枚举
             $enums = $this->handleEnums($enums);
-        }else{
+        } else {
             $enums = '';
         }
 
@@ -193,12 +242,12 @@ class PHPCommon extends BaseClient
      */
     public function buildModelBase()
     {
-        if (!is_dir(config('frame_modebase_path'))){
-            mkdir(config('frame_modebase_path'),0777);
+        if (!is_dir(config('frame_modebase_path'))) {
+            mkdir(config('frame_modebase_path'), 0777);
         }
 
-        if (!is_file(config('frame_modebase_path').'/BaseModel.php')){
-            file_put_contents(config('frame_modebase_path').'/BaseModel.php', file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base_base'));
+        if (!is_file(config('frame_modebase_path') . '/BaseModel.php')) {
+            file_put_contents(config('frame_modebase_path') . '/BaseModel.php', file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base_base'));
         }
 
         $frame_modebase_path = config('frame_modebase_path') . $this->classBaseName . '.php';
@@ -221,22 +270,20 @@ class PHPCommon extends BaseClient
     }
 
     //生成验证规则
-    public function validateData($field){
-        if (empty($field)){
+    public function validateData($field)
+    {
+        if (empty($field)) {
             return false;
         }
         $result = '';
         preg_match("/(?:rule)+(?:\[)(.*)(?:\])/i", $field, $result);
 
-        if (empty($result[1])){
+        if (empty($result[1])) {
             return false;
         }
         return $result[1];
 
     }
-
-
-
 
 
 }

@@ -36,6 +36,7 @@ class CommandHandler implements Middlewares
             Show::aList($this->help, 'Instructions');
             throw new \Exception("输入参数上面介绍的参数");
         }
+
         switch ($argvs[1]) {
             case 'model':
                 if (empty($argvs[2])) {
@@ -44,9 +45,16 @@ class CommandHandler implements Middlewares
                 }
                 $app->table->queryCurrentTableInfo($argvs[2]);
                 break;
+            case "modelapi":
+                if (empty($argvs[2])) {
+                    Show::aList($this->help, '指示');
+                    throw new \Exception("请填写表名");
+                }
+                $app->table->queryCurrentTableInfo($argvs[2]);
+                break;
             default:
                 Show::aList($this->help, '指示');
-                throw new \Exception("不存在的指令:" . $argvs[1]);
+                throw new \Exception("尚未开发指令:" . $argvs[1]);
                 break;
         }
 
