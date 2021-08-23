@@ -22,6 +22,8 @@ class PHPCommon extends BaseClient
      */
     public $controllerTemplate;
     public $controllerFunctionSection;//方法部分往这边塞方法
+    public $controllerBaseName;
+    public $controllerName;
 
     /**
      * 文档
@@ -68,6 +70,7 @@ class PHPCommon extends BaseClient
             case 'modelapi':
                 $this->buildModel();
                 $this->buildController();
+
 //                $this->buildValidate();
 //                $this->buildRedpository();
 //                 $this->buildDocument(); //创建接口文档
@@ -81,6 +84,7 @@ class PHPCommon extends BaseClient
     public function buildController()
     {
         $temp = [];
+        $this->pushTemplate($temp, $this->buildInitController() ?? []);
         $this->pushTemplate($temp, $this->buildStoreController() ?? []);
         $this->pushTemplate($temp, $this->buildShowController() ?? []);
         $this->pushTemplate($temp, $this->buildListsController() ?? []);
@@ -89,9 +93,53 @@ class PHPCommon extends BaseClient
 
         foreach ($temp as $item) {
             $this->controllerFunctionSection .= $item['template'];
+            $this->documentController .= $item['document'];
         }
 
-        echo $this->controllerFunctionSection;exit;
+        //判断basecontroller的存在
+        $templateBaseFilePath = config('frame_controller_path') . 'base/BaseController.php';
+
+
+        if (!is_dir(config('frame_controller_path') . 'base/')) {
+            mkdir(config('frame_controller_path') . 'base', '0777');
+        }
+
+        if (!is_file($templateBaseFilePath)) {
+            file_put_contents($templateBaseFilePath, file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/base_controller'));
+        }
+        //创建baseconroller
+        $this->controllerTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/controller');
+
+        $controller_base_name = !empty($this->controllerBaseName) ? $this->controllerBaseName : $this->classBaseName . 'Controller';
+
+        $templateBaseName = config('frame_controller_path') . 'base/' . $controller_base_name . '.php';
+
+        $this->controllerTemplate = str_replace('{{controller_base_name}}', $controller_base_name, $this->controllerTemplate);
+
+        $this->controllerTemplate = str_replace('{{content}}', $this->controllerFunctionSection, $this->controllerTemplate);
+
+        file_put_contents($templateBaseName, $this->controllerTemplate);
+
+        //创建正式controller
+        $controllerPaht = config('frame_controller_path') . $this->classModelName . '.php';
+
+        if (is_file($controllerPaht)) {
+            Show::block('已存在' . $controllerPaht . '控制器');
+            return true;
+        }
+
+        $this->controllerTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/index_controller');
+        $this->controllerTemplate = str_replace("{{controller_name}}",  $this->classModelName, $this->controllerTemplate);
+        $this->controllerTemplate = str_replace("{{BaseController}}",  '\\'.config('controller_namespace_path').'\base\\'.$controller_base_name, $this->controllerTemplate);
+
+
+        file_put_contents( config('frame_controller_path')  . $this->classModelName . '.php',$this->controllerTemplate);
+
+
+
+
+        echo $controllerPaht;
+        exit;
 
     }
 

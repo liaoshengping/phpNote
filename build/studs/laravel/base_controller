@@ -1,0 +1,43 @@
+<?php
+
+
+namespace App\Http\Controllers\base;
+
+
+use Illuminate\Support\Facades\Response;
+
+class BaseController
+{
+    const HTTP_STATE_SUCCESS_CODE = 200;
+    const HTTP_STATE_ERROR_CODE = 500;
+
+
+    public function success($message='成功', $data=[])
+    {
+        return $this->respose(self::HTTP_STATE_ERROR_CODE, $message, $data);
+    }
+    public function failure($message='失败', $data=[])
+    {
+        return $this->respose(self::HTTP_STATE_ERROR_CODE, $message, $data);
+    }
+
+    public function successData($data = [], $message = "成功")
+    {
+        return $this->respose(self::HTTP_STATE_SUCCESS_CODE, $message, $data);
+    }
+
+    private function respose($code = self::HTTP_STATE_SUCCESS_CODE, $messsage = '', $data = [], $status = 'success')
+    {
+        if ($code == self::HTTP_STATE_ERROR_CODE) {
+            $status = 'fail';
+        }
+        return response()->json([
+            'status' => $status,
+            'code' => $code,
+            'message' => $messsage,
+            'data' => $data,
+        ]);
+    }
+
+
+}

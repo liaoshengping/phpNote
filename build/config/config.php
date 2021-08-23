@@ -28,4 +28,5 @@ return [
     "enum_path" => "",//没有则不创建，或在model中定义,
     "database_file_name" => "database",
     'prefix' =>"",
+    'controller_namespace_path' =>"",
 ];
