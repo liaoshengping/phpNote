@@ -20,7 +20,7 @@ class {{ClassName}} extends BaseModel
 
     {{enums}}
 
-
+    {{relation}}
 
     protected $autoWriteTimestamp = true;
     protected $createTime = 'created_at';

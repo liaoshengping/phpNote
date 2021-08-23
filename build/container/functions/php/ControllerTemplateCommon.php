@@ -42,9 +42,22 @@ trait ControllerTemplateCommon
       }
               ';
 
+
+
         $content = '
-        $data = $this->model->get();
-        return $this->successData($data);
+        $validate = Validator::make($request->all(), $this->model->rule);
+
+        if (!$validate->passes()) {
+            return $this->failure($validate->errors()->first());
+        }
+
+        $res = $this->model->save($validate->getData());
+
+        if ($res) {
+            return $this->success($res);
+        } else {
+            return $this->failure();
+        }
         ';
 
         return [
@@ -102,10 +115,28 @@ trait ControllerTemplateCommon
       }
               ';
 
+        $with = [];
+        $relations = $this->getRelation();
+        foreach ($relations as $relation) {
+
+            foreach ($relation['table'] as $item) {
+                if (empty($item['list_show'])){
+                    continue;
+                }
+                $with[] = "'".$item['table_name']."'";
+            }
+        }
+        if (!empty($with)) {
+            $with = '->with(['.implode(",", $with).'])';
+        }
+
+
         $content = '
-        $data = $this->model->get();
+        $data = $this->model{{with}}->simplePaginate();
         return $this->successData($data);
         ';
+
+        $content = str_replace('{{with}}',$with,$content);
 
         return [
             'document' => '列表文档',
@@ -172,12 +203,27 @@ trait ControllerTemplateCommon
     }
               ';
 
+
+        $with = [];
+        $relations = $this->getRelation();
+        foreach ($relations as $relation) {
+
+            foreach ($relation['table'] as $item) {
+                if (empty($item['one_show'])){
+                    continue;
+                }
+                $with[] = "'".$item['table_name']."'";
+            }
+        }
+        if (!empty($with)) {
+            $with = '->with(['.implode(",", $with).'])';
+        }
         $content = '
         $keyName = $this->model->getKeyName();
 
         $id = $request->get($keyName);
 
-        $res = $this->model->find((int)$id);
+        $res = $this->model{{with}}->find((int)$id);
 
         if ($res) {
             return $this->success($res);
@@ -185,6 +231,10 @@ trait ControllerTemplateCommon
             return $this->failure(\'不存在id为：\' . $id);
         }
         ';
+
+        $content = str_replace('{{with}}',$with,$content);
+
+
 
         return [
             'document' => '##获取详情',

@@ -46,11 +46,15 @@ return [
         'deleted_at'
     ], //自动生成数据库缺少的字段比如 create_at,update_at
 
+
+    //文档地址
+    'document_path' =>FRAME_PATH.'document',
+
     /**
      * table relations
      */
     'relations' => [
-        'users' => [
+            'users' => [
             [
                 'relation' => "hasMany",
                 'table' => [
@@ -58,7 +62,7 @@ return [
                         'table_name' => 'posts',
                         'target' => 'user_id', //目标表中的字段
                         'origin' => 'id',//本表的字段
-                        'limit' => 0,//查询为10条
+                        'limit' => 5,//查询为10条
                         'list_show' => true,
                         'list_exist' => false,
                         'one_show' => false,

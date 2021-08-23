@@ -28,7 +28,14 @@ class PHPCommon extends BaseClient
     /**
      * 文档
      */
+    public $documentModel;
     public $documentController;
+
+    /**
+     * 关联模版
+     * @var
+     */
+    public $modelRelationTemplate;
 
     /**
      * 模型初始化
@@ -59,15 +66,24 @@ class PHPCommon extends BaseClient
 
         $this->enumsBuild();
 
-        $this->buildModelBase();
+        $this->buildModelDocument();
+
+
+        //处理关联
+        $this->modelRelationTemplate = $this->buildRelation();
+
+
 
         switch ($this->app->todo) {
             case 'modelbase':
+                $this->buildModelBase();
                 break;
             case 'model':
+                $this->buildModelBase();
                 $this->buildModel();
                 break;
             case 'modelapi':
+                $this->buildModelBase();
                 $this->buildModel();
                 $this->buildController();
 
@@ -129,13 +145,11 @@ class PHPCommon extends BaseClient
         }
 
         $this->controllerTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/index_controller');
-        $this->controllerTemplate = str_replace("{{controller_name}}",  $this->classModelName, $this->controllerTemplate);
-        $this->controllerTemplate = str_replace("{{BaseController}}",  '\\'.config('controller_namespace_path').'\base\\'.$controller_base_name, $this->controllerTemplate);
+        $this->controllerTemplate = str_replace("{{controller_name}}", $this->classModelName, $this->controllerTemplate);
+        $this->controllerTemplate = str_replace("{{BaseController}}", '\\' . config('controller_namespace_path') . '\base\\' . $controller_base_name, $this->controllerTemplate);
 
 
-        file_put_contents( config('frame_controller_path')  . $this->classModelName . '.php',$this->controllerTemplate);
-
-
+        file_put_contents(config('frame_controller_path') . $this->classModelName . '.php', $this->controllerTemplate);
 
 
         echo $controllerPaht;
@@ -290,6 +304,7 @@ class PHPCommon extends BaseClient
      */
     public function buildModelBase()
     {
+
         if (!is_dir(config('frame_modebase_path'))) {
             mkdir(config('frame_modebase_path'), 0777);
         }
@@ -297,6 +312,10 @@ class PHPCommon extends BaseClient
         if (!is_file(config('frame_modebase_path') . '/BaseModel.php')) {
             file_put_contents(config('frame_modebase_path') . '/BaseModel.php', file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base_base'));
         }
+
+        $this->modeBaseTemplate = str_replace('{{relation}}',$this->modelRelationTemplate,$this->modeBaseTemplate);
+
+
 
         $frame_modebase_path = config('frame_modebase_path') . $this->classBaseName . '.php';
 //        echo $frame_modebase_path;exit;
@@ -315,6 +334,33 @@ class PHPCommon extends BaseClient
         file_put_contents($frame_mode_path, $this->modeTemplate);
 
         Show::block('生成成功' . $frame_mode_path, 'success', 'success');
+    }
+
+    public function getRelation()
+    {
+
+        //todo 智能转化  hasmany对象 belonsto
+
+        $table_name = $this->app->table->table_name;
+
+        $relation = config('relations');
+
+        if (empty($relation[$table_name])) {
+            return [];
+        }
+        $relations = $relation[$table_name];
+
+        return $relations;
+    }
+
+    /**
+     * 生成模型文档
+     */
+    public function buildModelDocument(){
+
+        $this->documentModel.= 'document_path';
+        $path = config('document_path');
+
     }
 
     //生成验证规则
