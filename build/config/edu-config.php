@@ -48,44 +48,70 @@ return [
 
 
     //文档地址
-    'document_path' =>FRAME_PATH.'document',
+    'document_path' => FRAME_PATH . 'document',
 
     /**
-     * table relations
+     * 生成文档 https://github.com/DarkaOnLine/L5-Swagger
      */
-    'relations' => [
-            'users' => [
-            [
-                'relation' => "hasMany",
-                'table' => [
-                    [
-                        'table_name' => 'posts',
-                        'target' => 'user_id', //目标表中的字段
-                        'origin' => 'id',//本表的字段
-                        'limit' => 5,//查询为10条
-                        'list_show' => true,
-                        'list_exist' => false,
-                        'one_show' => false,
-                        'create_relation' => false,//创建时，是否可以关联添加
-                    ],
-                ],
-            ],
+    'api_doc' => 'swagger',//不生成为空
+    'api_prefix' => 'api', //生成的api前缀
 
-            [
-                'relation' => "hasOne",
-                'table' => [
-                    [
-                        'table_name' => 'user_detail',
-                        'target' => 'user_id', //目标表中的字段
-                        'origin' => 'id',//本表的字段
-                        'list_show' => true,
-                        'list_exist' => false,
-                        'one_show' => true,
-                        'create_relation' => true,//创建时，是否可以关联添加
+    'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
+
+    'hidden_fields' => ['deleted_at', 'password', 'remember_token'], //全局需要隐藏的字段
+
+    /**
+     * 数据差异性
+     */
+    "tables" => [
+        'users' => [
+            'name' => '文章',//文章
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+
+            ],
+            'input' => [
+
+            ],
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+
+            'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'posts',
+                            'target' => 'user_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'limit' => 5,//查询为10条
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => false,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
                     ],
                 ],
+
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'user_detail',
+                            'target' => 'user_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => true,//创建时，是否可以关联添加
+                        ],
+                    ],
+                ]
             ]
         ]
-    ]
+    ],
+
 
 ];

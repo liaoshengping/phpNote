@@ -148,25 +148,25 @@ class Laravel extends PHPCommon
             $model_base_namespace = config('model_namespace_path') . '\\';
             $relationName = $relation['relation'];
 
-            foreach ($relation['table'] as $item) {
+            foreach ($relation['tables'] as $item) {
                 $tagName = $this->app->tool->struct($item['table_name']);
 
                 //危险警告
                 if (!is_file(config('frame_mode_path') . $tagName . '.php')) {
-                    Show::block('缺少关联表' . $tagName . '存在，最高危险级别警告,请执行： php 你的项目名字 model ' . $item['table_name'],'error','error');
+                    Show::block('缺少关联表' . $tagName . '存在，最高危险级别警告,请执行： php 你的项目名字 model ' . $item['table_name'], 'error', 'error');
                 }
 
                 switch ($relationName) {
                     case 'hasMany':
                         $limitStr = '';
-                        $limit = $item['limit']??0;
-                        if ($limit >0){
-                            $limitStr = '->limit("'.$limit.'")';
+                        $limit = $item['limit'] ?? 0;
+                        if ($limit > 0) {
+                            $limitStr = '->limit("' . $limit . '")';
                         }
                         $tamplate .= '
    public function ' . $item['table_name'] . '()
     {
-        return $this->hasMany(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')'.$limitStr.';
+        return $this->hasMany(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')' . $limitStr . ';
     }
                     ' . PHP_EOL;
                         break;
@@ -186,6 +186,8 @@ class Laravel extends PHPCommon
 
 
         }
+
+        $this->modelRelationTemplate = $tamplate;
 
         return $tamplate;
     }

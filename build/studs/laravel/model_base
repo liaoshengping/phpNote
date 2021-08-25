@@ -9,12 +9,17 @@ namespace {{namespace}};
 /**
  * Class {{ClassName}}
 {{property}}
+{{apiDoc}}
  */
 class {{ClassName}} extends BaseModel
 {
 
 
    protected $table = '{{table_name}}';
+
+    {{fillable}}
+
+    {{hidden}}
 
     {{rule}}
 

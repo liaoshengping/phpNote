@@ -31,6 +31,8 @@ class PHPCommon extends BaseClient
     public $documentModel;
     public $documentController;
 
+    public $hiddenProperties = array();//隐藏的字段
+
     /**
      * 关联模版
      * @var
@@ -62,16 +64,19 @@ class PHPCommon extends BaseClient
         //规则
         $this->rule();
 
+        $this->buildProperty(); //模型的属性
+
         $this->modelRemark();
 
         $this->enumsBuild();
 
         $this->buildModelDocument();
 
-
         //处理关联
-        $this->modelRelationTemplate = $this->buildRelation();
+         $this->buildRelation();
 
+        //关联关系写入注释
+        $this->buildRelationToNote();
 
 
         switch ($this->app->todo) {
@@ -97,6 +102,83 @@ class PHPCommon extends BaseClient
 
     }
 
+    /**
+     * 关联关系写入注释包括写入api文档
+     */
+    public function buildRelationToNote()
+    {
+        $relationPropertys = '';
+        $apiDoc = '';
+        $relations = $this->getRelation();
+        do {
+            if (empty($relations)){
+                break;
+            }
+
+            //处理关联表注释
+            foreach ($relations as $relation) {
+                foreach ($relation['tables'] as $item){
+                    $table_name = $item['table_name'];
+                    $namespace = config('model_namespace_path');
+                    $relationPropertys.='* @property \\'.$namespace.'\\'.$this->app->tool->struct($table_name).' '.$table_name.PHP_EOL;
+                }
+            }
+
+            //处理文档swagger
+            foreach ($relations as $relation) {
+                foreach ($relation['tables'] as $item){
+
+                    $table_name = $item['table_name'];
+                    $schema_name  = $this->app->tool->struct($item['table_name']);
+                    if (!is_file(config('frame_mode_path').$schema_name.'.php')){
+                        Show::block('致命bug，请执行：model '.$table_name,'error','error');
+                    }
+
+                    $apiDoc .= '
+ *      @OA\Property(
+ *     property="'.$table_name.'",
+ *     ref="#/components/schemas/'.$schema_name.'"
+ *      ),';
+                }
+            }
+
+
+        } while (false);
+
+
+        $this->modeBaseTemplate = str_replace('{{relationPropertys}}', $relationPropertys, $this->modeBaseTemplate);
+        $this->modeBaseTemplate = str_replace('{{apiDocRelationPropertys}}', $apiDoc, $this->modeBaseTemplate);
+
+
+    }
+
+    /**
+     * 生成模型的属性
+     */
+    public function buildProperty()
+    {
+
+        $hidden = [];
+        $need_hidden = $this->getHidden();
+
+        foreach ($this->app->struct->struct as $item) {
+            if (in_array($item['name'], $need_hidden)) {
+                $this->hiddenProperties[] = $item['name'];
+                $hidden[] = "'" . $item['name'] . "'";
+            }
+        }
+        if (empty($hidden)) {
+            $hidden = '';
+        }
+
+        $this->modeBaseTemplate = str_replace('{{hidden}}', 'protected $hidden = [' . implode(',', $hidden) . '];', $this->modeBaseTemplate);
+
+    }
+
+    /**
+     * 生成控制器
+     * @return bool
+     */
     public function buildController()
     {
         $temp = [];
@@ -224,11 +306,74 @@ class PHPCommon extends BaseClient
     public function modelRemark()
     {
         $propertys = '';
+        $apiProperty = '';
+        $schema = '';
+        $api_doc = config('api_doc');
+        $fillable = '';
 
         foreach ($this->app->struct->struct as $item) {
+            if ($api_doc == 'swagger' && !in_array($item['name'], $this->hiddenProperties)) {
+                $example = '';
+                switch ($item['type']) {
+                    case 'bigint':
+                        $example = 1;
+                        break;
+                    case 'varchar':
+                        $example = '--';
+                        break;
+                    case 'timestamp':
+                        $example = '2008-08-08 08:08:08';
+                        break;
+                }
+                if ($item['default']) {
+                    $example = $item['default'];
+                }
+                //判断是否是枚举
+                $apiProperty .= '
+ *      @OA\Property(
+ *     property="' . $item['name'] . '",
+ *     format="' . $item['name'] . '",
+ *     type="' . $item['type'] . '",
+ *     description="' . $item["comment"] . '",
+ *     example="' . $example . '"
+ *                  ),';
+//    ,
+            }
+
+
             $propertys .= " * @property $" . $item['name'] . "  " . $item["comment"] . PHP_EOL;
+            if ($item['name'] != $this->app->table->pk && !in_array($item['name'], config('exclude_fillable') ?? [])) {
+                $fillable .= "'" . $item['name'] . "',";
+            }
+
+        }
+
+
+        $propertys .= "{{relationPropertys}}";
+
+        if ($fillable) {
+            $fillable = 'protected $fillable = [' . $fillable . '];';
+        }
+
+        if ($apiProperty) {
+            $apiProperty.="{{apiDocRelationPropertys}}";
+            $schema = '*@OA\Schema(
+ *   schema="' . $this->classModelName . '",
+ *   description="",
+ {{apiDocProperty}}
+ *     ) ';
+
+
+//            需要隐藏的字段
+            $hidden = '';
+//            apiDocRelationPropertys
+
+            $schema = str_replace('{{apiDocProperty}}', $apiProperty, $schema);
         }
         $this->modeBaseTemplate = str_replace('{{property}}', $propertys, $this->modeBaseTemplate);
+        $this->modeBaseTemplate = str_replace('{{apiDoc}}', $schema, $this->modeBaseTemplate);
+        $this->modeBaseTemplate = str_replace('{{fillable}}', $fillable, $this->modeBaseTemplate);
+
 
     }
 
@@ -313,12 +458,10 @@ class PHPCommon extends BaseClient
             file_put_contents(config('frame_modebase_path') . '/BaseModel.php', file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base_base'));
         }
 
-        $this->modeBaseTemplate = str_replace('{{relation}}',$this->modelRelationTemplate,$this->modeBaseTemplate);
-
+        $this->modeBaseTemplate = str_replace('{{relation}}', $this->modelRelationTemplate, $this->modeBaseTemplate);
 
 
         $frame_modebase_path = config('frame_modebase_path') . $this->classBaseName . '.php';
-//        echo $frame_modebase_path;exit;
 
         file_put_contents($frame_modebase_path, $this->modeBaseTemplate);
 
@@ -339,28 +482,57 @@ class PHPCommon extends BaseClient
     public function getRelation()
     {
 
-        //todo 智能转化  hasmany对象 belonsto
-
         $table_name = $this->app->table->table_name;
 
-        $relation = config('relations');
-
-        if (empty($relation[$table_name])) {
+        $tables = config('tables') ?? [];
+        if (empty($tables[$table_name])) {
             return [];
         }
-        $relations = $relation[$table_name];
+        $table = $tables[$table_name];
+        if (empty($table['relations'])) {
+            return [];
+        }
 
-        return $relations;
+        return $table['relations'];
+
+
+//        $relation = config('relations');
+//
+//        if (empty($relation[$table_name])) {
+//            return [];
+//        }
+//        $relations = $relation[$table_name];
+//
+//        return $relations;
     }
 
     /**
      * 生成模型文档
      */
-    public function buildModelDocument(){
+    public function buildModelDocument()
+    {
 
-        $this->documentModel.= 'document_path';
+        $this->documentModel .= 'document_path';
         $path = config('document_path');
 
+    }
+
+    /**
+     * 获取需要隐藏的字段
+     */
+    public function getHidden()
+    {
+        //全局隐藏的字段
+        $hidden_fields = config('hidden_fields') ?? [];
+
+        foreach ($this->app->struct->struct as $item) {
+            $str = strstr($item['comment'], 'hidden');
+            if ($str) {
+                array_push($hidden_fields, $item['name']);
+            }
+        }
+
+        return $hidden_fields;
     }
 
     //生成验证规则

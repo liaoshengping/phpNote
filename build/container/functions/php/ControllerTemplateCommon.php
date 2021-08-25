@@ -4,6 +4,8 @@
 namespace container\functions\php;
 
 
+use container\Application;
+
 trait ControllerTemplateCommon
 {
 
@@ -18,9 +20,9 @@ trait ControllerTemplateCommon
         {{content}}
     }
               ';
-        $model  = '\\'.config('model_namespace_path') . '\\' . $this->classModelName;
+        $model = '\\' . config('model_namespace_path') . '\\' . $this->classModelName;
         $content = '
-        $this->model = new '.$model.'();
+        $this->model = new ' . $model . '();
         ';
 
         return [
@@ -31,18 +33,64 @@ trait ControllerTemplateCommon
 
     public function buildStoreController()
     {
+        /**
+         * @var Application $this ->app
+         */
+        $api_prefix = config('api_prefix');
+
         $template = '
     /**
-     * 获取列表
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/store",
+     *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/store",
+     *      tags={"' . $this->app->table->table_format_name . '"},
+     *      summary="' . $this->app->table->table_format_name . '创建",
+     *      description="' . $this->app->table->table_format_name . '提交创建",
+{{request}}
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"),
+     *         )
+     *     ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      security={
+     *         {
+     *             "api_key":{}
+     *         }
+     *     },
+     * )
      */
      public function store(Request $request){
       {{content}}
       }
               ';
 
+        $requestJson = '     *     @OA\RequestBody(
+     *         description="order placed for purchasing th pet",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
+     *     ),';
+        $requestForm = '';
+        if (config('request_method') != 'json') {
 
+            foreach ($this->app->struct->struct as $item) {
+                $requestForm .= '
+                 *      @OA\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          in="path",
+ *          @OA\Schema(
+ *              type="integer"
+ *          )
+ *      ),
+                ';
+            }
+        }
 
         $content = '
         $validate = Validator::make($request->all(), $this->model->rule);
@@ -51,7 +99,7 @@ trait ControllerTemplateCommon
             return $this->failure($validate->errors()->first());
         }
 
-        $res = $this->model->save($validate->getData());
+        $res = $this->model->create($validate->getData());
 
         if ($res) {
             return $this->success($res);
@@ -104,11 +152,49 @@ trait ControllerTemplateCommon
 
     public function buildListsController()
     {
+        $api_prefix = config('api_prefix');
         $template = '
     /**
-     * 获取列表
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Get(
+     *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
+     *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
+     *      tags={"' . $this->app->table->table_format_name . '"},
+     *      summary="' . $this->app->table->table_format_name . '列表",
+     *      description="' . $this->app->table->table_format_name . '分页列表",
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="分页",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="pageSize",
+     *          description="每页数量",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"),
+     *         )
+     *     ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      security={
+     *         {
+     *             "api_key":{}
+     *         }
+     *     },
+     * )
      */
      public function lists(Request $request){
       {{content}}
@@ -119,15 +205,15 @@ trait ControllerTemplateCommon
         $relations = $this->getRelation();
         foreach ($relations as $relation) {
 
-            foreach ($relation['table'] as $item) {
-                if (empty($item['list_show'])){
+            foreach ($relation['tables'] as $item) {
+                if (empty($item['list_show'])) {
                     continue;
                 }
-                $with[] = "'".$item['table_name']."'";
+                $with[] = "'" . $item['table_name'] . "'";
             }
         }
         if (!empty($with)) {
-            $with = '->with(['.implode(",", $with).'])';
+            $with = '->with([' . implode(",", $with) . '])';
         }
 
 
@@ -136,7 +222,7 @@ trait ControllerTemplateCommon
         return $this->successData($data);
         ';
 
-        $content = str_replace('{{with}}',$with,$content);
+        $content = str_replace('{{with}}', $with, $content);
 
         return [
             'document' => '列表文档',
@@ -174,7 +260,7 @@ trait ControllerTemplateCommon
             return $this->failure($validate->errors()->first());
         }
 
-        $res = $model->update($validate->getData());
+        $res = $model->update($this->model->fillableFromArray($validate->getData()));
 
         if ($res) {
             return $this->success($res);
@@ -191,11 +277,40 @@ trait ControllerTemplateCommon
 
     public function buildShowController()
     {
+        $api_prefix = config('api_prefix');
         $template = '
     /**
-     * 获取
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Get(
+     *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/show",
+     *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/show",
+     *      tags={"' . $this->app->table->table_format_name . '"},
+     *      summary="' . $this->app->table->table_format_name . '详情",
+     *      description="' . $this->app->table->table_format_name . '详情信息",
+     *      @OA\Parameter(
+     *          name="' . $this->app->table->pk . '",
+     *          description="' . $this->app->table->table_name . '索引id",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"),
+     *         )
+     *     ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      security={
+     *         {
+     *             "api_key":{}
+     *         }
+     *     },
+     * )
      */
     public function show(Request $request)
     {
@@ -208,15 +323,17 @@ trait ControllerTemplateCommon
         $relations = $this->getRelation();
         foreach ($relations as $relation) {
 
-            foreach ($relation['table'] as $item) {
-                if (empty($item['one_show'])){
+            foreach ($relation['tables'] as $item) {
+                if (empty($item['one_show'])) {
                     continue;
                 }
-                $with[] = "'".$item['table_name']."'";
+                $with[] = "'" . $item['table_name'] . "'";
             }
         }
         if (!empty($with)) {
-            $with = '->with(['.implode(",", $with).'])';
+            $with = '->with([' . implode(",", $with) . '])';
+        } else {
+            $with = '';
         }
         $content = '
         $keyName = $this->model->getKeyName();
@@ -228,12 +345,11 @@ trait ControllerTemplateCommon
         if ($res) {
             return $this->success($res);
         } else {
-            return $this->failure(\'不存在id为：\' . $id);
+            return $this->failure(\'不存在\'.$keyName.\'为：\' . $id);
         }
         ';
 
-        $content = str_replace('{{with}}',$with,$content);
-
+        $content = str_replace('{{with}}', $with, $content);
 
 
         return [

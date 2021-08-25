@@ -11,6 +11,7 @@ namespace container\core;
  */
 class BaseClient
 {
+
     protected $app;
 
     public function __construct(Container $app)

@@ -13,3 +13,10 @@ eie
 |  名称   | 说明  |
 |  ----  | ----  |
 | `类型(a_cat:小程序分类,web:网页,other:其他)rule[require]`  | 枚举 |
+| hidden  | 不需要显示给前端用户 |
+
+
+文档
+
+* laravel swagger 生成文档 https://github.com/DarkaOnLine/L5-Swagger
+* thinkphp apidoc https://hgthecode.github.io/thinkphp-apidoc

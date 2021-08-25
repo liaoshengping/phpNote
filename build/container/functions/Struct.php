@@ -29,6 +29,7 @@ class Struct extends BaseClient
                 'name' => $item['COLUMN_NAME'],
                 'type' => $item['DATA_TYPE'],
                 'comment' => $item['COLUMN_COMMENT'],
+                'default' => $item['COLUMN_DEFAULT']
             ];
 
             $this->struct[] = $struct_one;
