@@ -5,6 +5,7 @@ namespace container\functions\php;
 
 
 use container\Application;
+use container\functions\Struct;
 
 trait ControllerTemplateCommon
 {
@@ -76,20 +77,31 @@ trait ControllerTemplateCommon
      *     ),';
         $requestForm = '';
         if (config('request_method') != 'json') {
-
+            /**
+             * @var Struct
+             */
             foreach ($this->app->struct->struct as $item) {
+                if (in_array($item['name'], array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []))) continue;
+
                 $requestForm .= '
-                 *      @OA\Parameter(
- *          name="id",
- *          description="Project id",
- *          required=true,
- *          in="path",
- *          @OA\Schema(
- *              type="integer"
- *          )
- *      ),
-                ';
+     *      @OA\Parameter(
+     *          name="' . $item["name"] . '",
+     *          description="' . $item["comment"] . '",
+     *          required=false,
+     *          in="query",
+     *      ),';
+
+//     *          @OA\Schema(
+//     *             type="array",
+//     *             default="available",
+//     *             @OA\Items(
+//     *                 type="string",
+//     *                 enum = {"available", "pending", "sold"},
+//     *             )
+//     *          )
             }
+            $template = str_replace('{{request}}', $requestForm, $template);
+
         }
 
         $content = '
@@ -161,24 +173,7 @@ trait ControllerTemplateCommon
      *      tags={"' . $this->app->table->table_format_name . '"},
      *      summary="' . $this->app->table->table_format_name . '列表",
      *      description="' . $this->app->table->table_format_name . '分页列表",
-     *      @OA\Parameter(
-     *          name="page",
-     *          description="分页",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *      @OA\Parameter(
-     *          name="pageSize",
-     *          description="每页数量",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
+{{request}}
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",
@@ -200,6 +195,51 @@ trait ControllerTemplateCommon
       {{content}}
       }
               ';
+        $requestForm = '
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="分页",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="pageSize",
+     *          description="每页数量",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),';
+        /**
+         * @var Struct
+         */
+        foreach ($this->app->struct->struct as $item) {
+            if (in_array($item['name'], array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []))) continue;
+
+//            判断是否有枚举
+
+            $requestForm .= '
+     *      @OA\Parameter(
+     *          name="' . $item["name"] . '",
+     *          description="' . $item["comment"] . '",
+     *          required=false,
+     *          in="query",
+     *      ),';
+
+//     *          @OA\Schema(
+//     *             type="array",
+//     *             default="available",
+//     *             @OA\Items(
+//     *                 type="string",
+//     *                 enum = {"available", "pending", "sold"},
+//     *             )
+//     *          )
+        }
+        $template = str_replace('{{request}}', $requestForm, $template);
 
         $with = [];
         $relations = $this->getRelation();
@@ -214,6 +254,8 @@ trait ControllerTemplateCommon
         }
         if (!empty($with)) {
             $with = '->with([' . implode(",", $with) . '])';
+        } else {
+            $with = '';
         }
 
 

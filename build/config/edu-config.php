@@ -55,10 +55,14 @@ return [
      */
     'api_doc' => 'swagger',//不生成为空
     'api_prefix' => 'api', //生成的api前缀
+    'create_exclude_fields' =>['created_at','updated_at','id','user_id','email_verified_at'],//目前用于文档 全局新增排除字段
+
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
 
     'hidden_fields' => ['deleted_at', 'password', 'remember_token'], //全局需要隐藏的字段
+
+
 
     /**
      * 数据差异性
@@ -68,7 +72,7 @@ return [
             'name' => '文章',//文章
             'request_method' => 'form',//form表单 json (Json Body的形式),
             'fields' => [
-
+                ''
             ],
             'input' => [
 
