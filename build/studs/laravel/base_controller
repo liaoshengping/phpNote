@@ -14,7 +14,7 @@ class BaseController
 
     public function success($message='成功', $data=[])
     {
-        return $this->respose(self::HTTP_STATE_ERROR_CODE, $message, $data);
+        return $this->respose(self::HTTP_STATE_SUCCESS_CODE, $message, $data);
     }
     public function failure($message='失败', $data=[])
     {

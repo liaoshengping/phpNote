@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>tab 切换</title>
+    <script src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        ul,li {
+            list-style:none;
+        }
+        ul {
+            overflow:hidden;
+        }
+        li {
+            float:left;
+            color:#f60;
+            padding:20px 40px;
+            margin-right:10px;
+            cursor:pointer;
+            border:2px solid #f90;
+            transition:all ease .3s;
+        }
+        .box {
+            width:550px;
+            margin:10px auto;
+            position:relative
+        }
+        li:hover {
+            background:#f90;
+            color:#fff;
+        }
+        li.tabin {
+            background:#f90;
+            color:#fff
+        }
+        .content-box {
+            width:550px;
+            height:250px;
+            background:#f90;
+            position:absolute;
+            left:0;
+            top:63px;
+            overflow:hidden;
+        }
+        .content {
+            clear:both;
+            color:#fff;
+            padding:10px;
+            opacity:0;
+            transition:all ease .3s;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        .contentin {
+            opacity:1;
+        }
+        .content h1 {
+            font-size:18px;
+            margin-bottom:20px;
+            margin-top:20px;
+        }
+        .content p {
+            font-size:14px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul id="tablist">
+        <li class="tabin">Section 1</li>
+        <li>Section 2</li>
+        <li>Section 3</li>
+    </ul>
+    <div class="content-box">
+        <div class="content contentin">
+            <h1>Section 1</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta
+                enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+        </div>
+        <div class="content">
+            <h1>Section 2</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta
+                enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+        </div>
+        <div class="content">
+            <h1>Section 3</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta
+                enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#tablist li").each(function(index) {
+            $(this).click(function() {
+                $(".contentin").removeClass("contentin");
+                $(".tabin").removeClass("tabin");
+                $(".content-box div").eq(index).addClass("contentin");
+                $(this).addClass("tabin")
+            });
+        })
+    })
+</script>
+
+</body>
+</html>
