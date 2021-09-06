@@ -37,7 +37,14 @@ Laravel笔记
 | laravel/telescope  |  php artisan telescope:install      php artisan migrate|
 
 
+auto_build_time 是否自动生成 create_at 和deleted_at
 
+
+# php中
+
+$this->getRelation() 获取所有配置的关联信息 就是table 的 relations 里的信息
+
+$this->getCurrentSetting()  获取当前表的设置，想 request_method 的方法
 
 
 

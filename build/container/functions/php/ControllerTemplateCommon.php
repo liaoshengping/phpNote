@@ -52,8 +52,7 @@ trait ControllerTemplateCommon
      *         response=200,
      *         description="successful operation",
      *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"),
+     *         ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"
      *         )
      *     ),
      *      @OA\Response(response=400, description="Bad request"),
@@ -76,7 +75,9 @@ trait ControllerTemplateCommon
      *         @OA\JsonContent(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
      *     ),';
         $requestForm = '';
-        if (config('request_method') != 'json') {
+        $config = $this->getCurrentSetting();
+        $request_method = $config['request_method'] ?? '';
+        if ($request_method != 'json') {
             /**
              * @var Struct
              */
@@ -101,7 +102,8 @@ trait ControllerTemplateCommon
 //     *          )
             }
             $template = str_replace('{{request}}', $requestForm, $template);
-
+        } else {
+            $template = str_replace('{{request}}', $requestJson, $template);
         }
 
         $content = '
@@ -244,7 +246,6 @@ trait ControllerTemplateCommon
         $with = [];
         $relations = $this->getRelation();
         foreach ($relations as $relation) {
-
             foreach ($relation['tables'] as $item) {
                 if (empty($item['list_show'])) {
                     continue;
@@ -341,8 +342,7 @@ trait ControllerTemplateCommon
      *         response=200,
      *         description="successful operation",
      *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"),
+     *         ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"
      *         )
      *     ),
      *      @OA\Response(response=400, description="Bad request"),

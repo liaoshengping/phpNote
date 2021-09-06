@@ -55,7 +55,7 @@ return [
      */
     'api_doc' => 'swagger',//不生成为空
     'api_prefix' => 'api', //生成的api前缀
-    'create_exclude_fields' =>['created_at','updated_at','id','user_id','email_verified_at'],//目前用于文档 全局新增排除字段
+    'create_exclude_fields' => ['created_at', 'updated_at', 'id', 'user_id', 'email_verified_at'],//目前用于文档 全局新增排除字段
 
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
@@ -63,6 +63,9 @@ return [
     'hidden_fields' => ['deleted_at', 'password', 'remember_token'], //全局需要隐藏的字段
 
 
+    //框架区别
+    'validate_int' => 'integer',
+    'validate_number' => 'numeric',
 
     /**
      * 数据差异性
@@ -71,7 +74,7 @@ return [
 
         'users' => [
             'name' => '文章',//文章
-            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'request_method' => 'json',//form表单 json (Json Body的形式),
             'fields' => [
                 ''
             ],
@@ -126,7 +129,16 @@ return [
                 ''
             ],
             'input' => [
-
+                'name',
+                'sub_name',
+                'tag',
+                'image_url',
+            ],
+            'list_input' => [
+                'name',
+                'sub_name',
+                'tag',
+                'image_url',
             ],
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -139,6 +151,7 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'product_spec',
+                            'description' => '产品的规格，获取列表',
                             'target' => 'product_id', //目标表中的字段
                             'origin' => 'id',//本表的字段
                             'limit' => 5,//查询为10条
@@ -165,6 +178,7 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'store',
+                            'description' => '商店信息，创建产品时，不要提交',
                             'target' => 'id', //目标表中的字段
                             'origin' => 'store_id',//本表的字段
                             'list_show' => true,

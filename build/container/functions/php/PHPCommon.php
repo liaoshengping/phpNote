@@ -73,7 +73,7 @@ class PHPCommon extends BaseClient
         $this->buildModelDocument();
 
         //处理关联
-         $this->buildRelation();
+        $this->buildRelation();
 
         //关联关系写入注释
         $this->buildRelationToNote();
@@ -111,34 +111,53 @@ class PHPCommon extends BaseClient
         $apiDoc = '';
         $relations = $this->getRelation();
         do {
-            if (empty($relations)){
+            if (empty($relations)) {
                 break;
             }
 
             //处理关联表注释
             foreach ($relations as $relation) {
-                foreach ($relation['tables'] as $item){
+                foreach ($relation['tables'] as $item) {
                     $table_name = $item['table_name'];
                     $namespace = config('model_namespace_path');
-                    $relationPropertys.='* @property \\'.$namespace.'\\'.$this->app->tool->struct($table_name).' '.$table_name.PHP_EOL;
+                    $relationPropertys .= '* @property \\' . $namespace . '\\' . $this->app->tool->struct($table_name) . ' ' . $table_name . PHP_EOL;
                 }
             }
 
             //处理文档swagger
             foreach ($relations as $relation) {
-                foreach ($relation['tables'] as $item){
+
+                if (empty($relation['relation'])) {
+                    throw new \Exception('关联关系必填 hasMany 或 hasOne');
+                }
+
+                foreach ($relation['tables'] as $item) {
 
                     $table_name = $item['table_name'];
-                    $schema_name  = $this->app->tool->struct($item['table_name']);
-                    if (!is_file(config('frame_mode_path').$schema_name.'.php')){
-                        Show::block('致命bug，请执行：model '.$table_name,'error','error');
+                    $schema_name = $this->app->tool->struct($item['table_name']);
+                    if (!is_file(config('frame_mode_path') . $schema_name . '.php')) {
+                        Show::block('致命bug，请执行：model ' . $table_name, 'error', 'error');
+                    }
+                    $description = !empty($item['description']) ? $item['description'] : '';
+                    if ($relation['relation'] == 'hasMany') {
+                        $apiDoc .= '
+ *      @OA\Property(
+ *     property="' . $table_name . '",
+ *     description="' . $description . '",
+ *     type= "array",
+ *     @OA\Items(
+ *     ref="#/components/schemas/' . $schema_name . '"
+ *     )
+ *      ),';
+                    } else {
+                        $apiDoc .= '
+ *      @OA\Property(
+ *     property="' . $table_name . '",
+ *      description="' . $description . '",
+ *     ref="#/components/schemas/' . $schema_name . '"
+ *      ),';
                     }
 
-                    $apiDoc .= '
- *      @OA\Property(
- *     property="'.$table_name.'",
- *     ref="#/components/schemas/'.$schema_name.'"
- *      ),';
                 }
             }
 
@@ -277,8 +296,22 @@ class PHPCommon extends BaseClient
         $rules = [];
         foreach ($this->app->struct->struct as $item) {
             $rule = $this->validateData($item["comment"]);
+            $inter_perg = '';
+            if (in_array($item['type'], ['tinyint', 'int'])) {
+                $inter_perg = config('validate_int');
+            }
+            if ($item['type'] == 'decimal'){
+                $inter_perg = config('validate_number');
+            }
             if ($rule) {
                 $rules[$item['name']] = $rule;
+            }
+            if ($inter_perg){
+                if (!empty($rules[$item['name']])){
+                    $rules[$item['name']].='|'.$inter_perg;
+                }else{
+                    $rules[$item['name']] = $inter_perg;
+                }
             }
         }
 
@@ -356,7 +389,7 @@ class PHPCommon extends BaseClient
         }
 
         if ($apiProperty) {
-            $apiProperty.="{{apiDocRelationPropertys}}";
+            $apiProperty .= "{{apiDocRelationPropertys}}";
             $schema = '*@OA\Schema(
  *   schema="' . $this->classModelName . '",
  *   description="",
@@ -479,16 +512,13 @@ class PHPCommon extends BaseClient
         Show::block('生成成功' . $frame_mode_path, 'success', 'success');
     }
 
+    /**
+     * 获取所有的关联配置
+     * @return array|mixed
+     */
     public function getRelation()
     {
-
-        $table_name = $this->app->table->table_name;
-
-        $tables = config('tables') ?? [];
-        if (empty($tables[$table_name])) {
-            return [];
-        }
-        $table = $tables[$table_name];
+        $table = $this->getCurrentSetting();
         if (empty($table['relations'])) {
             return [];
         }
@@ -504,6 +534,27 @@ class PHPCommon extends BaseClient
 //        $relations = $relation[$table_name];
 //
 //        return $relations;
+    }
+
+    /**
+     * 获取当前配置
+     * @return array|mixed
+     */
+    public function getCurrentSetting()
+    {
+
+
+        $table_name = $this->app->table->table_name;
+
+        $tables = config('tables') ?? [];
+        if (empty($tables[$table_name])) {
+            return [];
+        }
+        $table = $tables[$table_name];
+        if (empty($table['relations'])) {
+            return [];
+        }
+        return $table;
     }
 
     /**
