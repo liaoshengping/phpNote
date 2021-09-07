@@ -37,72 +37,31 @@ trait ControllerTemplateCommon
         /**
          * @var Application $this ->app
          */
-        $api_prefix = config('api_prefix');
+        $api_doc = config('api_doc');
+        if ($api_doc == 'swagger') {
+            $template = $this->getStoreNote();
+        } else {
+            $template = '
+        /**
+         *  新增
+        **/   
+        public function store(Request $request){
+         {{content}}
+         }';
+        }
+        $request_method = $config['request_method'] ?? '';
 
-        $template = '
-    /**
-     * @OA\Post(
-     *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/store",
-     *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/store",
-     *      tags={"' . $this->app->table->table_format_name . '"},
-     *      summary="' . $this->app->table->table_format_name . '创建",
-     *      description="' . $this->app->table->table_format_name . '提交创建",
-{{request}}
-     *     @OA\Response(
-     *         response=200,
-     *         description="successful operation",
-     *         @OA\JsonContent(
-     *         ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '"
-     *         )
-     *     ),
-     *      @OA\Response(response=400, description="Bad request"),
-     *      @OA\Response(response=404, description="Resource Not Found"),
-     *      security={
-     *         {
-     *             "api_key":{}
-     *         }
-     *     },
-     * )
-     */
-     public function store(Request $request){
-      {{content}}
-      }
-              ';
-
-        $requestJson = '     *     @OA\RequestBody(
+        //这边无所谓，隐藏不隐藏，搜不到 {{request}} 这边是无效的
+        if ($request_method != 'json') {
+            $requestForm = $this->getRequestFormByScence('create');
+            $template = str_replace('{{request}}', $requestForm, $template);
+        } else {
+            //json 请求
+            $requestJson = '     *     @OA\RequestBody(
      *         description="order placed for purchasing th pet",
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
      *     ),';
-        $requestForm = '';
-        $config = $this->getCurrentSetting();
-        $request_method = $config['request_method'] ?? '';
-        if ($request_method != 'json') {
-            /**
-             * @var Struct
-             */
-            foreach ($this->app->struct->struct as $item) {
-                if (in_array($item['name'], array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []))) continue;
-
-                $requestForm .= '
-     *      @OA\Parameter(
-     *          name="' . $item["name"] . '",
-     *          description="' . $item["comment"] . '",
-     *          required=false,
-     *          in="query",
-     *      ),';
-
-//     *          @OA\Schema(
-//     *             type="array",
-//     *             default="available",
-//     *             @OA\Items(
-//     *                 type="string",
-//     *                 enum = {"available", "pending", "sold"},
-//     *             )
-//     *          )
-            }
-            $template = str_replace('{{request}}', $requestForm, $template);
-        } else {
             $template = str_replace('{{request}}', $requestJson, $template);
         }
 
@@ -112,7 +71,7 @@ trait ControllerTemplateCommon
         if (!$validate->passes()) {
             return $this->failure($validate->errors()->first());
         }
-
+        
         $res = $this->model->create($validate->getData());
 
         if ($res) {
@@ -167,12 +126,13 @@ trait ControllerTemplateCommon
     public function buildListsController()
     {
         $api_prefix = config('api_prefix');
+        $tags = $this->getThisTags();
         $template = '
     /**
      * @OA\Get(
      *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
-     *      tags={"' . $this->app->table->table_format_name . '"},
+     *      tags={"' . $tags . '"},
      *      summary="' . $this->app->table->table_format_name . '列表",
      *      description="' . $this->app->table->table_format_name . '分页列表",
 {{request}}
@@ -275,7 +235,14 @@ trait ControllerTemplateCommon
 
     public function buildEditController()
     {
-        $template = '
+        /**
+         * @var Application $this ->app
+         */
+        $api_doc = config('api_doc');
+        if ($api_doc == 'swagger') {
+            $template = $this->getEditNote();
+        } else {
+            $template = '
      /**
      * 编辑
      * @param Request $request
@@ -283,8 +250,25 @@ trait ControllerTemplateCommon
      */
      public function edit(Request $request){
       {{content}}
-      }
-              ';
+      }';
+        }
+        $request_method = $config['request_method'] ?? '';
+
+        //这边无所谓，隐藏不隐藏，搜不到 {{request}} 这边是无效的
+        if ($request_method != 'json') {
+            $requestForm = $this->getRequestFormByScence('edit');
+            $template = str_replace('{{request}}', $requestForm, $template);
+        } else {
+            //json 请求
+            $requestJson = '     *     @OA\RequestBody(
+     *         description="order placed for purchasing th pet",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
+     *     ),';
+            $template = str_replace('{{request}}', $requestJson, $template);
+        }
+
+
 
         $content = '
         $keyName = $this->model->getKeyName();
@@ -302,11 +286,18 @@ trait ControllerTemplateCommon
         if (!$validate->passes()) {
             return $this->failure($validate->errors()->first());
         }
+        $validate = Validator::make($request->all(), $this->model->rule);
 
-        $res = $model->update($this->model->fillableFromArray($validate->getData()));
+        if (!$validate->passes()) {
+            return $this->failure($validate->errors()->first());
+        }
+
+        $model->fill($validate->getData());
+
+        $res = $model->save();
 
         if ($res) {
-            return $this->success($res);
+            return $this->successData($model);
         } else {
             return $this->failure();
         }
@@ -321,12 +312,13 @@ trait ControllerTemplateCommon
     public function buildShowController()
     {
         $api_prefix = config('api_prefix');
+        $tags = $this->getThisTags();
         $template = '
     /**
      * @OA\Get(
      *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/show",
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/show",
-     *      tags={"' . $this->app->table->table_format_name . '"},
+     *      tags={"' . $tags . '"},
      *      summary="' . $this->app->table->table_format_name . '详情",
      *      description="' . $this->app->table->table_format_name . '详情信息",
      *      @OA\Parameter(

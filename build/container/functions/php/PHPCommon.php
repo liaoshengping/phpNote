@@ -8,6 +8,7 @@ use Inhere\Console\Util\Show;
 class PHPCommon extends BaseClient
 {
     use ControllerTemplateCommon;
+    use RequestForm;
 
     /**
      * 模型
@@ -38,6 +39,24 @@ class PHPCommon extends BaseClient
      * @var
      */
     public $modelRelationTemplate;
+
+    /**
+     * eq:
+     * array(3) {
+     * ["key_note"]=>
+     * string(6) "状态"
+     * ["key"]=>
+     * string(6) "status"
+     * ["data"]=>
+     * array(2) {
+     * [1]=>
+     * string(6) "停止"
+     * [2]=>
+     * string(6) "正常"
+     * }
+     * }
+     */
+    public $enums;
 
     /**
      * 模型初始化
@@ -300,16 +319,16 @@ class PHPCommon extends BaseClient
             if (in_array($item['type'], ['tinyint', 'int'])) {
                 $inter_perg = config('validate_int');
             }
-            if ($item['type'] == 'decimal'){
+            if ($item['type'] == 'decimal') {
                 $inter_perg = config('validate_number');
             }
             if ($rule) {
                 $rules[$item['name']] = $rule;
             }
-            if ($inter_perg){
-                if (!empty($rules[$item['name']])){
-                    $rules[$item['name']].='|'.$inter_perg;
-                }else{
+            if ($inter_perg) {
+                if (!empty($rules[$item['name']])) {
+                    $rules[$item['name']] .= '|' . $inter_perg;
+                } else {
                     $rules[$item['name']] = $inter_perg;
                 }
             }
@@ -418,6 +437,7 @@ class PHPCommon extends BaseClient
         foreach ($this->app->struct->struct as &$item) {
             $enum = $this->enums($item['name'], $item["comment"]);
             if ($enum) {
+                $this->enums[$enum['key']] = $enum;
                 $enums[] = $enum;
             }
         }
@@ -600,6 +620,63 @@ class PHPCommon extends BaseClient
         }
         return $result[1];
 
+    }
+
+    /**
+     * get scence field
+     * scence: create,list,edit
+     */
+    public function getInputByScence($scence = '')
+    {
+        $current_table_name = $this->app->table->table_name;
+        if (empty($scence)) {
+            if (empty(config('tables')[$current_table_name])) {
+                return [];
+            }
+            //if tables input no`t empty
+            return config('tables')[$current_table_name]['input'];
+        }
+
+
+        switch ($scence) {
+
+            case 'create'://create data
+                if (empty(config('tables')[$current_table_name]['create_input'])) {
+                    return config('tables')[$current_table_name]['input'];
+                } else {
+                    return config('tables')[$current_table_name]['create_input'];
+                }
+                break;
+
+            case "list":
+                if (empty(config('tables')[$current_table_name]['list_input'])) {
+
+                    return config('tables')[$current_table_name]['input'];
+                } else {
+                    return config('tables')[$current_table_name]['list_input'];
+                }
+                break;
+            case "edit":
+                if (empty(config('tables')[$current_table_name]['edit_input'])) {
+
+                    return config('tables')[$current_table_name]['input'];
+                } else {
+                    return config('tables')[$current_table_name]['edit_input'];
+                }
+                break;
+        }
+
+    }
+
+    /**
+     * 获取当前的名字  比如 订单管理，产品管理
+     * @return mixed
+     */
+    public function getThisTags()
+    {
+        $config = $this->getCurrentSetting();
+        $tags = !empty($config['name']) ? $config['name'] : $this->app->table->table_format_name;
+        return $tags;
     }
 
 

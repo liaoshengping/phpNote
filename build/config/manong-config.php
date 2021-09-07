@@ -123,7 +123,7 @@ return [
          * 产品
          */
         'product' => [
-            'name' => '产品',//文章
+            'name' => '产品管理',//文章
             'request_method' => 'form',//form表单 json (Json Body的形式),
             'fields' => [
                 ''
@@ -135,16 +135,11 @@ return [
                 'image_url',
             ],
             'list_input' => [
+                'status',
                 'name',
-                'sub_name',
-                'tag',
-                'image_url',
             ],
             'create_input' => [], //创建需要的字段如果为空取上面的
-
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
-
-
             'relations' => [
                 [
                     'relation' => "hasMany",
