@@ -3,12 +3,14 @@
 namespace container\functions\php;
 
 use container\core\BaseClient;
+use container\functions\php\laravel\LaravelAdmin;
 use Inhere\Console\Util\Show;
 
 class PHPCommon extends BaseClient
 {
     use ControllerTemplateCommon;
     use RequestForm;
+    use LaravelAdmin;
 
     /**
      * 模型
@@ -110,10 +112,15 @@ class PHPCommon extends BaseClient
                 $this->buildModelBase();
                 $this->buildModel();
                 $this->buildController();
-
+                break;
 //                $this->buildValidate();
 //                $this->buildRedpository();
 //                 $this->buildDocument(); //创建接口文档
+            case 'admin'://laravel-admin 生成控制器
+                $this->buildModelBase();
+                $this->buildModel();
+                $this->buildLaravelAdminController();
+                break;
                 break;
 
         }
@@ -214,6 +221,15 @@ class PHPCommon extends BaseClient
     }
 
     /**
+     * 获取控制器
+     */
+    private function getControllerAction(){
+        $config = $this->getCurrentSetting();
+        $tags = !empty($config['controller_actions']) ? $config['controller_actions'] : ['create','list','edit','show','delete'];
+        return $tags;
+    }
+
+    /**
      * 生成控制器
      * @return bool
      */
@@ -221,11 +237,25 @@ class PHPCommon extends BaseClient
     {
         $temp = [];
         $this->pushTemplate($temp, $this->buildInitController() ?? []);
-        $this->pushTemplate($temp, $this->buildStoreController() ?? []);
-        $this->pushTemplate($temp, $this->buildShowController() ?? []);
-        $this->pushTemplate($temp, $this->buildListsController() ?? []);
-        $this->pushTemplate($temp, $this->buildEditController() ?? []);
-        $this->pushTemplate($temp, $this->buildDelController() ?? []);
+
+        $actions = $this->getControllerAction();
+
+        if (in_array('create',$actions)){
+            $this->pushTemplate($temp, $this->buildStoreController() ?? []);
+        }
+        if (in_array('show',$actions)){
+            $this->pushTemplate($temp, $this->buildShowController() ?? []);
+        }
+        if (in_array('list',$actions)){
+            $this->pushTemplate($temp, $this->buildListsController() ?? []);
+        }
+        if (in_array('edit',$actions)){
+            $this->pushTemplate($temp, $this->buildEditController() ?? []);
+        }
+        if (in_array('delete',$actions)){
+            $this->pushTemplate($temp, $this->buildDelController() ?? []);
+        }
+
 
         foreach ($temp as $item) {
             $this->controllerFunctionSection .= $item['template'];
@@ -435,7 +465,7 @@ class PHPCommon extends BaseClient
     public function enumsBuild()
     {
         foreach ($this->app->struct->struct as &$item) {
-            $enum = $this->enums($item['name'], $item["comment"]);
+            $enum = $this->enums($item['name'], $item["origin_comment"]);
             if ($enum) {
                 $this->enums[$enum['key']] = $enum;
                 $enums[] = $enum;
@@ -567,13 +597,14 @@ class PHPCommon extends BaseClient
         $table_name = $this->app->table->table_name;
 
         $tables = config('tables') ?? [];
+
         if (empty($tables[$table_name])) {
             return [];
         }
         $table = $tables[$table_name];
-        if (empty($table['relations'])) {
-            return [];
-        }
+//        if (empty($table['relations'])) {
+//            return [];
+//        }
         return $table;
     }
 
@@ -622,6 +653,8 @@ class PHPCommon extends BaseClient
 
     }
 
+
+
     /**
      * get scence field
      * scence: create,list,edit
@@ -629,12 +662,16 @@ class PHPCommon extends BaseClient
     public function getInputByScence($scence = '')
     {
         $current_table_name = $this->app->table->table_name;
+
         if (empty($scence)) {
             if (empty(config('tables')[$current_table_name])) {
                 return [];
             }
             //if tables input no`t empty
             return config('tables')[$current_table_name]['input'];
+        }
+        if (empty(config('tables')[$current_table_name])) {
+            return [];
         }
 
 

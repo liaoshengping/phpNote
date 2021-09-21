@@ -15,8 +15,12 @@ eie
 |  ----  | ----  |----|
 |  | 枚举 ||
 | chsAlphaNum  | 中文 |[laravel 跳转]() tp自带|
-| rule[require|chsAlphaNum]  | thinkphp验证 ||
+| rule[require|chsAlphaNum|mobile]  | thinkphp验证 || 
 | hidden  | 不需要显示给前端用户 ||
+
+
+required laravel 验证
+
 
 
 文档
@@ -31,7 +35,7 @@ Laravel笔记
 
 |     | 使用|
 |  ----  | ---- |
-| barryvdh/laravel-ide-helper | php artisan ide-helper:generate |
+| barryvdh/laravel-ide-helper | php artisan ide-helper:generate  https://learnku.com/articles/10172/laravel-super-good-code-prompt-tool-laravel-ide-helper|
 | darkaonline/l5-swagger  |php artisan vendor:publish --provider L5Swagger\L5SwaggerServiceProvider    php artisan l5-swagger:generate|
 | liaosp/laravel-validate-ext  |  |
 | laravel/telescope  |  php artisan telescope:install      php artisan migrate|

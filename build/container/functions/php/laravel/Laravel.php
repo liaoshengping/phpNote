@@ -136,6 +136,7 @@ class Laravel extends PHPCommon
 
         $relations = $this->getRelation();
 
+
         if (empty($relations)) {
             return '';
         }
