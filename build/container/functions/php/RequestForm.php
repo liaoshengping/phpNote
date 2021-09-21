@@ -45,16 +45,17 @@ trait RequestForm
         /**
          * @var Struct
          */
+
         foreach ($this->app->struct->struct as $item) {
 
             if (!in_array($item['name'], $store_input) && !empty($store_input)) continue;
 
             if (in_array($item['name'], array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []))) continue;
 
-            if (!empty($this->enums[$item['name']])) {
+            if (!empty($item['enum'])) {
                 //如果有枚举
                 $default = $item['default'];
-                $enum_json = json_encode(array_keys($this->enums[$item['name']]['data']));
+                $enum_json = json_encode(array_keys($item['enum']));
                 $enum_json = str_replace('[', '{', $enum_json);
                 $enum_json = str_replace(']', '}', $enum_json);
 
@@ -62,7 +63,7 @@ trait RequestForm
      *         @OA\Parameter(
      *         name="' . $item['name'] . '",
      *         in="query",
-     *         description="' . $item['comment'] . '",
+     *         description="' . $item['origin_comment'] . '",
      *         explode=true,
      *         @OA\Schema(
      *             type="array",
@@ -126,6 +127,50 @@ trait RequestForm
      * )
      */
      public function store(Request $request){
+      {{content}}
+      }
+              ';
+
+        return $template;
+
+
+    }
+
+    /**
+     * 新增接口的备注
+     */
+    public function getListNote()
+    {
+        $api_prefix = config('api_prefix');
+        $tags = $this->getThisTags();
+
+        $template = '
+    /**
+     * @OA\GET(
+     *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
+     *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
+     *      tags={"' . $tags . '"},
+     *      summary="' . $this->app->table->table_format_name . '列表",
+     *      description="' . $this->app->table->table_format_name . '列表，数组",
+{{request}}
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(
+     *         type="array",
+     *         @OA\Items(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
+     *         )
+     *     ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      security={
+     *         {
+     *             "api_key":{}
+     *         }
+     *     },
+     * )
+     */
+     public function lists(Request $request){
       {{content}}
       }
               ';

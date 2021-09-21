@@ -225,6 +225,9 @@ class PHPCommon extends BaseClient
      */
     private function getControllerAction(){
         $config = $this->getCurrentSetting();
+        if ($this->getCurrentSetting('controller_actions') == 'none'){
+            return [];
+        }
         $tags = !empty($config['controller_actions']) ? $config['controller_actions'] : ['create','list','edit','show','delete'];
         return $tags;
     }
@@ -344,7 +347,7 @@ class PHPCommon extends BaseClient
     {
         $rules = [];
         foreach ($this->app->struct->struct as $item) {
-            $rule = $this->validateData($item["comment"]);
+            $rule = $this->validateData($item["origin_comment"]);
             $inter_perg = '';
             if (in_array($item['type'], ['tinyint', 'int'])) {
                 $inter_perg = config('validate_int');
@@ -416,7 +419,7 @@ class PHPCommon extends BaseClient
  *     property="' . $item['name'] . '",
  *     format="' . $item['name'] . '",
  *     type="' . $item['type'] . '",
- *     description="' . $item["comment"] . '",
+ *     description="' . $item["origin_comment"] . '",
  *     example="' . $example . '"
  *                  ),';
 //    ,
@@ -557,6 +560,8 @@ class PHPCommon extends BaseClient
     {
         $frame_mode_path = config('frame_mode_path') . $this->classModelName . '.php';
 
+        if (is_file($frame_mode_path)) return;
+
         file_put_contents($frame_mode_path, $this->modeTemplate);
 
         Show::block('生成成功' . $frame_mode_path, 'success', 'success');
@@ -590,7 +595,7 @@ class PHPCommon extends BaseClient
      * 获取当前配置
      * @return array|mixed
      */
-    public function getCurrentSetting()
+    public function getCurrentSetting($key='')
     {
 
 
@@ -605,6 +610,9 @@ class PHPCommon extends BaseClient
 //        if (empty($table['relations'])) {
 //            return [];
 //        }
+        if ($key){
+            return  !empty($table[$key])?$table[$key]:'';
+        }
         return $table;
     }
 

@@ -30,34 +30,42 @@ class Struct extends BaseClient
                 'type' => $item['DATA_TYPE'],
                 'comment' => $item['COLUMN_COMMENT'],
                 'default' => $item['COLUMN_DEFAULT'],
-                'origin_comment'=> $item['COLUMN_COMMENT'],
+                'origin_comment' => $item['COLUMN_COMMENT'],
             ];
-            if ($item['name'] == 'created_at' || empty($item['commont'])){
+            if ($struct_one['name'] == 'created_at' && empty($item['commont'])) {
                 $struct_one['comment'] = '创建时间';
             }
-            if ($item['name'] == 'deleted_at' || empty($item['commont'])){
+            if ($struct_one['name'] == 'deleted_at' && empty($item['commont'])) {
                 $struct_one['comment'] = '删除时间';
             }
-            if ($item['name'] == 'updated_at' || empty($item['commont'])){
+            if ($struct_one['name'] == 'updated_at' && empty($item['commont'])) {
                 $struct_one['comment'] = '更新时间';
             }
 
-            $help = $this->help( $item['COLUMN_COMMENT']);
+            $help = $this->help($item['COLUMN_COMMENT']);
 
-            if ($help){
+            if ($help) {
                 $struct_one['help'] = $help; //help[这里填写帮助字段]
-                $help_name = explode('help',$item['COLUMN_COMMENT']);
+                $help_name = explode('help', $item['COLUMN_COMMENT']);
                 $help_name = $help_name[0];
-                $struct_one['comment']=$help_name;
+                $struct_one['comment'] = $help_name;
             }
 
             //枚举
-            $enum = $this->enums($item['COLUMN_NAME'],$item['COLUMN_COMMENT']);
+            $enum = $this->enums($item['COLUMN_NAME'], $item['COLUMN_COMMENT']);
 
-            if ($enum){
-                $struct_one['comment']= $enum['key_note'];
-                $struct_one['enum']= $enum['data'];
+            if ($enum) {
+                $struct_one['comment'] = $enum['key_note'];
+                $struct_one['enum'] = $enum['data'];
 
+            }
+
+            //规则名字
+            $validateData = $this->validateData($struct_one['origin_comment']);
+            if ($validateData) {
+                $rule_name = explode('rule', $struct_one['origin_comment']);
+                $rule_name = $rule_name[0];
+                $struct_one['comment'] = $rule_name;
             }
 
             $this->struct[] = $struct_one;
@@ -68,7 +76,7 @@ class Struct extends BaseClient
             foreach ($set as $i) {
                 if (!in_array($i, $container)) {
                     $is_build = true;
-                    echo('缺少时间参数:::已自动生成sql，后期有必要生成migrate'.$i);
+                    echo('缺少时间参数:::已自动生成sql，后期有必要生成migrate' . $i);
 
                     $table_name = $this->app->table->table_name;
 
@@ -82,7 +90,7 @@ SQL;
                 }
             }
 
-            if ($is_build){
+            if ($is_build) {
                 throw new \Exception('请重试，或执行migrate');
             }
 
@@ -151,7 +159,21 @@ SQL;
 
     }
 
+    //生成验证规则
+    public function validateData($field)
+    {
+        if (empty($field)) {
+            return false;
+        }
+        $result = '';
+        preg_match("/(?:rule)+(?:\[)(.*)(?:\])/i", $field, $result);
 
+        if (empty($result[1])) {
+            return false;
+        }
+        return $result[1];
+
+    }
 
 
 }

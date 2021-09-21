@@ -27,7 +27,7 @@ trait LaravelAdmin
         $app = $this->app;
 
         if (!$this->checkPath()){
-//            return false;
+            return false;
         }
 
         $this->AdminTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/admin_controller');
@@ -46,6 +46,8 @@ trait LaravelAdmin
         //表单编辑
         $form = $this->form();
         $this->AdminTemplate = str_replace('{{form}}',$form,$this->AdminTemplate);
+
+
 
         //保存位置
         file_put_contents($this->ControllerPath,$this->AdminTemplate);
@@ -101,10 +103,12 @@ trait LaravelAdmin
         $Controller = $frame_path.'app/Admin/Controllers/'.$ControllerName.'.php';
         $exsit = is_file($Controller);
         $this->ControllerPath= $Controller;
-        if ($exsit){
-            Show::block('已存在' . $Controller . '控制器,如果你想覆盖，请删除原先的控制器','error','error');
+
+        if (is_file($this->ControllerPath) && $this->getCurrentSetting('no_cover_admin')){
+            Show::block('错误已经设置不可以强制覆盖：'.$this->ControllerPath,'error','error');
             return false;
         }
+
 
         return true;
     }
@@ -150,13 +154,34 @@ trait LaravelAdmin
 
         }
         $this->AdminTemplate = str_replace("{{filter}}",$template,$this->AdminTemplate);
+
+        $orderBy = '';
+
+        $orderBy = '$grid->model()->orderBy(\'created_at\',\'desc\');';
+        //默认倒叙
+        $this->AdminTemplate = str_replace("{{orderBy}}",$orderBy,$this->AdminTemplate);
+
+        //操作
+        $action = ' $grid->actions(function ($actions) {
+
+    // 去掉删除
+    $actions->disableDelete();
+
+    // 去掉编辑
+    //$actions->disableEdit();
+
+    // 去掉查看
+    //$actions->disableView();
+});';
+
+        $this->AdminTemplate = str_replace("{{action}}",$action,$this->AdminTemplate);
         foreach ($app->struct->struct as $item) {
 
             if (in_array($item['name'],['updated_at','deleted_at'])) continue;
 
             $enum = !empty($this->enums[$item['name']])?$this->enums[$item['name']]:'';
           if ($enum){
-              $list.='       $grid->column("'.$item['name'].'", __("'.$enum['key_note'].'"))->using('.$app->className.'::status);'.PHP_EOL;
+              $list.='       $grid->column("'.$item['name'].'", __("'.$enum['key_note'].'"))->using('.$app->className.'::'.$item['name'].');'.PHP_EOL;
           }else{
               $list.='       $grid->column("'.$item['name'].'", __("'.$item['comment'].'"));'.PHP_EOL;
           }
@@ -218,6 +243,25 @@ trait LaravelAdmin
          */
         $app = $this->app;
         $lng= false;
+
+
+        //右上角的操作按钮
+        $tools = '$form->tools(function (Form\Tools $tools) {
+
+    // 去掉`列表`按钮
+    //$tools->disableList();
+
+    // 去掉`删除`按钮
+    $tools->disableDelete();
+
+    // 去掉`查看`按钮
+   // $tools->disableView();
+
+    // 添加一个按钮, 参数可以是字符串, 或者实现了Renderable或Htmlable接口的对象实例
+   // $tools->add(\'<a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;&nbsp;delete</a>\');
+});';
+        $this->AdminTemplate = str_replace('{{tools}}',$tools,$this->AdminTemplate);
+
 
 
         foreach ($app->struct->struct as $item) {

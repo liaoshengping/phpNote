@@ -25,6 +25,8 @@ class {{ClassName}}Controller extends AdminController
     protected function grid()
     {
         $grid = new Grid(new {{ClassName}}());
+        {{action}}
+        {{orderBy}}
         {{filter}}
         {{column}}
 
@@ -55,7 +57,7 @@ class {{ClassName}}Controller extends AdminController
     protected function form()
     {
         $form = new Form(new {{ClassName}}());
-
+        {{tools}}
         {{form}}
 
 
