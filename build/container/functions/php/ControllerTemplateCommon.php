@@ -157,7 +157,7 @@ trait ControllerTemplateCommon
 
         //这边无所谓，隐藏不隐藏，搜不到 {{request}} 这边是无效的
         if ($request_method != 'json') {
-            $requestForm = $this->getRequestFormByScence('create');
+            $requestForm = $this->getRequestFormByScence('list');
             $template = str_replace('{{request}}', $requestForm, $template);
         } else {
             //json 请求
@@ -187,7 +187,7 @@ trait ControllerTemplateCommon
         }
         $auth = '';
         if (!empty($config['is_auth'])){
-            $auth = '->where("user_id",'.config('auth_user_id').')'.PHP_EOL;
+            $auth = '        ->where("user_id",'.config('auth_user_id').')'.PHP_EOL;
         }
         $getRequestQuery = $this->getRequestQuery();
 
@@ -379,10 +379,26 @@ trait ControllerTemplateCommon
             if (strstr($item['name'],'name')  || strstr($item['name'],'_no') || !empty($item['enum'])){
                 $this->requestFieldsTemplate.= '
        $'.$item['name'].' = $request->input("'.$item['name'].'","");';
-                $query.='
-                ->when($'.$item['name'].',function ($query)use($'.$item['name'].'){
-                $query->where("'.$item['name'].'",$'.$item['name'].');
+
+                if (!empty($item['enum'])){
+                    $query.='
+            ->when($'.$item['name'].',function ($query)use($'.$item['name'].'){
+                if (strstr($'.$item['name'].',\',\')){
+                    $'.$item['name'].' = explode(\',\',$'.$item['name'].');
+                    $query->whereIn("'.$item['name'].'", $'.$item['name'].');
+                }else{
+                    $query->where("'.$item['name'].'", $'.$item['name'].');
+                }
             })';
+                }else{
+                    $query.='
+            ->when($'.$item['name'].',function ($query)use($'.$item['name'].'){
+                   $query->where("'.$item['name'].'", $'.$item['name'].');
+               
+            })';
+
+                }
+
             }
         }
 

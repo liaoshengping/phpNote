@@ -52,6 +52,12 @@ trait RequestForm
 
             if (in_array($item['name'], array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []))) continue;
 
+            $remark_list = '';
+
+            if ($scence =='list'){
+                $remark_list = ';如果要获取多个状态的值可传递用,逗号隔开的字符串传递 比如：1,2';
+            }
+
             if (!empty($item['enum'])) {
                 //如果有枚举
                 $default = $item['default'];
@@ -63,7 +69,7 @@ trait RequestForm
      *         @OA\Parameter(
      *         name="' . $item['name'] . '",
      *         in="query",
-     *         description="' . $item['origin_comment'] . '",
+     *         description="' . $item['origin_comment'] . $remark_list.'",
      *         explode=true,
      *         @OA\Schema(
      *             type="array",
