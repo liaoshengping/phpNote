@@ -66,6 +66,8 @@ return [
     //auth userid
     'auth_user_id'=>'\Illuminate\Support\Facades\Auth::user()->user_id',
 
+    'user_id_translate_the_name'=>'',//后台管理 user_id 转化为users.nickname 并disable，不需要可不写 试了下没用，再研究
+
     /**
      * 数据差异性
      */
@@ -160,6 +162,15 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'cars',
+                            'target' => 'user_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => true,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'user_car',
                             'target' => 'user_id', //目标表中的字段
                             'origin' => 'id',//本表的字段
                             'list_show' => true,
@@ -453,7 +464,110 @@ return [
                         ]
                     ],
 
-                ]
+                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'fix_station',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'fix_station_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'users',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'user_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'admin_users',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'admin_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ]
+
+
+                    ],
+
+                ],
+
+            ]
+        ],
+        'user_car' => [
+            'name' => '车辆管理',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+//            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' =>['edit'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+//                        [
+//                            'table_name' => 'fix_station',
+//                            'target' => 'id', //目标表中的字段
+//                            'origin' => 'fix_station_id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ],
+                        [
+                            'table_name' => 'users',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'user_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'admin_users',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'admin_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'cars',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'car_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+
+
+                    ],
+
+                ],
+
             ]
         ]
     ],

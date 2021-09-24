@@ -287,6 +287,18 @@ trait LaravelAdmin
                 $help_str = '->help("'.$item['help'].'")';
             }
 
+            if ($item['name'] == $app->table->pk){
+                $list.='       $form->text("'.$item['name'].'", __("'.$item['comment'].'"))->disable()'.$default_str.$help_str.';'.PHP_EOL;
+                continue;
+            }
+
+            //如果用到userid
+            if ($item['name'] == 'user_id'  && config('user_id_translate_the_name')){
+                $list.='       $form->text("'.config('user_id_translate_the_name').'", __("用户"))->disable()'.$default_str.$help_str.';'.PHP_EOL;
+                continue;
+            }
+
+
             $enum = !empty($this->enums[$item['name']])?$this->enums[$item['name']]:'';
             if ($enum){
                 $list.='       $form->select("'.$item['name'].'", __("'.$enum['key_note'].'"))->options('.$app->className.'::'.$item['name'].')'.$default_str.$help_str.';'.PHP_EOL;
