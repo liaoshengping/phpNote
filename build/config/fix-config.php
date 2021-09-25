@@ -12,7 +12,7 @@ const LARVAL_FORNT = "larval_fornt";
 const VUE_ELEMENT = "vue_element";
 
 
-const FRAME_PATH = 'E:\linuxdir\php\fix_station/';
+const FRAME_PATH = 'E:\linuxdir\php\fix-new/';
 const WORK_NAME = 'yibage';
 
 
@@ -160,15 +160,15 @@ return [
                 [
                     'relation' => "hasOne",
                     'tables' => [
-                        [
-                            'table_name' => 'cars',
-                            'target' => 'user_id', //目标表中的字段
-                            'origin' => 'id',//本表的字段
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => true,//创建时，是否可以关联添加
-                        ],
+//                        [
+//                            'table_name' => 'cars',
+//                            'target' => 'user_id', //目标表中的字段
+//                            'origin' => 'id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => true,//创建时，是否可以关联添加
+//                        ],
                         [
                             'table_name' => 'user_car',
                             'target' => 'user_id', //目标表中的字段
@@ -277,7 +277,17 @@ return [
                             'one_show' => true,
                             'create_relation' => true,//创建时，是否可以关联添加
                         ],
+                        [
+                            'table_name' => 'fix_station',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'fix_station_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => true,//创建时，是否可以关联添加
+                        ],
                     ],
+
                 ]
             ]
         ],
