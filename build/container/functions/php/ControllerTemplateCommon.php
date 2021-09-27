@@ -197,7 +197,7 @@ trait ControllerTemplateCommon
         
         $data = $this->model'.$with.$auth.$getRequestQuery.'
         ->orderBy("created_at","desc")
-        ->simplePaginate();
+        ->paginate();
         return $this->successData($data);
         ';
 
