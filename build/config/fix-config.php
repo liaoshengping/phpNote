@@ -29,7 +29,7 @@ return [
     /**
      * 数据库信息
      */
-    "host" => env("host", "192.168.205.22"),
+    "host" => '120.79.143.216',
     "database" => 'fix_station',
     "port" => env("port", "3306"),
     "username" => env("username", "root"),
@@ -55,7 +55,7 @@ return [
      */
     'api_doc' => 'swagger',//不生成为空
     'api_prefix' => 'api', //生成的api前缀
-    'create_exclude_fields' =>['created_at','updated_at','deleted_at','id','user_id','email_verified_at'],
+    'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'user_id', 'email_verified_at'],
 
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
@@ -64,9 +64,9 @@ return [
 
 
     //auth userid
-    'auth_user_id'=>'\Illuminate\Support\Facades\Auth::user()->user_id',
+    'auth_user_id' => '\Illuminate\Support\Facades\Auth::user()->user_id',
 
-    'user_id_translate_the_name'=>'',//后台管理 user_id 转化为users.nickname 并disable，不需要可不写 试了下没用，再研究
+    'user_id_translate_the_name' => '',//后台管理 user_id 转化为users.nickname 并disable，不需要可不写 试了下没用，再研究
 
     /**
      * 数据差异性
@@ -81,13 +81,13 @@ return [
             'input' => [
 
             ],
-            'controller_actions' =>['edit','show'],
+            'controller_actions' => ['edit', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
-            'no_cover_admin'=>false,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => false,//创建laravel-admin 后台数据不可以强制覆盖
 
             'relations' => [
 //                [
@@ -131,10 +131,10 @@ return [
             'input' => [
 
             ],
-            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>'none',
+            'controller_actions' => 'none',
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -191,10 +191,10 @@ return [
             'input' => [
 
             ],
-            'is_auth'=>false,//只可以获取自己的信息，结合auth_user_id 使用
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['list'],
+            'controller_actions' => ['list'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -242,7 +242,7 @@ return [
             'input' => [
 
             ],
-            'controller_actions' =>['create'],
+            'controller_actions' => ['create'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -300,11 +300,11 @@ return [
             'input' => [
 
             ],
-            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['list','show'],
+            'controller_actions' => ['list', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -390,11 +390,11 @@ return [
             'input' => [
 
             ],
-            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['list','show'],
+            'controller_actions' => ['list', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -438,9 +438,9 @@ return [
             ],
 //            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['list'],
+            'controller_actions' => ['list'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -461,9 +461,9 @@ return [
             ],
 //            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['list'],
+            'controller_actions' => ['list'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -534,9 +534,9 @@ return [
             ],
 //            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['edit'],
+            'controller_actions' => ['edit'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -601,9 +601,9 @@ return [
             ],
 //            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['edit'],
+            'controller_actions' => ['edit'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -639,9 +639,9 @@ return [
             ],
 //            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'no_cover_admin'=>true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' =>['show'],
+            'controller_actions' => ['show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -649,17 +649,23 @@ return [
 
             'relations' => [
                 [
-                    'relation' => "hasOne",
+                    'relation' => "hasMany",
                     'tables' => [
                         [
                             'table_name' => 'order_sale_product',
                             'target' => 'order_sale_id', //目标表中的字段
                             'origin' => 'id',//本表的字段
+                            'limit' => 20,//查询为10条
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
-                        ],
+                        ]
+                    ],
+                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
                         [
                             'table_name' => 'order',
                             'target' => 'id', //目标表中的字段
@@ -668,11 +674,12 @@ return [
                             'list_exist' => false,
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
-                        ]
+                        ],
+
+
                     ],
 
-                ],
-
+                ]
             ]
         ]
     ],

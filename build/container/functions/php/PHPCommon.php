@@ -395,7 +395,7 @@ class PHPCommon extends BaseClient
         $schema = '';
         $api_doc = config('api_doc');
         $fillable = '';
-
+        $enums = [];
         foreach ($this->app->struct->struct as $item) {
             if ($api_doc == 'swagger' && !in_array($item['name'], $this->hiddenProperties)) {
                 $example = '';
@@ -430,8 +430,18 @@ class PHPCommon extends BaseClient
             if ($item['name'] != $this->app->table->pk && !in_array($item['name'], config('exclude_fillable') ?? [])) {
                 $fillable .= "'" . $item['name'] . "',";
             }
+            if (!empty($item['enum'])){
+                $propertys .= " * @property $" . $item['name']."_name  " . $item["comment"].'描述' . PHP_EOL;
+               $enums[] = $item;
+            }
 
         }
+
+//        foreach ($enums as $item) {
+//            $propertys .= " * @property $" . $item['name']."_name  " . $item["comment"].'描述' . PHP_EOL;
+//        }
+
+
 
 
         $propertys .= "{{relationPropertys}}";
