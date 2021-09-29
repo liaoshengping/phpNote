@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
 {
+
+    public function __construct(array $attributes = [])
+    {
+        $pageSize = request()->input('pageSize');//数量
+        $this->setPerPage($pageSize);
+
+        parent::__construct($attributes);
+    }
+
+
     protected function serializeDate(\DateTimeInterface $date)
     {
         return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
