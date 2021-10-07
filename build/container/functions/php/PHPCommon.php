@@ -572,6 +572,9 @@ class PHPCommon extends BaseClient
 
         if (is_file($frame_mode_path)) return;
 
+
+//        $this->modeTemplate = iconv("CP1257","UTF-8", $this->modeTemplate);
+
         file_put_contents($frame_mode_path, $this->modeTemplate);
 
         Show::block('生成成功' . $frame_mode_path, 'success', 'success');
