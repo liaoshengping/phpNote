@@ -40,22 +40,55 @@ trait RequestForm
      *      ),';
         }
 
+        if ($scence == 'list'){
+            $requestForm .= '
+     *      @OA\Parameter(
+     *          name="pageSize",
+     *          description="分页数量",
+     *          required=false,
+     *          in="query",
+     *      ),';
 
-        $store_input = $this->getInputByScence($scence);
+            $requestForm .= '
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="当前分页",
+     *          required=false,
+     *          in="query",
+     *      ),';
+        }
+
+
+        $create_input = $this->getCurrentSetting('create_input');
+
+        $allhidden = array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []);
         /**
          * @var Struct
          */
-
         foreach ($this->app->struct->struct as $item) {
 
-            if (!in_array($item['name'], $store_input) && !empty($store_input)) continue;
 
-            if (in_array($item['name'], array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []))) continue;
+
+
+            if ($scence == 'create'){
+                if (!in_array($item['name'], $create_input) && !empty($create_input)) continue;
+            }
+
+
+
+            if (in_array($item['name'], $allhidden )){
+                continue;
+            }
+
 
             $remark_list = '';
 
             if ($scence =='list'){
+
                 $remark_list = ';如果要获取多个状态的值可传递用,逗号隔开的字符串传递 比如：1,2';
+
+                if (!in_array($item['name'],$this->listFiltrateParameter())) continue;
+
             }
 
             if (!empty($item['enum'])) {
@@ -91,8 +124,10 @@ trait RequestForm
      *      ),';
 
             }
-        }
 
+
+
+        }
 
 
         return $requestForm;
@@ -113,9 +148,10 @@ trait RequestForm
      *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/store",
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/store",
      *      tags={"' . $tags . '"},
-     *      summary="' . $this->app->table->table_format_name . '创建",
-     *      description="' . $this->app->table->table_format_name . '提交创建",
+     *      summary="' . $tags. '创建",
+     *      description="' .$tags. '提交创建",
 {{request}}
+     
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",

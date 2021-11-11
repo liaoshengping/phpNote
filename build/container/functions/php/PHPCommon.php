@@ -223,12 +223,13 @@ class PHPCommon extends BaseClient
     /**
      * 获取控制器
      */
-    private function getControllerAction(){
+    private function getControllerAction()
+    {
         $config = $this->getCurrentSetting();
-        if ($this->getCurrentSetting('controller_actions') == 'none'){
+        if ($this->getCurrentSetting('controller_actions') == 'none') {
             return [];
         }
-        $tags = !empty($config['controller_actions']) ? $config['controller_actions'] : ['create','list','edit','show','delete'];
+        $tags = !empty($config['controller_actions']) ? $config['controller_actions'] : ['create', 'list', 'edit', 'show', 'delete'];
         return $tags;
     }
 
@@ -243,20 +244,26 @@ class PHPCommon extends BaseClient
 
         $actions = $this->getControllerAction();
 
-        if (in_array('create',$actions)){
+        if (in_array('create', $actions)) {
             $this->pushTemplate($temp, $this->buildStoreController() ?? []);
         }
-        if (in_array('show',$actions)){
+        if (in_array('show', $actions)) {
             $this->pushTemplate($temp, $this->buildShowController() ?? []);
         }
-        if (in_array('list',$actions)){
+        if (in_array('list', $actions)) {
             $this->pushTemplate($temp, $this->buildListsController() ?? []);
         }
-        if (in_array('edit',$actions)){
+        if (in_array('edit', $actions)) {
             $this->pushTemplate($temp, $this->buildEditController() ?? []);
         }
-        if (in_array('delete',$actions)){
+        if (in_array('delete', $actions)) {
             $this->pushTemplate($temp, $this->buildDelController() ?? []);
+        }
+
+        //生成修改状态的控制器
+        if ($this->getCurrentSetting('change_status')){
+            $this->pushTemplate($temp, $this->buildChangeController('status') ?? []);
+
         }
 
 
@@ -430,9 +437,9 @@ class PHPCommon extends BaseClient
             if ($item['name'] != $this->app->table->pk && !in_array($item['name'], config('exclude_fillable') ?? [])) {
                 $fillable .= "'" . $item['name'] . "',";
             }
-            if (!empty($item['enum'])){
-                $propertys .= " * @property $" . $item['name']."_name  " . $item["comment"].'描述' . PHP_EOL;
-               $enums[] = $item;
+            if (!empty($item['enum'])) {
+                $propertys .= " * @property $" . $item['name'] . "_name  " . $item["comment"] . '描述' . PHP_EOL;
+                $enums[] = $item;
             }
 
         }
@@ -442,13 +449,21 @@ class PHPCommon extends BaseClient
 //        }
 
 
-
-
         $propertys .= "{{relationPropertys}}";
 
         if ($fillable) {
             $fillable = 'protected $fillable = [' . $fillable . '];';
         }
+
+        $pkString = '';
+        if ($this->app->table->pk){
+            $pk = $this->app->table->pk;
+            if (config('set_pk') && $pk ){
+                $pkString = 'protected $primaryKey = "'.$pk.'";';
+            }
+        }
+
+
 
         if ($apiProperty) {
             $apiProperty .= "{{apiDocRelationPropertys}}";
@@ -468,6 +483,7 @@ class PHPCommon extends BaseClient
         $this->modeBaseTemplate = str_replace('{{property}}', $propertys, $this->modeBaseTemplate);
         $this->modeBaseTemplate = str_replace('{{apiDoc}}', $schema, $this->modeBaseTemplate);
         $this->modeBaseTemplate = str_replace('{{fillable}}', $fillable, $this->modeBaseTemplate);
+        $this->modeBaseTemplate = str_replace('{{primaryKey}}', $pkString, $this->modeBaseTemplate);
 
 
     }
@@ -605,7 +621,7 @@ class PHPCommon extends BaseClient
      * 获取当前配置
      * @return array|mixed
      */
-    public function getCurrentSetting($key='')
+    public function getCurrentSetting($key = '')
     {
 
 
@@ -620,9 +636,24 @@ class PHPCommon extends BaseClient
 //        if (empty($table['relations'])) {
 //            return [];
 //        }
-        if ($key){
-            return  !empty($table[$key])?$table[$key]:'';
+        $inputParams = [
+            'list_input',
+            'edit_input',
+            'create_input',
+        ];
+
+        if (in_array($key, $inputParams)) {
+            if (empty($table[$key])) {
+                return !empty($table['input']) ? $table['input'] : [];
+            }
+
         }
+
+        if ($key) {
+            return !empty($table[$key]) ? $table[$key] : '';
+        }
+
+
         return $table;
     }
 
@@ -670,7 +701,6 @@ class PHPCommon extends BaseClient
         return $result[1];
 
     }
-
 
 
     /**
@@ -730,8 +760,37 @@ class PHPCommon extends BaseClient
     public function getThisTags()
     {
         $config = $this->getCurrentSetting();
+
         $tags = !empty($config['name']) ? $config['name'] : $this->app->table->table_format_name;
         return $tags;
+    }
+
+    /**
+     * 列表需要筛选的字段 比如 筛选 phone,user_id 之类的
+     */
+    public function listFiltrateParameter()
+    {
+        $data = [];
+
+
+        foreach ($this->app->struct->struct as $item) {
+
+            if (strstr($item['name'], 'name') || strstr($item['name'], '_no') || !empty($item['enum'])) {
+                $data[] = $item['name'];
+                continue;
+            }
+            //config 配置的表信息
+            $list_input = $this->getCurrentSetting('list_input');
+
+            if (in_array($item['name'],$list_input)){
+                $data[] = $item['name'];
+                continue;
+            }
+        }
+
+
+        return $data;
+
     }
 
 

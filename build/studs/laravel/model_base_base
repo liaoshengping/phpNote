@@ -11,7 +11,7 @@ class BaseModel extends Model
 
     public function __construct(array $attributes = [])
     {
-        $pageSize = request()->input('pageSize');//数量
+        $pageSize = request()->input('pageSize',10);//数量
         $this->setPerPage($pageSize);
 
         parent::__construct($attributes);

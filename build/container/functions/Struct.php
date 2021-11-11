@@ -116,6 +116,19 @@ SQL;
     }
 
     /**
+     * 返回这个字段所有信息 包括枚举信息
+     */
+    public function getFieldByKey($key){
+
+        foreach ($this->struct as $item) {
+            if ($item['name'] == $key){
+                return $item;
+            }
+        }
+        return [];
+    }
+
+    /**
      * 获取数据库枚举
      */
     public function enums($key, $note = '')

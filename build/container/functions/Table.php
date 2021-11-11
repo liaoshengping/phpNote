@@ -93,16 +93,12 @@ table_name ");
 
     private function getPk($info)
     {
-        foreach ($info as $key => $item) {
-            if ($key == 'COLUMN_KEY') {
-                if (!empty($item)) {
-                    return $item;
-
-                }
+        //第一个主键
+      foreach ($this->current_table_info as $item){
+            if ($item['COLUMN_KEY'] == 'PRI'){
+                return $item['COLUMN_NAME'];
             }
-        }
-        return 'id';
-
+      }
     }
 
 

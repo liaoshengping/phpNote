@@ -16,6 +16,8 @@ class {{ClassName}} extends BaseModel
 
    use SoftDeletes;
 
+   {{primaryKey}}
+
    protected $table = '{{table_name}}';
 
     {{fillable}}
