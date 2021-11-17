@@ -294,6 +294,11 @@ class PHPCommon extends BaseClient
 
         $this->controllerTemplate = str_replace('{{content}}', $this->controllerFunctionSection, $this->controllerTemplate);
 
+        $this->controllerTemplate = str_replace('{{base_model_namespace_path}}', config('controller_namespace_path').'\base', $this->controllerTemplate);
+
+
+        $this->controllerTemplate = str_replace('{{frame_controller_base_namespace}}', config('frame_controller_base_namespace'), $this->controllerTemplate);
+
         file_put_contents($templateBaseName, $this->controllerTemplate);
 
         //创建正式controller
@@ -305,8 +310,13 @@ class PHPCommon extends BaseClient
         }
 
         $this->controllerTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/index_controller');
+
+        $this->controllerTemplate = str_replace("{{controller_namespace_path}}", config('controller_namespace_path'), $this->controllerTemplate);
         $this->controllerTemplate = str_replace("{{controller_name}}", $this->classModelName, $this->controllerTemplate);
+
         $this->controllerTemplate = str_replace("{{BaseController}}", '\\' . config('controller_namespace_path') . '\base\\' . $controller_base_name, $this->controllerTemplate);
+
+
 
 
         file_put_contents(config('frame_controller_path') . $this->classModelName . '.php', $this->controllerTemplate);

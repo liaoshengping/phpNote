@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace {{controller_namespace_path}};
 
 
 class {{controller_name}} extends {{BaseController}}

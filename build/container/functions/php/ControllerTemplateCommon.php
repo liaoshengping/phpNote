@@ -75,6 +75,18 @@ trait ControllerTemplateCommon
             $template = str_replace('{{request}}', $requestJson, $template);
         }
 
+        $auth_store = '';
+
+        if (!empty($this->getCurrentSetting('is_auth_store'))) {
+
+            $auth_store = '
+        $data = array_merge($data, [
+             "store_id"=>' . config('auth_store_id') . '
+         ]);' . PHP_EOL;
+
+        }
+
+
         $content = '
         $validate = Validator::make($request->all(), $this->model->rule);
 
@@ -82,7 +94,9 @@ trait ControllerTemplateCommon
             return $this->failure($validate->errors()->first());
         }
         
-        $res = $this->model->create($validate->getData());
+        $data = $validate->getData();
+        {{auth_store}}
+        $res = $this->model->create($data);
 
         if ($res) {
             return $this->successData($res);
@@ -90,6 +104,9 @@ trait ControllerTemplateCommon
             return $this->failure();
         }
         ';
+
+        $content = str_replace('{{auth_store}}', $auth_store, $content);
+
 
         return [
             'document' => '文档',
@@ -112,7 +129,7 @@ trait ControllerTemplateCommon
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/del",
      *      tags={"' . $tags . '"},
      *      summary="' . $tags . '删除",
-     *      description="' . $tags . '删除，都是假删除",
+     *      description="' . $tags . '删除",
      *      @OA\Parameter(
      *          name="' . $this->app->table->pk . '",
      *          description="",
@@ -127,6 +144,7 @@ trait ControllerTemplateCommon
      *         )
      *     ),
      *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=401, description="token错误或为空"),
      *      @OA\Response(response=404, description="Resource Not Found"),
      *      security={
      *         {
@@ -140,13 +158,29 @@ trait ControllerTemplateCommon
       {{content}}
       }
               ';
+
+        //删除检查表
+        $check = '';
+        if ($delete_check = $this->getCurrentSetting('delete_check')) {
+            $check = '   
+             
+         if (!$res){
+            {{checks}}
+          }';
+
+            $check =  str_replace('{{checks}}',$this->getCheckModels(),$check);
+        }
+
+
         $content = '
         $keyName = $this->model->getKeyName();
 
         $id = $request->get($keyName);
 
         $res = $this->model->find((int)$id);
-
+         
+        {{check}} 
+         
         if ($res) {
             $res->delete();
             return $this->successData($res);
@@ -162,7 +196,9 @@ trait ControllerTemplateCommon
         $id = $request->get($keyName);
 
         $res = $this->model->find((int)$id);
-
+            
+        {{check}} 
+        
         if ($res) {
             $res->' . $status_delete["key"] . ' = "' . $status_delete["value"] . '";
             $res->save();
@@ -173,6 +209,8 @@ trait ControllerTemplateCommon
         ';
         }
 
+        $content = str_replace('{{check}}',$check,$content);
+
 
         return [
             'document' => '删除文档',
@@ -180,42 +218,58 @@ trait ControllerTemplateCommon
         ];
     }
 
+    /**
+     * 获取检查的Models
+     */
+    public function getCheckModels(){
+        $delete_check = $this->getCurrentSetting('delete_check');
+        $datas = '';
+        foreach ($delete_check as $item){
+            $data ='$'.$item["table"].' = '.$item["model"].'::where("'.$item["key"].'",$id)->exists();
+           if ($'.$item["table"].'){
+               return $this->failure(\'系统已存在该数据记录，不能删除\');
+           }'.PHP_EOL;
+            $datas.= $data;
+        }
+        return $datas;
+    }
+
 
     /**
      * 修改状态接口
      */
-    public function buildChangeController($name){
+    public function buildChangeController($name)
+    {
 
         $fieldInfo = $this->app->struct->getFieldByKey($name);
 
-        if (!$fieldInfo){
+        if (!$fieldInfo) {
             Show::block("没有找到Change 字段的字段,这个信息非常重要!!请检查 config 中表的配置", 'error', 'error');
             return false;
         }
 
         $api_prefix = config('api_prefix');
         $tags = $this->getThisTags();
-        $functionStatus = 'change'.ucfirst($name);
-
+        $functionStatus = 'change' . ucfirst($name);
 
 
         $content = '  
     /**
      * @OA\Post(
-    *       path="/' . $api_prefix . '/' . $this->app->table->table_name . '/'.$functionStatus.'",
-     *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/'.$functionStatus.'",
-     *      tags={"'.$tags.'"},
-     *      summary="'.$tags.$name.'修改",
-     *      description="'.$tags.$name.'修改值",
+    *       path="/' . $api_prefix . '/' . $this->app->table->table_name . '/' . $functionStatus . '",
+     *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/' . $functionStatus . '",
+     *      tags={"' . $tags . '"},
+     *      summary="' . $tags . $name . '修改",
+     *      description="' . $tags . $name . '修改值",
      *      @OA\Parameter(
-     *          name="'.$this->app->table->pk.'",
+     *          name="' . $this->app->table->pk . '",
      *          description="",
      *          required=true,
      *          in="query",
      *      ),
      *      @OA\Parameter(
-     *          name="'.$name.'",
-     *          description="'.$fieldInfo['origin_comment'].'",
+     *          name="' . $name . '",
+     *          description="' . $fieldInfo['origin_comment'] . '",
      *          required=true,
      *          in="query",
      *      ),
@@ -235,16 +289,17 @@ trait ControllerTemplateCommon
      *     },
      * )
      */
-      public function '.$functionStatus.'(Request $request){
+      public function ' . $functionStatus . '(Request $request){
 
           $keyName = $this->model->getKeyName();
 
-          $id = $request->get($keyName);
+          $id = $request->input($keyName);
+          $' . $name . ' = $request->input("' . $name . '");
 
           $res = $this->model->find((int)$id);
 
           if ($res) {
-              $res->'.$name.' = "";
+              $res->' . $name . ' = $' . $name . ';
               $res->save();
               return $this->successData($res);
           } else {
@@ -253,6 +308,11 @@ trait ControllerTemplateCommon
 
 
       }';
+
+        return [
+            'document' => '修改',
+            'template' => $content,
+        ];
 
 
     }
@@ -317,7 +377,7 @@ trait ControllerTemplateCommon
         }
 
         if (!empty($config['is_auth_store'])) {
-            $auth = '        ->where("user_id",' . config('auth_store_id') . ')' . PHP_EOL;
+            $auth = '        ->where("store_id",' . config('auth_store_id') . ')' . PHP_EOL;
         }
 
 
@@ -328,7 +388,7 @@ trait ControllerTemplateCommon
         
         {{getRequestQuery}}
         
-        $query = $this->model' . $with . $auth . $getRequestQuery ;
+        $query = $this->model' . $with . $auth . $getRequestQuery;
 
         $status_delete = $this->getCurrentSetting('status_delete');
         $status_delete_str = '';
@@ -336,18 +396,18 @@ trait ControllerTemplateCommon
             $status_delete_str .= '
             $query->where("' . $status_delete['key'] . '","!=", "' . $status_delete['value'] . '");';
         }
-        $content.=' 
+        $content .= ' 
         if (method_exists($this,"listQuery")){
 
           $query = $this->listQuery($query);
 
        }else{
-          '.$status_delete_str.'
+          ' . $status_delete_str . '
           $query->orderBy("created_at","desc");
        }';
 
 
-        $content .='$data = $query->paginate();
+        $content .= '$data = $query->paginate();
 
         return $this->successData($data);
         ';
@@ -441,8 +501,8 @@ trait ControllerTemplateCommon
      *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/show",
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/show",
      *      tags={"' . $tags . '"},
-     *      summary="' . $this->app->table->table_format_name . '详情",
-     *      description="' . $this->app->table->table_format_name . '详情信息",
+     *      summary="' . $tags . '详情",
+     *      description="' . $tags . '详情信息",
      *      @OA\Parameter(
      *          name="' . $this->app->table->pk . '",
      *          description="' . $this->app->table->table_name . '索引id",
@@ -569,7 +629,7 @@ trait ControllerTemplateCommon
             }
         }
 
-        $query.=';';
+        $query .= ';';
 
 
         return $query;

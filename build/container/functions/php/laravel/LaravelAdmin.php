@@ -33,7 +33,8 @@ trait LaravelAdmin
         $this->AdminTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/admin_controller');
 
         //基础
-        $this->AdminTemplate = str_replace('{{name}}',$app->table->table_comment,$this->AdminTemplate);
+        $this->AdminTemplate = str_replace('{{name}}',$this->getThisTags(),$this->AdminTemplate);
+
         $this->AdminTemplate = str_replace('{{ClassName}}',$app->className,$this->AdminTemplate);
 
         //列表

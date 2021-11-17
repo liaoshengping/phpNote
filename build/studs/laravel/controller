@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Http\Controllers\base;
+namespace {{base_model_namespace_path}};
 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class {{controller_base_name}} extends BaseController
+class {{controller_base_name}} extends {{frame_controller_base_namespace}}\BaseController
 {
     {{content}}
 }

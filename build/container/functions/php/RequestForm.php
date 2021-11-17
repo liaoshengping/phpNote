@@ -59,6 +59,8 @@ trait RequestForm
         }
 
 
+
+
         $create_input = $this->getCurrentSetting('create_input');
 
         $allhidden = array_merge($this->hiddenProperties, config('create_exclude_fields') ?? []);
@@ -192,8 +194,8 @@ trait RequestForm
      *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
      *      tags={"' . $tags . '"},
-     *      summary="' . $this->app->table->table_format_name . '列表",
-     *      description="' . $this->app->table->table_format_name . '列表，数组",
+     *      summary="' . $tags . '列表",
+     *      description="' . $tags. '列表，数组",
 {{request}}
      *     @OA\Response(
      *         response=200,
@@ -230,6 +232,8 @@ trait RequestForm
     {
         $api_prefix = config('api_prefix');
         $tags = $this->getThisTags();
+
+
 
         $template = '
     /**

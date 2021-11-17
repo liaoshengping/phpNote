@@ -15,9 +15,13 @@ function cache($name, $data='' , $extime = 0){
 }
 
 //缓存
-function config($name, $default = null)
+function config($name='', $default = null)
 {
     $config = cache('config_cache');
+
+    if (empty($config)){
+        return $config;
+    }
 
     return $config[$name]??$default;
 }

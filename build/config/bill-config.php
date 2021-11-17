@@ -19,15 +19,15 @@ const WORK_NAME = 'yibage';
 return [
     "frame" => LARAVEL,
     'frame_path' => FRAME_PATH,
-    'frame_controller_path' => FRAME_PATH . "app\Http\Controllers/",
     'frame_modebase_path' => FRAME_PATH . 'app\Models\base\\',
     'frame_mode_path' => FRAME_PATH . "app\Models/",
     'base_model_namespace_path' => "App\Models\base",
     'model_namespace_path' => "App\Models",
-    'controller_namespace_path' => "App\Http\Controllers",
+    'controller_namespace_path' => "App\Http\Controllers\Api",
+    'frame_controller_path' => FRAME_PATH . "app\Http\Controllers\Api/",
+    'frame_controller_base_namespace' => "\App\Http\Controllers\base",
 
-
-    'set_pk'=>true,//设置主键
+    'set_pk' => true,//设置主键
 
     /**
      * 数据库信息
@@ -68,7 +68,7 @@ return [
 
     //auth userid
     'auth_user_id' => '\Illuminate\Support\Facades\Auth::user()->user_id',
-    'auth_store_id' => '\Illuminate\Support\Facades\Auth::user()->user_id', //店铺id
+    'auth_store_id' => 'app("store")->store_id', //店铺id
 
     'user_id_translate_the_name' => '',//后台管理 user_id 转化为users.nickname 并disable，不需要可不写 试了下没用，再研究
 
@@ -146,22 +146,24 @@ return [
             'controller_actions' => ['create', 'list', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
 
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
 
             //删除的状态
-            'status_delete'=>[
-                'key'=>'status',
-                'value'=>'delete',
+            'status_delete' => [
+                'key' => 'status',
+                'value' => 'delete',
             ],
             //修改状态
             "change_status" => [
-                'key'=>'status',
+                'key' => 'status',
             ],
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
             'create_input' => [], //创建需要的字段如果为空取上面的
 
-            'list_input'=>[], // 列表需要的字段如果为空取上面的
+            'list_input' => [], // 列表需要的字段如果为空取上面的
 
             'relations' => [
 //                [
@@ -214,10 +216,10 @@ return [
             'input' => [
 
             ],
-            'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'is_auth_store' => true,//查询是否需要用store_id 去查询
 
-            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+            'no_cover_admin' => false,//创建laravel-admin 后台数据不可以强制覆盖
 
             'controller_actions' => ['create', 'list', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
@@ -266,7 +268,300 @@ return [
 
                 ]
             ]
-        ]
+        ],
+        'goods_unit' => [
+            'name' => '商品单位',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => false,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['create', 'list', 'show', 'delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'order_goods',
+//                            'target' => 'order_id', //目标表中的字段
+//                            'origin' => 'id',//本表的字段
+//                            'limit' => 30,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'goods_attr',
+                            'target' => 'goods_attr_id', //目标表中的字段
+                            'origin' => 'goods_attr_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'goods_unit',
+                            'target' => 'goods_unit_id', //目标表中的字段
+                            'origin' => 'goods_unit_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+
+                ]
+            ]
+        ],
+        'store' => [
+            'name' => '商店管理',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['create', 'list',],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'store_admin',
+                            'target' => 'store_id', //目标表中的字段
+                            'origin' => 'store_id',//本表的字段
+                            'limit' => 10,//查询为10条
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ]
+                    ],
+                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+//                        [
+//                            'table_name' => 'goods_attr',
+//                            'target' => 'goods_attr_id', //目标表中的字段
+//                            'origin' => 'goods_attr_id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ],
+
+                    ],
+
+                ]
+            ]
+        ],
+        'store_admin' => [
+            'name' => '店员管理',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['create', 'list',],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'store_admin',
+//                            'target' => 'store_id', //目标表中的字段
+//                            'origin' => 'store_id',//本表的字段
+//                            'limit' => 10,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'store',
+                            'target' => 'store_id', //目标表中的字段
+                            'origin' => 'store_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+
+                    ],
+
+                ]
+            ]
+        ],
+        'users' => [
+            'name' => '用户管理',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['create', 'list',],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'store_admin',
+//                            'target' => 'store_id', //目标表中的字段
+//                            'origin' => 'store_id',//本表的字段
+//                            'limit' => 10,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'store_admin',
+                            'target' => 'user_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+
+                    ],
+
+                ]
+            ]
+        ],
+
+        'sys_dict' => [
+            'name' => '数据字典',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            //修改状态
+            "change_status" => [
+                'key' => 'status',
+            ],
+            //删除检查表是否使用
+            "delete_check"=>[
+                [
+                    'table'=>'goods',
+                    'model'=> '\App\Models\Goods',
+                    'key'=>'dict_id'
+                ]
+            ],
+
+            'controller_actions' => ['create', 'list','show','delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'store_admin',
+//                            'target' => 'store_id', //目标表中的字段
+//                            'origin' => 'store_id',//本表的字段
+//                            'limit' => 10,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+//                [
+//                    'relation' => "hasOne",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'store_admin',
+//                            'target' => 'user_id', //目标表中的字段
+//                            'origin' => 'id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ],
+//
+//                    ],
+//
+//                ]
+            ]
+        ],
+
     ]
 
 ];

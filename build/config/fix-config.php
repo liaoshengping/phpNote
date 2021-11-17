@@ -25,6 +25,7 @@ return [
     'base_model_namespace_path' => "App\Models\base",
     'model_namespace_path' => "App\Models",
     'controller_namespace_path' => "App\Http\Controllers",
+    'frame_controller_base_namespace' => "\App\Http\Controllers\base",
 
     /**
      * 数据库信息
