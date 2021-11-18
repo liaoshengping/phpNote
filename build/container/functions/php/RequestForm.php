@@ -56,6 +56,7 @@ trait RequestForm
      *          required=false,
      *          in="query",
      *      ),';
+
         }
 
 
@@ -195,8 +196,8 @@ trait RequestForm
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
      *      tags={"' . $tags . '"},
      *      summary="' . $tags . '列表",
-     *      description="' . $tags. '列表，数组",
-{{request}}
+     *      description="' . $tags. '列表，获取全部数据 all:1；存在多个字段查询的比如：订单号/联系人/手机号 传key_word ; 时间筛选 start_at ，end_at ，比如搜索今天是12号 start_at: 2021-12-12 end_at：2021-12-13",
+     {{request}}
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",

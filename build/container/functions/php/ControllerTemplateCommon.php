@@ -407,7 +407,13 @@ trait ControllerTemplateCommon
        }';
 
 
-        $content .= '$data = $query->paginate();
+        $content .= '
+        
+        if ($request->input(\'all\')) {
+            $data = $query->get();
+        } else {
+            $data = $query->paginate();
+        }
 
         return $this->successData($data);
         ';

@@ -148,7 +148,12 @@ trait LaravelAdmin
 
         }
         if ($filter){
-            $template = '$grid->filter(function($filter){
+            $template = '
+        $grid->batchActions(function (Grid\Tools\BatchActions $batch) {
+            $batch->disableDelete();
+         });
+            
+            $grid->filter(function($filter){
     {{filter}}
 });';
             $template= str_replace('{{filter}}',$filter,$template);
