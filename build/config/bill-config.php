@@ -59,7 +59,7 @@ return [
      */
     'api_doc' => 'swagger',//不生成为空
     'api_prefix' => 'api', //生成的api前缀
-    'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'email_verified_at','store_id'],
+    'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'email_verified_at','store_id','is_root','is_bind'],
 
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
@@ -96,6 +96,15 @@ return [
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
+            'create_other_params'=>[
+                [
+                    'key'=>'member_name',
+                    'des'=>'新增的会员名字，没有检索到member_id的会员传 值，如果该名称有值，member_id 为-1',//描述
+                    'required'=>'false',//是否必须
+                ],
+
+            ], //创建时额外的参数，用于swagger 生成
+
             'relations' => [
                 [
                     'relation' => "hasMany",
@@ -120,6 +129,24 @@ return [
                             'target' => 'payment_id', //目标表中的字段
                             'origin' => 'payment_id',//本表的字段
                             'list_show' => false,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'store_contacts',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'member_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'store_admin',
+                            'target' => 'store_admin_id', //目标表中的字段
+                            'origin' => 'store_admin_id',//本表的字段
+                            'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
@@ -181,8 +208,8 @@ return [
                     'required'=>"false",//是否必须
                 ],
 
-            ], //创建时额外的参数，用于swagger 生成
-
+            ],
+            //创建时额外的参数，用于swagger 生成
 
             'list_input' => [], // 列表需要的字段如果为空取上面的
 
@@ -252,16 +279,16 @@ return [
                 [
                     'relation' => "hasMany",
                     'tables' => [
-                        [
-                            'table_name' => 'goods_unit',
-                            'target' => 'goods_attr_id', //目标表中的字段
-                            'origin' => 'goods_attr_id',//本表的字段
-                            'limit' => 100,//查询为10条
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => false,//创建时，是否可以关联添加
-                        ]
+//                        [
+//                            'table_name' => 'goods_unit',
+//                            'target' => 'goods_attr_id', //目标表中的字段
+//                            'origin' => 'goods_attr_id',//本表的字段
+//                            'limit' => 100,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
                     ],
                 ],
 //                [
@@ -399,7 +426,7 @@ return [
         ],
 
         'store_admin' => [
-            'name' => '店员管理',
+            'name' => '员工管理',
             'request_method' => 'form',//form表单 json (Json Body的形式),
             'fields' => [
                 ''
@@ -412,11 +439,13 @@ return [
 
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['create', 'list',],
+            'controller_actions' => ['create','list','edit','show','delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+
 
             'relations' => [
 //                [
