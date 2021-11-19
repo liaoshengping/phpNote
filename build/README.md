@@ -137,7 +137,20 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | is_auth_store | 在config 配置auth_store_id |是否需要查询store_id  |
 | status_delete | 指定状态删除 |列表不显示这条数据 |
 | change_status | 修改状态的接口 |接口 |
+| create_other_params | 新增数据时候的其他参数 |接口 |
 
+
+* 新增数据时候的其他参数
+````
+'create_other_params'=>[
+    [
+        'key'=>'initial_stock_quantity',
+        'des'=>'初始库存数量',//描述
+        'required'=>'false',//是否必须
+    ],
+
+], //创建时额外的参数，用于swagger 生成
+````
 
 * 修改状态的接口 例子
 ````

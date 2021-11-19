@@ -59,7 +59,7 @@ return [
      */
     'api_doc' => 'swagger',//不生成为空
     'api_prefix' => 'api', //生成的api前缀
-    'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'email_verified_at'],
+    'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'email_verified_at','store_id'],
 
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
@@ -163,6 +163,26 @@ return [
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
             'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_other_params'=>[
+                [
+                    'key'=>'initial_stock_quantity',
+                    'des'=>'初始库存数量',//描述
+                    'required'=>'false',//是否必须
+                ],
+                [
+                    'key'=>'initial_stock_weight',
+                    'des'=>'初始库存重量',//描述
+                    'required'=>"false",//是否必须
+                ],
+                [
+                    'key'=>'initial_stock_cost',
+                    'des'=>'库存成本',//描述
+                    'required'=>"false",//是否必须
+                ],
+
+            ], //创建时额外的参数，用于swagger 生成
+
 
             'list_input' => [], // 列表需要的字段如果为空取上面的
 
@@ -377,6 +397,7 @@ return [
                 ]
             ]
         ],
+
         'store_admin' => [
             'name' => '店员管理',
             'request_method' => 'form',//form表单 json (Json Body的形式),
@@ -431,6 +452,7 @@ return [
                 ]
             ]
         ],
+
         'users' => [
             'name' => '用户管理',
             'request_method' => 'form',//form表单 json (Json Body的形式),

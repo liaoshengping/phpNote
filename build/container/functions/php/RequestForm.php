@@ -40,7 +40,7 @@ trait RequestForm
      *      ),';
         }
 
-        if ($scence == 'list'){
+        if ($scence == 'list') {
             $requestForm .= '
      *      @OA\Parameter(
      *          name="pageSize",
@@ -60,6 +60,20 @@ trait RequestForm
         }
 
 
+        $create_other_params = $this->getCurrentSetting('create_other_params');
+
+
+        if ($scence == 'create' && $create_other_params) {
+            foreach ($create_other_params as $create_other_param) {
+                $requestForm .= '
+     *      @OA\Parameter(
+     *          name="' . $create_other_param["key"] . '",
+     *          description="' . $create_other_param["des"] . '",
+     *          required=' . $create_other_param["required"] . ',
+     *          in="query",
+     *      ),';
+            }
+        }
 
 
         $create_input = $this->getCurrentSetting('create_input');
@@ -71,26 +85,23 @@ trait RequestForm
         foreach ($this->app->struct->struct as $item) {
 
 
-
-
-            if ($scence == 'create'){
+            if ($scence == 'create') {
                 if (!in_array($item['name'], $create_input) && !empty($create_input)) continue;
             }
 
 
-
-            if (in_array($item['name'], $allhidden )){
+            if (in_array($item['name'], $allhidden)) {
                 continue;
             }
 
 
             $remark_list = '';
 
-            if ($scence =='list'){
+            if ($scence == 'list') {
 
                 $remark_list = ';如果要获取多个状态的值可传递用,逗号隔开的字符串传递 比如：1,2';
 
-                if (!in_array($item['name'],$this->listFiltrateParameter())) continue;
+                if (!in_array($item['name'], $this->listFiltrateParameter())) continue;
 
             }
 
@@ -105,7 +116,7 @@ trait RequestForm
      *         @OA\Parameter(
      *         name="' . $item['name'] . '",
      *         in="query",
-     *         description="' . $item['origin_comment'] . $remark_list.'",
+     *         description="' . $item['origin_comment'] . $remark_list . '",
      *         explode=true,
      *         @OA\Schema(
      *             type="array",
@@ -129,7 +140,6 @@ trait RequestForm
             }
 
 
-
         }
 
 
@@ -151,8 +161,8 @@ trait RequestForm
      *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/store",
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/store",
      *      tags={"' . $tags . '"},
-     *      summary="' . $tags. '创建",
-     *      description="' .$tags. '提交创建",
+     *      summary="' . $tags . '创建",
+     *      description="' . $tags . '提交创建",
 {{request}}
      
      *     @OA\Response(
@@ -196,7 +206,7 @@ trait RequestForm
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/lists",
      *      tags={"' . $tags . '"},
      *      summary="' . $tags . '列表",
-     *      description="' . $tags. '列表，获取全部数据 all:1；存在多个字段查询的比如：订单号/联系人/手机号 传key_word ; 时间筛选 start_at ，end_at ，比如搜索今天是12号 start_at: 2021-12-12 end_at：2021-12-13",
+     *      description="' . $tags . '列表，获取全部数据 all:1；存在多个字段查询的比如：订单号/联系人/手机号 传key_word ; 时间筛选 start_at ，end_at ，比如搜索今天是12号 start_at: 2021-12-12 end_at：2021-12-13",
      {{request}}
      *     @OA\Response(
      *         response=200,
@@ -235,7 +245,6 @@ trait RequestForm
         $tags = $this->getThisTags();
 
 
-
         $template = '
     /**
      * @OA\Post(
@@ -243,7 +252,7 @@ trait RequestForm
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/edit",
      *      tags={"' . $tags . '"},
      *      summary="' . $tags . '更新",
-     *      description="' .$tags . '提交更新",
+     *      description="' . $tags . '提交更新",
 {{request}}
      *     @OA\Response(
      *         response=200,
