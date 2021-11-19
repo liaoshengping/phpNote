@@ -32,7 +32,8 @@ return [
     /**
      * 数据库信息
      */
-    "host" => '192.168.205.22',
+    "host" => '47.104.104.162',
+//    "host" => '192.168.205.22',
     "database" => 'nongline_bill',
     "port" => env("port", "3306"),
     "username" => env("username", "root"),
@@ -228,45 +229,36 @@ return [
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
             'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'goods_unit',
+                            'target' => 'goods_attr_id', //目标表中的字段
+                            'origin' => 'goods_attr_id',//本表的字段
+                            'limit' => 100,//查询为10条
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ]
+                    ],
+                ],
 //                [
-//                    'relation' => "hasMany",
+//                    'relation' => "hasOne",
 //                    'tables' => [
 //                        [
-//                            'table_name' => 'order_goods',
-//                            'target' => 'order_id', //目标表中的字段
-//                            'origin' => 'id',//本表的字段
-//                            'limit' => 30,//查询为10条
+//                            'table_name' => 'goods_unit',
+//                            'target' => 'goods_attr_id', //目标表中的字段
+//                            'origin' => 'goods_attr_id',//本表的字段
 //                            'list_show' => true,
 //                            'list_exist' => false,
 //                            'one_show' => true,
 //                            'create_relation' => false,//创建时，是否可以关联添加
-//                        ]
+//                        ],
 //                    ],
-//                ],
-                [
-                    'relation' => "hasOne",
-                    'tables' => [
-                        [
-                            'table_name' => 'goods_attr',
-                            'target' => 'goods_attr_id', //目标表中的字段
-                            'origin' => 'goods_attr_id',//本表的字段
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => false,//创建时，是否可以关联添加
-                        ],
-                        [
-                            'table_name' => 'goods_unit',
-                            'target' => 'goods_unit_id', //目标表中的字段
-                            'origin' => 'goods_unit_id',//本表的字段
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => false,//创建时，是否可以关联添加
-                        ],
-                    ],
-
-                ]
+//
+//                ]
             ]
         ],
         'goods_unit' => [

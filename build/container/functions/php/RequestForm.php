@@ -242,8 +242,8 @@ trait RequestForm
      *      path="/' . $api_prefix . '/' . $this->app->table->table_name . '/edit",
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/edit",
      *      tags={"' . $tags . '"},
-     *      summary="' . $this->app->table->table_format_name . '更新",
-     *      description="' . $this->app->table->table_format_name . '提交更新",
+     *      summary="' . $tags . '更新",
+     *      description="' .$tags . '提交更新",
 {{request}}
      *     @OA\Response(
      *         response=200,
