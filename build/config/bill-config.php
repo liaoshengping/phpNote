@@ -250,6 +250,24 @@ return [
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
                         ],
+                        [
+                            'table_name' => 'goods_category',
+                            'target' => 'cate_id', //目标表中的字段
+                            'origin' => 'cate_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'sys_dict',
+                            'target' => 'sys_dict_id', //目标表中的字段
+                            'origin' => 'dict_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
                     ],
 
                 ]
@@ -685,6 +703,75 @@ return [
                 ]
             ]
         ],
+
+        'wms_record' => [
+            'name' => '进销存管理/采购入库/销售记录/进销存记录',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            //修改状态
+            "change_status" => [
+                'key' => 'status',
+            ],
+            //删除检查表是否使用
+//            "delete_check"=>[
+//                [
+//                    'table'=>'goods',
+//                    'model'=> '\App\Models\Goods',
+//                    'key'=>'dict_id'
+//                ]
+//            ],
+
+            'controller_actions' => ['create', 'edit','list','show','delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'store_admin',
+//                            'target' => 'store_id', //目标表中的字段
+//                            'origin' => 'store_id',//本表的字段
+//                            'limit' => 10,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'store_admin',
+                            'target' => 'store_admin_id', //目标表中的字段
+                            'origin' => 'store_admin_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+
+                    ],
+
+                ]
+            ]
+        ],
+
 
 //        store_contacts
 
