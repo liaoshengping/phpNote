@@ -171,7 +171,7 @@ return [
 
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['create', 'list', 'show', 'delete'],
+            'controller_actions' => ['create', 'list', 'edit','show', 'delete'],
 //            ['create','list','edit','show','delete'];
 
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
@@ -691,7 +691,7 @@ return [
                         [
                             'table_name' => 'sys_dict',
                             'target' => 'sys_dict_id', //目标表中的字段
-                            'origin' => 'cat_id',//本表的字段
+                            'origin' => 'cate_id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
