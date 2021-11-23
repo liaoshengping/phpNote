@@ -706,7 +706,7 @@ return [
 
         'wms_record' => [
             'name' => '进销存管理/采购入库/销售记录/进销存记录',
-            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'request_method' => 'json',//form表单 json (Json Body的形式),
             'fields' => [
                 ''
             ],
@@ -731,35 +731,58 @@ return [
 //                ]
 //            ],
 
-            'controller_actions' => ['create', 'edit','list','show','delete'],
+            'controller_actions' => ['create', 'edit','list','show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
+
+
             'relations' => [
-//                [
-//                    'relation' => "hasMany",
-//                    'tables' => [
-//                        [
-//                            'table_name' => 'store_admin',
-//                            'target' => 'store_id', //目标表中的字段
-//                            'origin' => 'store_id',//本表的字段
-//                            'limit' => 10,//查询为10条
-//                            'list_show' => true,
-//                            'list_exist' => false,
-//                            'one_show' => true,
-//                            'create_relation' => false,//创建时，是否可以关联添加
-//                        ]
-//                    ],
-//                ],
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'wms_record_detail',
+                            'target' => 'wms_record_id', //目标表中的字段
+                            'origin' => 'wms_record_id',//本表的字段
+                            'limit' => 30,//查询为10条
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ]
+                    ],
+                ],
                 [
                     'relation' => "hasOne",
                     'tables' => [
                         [
                             'table_name' => 'store_admin',
+                            'relation_name'=>'',
                             'target' => 'store_admin_id', //目标表中的字段
                             'origin' => 'store_admin_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'store_contacts',
+                            'relation_name'=>'supplier',//关联模型的名字，默认为表名
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'supplier_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'store_contacts',
+                            'relation_name'=>'shipper',//关联模型的名字，默认为表名
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'shipper_id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,

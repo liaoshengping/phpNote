@@ -164,11 +164,12 @@ class PHPCommon extends BaseClient
                     if (!is_file(config('frame_mode_path') . $schema_name . '.php')) {
                         Show::block('致命bug，请执行：model ' . $table_name, 'error', 'error');
                     }
+                    $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
                     $description = !empty($item['description']) ? $item['description'] : '';
                     if ($relation['relation'] == 'hasMany') {
                         $apiDoc .= '
  *      @OA\Property(
- *     property="' . $table_name . '",
+ *     property="' . $relation_name . '",
  *     description="' . $description . '",
  *     type= "array",
  *     @OA\Items(
@@ -178,7 +179,7 @@ class PHPCommon extends BaseClient
                     } else {
                         $apiDoc .= '
  *      @OA\Property(
- *     property="' . $table_name . '",
+ *     property="' . $relation_name . '",
  *      description="' . $description . '",
  *     ref="#/components/schemas/' . $schema_name . '"
  *      ),';

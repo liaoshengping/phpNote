@@ -157,6 +157,8 @@ class Laravel extends PHPCommon
                     Show::block('缺少关联表' . $tagName . '存在，最高危险级别警告,请执行： php 你的项目名字 model ' . $item['table_name'], 'error', 'error');
                 }
 
+                $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
+
                 switch ($relationName) {
                     case 'hasMany':
                         $limitStr = '';
@@ -165,7 +167,7 @@ class Laravel extends PHPCommon
                             $limitStr = '->limit("' . $limit . '")';
                         }
                         $tamplate .= '
-   public function ' . $item['table_name'] . '()
+   public function ' . $relation_name . '()
     {
         return $this->hasMany(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')' . $limitStr . ';
     }
@@ -173,7 +175,7 @@ class Laravel extends PHPCommon
                         break;
                     case 'hasOne':
                         $tamplate .= '
-   public function ' . $item['table_name'] . '()
+   public function ' . $relation_name . '()
     {
         return $this->hasOne(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\');
     }

@@ -363,7 +363,10 @@ trait ControllerTemplateCommon
                 if (empty($item['list_show'])) {
                     continue;
                 }
-                $with[] = "'" . $item['table_name'] . "'";
+
+                $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
+
+                $with[] = "'" . $relation_name . "'";
             }
         }
         if (!empty($with)) {
