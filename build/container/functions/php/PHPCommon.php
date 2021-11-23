@@ -164,7 +164,7 @@ class PHPCommon extends BaseClient
                     if (!is_file(config('frame_mode_path') . $schema_name . '.php')) {
                         Show::block('致命bug，请执行：model ' . $table_name, 'error', 'error');
                     }
-                    $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
+                    $relation_name = !empty($item['relation_name']) ? $item['relation_name'] : $item['table_name'];
                     $description = !empty($item['description']) ? $item['description'] : '';
                     if ($relation['relation'] == 'hasMany') {
                         $apiDoc .= '
@@ -262,7 +262,7 @@ class PHPCommon extends BaseClient
         }
 
         //生成修改状态的控制器
-        if ($this->getCurrentSetting('change_status')){
+        if ($this->getCurrentSetting('change_status')) {
             $this->pushTemplate($temp, $this->buildChangeController('status') ?? []);
 
         }
@@ -293,9 +293,10 @@ class PHPCommon extends BaseClient
 
         $this->controllerTemplate = str_replace('{{controller_base_name}}', $controller_base_name, $this->controllerTemplate);
 
+
         $this->controllerTemplate = str_replace('{{content}}', $this->controllerFunctionSection, $this->controllerTemplate);
 
-        $this->controllerTemplate = str_replace('{{base_model_namespace_path}}', config('controller_namespace_path').'\base', $this->controllerTemplate);
+        $this->controllerTemplate = str_replace('{{base_model_namespace_path}}', config('controller_namespace_path') . '\base', $this->controllerTemplate);
 
 
         $this->controllerTemplate = str_replace('{{frame_controller_base_namespace}}', config('frame_controller_base_namespace'), $this->controllerTemplate);
@@ -316,8 +317,6 @@ class PHPCommon extends BaseClient
         $this->controllerTemplate = str_replace("{{controller_name}}", $this->classModelName, $this->controllerTemplate);
 
         $this->controllerTemplate = str_replace("{{BaseController}}", '\\' . config('controller_namespace_path') . '\base\\' . $controller_base_name, $this->controllerTemplate);
-
-
 
 
         file_put_contents(config('frame_controller_path') . $this->classModelName . '.php', $this->controllerTemplate);
@@ -413,6 +412,7 @@ class PHPCommon extends BaseClient
         $schema = '';
         $api_doc = config('api_doc');
         $fillable = '';
+        $relation_save = '';
         $enums = [];
         foreach ($this->app->struct->struct as $item) {
             if ($api_doc == 'swagger' && !in_array($item['name'], $this->hiddenProperties)) {
@@ -467,13 +467,12 @@ class PHPCommon extends BaseClient
         }
 
         $pkString = '';
-        if ($this->app->table->pk){
+        if ($this->app->table->pk) {
             $pk = $this->app->table->pk;
-            if (config('set_pk') && $pk ){
-                $pkString = 'protected $primaryKey = "'.$pk.'";';
+            if (config('set_pk') && $pk) {
+                $pkString = 'protected $primaryKey = "' . $pk . '";';
             }
         }
-
 
 
         if ($apiProperty) {
@@ -491,9 +490,15 @@ class PHPCommon extends BaseClient
 
             $schema = str_replace('{{apiDocProperty}}', $apiProperty, $schema);
         }
+        //关联配置
+        if ($this->getCurrentSetting('relation_save')){
+            $relation_save = 'use \Liaosp\LaravelRelationSave\SaveRelation;';
+        }
+
         $this->modeBaseTemplate = str_replace('{{property}}', $propertys, $this->modeBaseTemplate);
         $this->modeBaseTemplate = str_replace('{{apiDoc}}', $schema, $this->modeBaseTemplate);
         $this->modeBaseTemplate = str_replace('{{fillable}}', $fillable, $this->modeBaseTemplate);
+        $this->modeBaseTemplate = str_replace('{{relation_save}}', $relation_save, $this->modeBaseTemplate);
         $this->modeBaseTemplate = str_replace('{{primaryKey}}', $pkString, $this->modeBaseTemplate);
 
 
@@ -796,7 +801,7 @@ class PHPCommon extends BaseClient
             //config 配置的表信息
             $list_input = $this->getCurrentSetting('list_input');
 
-            if (in_array($item['name'],$list_input)){
+            if (in_array($item['name'], $list_input)) {
                 $data[] = $item['name'];
                 continue;
             }

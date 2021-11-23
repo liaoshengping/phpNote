@@ -59,7 +59,7 @@ return [
      */
     'api_doc' => 'swagger',//不生成为空
     'api_prefix' => 'api', //生成的api前缀
-    'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'email_verified_at','store_id','is_root','is_bind'],
+    'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'email_verified_at', 'store_id', 'is_root', 'is_bind'],
 
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
@@ -96,11 +96,11 @@ return [
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
-            'create_other_params'=>[
+            'create_other_params' => [
                 [
-                    'key'=>'member_name',
-                    'des'=>'新增的会员名字，没有检索到member_id的会员传 值，如果该名称有值，member_id 为-1',//描述
-                    'required'=>'false',//是否必须
+                    'key' => 'member_name',
+                    'des' => '新增的会员名字，没有检索到member_id的会员传 值，如果该名称有值，member_id 为-1',//描述
+                    'required' => 'false',//是否必须
                 ],
 
             ], //创建时额外的参数，用于swagger 生成
@@ -171,7 +171,7 @@ return [
 
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['create', 'list', 'edit','show', 'delete'],
+            'controller_actions' => ['create', 'list', 'edit', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
 
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
@@ -191,27 +191,27 @@ return [
 
             'create_input' => [], //创建需要的字段如果为空取上面的
 
-            'create_other_params'=>[
+            'create_other_params' => [
                 [
-                    'key'=>'initial_stock_quantity',
-                    'des'=>'初始库存数量',//描述
-                    'required'=>'false',//是否必须
+                    'key' => 'initial_stock_quantity',
+                    'des' => '初始库存数量',//描述
+                    'required' => 'false',//是否必须
                 ],
                 [
-                    'key'=>'initial_stock_weight',
-                    'des'=>'初始库存重量',//描述
-                    'required'=>"false",//是否必须
+                    'key' => 'initial_stock_weight',
+                    'des' => '初始库存重量',//描述
+                    'required' => "false",//是否必须
                 ],
                 [
-                    'key'=>'initial_stock_cost',
-                    'des'=>'库存成本',//描述
-                    'required'=>"false",//是否必须
+                    'key' => 'initial_stock_cost',
+                    'des' => '库存成本',//描述
+                    'required' => "false",//是否必须
                 ],
 
             ],
             //创建时额外的参数，用于swagger 生成
 
-            'list_input' => [], // 列表需要的字段如果为空取上面的
+            'list_input' => ['cate_id'], // 列表需要的字段如果为空取上面的
 
             'relations' => [
 //                [
@@ -287,7 +287,7 @@ return [
 
             'no_cover_admin' => false,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => [ 'list', 'show'],
+            'controller_actions' => ['list', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -457,12 +457,11 @@ return [
 
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['create','list','edit','show','delete'],
+            'controller_actions' => ['create', 'list', 'edit', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
-
 
 
             'relations' => [
@@ -582,20 +581,20 @@ return [
                 'key' => 'status',
             ],
             //删除检查表是否使用
-            "delete_check"=>[
+            "delete_check" => [
                 [
-                    'table'=>'goods',
-                    'model'=> '\App\Models\Goods',
-                    'key'=>'dict_id'
+                    'table' => 'goods',
+                    'model' => '\App\Models\Goods',
+                    'key' => 'dict_id'
                 ],
                 [
-                    'table'=>'store_contacts',
-                    'model'=> '\App\Models\StoreContacts',
-                    'key'=>'dict_id'
+                    'table' => 'store_contacts',
+                    'model' => '\App\Models\StoreContacts',
+                    'key' => 'dict_id'
                 ],
             ],
 
-            'controller_actions' => ['create', 'list','edit','show','delete'],
+            'controller_actions' => ['create', 'list', 'edit', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -663,7 +662,7 @@ return [
 //                ]
 //            ],
 
-            'controller_actions' => ['create', 'edit','list','show','delete'],
+            'controller_actions' => ['create', 'edit', 'list', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -730,13 +729,13 @@ return [
 //                    'key'=>'dict_id'
 //                ]
 //            ],
+            'relation_save' => true, //关联保存要先安装 composer require liaosp/laravel-relation-save
 
-            'controller_actions' => ['create', 'edit','list','show'],
+            'controller_actions' => ['create', 'edit', 'list', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
-
 
 
             'relations' => [
@@ -760,7 +759,7 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'store_admin',
-                            'relation_name'=>'',
+                            'relation_name' => '',
                             'target' => 'store_admin_id', //目标表中的字段
                             'origin' => 'store_admin_id',//本表的字段
                             'list_show' => true,
@@ -770,7 +769,7 @@ return [
                         ],
                         [
                             'table_name' => 'store_contacts',
-                            'relation_name'=>'supplier',//关联模型的名字，默认为表名
+                            'relation_name' => 'supplier',//关联模型的名字，默认为表名
                             'target' => 'id', //目标表中的字段
                             'origin' => 'supplier_id',//本表的字段
                             'list_show' => true,
@@ -780,7 +779,7 @@ return [
                         ],
                         [
                             'table_name' => 'store_contacts',
-                            'relation_name'=>'shipper',//关联模型的名字，默认为表名
+                            'relation_name' => 'shipper',//关联模型的名字，默认为表名
                             'target' => 'id', //目标表中的字段
                             'origin' => 'shipper_id',//本表的字段
                             'list_show' => true,

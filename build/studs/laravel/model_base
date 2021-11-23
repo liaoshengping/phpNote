@@ -16,6 +16,8 @@ class {{ClassName}} extends BaseModel
 
    use SoftDeletes;
 
+   {{relation_save}}
+
    {{primaryKey}}
 
    protected $table = '{{table_name}}';

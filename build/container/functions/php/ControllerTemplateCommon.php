@@ -76,7 +76,7 @@ trait ControllerTemplateCommon
         }
 
         $auth_store = '';
-
+        $relation_save = '';
         if (!empty($this->getCurrentSetting('is_auth_store'))) {
 
             $auth_store = '
@@ -85,7 +85,9 @@ trait ControllerTemplateCommon
          ]);' . PHP_EOL;
 
         }
-
+        if ($this->getCurrentSetting('relation_save')){
+            $relation_save = '$res->saveRelation($data);';
+        }
 
         $content = '
         $validate = Validator::make($request->all(), $this->model->rule);
@@ -96,8 +98,36 @@ trait ControllerTemplateCommon
         
         $data = $validate->getData();
         {{auth_store}}
-        $res = $this->model->create($data);
+        
+        if (method_exists($this,"saveBefore")){ //保存之前发生的事
 
+           $data =$this->saveBefore($data) ?? $data;
+             
+         }
+        
+        try {
+         \DB::beginTransaction();
+         
+         $res = $this->model->create($data);
+        
+         {{relation_save}}
+         
+         if (method_exists($this,"saved")){ //保存之后发生的事
+
+             $res =$this->saved($res,$data) ?? $res;
+             
+         }
+         
+        
+         \DB::commit();
+         
+         }catch (\Exception $e){
+         
+         \DB::rollBack();
+         
+          throw new \Exception($e->getMessage());
+         }
+        
         if ($res) {
             return $this->successData($res);
         } else {
@@ -106,6 +136,7 @@ trait ControllerTemplateCommon
         ';
 
         $content = str_replace('{{auth_store}}', $auth_store, $content);
+        $content = str_replace('{{relation_save}}', $relation_save, $content);
 
 
         return [

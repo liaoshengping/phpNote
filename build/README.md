@@ -138,6 +138,7 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | status_delete | 指定状态删除 |列表不显示这条数据 |
 | change_status | 修改状态的接口 |接口 |
 | create_other_params | 新增数据时候的其他参数 |接口 |
+| relation_save | 关联保存 | liaosp/laravel-relation-save 安装这个库，否则报错 |
 
 
 * 新增数据时候的其他参数
