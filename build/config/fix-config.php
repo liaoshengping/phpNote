@@ -12,7 +12,7 @@ const LARVAL_FORNT = "larval_fornt";
 const VUE_ELEMENT = "vue_element";
 
 
-const FRAME_PATH = 'E:\linuxdir\php\fix-new/';
+const FRAME_PATH = 'E:\linuxdir\php\fix_station/';
 const WORK_NAME = 'yibage';
 
 
@@ -30,7 +30,7 @@ return [
     /**
      * 数据库信息
      */
-    "host" => '120.79.143.216',
+    "host" => '47.104.104.162',
     "database" => 'fix_station',
     "port" => env("port", "3306"),
     "username" => env("username", "root"),
@@ -759,7 +759,7 @@ return [
 
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['show','list'],
+            'controller_actions' => ['show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 

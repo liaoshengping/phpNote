@@ -372,19 +372,19 @@ trait ControllerTemplateCommon
         $request_method = $config['request_method'] ?? '';
 
         //这边无所谓，隐藏不隐藏，搜不到 {{request}} 这边是无效的
-        if ($request_method != 'json') {
+//        if ($request_method != 'json') {
             $requestForm = $this->getRequestFormByScence('list');
 
             $template = str_replace('{{request}}', $requestForm, $template);
-        } else {
-            //json 请求
-            $requestJson = '     *     @OA\RequestBody(
-     *         description="请用标准的json请求，可到json.cn 验证json",
-     *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
-     *     ),';
-            $template = str_replace('{{request}}', $requestJson, $template);
-        }
+//        } else {
+//            //json 请求
+//            $requestJson = '     *     @OA\RequestBody(
+//     *         description="请用标准的json请求，可到json.cn 验证json",
+//     *         required=true,
+//     *         @OA\JsonContent(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
+//     *     ),';
+//            $template = str_replace('{{request}}', $requestJson, $template);
+//        }
 
         $with = [];
         $relations = $this->getRelation();
@@ -431,14 +431,18 @@ trait ControllerTemplateCommon
             $query->where("' . $status_delete['key'] . '","!=", "' . $status_delete['value'] . '");';
         }
         $content .= ' 
+        
+      ' . $status_delete_str . '
+          
         if (method_exists($this,"listQuery")){
 
           $query = $this->listQuery($query);
 
-       }else{
-          ' . $status_delete_str . '
-          $query->orderBy("created_at","desc");
-       }';
+       }
+
+        $query->orderBy("created_at","desc");
+
+       ';
 
 
         $content .= '
@@ -448,6 +452,8 @@ trait ControllerTemplateCommon
         } else {
             $data = $query->paginate();
         }
+        
+        
 
         return $this->successData($data);
         ';
@@ -627,9 +633,16 @@ trait ControllerTemplateCommon
         $app = $this->app;
         $status_delete = $this->getCurrentSetting('status_delete');
 
-        //是否为必要参数
 
+        if ($this->getCurrentSetting('list_keyword_search')){
+            $this->requestFieldsTemplate .= '
+       $' . config('keyword_name','keyword') . ' = $request->input("' . config('keyword_name','keyword') . '","");';
+        }
+
+        //是否为必要参数
         foreach ($app->struct->struct as $item) {
+
+
 
             if (in_array($item['name'], $this->listFiltrateParameter())) {
                 $this->requestFieldsTemplate .= '
@@ -668,8 +681,46 @@ trait ControllerTemplateCommon
 
             }
         }
+        if ($this->getCurrentSetting('list_keyword_search')){
+            $query .= '
+            ->when($' . config('keyword_name','keyword') . ',function ($query)use($' . config('keyword_name','keyword') . '){
+                   $query->where(function ($query)use($' . config('keyword_name','keyword') . '){
+                      {{keywordTemplate}}
+                   });
+               
+            })';
+            $keywordTemplate ='';
+            foreach ($this->getCurrentSetting('list_keyword_search') as $item) {
+                if ($item['op'] == 'like'){
+                    $keywordTemplate.='
+                       $query->orWhere("'.$item['key'].'","'.$item['op'].'","%$' . config('keyword_name','keyword') . '%");';
+                }else{
+                    $keywordTemplate.='
+                       $query->orWhere("'.$item['key'].'","'.$item['op'].'","$' . config('keyword_name','keyword') . '");';
+                }
+
+            }
+
+            $query = str_replace('{{keywordTemplate}}',$keywordTemplate,$query);
+
+
+        }
+
+
+
+
+
 
         $query .= ';';
+
+        if (config('common_query')){
+            $template = config('common_query');
+            if ($this->getCurrentSetting('time_between_field')){
+                $template = str_replace('created_at',$this->getCurrentSetting('time_between_field'),$template);
+            }
+            $query.=$template;
+        }
+
 
 
         return $query;

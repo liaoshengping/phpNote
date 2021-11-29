@@ -60,6 +60,7 @@ return [
     'api_doc' => 'swagger',//不生成为空
     'api_prefix' => 'api', //生成的api前缀
     'create_exclude_fields' => ['created_at', 'updated_at', 'deleted_at', 'id', 'email_verified_at', 'store_id', 'is_root', 'is_bind'],
+    'keyword_name' => 'key_word',//其他项目改成keyword
 
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
@@ -73,6 +74,13 @@ return [
 
     'user_id_translate_the_name' => '',//后台管理 user_id 转化为users.nickname 并disable，不需要可不写 试了下没用，再研究
 
+
+    'common_query' => '
+            if (!empty($request->input(\'start_at\')) && !empty($request->input(\'end_at\'))){
+                $query->whereBetween(\'created_at\',app(\'Time\')->getBetweenAt());
+            }',
+//    'time_between_field'=>'create_at',
+//
     /**
      * 数据差异性
      */
@@ -176,7 +184,7 @@ return [
 
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'is_auth_store' => true,//查询是否需要用store_id 去查询
-
+//            'time_between_field'=>'order_at',
             //删除的状态
             'status_delete' => [
                 'key' => 'status',
@@ -186,6 +194,15 @@ return [
             "change_status" => [
                 'key' => 'status',
             ],
+            //删除检查表是否使用
+            "delete_check" => [
+                [
+                    'table' => 'wms_record_detail',
+                    'model' => '\App\Models\WmsRecordDetail',
+                    'key' => 'goods_id'
+                ],
+            ],
+
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
@@ -339,7 +356,14 @@ return [
             'is_auth_store' => true,//查询是否需要用store_id 去查询
 
             'no_cover_admin' => false,//创建laravel-admin 后台数据不可以强制覆盖
-
+            //删除检查表是否使用
+            "delete_check" => [
+                [
+                    'table' => 'goods',
+                    'model' => '\App\Models\Goods',
+                    'key' => 'goods_unit_id'
+                ],
+            ],
             'controller_actions' => ['create', 'list', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
@@ -661,7 +685,17 @@ return [
 //                    'key'=>'dict_id'
 //                ]
 //            ],
-
+            //列表关键字搜索
+            'list_keyword_search' => [
+                [
+                    'key' => 'name',
+                    'op' => 'like',
+                ],
+                [
+                    'key' => 'phone',
+                    'op' => 'like',
+                ]
+            ],
             'controller_actions' => ['create', 'edit', 'list', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
@@ -736,7 +770,7 @@ return [
             'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
-
+//            wms_record_id
 
             'relations' => [
                 [
@@ -744,6 +778,16 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'wms_record_detail',
+                            'target' => 'wms_record_id', //目标表中的字段
+                            'origin' => 'wms_record_id',//本表的字段
+                            'limit' => 30,//查询为10条
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'wms_record_other_fee',
                             'target' => 'wms_record_id', //目标表中的字段
                             'origin' => 'wms_record_id',//本表的字段
                             'limit' => 30,//查询为10条
@@ -793,9 +837,256 @@ return [
                 ]
             ]
         ],
+        'wms_record_detail' => [
+            'name' => '出入库详情',
+            'request_method' => 'json',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            //修改状态
+            "change_status" => [
+                'key' => 'status',
+            ],
+            //删除检查表是否使用
+//            "delete_check"=>[
+//                [
+//                    'table'=>'goods',
+//                    'model'=> '\App\Models\Goods',
+//                    'key'=>'dict_id'
+//                ]
+//            ],
+            'relation_save' => true, //关联保存要先安装 composer require liaosp/laravel-relation-save
+
+            'controller_actions' => ['create', 'edit', 'list', 'show'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
 
-//        store_contacts
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'wms_record_detail',
+//                            'target' => 'wms_record_id', //目标表中的字段
+//                            'origin' => 'wms_record_id',//本表的字段
+//                            'limit' => 30,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'goods',
+                            'relation_name' => '',
+                            'target' => 'goods_id', //目标表中的字段
+                            'origin' => 'goods_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'wms_record',
+                            'relation_name' => '',
+                            'target' => 'wms_record_id', //目标表中的字段
+                            'origin' => 'wms_record_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+
+                ]
+            ]
+        ],
+
+        'wms_stock' => [
+            'name' => '库存，批次库存，进销存库存',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            //修改状态
+//            "change_status" => [
+//                'key' => 'status',
+//            ],
+            //删除检查表是否使用
+//            "delete_check"=>[
+//                [
+//                    'table'=>'goods',
+//                    'model'=> '\App\Models\Goods',
+//                    'key'=>'dict_id'
+//                ]
+//            ],
+//            'relation_save' => true, //关联保存要先安装 composer require liaosp/laravel-relation-save
+
+            'controller_actions' => ['list', 'show'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'wms_record_detail',
+//                            'target' => 'wms_record_id', //目标表中的字段
+//                            'origin' => 'wms_record_id',//本表的字段
+//                            'limit' => 30,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'goods',
+                            'relation_name' => '',
+                            'target' => 'goods_id', //目标表中的字段
+                            'origin' => 'goods_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'wms_record',
+                            'relation_name' => '',
+                            'target' => 'wms_record_id', //目标表中的字段
+                            'origin' => 'wms_record_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+
+                ]
+            ]
+        ],
+
+        'payment_wallet' => [
+            'name' => '账户管理，支付方式，财务钱包',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth_store' => true,//查询是否需要用store_id 去查询
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            //修改状态
+//            "change_status" => [
+//                'key' => 'status',
+//            ],
+            //删除检查表是否使用
+//            "delete_check"=>[
+//                [
+//                    'table'=>'goods',
+//                    'model'=> '\App\Models\Goods',
+//                    'key'=>'dict_id'
+//                ]
+//            ],
+
+            'list_other_params' => [
+                [
+                    'key' => 'scene',
+                    'des' => '使用场景,采购：传no_period,开单:order',//描述
+                    'required' => 'false',//是否必须
+                ]
+
+            ],
+//            'relation_save' => true, //关联保存要先安装 composer require liaosp/laravel-relation-save
+
+            'controller_actions' => ['list'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+
+            'relations' => [
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'wms_record_detail',
+//                            'target' => 'wms_record_id', //目标表中的字段
+//                            'origin' => 'wms_record_id',//本表的字段
+//                            'limit' => 30,//查询为10条
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+//                    ],
+//                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'goods',
+                            'relation_name' => '',
+                            'target' => 'goods_id', //目标表中的字段
+                            'origin' => 'goods_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'wms_record',
+                            'relation_name' => '',
+                            'target' => 'wms_record_id', //目标表中的字段
+                            'origin' => 'wms_record_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+
+                ]
+            ]
+        ],
+
+//        payment_wallet
 
     ]
 

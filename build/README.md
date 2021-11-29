@@ -137,8 +137,42 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | is_auth_store | 在config 配置auth_store_id |是否需要查询store_id  |
 | status_delete | 指定状态删除 |列表不显示这条数据 |
 | change_status | 修改状态的接口 |接口 |
+| delete_check | 删除时候去检查 | 检查是否可删除 |
 | create_other_params | 新增数据时候的其他参数 |接口 |
 | relation_save | 关联保存 | liaosp/laravel-relation-save 安装这个库，否则报错 |
+| list_keyword_search | 列表关键字搜索 | 列表关键字搜索 |
+| time_between_field | 替换created_at | 区间查询 whereBetween 的字段 比如order_at|
+
+
+* 检查是否被使用
+```
+"delete_check" => [
+    [
+        'table' => 'goods',
+        'model' => '\App\Models\Goods',
+        'key' => 'dict_id'
+    ],
+    [
+        'table' => 'store_contacts',
+        'model' => '\App\Models\StoreContacts',
+        'key' => 'dict_id'
+    ],
+],
+```
+
+* 关键字搜索
+````
+'list_keyword_search' =>[
+    [
+        'key'=>'name',
+        'op'=> 'like',
+    ],
+    [
+        'key'=>'',
+        'op'=>'',
+    ]
+],
+````
 
 
 * 新增数据时候的其他参数

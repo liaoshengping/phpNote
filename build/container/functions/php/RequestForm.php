@@ -56,11 +56,40 @@ trait RequestForm
      *          required=false,
      *          in="query",
      *      ),';
+            $requestForm .= '
+     *      @OA\Parameter(
+     *          name="all",
+     *          description="是否显示所有数据（不分页） 传 1 或 true",
+     *          required=false,
+     *          in="query",
+     *      ),';
+            $requestForm .= '
+     *      @OA\Parameter(
+     *          name="key_word ",
+     *          description="业务中只有存在多个字段查询的比如：订单号/联系人/手机号 才传否则无效",
+     *          required=false,
+     *          in="query",
+     *      ),';
+            $requestForm .= '
+     *      @OA\Parameter(
+     *          name="start_at ",
+     *          description="查询业务的开始时间",
+     *          required=false,
+     *          in="query",
+     *      ),';
+            $requestForm .= '
+     *      @OA\Parameter(
+     *          name="end_at ",
+     *          description="查询业务的结束时间   比如搜索今天是12号 start_at: 2021-12-12 end_at：2021-12-13",
+     *          required=false,
+     *          in="query",
+     *      ),';
 
         }
 
 
         $create_other_params = $this->getCurrentSetting('create_other_params');
+        $list_other_params = $this->getCurrentSetting('list_other_params');
 
 
         if ($scence == 'create' && $create_other_params) {
@@ -70,6 +99,18 @@ trait RequestForm
      *          name="' . $create_other_param["key"] . '",
      *          description="' . $create_other_param["des"] . '",
      *          required=' . $create_other_param["required"] . ',
+     *          in="query",
+     *      ),';
+            }
+        }
+
+        if ($scence == 'list' && $list_other_params) {
+            foreach ($list_other_params as $list_other_param) {
+                $requestForm .= '
+     *      @OA\Parameter(
+     *          name="' . $list_other_param["key"] . '",
+     *          description="' . $list_other_param["des"] . '",
+     *          required=' . $list_other_param["required"] . ',
      *          in="query",
      *      ),';
             }
