@@ -142,6 +142,21 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | relation_save | 关联保存 | liaosp/laravel-relation-save 安装这个库，否则报错 |
 | list_keyword_search | 列表关键字搜索 | 列表关键字搜索 |
 | time_between_field | 替换created_at | 区间查询 whereBetween 的字段 比如order_at|
+| list_other_params | 列表的其他参数  | |
+
+
+
+* 列表添加参数
+``` 
+'list_other_params' => [
+    [
+        'key' => 'scene',
+        'des' => '使用场景,采购：传no_period,开单:order',//描述
+        'required' => 'false',//是否必须
+    ]
+
+],
+```
 
 
 * 检查是否被使用
