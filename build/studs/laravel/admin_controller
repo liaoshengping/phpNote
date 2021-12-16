@@ -43,6 +43,12 @@ class {{ClassName}}Controller extends AdminController
     protected function detail($id)
     {
         $show = new Show({{ClassName}}::findOrFail($id));
+        $show->panel()
+            ->tools(function ($tools) {
+                $tools->disableEdit();
+                $tools->disableList();
+                $tools->disableDelete();
+            });
         {{field}}
 
 
