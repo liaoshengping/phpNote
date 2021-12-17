@@ -20,6 +20,7 @@ class CommandHandler implements Middlewares
         'modelbase  table_name' => '只生成模型的base', // key-value
         'modelapi  tablename' => '生成api和模型',//
         'l-admin  tablename' => '生成Laravel-admin 控制器',//
+        'html filename' => '生成Laravel-admin 控制器',//
     ];
 
     /**
@@ -39,13 +40,17 @@ class CommandHandler implements Middlewares
         }
         if (empty($argvs[2])) {
             Show::aList($this->help, '指示');
-            throw new \Exception("请填写表名");
+            throw new \Exception("请填写表名/文件名");
         }
+
         switch ($argvs[1]) {
             case 'model':
             case "modelapi":
             case 'admin': //laravel-admin
                 $app->table->queryCurrentTableInfo($argvs[2]);
+                break;
+            case 'html':
+                Show::info('生成静态页面');
                 break;
             default:
                 Show::aList($this->help, '指示');

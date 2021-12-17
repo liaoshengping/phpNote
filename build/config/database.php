@@ -4,9 +4,9 @@
 namespace config;
 
 return [
-    "host" => env("host","192.168.205.22"),
-    "database" => env("yibage",'yibage'),
-    "port" => env("port","3306"),
-    "username" => env("username","root"),
-    "password" => env("password","123456")
+    "host" => xenv"host","192.168.205.22"),
+    "database" => xenv"yibage",'yibage'),
+    "port" => xenv"port","3306"),
+    "username" => xenv"username","root"),
+    "password" => xenv"password","123456")
 ];

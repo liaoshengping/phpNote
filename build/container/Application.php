@@ -4,6 +4,7 @@ namespace container;
 
 use container\core\ContainerBase;
 use container\functions\go\gin\Gin;
+use container\functions\htmlv1\bootstrap_official\Bootstrap;
 use container\functions\php\laravel\Laravel;
 use container\functions\php\thinkphp\Thinkphp;
 use container\middlewares\CommandHandler;
@@ -54,11 +55,13 @@ class Application extends ContainerBase
 
     public function run()
     {
+
         /**
          * 请在这边添加框架
          * @var Thinkphp
          * @var Gin
          * @var Laravel
+         * @var Bootstrap
          */
         $this->{$this->frame}->run();
     }

@@ -1,69 +1,245 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => 'ca142ef82a2a7e3ebedff5176ac230bc2065d27b',
+        'name' => 'qiu41/build',
+        'dev' => true,
     ),
-    'reference' => '0d3f5289ad1484a915511eb921cee5db465ff2be',
-    'name' => 'qiu41/build',
-  ),
-  'versions' => 
-  array (
-    'inhere/console' => 
-    array (
-      'pretty_version' => 'v3.1.21',
-      'version' => '3.1.21.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '8e39a95cb8a7875de271395bc8735cc358c67a26',
+    'versions' => array(
+        'doctrine/inflector' => array(
+            'pretty_version' => '1.4.4',
+            'version' => '1.4.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../doctrine/inflector',
+            'aliases' => array(),
+            'reference' => '4bd5c1cdfcd00e9e2d8c484f79150f67e5d355d9',
+            'dev_requirement' => false,
+        ),
+        'illuminate/container' => array(
+            'pretty_version' => 'v5.8.36',
+            'version' => '5.8.36.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../illuminate/container',
+            'aliases' => array(),
+            'reference' => 'b42e5ef939144b77f78130918da0ce2d9ee16574',
+            'dev_requirement' => false,
+        ),
+        'illuminate/contracts' => array(
+            'pretty_version' => 'v5.8.36',
+            'version' => '5.8.36.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../illuminate/contracts',
+            'aliases' => array(),
+            'reference' => '00fc6afee788fa07c311b0650ad276585f8aef96',
+            'dev_requirement' => false,
+        ),
+        'illuminate/events' => array(
+            'pretty_version' => 'v5.8.36',
+            'version' => '5.8.36.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../illuminate/events',
+            'aliases' => array(),
+            'reference' => 'a85d7c273bc4e3357000c5fc4812374598515de3',
+            'dev_requirement' => false,
+        ),
+        'illuminate/filesystem' => array(
+            'pretty_version' => 'v5.8.36',
+            'version' => '5.8.36.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../illuminate/filesystem',
+            'aliases' => array(),
+            'reference' => '494ba903402d64ec49c8d869ab61791db34b2288',
+            'dev_requirement' => false,
+        ),
+        'illuminate/support' => array(
+            'pretty_version' => 'v5.8.36',
+            'version' => '5.8.36.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../illuminate/support',
+            'aliases' => array(),
+            'reference' => 'df4af6a32908f1d89d74348624b57e3233eea247',
+            'dev_requirement' => false,
+        ),
+        'illuminate/view' => array(
+            'pretty_version' => 'v5.8.36',
+            'version' => '5.8.36.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../illuminate/view',
+            'aliases' => array(),
+            'reference' => 'c859919bc3be97a3f114377d5d812f047b8ea90d',
+            'dev_requirement' => false,
+        ),
+        'inhere/console' => array(
+            'pretty_version' => 'v3.1.21',
+            'version' => '3.1.21.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../inhere/console',
+            'aliases' => array(),
+            'reference' => '8e39a95cb8a7875de271395bc8735cc358c67a26',
+            'dev_requirement' => false,
+        ),
+        'millionmile/get_env' => array(
+            'pretty_version' => 'v1.0.0',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../millionmile/get_env',
+            'aliases' => array(),
+            'reference' => '5a1c3e1a8fd98d741668f0ce8fec310952de9c7c',
+            'dev_requirement' => false,
+        ),
+        'nesbot/carbon' => array(
+            'pretty_version' => '2.55.2',
+            'version' => '2.55.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../nesbot/carbon',
+            'aliases' => array(),
+            'reference' => '8c2a18ce3e67c34efc1b29f64fe61304368259a2',
+            'dev_requirement' => false,
+        ),
+        'philo/laravel-blade' => array(
+            'pretty_version' => 'v3.1',
+            'version' => '3.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../philo/laravel-blade',
+            'aliases' => array(),
+            'reference' => '3f0ce2ee198604c53c25188110e6d7b5e887527a',
+            'dev_requirement' => false,
+        ),
+        'psr/container' => array(
+            'pretty_version' => '1.1.2',
+            'version' => '1.1.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/container',
+            'aliases' => array(),
+            'reference' => '513e0666f7216c7459170d56df27dfcefe1689ea',
+            'dev_requirement' => false,
+        ),
+        'psr/log' => array(
+            'pretty_version' => '1.1.4',
+            'version' => '1.1.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/log',
+            'aliases' => array(),
+            'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+            'dev_requirement' => false,
+        ),
+        'psr/simple-cache' => array(
+            'pretty_version' => '1.0.1',
+            'version' => '1.0.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/simple-cache',
+            'aliases' => array(),
+            'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
+            'dev_requirement' => false,
+        ),
+        'qiu41/build' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => 'ca142ef82a2a7e3ebedff5176ac230bc2065d27b',
+            'dev_requirement' => false,
+        ),
+        'symfony/debug' => array(
+            'pretty_version' => 'v4.4.31',
+            'version' => '4.4.31.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/debug',
+            'aliases' => array(),
+            'reference' => '43ede438d4cb52cd589ae5dc070e9323866ba8e0',
+            'dev_requirement' => false,
+        ),
+        'symfony/deprecation-contracts' => array(
+            'pretty_version' => 'v2.5.0',
+            'version' => '2.5.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
+            'aliases' => array(),
+            'reference' => '6f981ee24cf69ee7ce9736146d1c57c2780598a8',
+            'dev_requirement' => false,
+        ),
+        'symfony/finder' => array(
+            'pretty_version' => 'v4.4.30',
+            'version' => '4.4.30.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/finder',
+            'aliases' => array(),
+            'reference' => '70362f1e112280d75b30087c7598b837c1b468b6',
+            'dev_requirement' => false,
+        ),
+        'symfony/polyfill-mbstring' => array(
+            'pretty_version' => 'v1.23.1',
+            'version' => '1.23.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-mbstring',
+            'aliases' => array(),
+            'reference' => '9174a3d80210dca8daa7f31fec659150bbeabfc6',
+            'dev_requirement' => false,
+        ),
+        'symfony/polyfill-php80' => array(
+            'pretty_version' => 'v1.23.1',
+            'version' => '1.23.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-php80',
+            'aliases' => array(),
+            'reference' => '1100343ed1a92e3a38f9ae122fc0eb21602547be',
+            'dev_requirement' => false,
+        ),
+        'symfony/translation' => array(
+            'pretty_version' => 'v5.4.1',
+            'version' => '5.4.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/translation',
+            'aliases' => array(),
+            'reference' => '8c82cd35ed861236138d5ae1c78c0c7ebcd62107',
+            'dev_requirement' => false,
+        ),
+        'symfony/translation-contracts' => array(
+            'pretty_version' => 'v2.5.0',
+            'version' => '2.5.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/translation-contracts',
+            'aliases' => array(),
+            'reference' => 'd28150f0f44ce854e942b671fc2620a98aae1b1e',
+            'dev_requirement' => false,
+        ),
+        'symfony/translation-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '2.3',
+            ),
+        ),
+        'toolkit/cli-utils' => array(
+            'pretty_version' => 'v1.2.10',
+            'version' => '1.2.10.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../toolkit/cli-utils',
+            'aliases' => array(),
+            'reference' => '909008ec32b33c6b248adb700f060ac27b588794',
+            'dev_requirement' => false,
+        ),
+        'toolkit/stdlib' => array(
+            'pretty_version' => 'v1.0.17',
+            'version' => '1.0.17.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../toolkit/stdlib',
+            'aliases' => array(),
+            'reference' => '234bbaff905ccc804680c6486d84d283db27405b',
+            'dev_requirement' => false,
+        ),
+        'toolkit/sys-utils' => array(
+            'pretty_version' => 'v1.2.7',
+            'version' => '1.2.7.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../toolkit/sys-utils',
+            'aliases' => array(),
+            'reference' => 'c294cca060b7ba8b4b161bf33df76a344e0b8796',
+            'dev_requirement' => false,
+        ),
     ),
-    'millionmile/get_env' => 
-    array (
-      'pretty_version' => 'v1.0.0',
-      'version' => '1.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '5a1c3e1a8fd98d741668f0ce8fec310952de9c7c',
-    ),
-    'qiu41/build' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0d3f5289ad1484a915511eb921cee5db465ff2be',
-    ),
-    'toolkit/cli-utils' => 
-    array (
-      'pretty_version' => 'v1.2.10',
-      'version' => '1.2.10.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '909008ec32b33c6b248adb700f060ac27b588794',
-    ),
-    'toolkit/stdlib' => 
-    array (
-      'pretty_version' => 'v1.0.17',
-      'version' => '1.0.17.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '234bbaff905ccc804680c6486d84d283db27405b',
-    ),
-    'toolkit/sys-utils' => 
-    array (
-      'pretty_version' => 'v1.2.7',
-      'version' => '1.2.7.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'c294cca060b7ba8b4b161bf33df76a344e0b8796',
-    ),
-  ),
 );

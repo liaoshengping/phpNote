@@ -35,9 +35,9 @@ return [
     "host" => '47.104.104.162',
 //    "host" => '192.168.205.22',
     "database" => 'nongline_bill',
-    "port" => env("port", "3306"),
-    "username" => env("username", "root"),
-    "password" => env("password", "123456"),
+    "port" => xenv"port", "3306"),
+    "username" => xenv"username", "root"),
+    "password" => xenv"password", "123456"),
 
 
     "fornt" => "",

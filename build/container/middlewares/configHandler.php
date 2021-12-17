@@ -13,6 +13,9 @@ class configHandler implements Middlewares
 
     public function handle(Application $app)
     {
+
+        if (empty(config('database'))) return;
+
         // 先输出消息，再读取
 //        $userInput = Interact::readln('Your name:');
 //

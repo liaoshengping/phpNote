@@ -34,6 +34,7 @@ class Container implements \ArrayAccess
 
     public function offsetGet($offset)
     {
+
         if(isset($this->instances[$offset])){
             return $this->instances[$offset];
         }
