@@ -7,6 +7,8 @@ const FRAME_PATH = 'E:\linuxdir\web\diancan/';
 const WORK_NAME = 'yibage';
 
 const TYPE_BANNER = 'banner';
+const TYPE_IMAGE_LEFT_SECTION = 'image_left_section';
+const TYPE_BREADCRUMB = 'breadcrumb';
 
 
 return [
@@ -69,6 +71,7 @@ return [
             'file_name' => 'index.html',
             'layout' => 'header_footer',//头部加脚页
             'content' => [
+
                 [
                     'type' => TYPE_BANNER,
                     'items' => [
@@ -92,7 +95,23 @@ return [
                         ]
                     ],
 
+                ],
+                [
+                    'type'=>TYPE_BREADCRUMB
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
                 ]
+
             ],
         ],
         [

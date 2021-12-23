@@ -77,10 +77,18 @@ class Common extends BaseClient
         foreach ($this->config['content'] as $item) {
 
             $class = '\container\functions\htmlv1\bootstrap_official\type\\' . $item['type'];
-            /**
-             * @var banner
-             */
-            $content .= (new $class($item))->handle();
+
+            if ( class_exists($class)){
+                /**
+                 * @var banner
+                 */
+                $content .= (new $class($item))->handle();
+            }else{
+                $content .= view($item['type'],$this->config);
+            }
+
+
+
         }
 
         $this->templte = str_replace('【content】', $content, $this->templte);

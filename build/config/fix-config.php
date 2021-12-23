@@ -32,9 +32,9 @@ return [
      */
     "host" => '47.104.104.162',
     "database" => 'fix_station',
-    "port" => xenv"port", "3306"),
-    "username" => xenv"username", "root"),
-    "password" => xenv"password", "123456"),
+    "port" => xenv("port", "3306"),
+    "username" => xenv("username", "root"),
+    "password" => xenv("password", "123456"),
 
 
     "fornt" => "",

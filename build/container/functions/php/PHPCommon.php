@@ -382,6 +382,17 @@ class PHPCommon extends BaseClient
                     $rules[$item['name']] = $inter_perg;
                 }
             }
+            if (!empty($item['enum'])){
+                //如果是枚举
+                $enum_rule = 'in:'.implode(',',array_keys($item['enum']));
+
+                if (!empty($rules[$item['name']])) {
+                    $rules[$item['name']] .= '|' . $enum_rule;
+                } else {
+                    $rules[$item['name']] = $enum_rule;
+                }
+            }
+
         }
 
         $strRule = 'public $rule = [];';
