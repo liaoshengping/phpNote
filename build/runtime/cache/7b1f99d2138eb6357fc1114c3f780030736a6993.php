@@ -1,0 +1,1 @@
+<?php /**PATH E:\linuxdir\php\phpNote\build\container\functions\htmlv1\bootstrap_official\html/banner_static.blade.php ENDPATH**/ ?>

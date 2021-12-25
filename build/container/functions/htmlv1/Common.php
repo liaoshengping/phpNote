@@ -84,7 +84,10 @@ class Common extends BaseClient
                  */
                 $content .= (new $class($item))->handle();
             }else{
-                $content .= view($item['type'],$this->config);
+
+                $view  = array_merge($this->config,$item);
+
+                $content .= view($item['type'],$view);
             }
 
 

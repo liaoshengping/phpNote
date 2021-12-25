@@ -47,6 +47,9 @@ return [
         'deleted_at'
     ], //自动生成数据库缺少的字段比如 create_at,update_at
 
+    //框架区别
+    'validate_int' => 'integer',
+    'validate_number' => 'numeric',
 
     //文档地址
     'document_path' => FRAME_PATH . 'document',
