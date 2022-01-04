@@ -18,13 +18,32 @@
                 @endisset
             </div>
             <?php
-                $width = round(100/count($items),2);
+            $count = count($items);
+            $col = 12 / $count;
+            $colmd = $col * 2;
+            $row = isset($row)?$row:1;
+            $row_num = count($items)/$row;
+            if ($row >1){
+                $col = 12/$row_num;
+            }
+            $row_count = 1;
 
             ?>
-                <div class="d-flex  w-100 " data-aos="fade-up" data-aos-delay="600">
+
+            @for($i=0;$i<$row;$i++)
+                @php
+                    $row_count ++;
+                @endphp
+
+                <div class="d-flex col-lg-12 row " data-aos="fade-up" data-aos-delay="600">
                     @foreach($items as $key => $item)
-                        <div class="d-flex justify-content-around" data-aos="fade-up"
-                             data-aos-delay="{{$key}}000" style="width: {{$width}}%" >
+                        @php
+
+                                if ($row_count * $row_num <= $key){ continue;}
+                        @endphp
+
+                        <div class="col-lg-{{$col}} col-md-{{$colmd}} d-flex justify-content-center" data-aos="fade-up"
+                             data-aos-delay="{{$key}}000">
                             <div class="d-flex justify-content-center flex-column align-items-center">
                                 <div class="mt-2 mx-1">
                                     <img class="rounded-2" src="{{$item['image_url']}}">
@@ -44,7 +63,7 @@
                         </div>
                     @endforeach
                 </div>
-
+            @endfor
 
 
         </div>

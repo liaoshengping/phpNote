@@ -19,34 +19,13 @@
                 <?php endif; ?>
             </div>
             <?php
-            $count = count($items);
-            $col = 12 / $count;
-            $colmd = $col * 2;
-            $row = isset($row)?$row:1;
+                $width = round(100/count($items),2);
 
-            $row_num = count($items)/$row;
-
-            if ($row >1){
-                $col = 12/$row_num;
-            }
-            $row_count = 1;
-            $item_count =0;
             ?>
-
-            <?php for($i=0;$i<$row;$i++): ?>
-                <?php
-                    $row_count ++;
-                ?>
-
-                <div class="d-flex col-lg-12 row " data-aos="fade-up" data-aos-delay="600">
+                <div class="d-flex  w-100 " data-aos="fade-up" data-aos-delay="600">
                     <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php
-                                $item_count++;
-                                if ($row_count * $row_num <= $item_count){ continue;}
-                        ?>
-
-                        <div class="col-lg-<?php echo e($col); ?> col-md-<?php echo e($colmd); ?> d-flex justify-content-center" data-aos="fade-up"
-                             data-aos-delay="<?php echo e($key); ?>000">
+                        <div class="d-flex justify-content-around" data-aos="fade-up"
+                             data-aos-delay="<?php echo e($key); ?>000" style="width: <?php echo e($width); ?>%" >
                             <div class="d-flex justify-content-center flex-column align-items-center">
                                 <div class="mt-2 mx-1">
                                     <img class="rounded-2" src="<?php echo e($item['image_url']); ?>">
@@ -67,7 +46,7 @@
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-            <?php endfor; ?>
+
 
 
         </div>
