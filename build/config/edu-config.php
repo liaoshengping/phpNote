@@ -29,11 +29,11 @@ return [
     /**
      * 数据库信息
      */
-    "host" => xenv"host", "192.168.205.22"),
+    "host" => xenv("host", "192.168.205.22"),
     "database" => 'edu-manager',
-    "port" => xenv"port", "3306"),
-    "username" => xenv"username", "root"),
-    "password" => xenv"password", "123456"),
+    "port" => xenv("port", "3306"),
+    "username" => xenv("username", "root"),
+    "password" => xenv("password", "123456"),
 
 
     "fornt" => "",
