@@ -13,13 +13,19 @@ use Closure;
 use Generator;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionMethod;
 use RuntimeException;
+use Throwable;
 use Toolkit\Stdlib\Obj\ObjectHelper;
+use Toolkit\Stdlib\Util\PhpError;
+use Toolkit\Stdlib\Util\PhpException;
 use function array_sum;
+use function error_get_last;
 use function explode;
 use function fopen;
 use function ftok;
 use function function_exists;
+use function get_class;
 use function is_array;
 use function is_callable;
 use function is_object;
@@ -53,18 +59,44 @@ class PhpHelper
     private static $reflects = [];
 
     /**
-     * @param string $class
+     * @var ReflectionMethod[]
+     */
+    private static $reflectMths = [];
+
+    /**
+     * @param string|object $classOrObj
      *
      * @return ReflectionClass
      * @throws ReflectionException
      */
-    public static function reflectClass(string $class): ReflectionClass
+    public static function reflectClass($classOrObj): ReflectionClass
     {
-        if (!isset(self::$reflects[$class])) {
-            self::$reflects[$class] = new ReflectionClass($class);
+        $id = is_string($classOrObj) ? $classOrObj : get_class($classOrObj);
+
+        if (!isset(self::$reflects[$id])) {
+            self::$reflects[$id] = new ReflectionClass($classOrObj);
         }
 
-        return self::$reflects[$class];
+        return self::$reflects[$id];
+    }
+
+    /**
+     * @param string|object $classOrObj
+     * @param string $method
+     *
+     * @return ReflectionMethod
+     * @throws ReflectionException
+     */
+    public static function reflectMethod($classOrObj, string $method): ReflectionMethod
+    {
+        $id = is_string($classOrObj) ? $classOrObj : get_class($classOrObj);
+        $id .= '.' . $method;
+
+        if (!isset(self::$reflectMths[$id])) {
+            self::$reflectMths[$id] = new ReflectionMethod($classOrObj, $method);
+        }
+
+        return self::$reflectMths[$id];
     }
 
     /**
@@ -74,7 +106,7 @@ class PhpHelper
      *
      * @return Generator
      */
-    public static function reflectMethods(ReflectionClass $reflectClass, int $flags = 0, Closure $nameFilter = null): ?Generator
+    public static function getReflectMethods(ReflectionClass $reflectClass, int $flags = 0, Closure $nameFilter = null): ?Generator
     {
         foreach ($reflectClass->getMethods($flags) as $m) {
             $mName = $m->getName();
@@ -142,7 +174,7 @@ class PhpHelper
     {
         if (is_string($cb)) {
             // function
-            if (strpos($cb, '::') === false) {
+            if (!str_contains($cb, '::')) {
                 return $cb(...$args);
             }
 
@@ -221,6 +253,19 @@ class PhpHelper
     }
 
     /**
+     * Returns the last occurred PHP error or an empty string if no error occurred.
+     *
+     * @return string
+     */
+    public static function getLastError(): string
+    {
+        $message = error_get_last()['message'] ?? '';
+        // $message = ini_get('html_errors') ? Html::htmlToText($message) : $message;
+
+        return preg_replace('#^\w+\(.*?\): #', '', $message);
+    }
+
+    /**
      * Usage:
      *
      * $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
@@ -292,6 +337,48 @@ class PhpHelper
         }
 
         return preg_replace('/=>\s+\n\s+array \(/', '=> array (', $string);
+    }
+
+    /**
+     * @return array
+     */
+    public static function lastError2array(): array
+    {
+        return PhpError::lastError2array();
+    }
+
+    /**
+     * @param Throwable $e
+     * @param bool $getTrace
+     * @param string|null $catcher
+     *
+     * @return string
+     */
+    public static function exception2string(Throwable $e, bool $getTrace = true, string $catcher = null): string
+    {
+        return PhpException::toString($e, $getTrace, $catcher);
+    }
+
+    /**
+     * @param Throwable $e
+     * @param bool $getTrace
+     * @param string|null $catcher
+     *
+     * @return string
+     */
+    public static function exception2html(Throwable $e, bool $getTrace = true, string $catcher = null): string
+    {
+        return PhpException::toHtml($e, $getTrace, $catcher);
+    }
+
+    /**
+     * @param $anyData
+     *
+     * @return string
+     */
+    public static function toString($anyData): string
+    {
+        return DataHelper::toString($anyData);
     }
 
     /**

@@ -170,9 +170,7 @@ trait ControllerTemplateCommon
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",
-     *         @OA\JsonContent(
-     *         ref="#/components/schemas/Test"
-     *         )
+     *       
      *     ),
      *      @OA\Response(response=400, description="Bad request"),
      *      @OA\Response(response=401, description="token错误或为空"),
@@ -307,9 +305,6 @@ trait ControllerTemplateCommon
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",
-     *         @OA\JsonContent(
-     *         ref="#/components/schemas/Test"
-     *         )
      *     ),
      *      @OA\Response(response=400, description="Bad request"),
      *      @OA\Response(response=404, description="Resource Not Found"),

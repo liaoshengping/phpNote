@@ -15,6 +15,7 @@ use Toolkit\Stdlib\Str\Traits\StringCaseHelperTrait;
 use Toolkit\Stdlib\Str\Traits\StringCheckHelperTrait;
 use Toolkit\Stdlib\Str\Traits\StringLengthHelperTrait;
 use Toolkit\Stdlib\Str\Traits\StringConvertTrait;
+use Toolkit\Stdlib\Str\Traits\StringOtherHelperTrait;
 use Toolkit\Stdlib\Str\Traits\StringTruncateHelperTrait;
 use Toolkit\Stdlib\Util\UUID;
 use function abs;
@@ -22,6 +23,8 @@ use function array_merge;
 use function base64_encode;
 use function count;
 use function crc32;
+use function escapeshellarg;
+use function explode;
 use function gethostname;
 use function hash;
 use function hex2bin;
@@ -29,15 +32,18 @@ use function is_int;
 use function is_string;
 use function mb_strwidth;
 use function microtime;
+use function preg_match;
 use function preg_split;
 use function random_bytes;
 use function random_int;
+use function sprintf;
+use function str_contains;
 use function str_pad;
 use function str_repeat;
 use function str_replace;
 use function str_word_count;
 use function strlen;
-use function strpos;
+use function strtr;
 use function substr;
 use function trim;
 use function uniqid;
@@ -51,6 +57,10 @@ use const STR_PAD_RIGHT;
  */
 abstract class StringHelper
 {
+    // These words will be as a Boolean value
+    public const TRUE_WORDS  = '|on|yes|true|';
+    public const FALSE_WORDS = '|off|no|false|';
+
     public static $defaultEncoding = 'UTF-8';
 
     use StringCaseHelperTrait;
@@ -58,6 +68,7 @@ abstract class StringHelper
     use StringLengthHelperTrait;
     use StringConvertTrait;
     use StringTruncateHelperTrait;
+    use StringOtherHelperTrait;
 
     /**
      * @param string|mixed $str
@@ -265,114 +276,40 @@ abstract class StringHelper
         return $prefix . $date . $id . $random;
     }
 
-    ////////////////////////////////////////////////////////////////////////
-    /// Format
-    ////////////////////////////////////////////////////////////////////////
-
     /**
-     * [format description]
+     * @param string $tplCode
+     * @param array  $vars
      *
-     * @param       $str
-     * @param array $replaceParams 用于 str_replace('search','replace',$str )
-     * @param array $pregParams    用于 preg_replace('pattern','replace',$str)
-     *
-     * @return string [type]                [description]
-     * @example
-     *        $pregParams = [
-     *        'xx',  //'pattern'
-     *        'yy',  //'replace'
-     *        ]
-     *        * $pregParams = [
-     *        ['xx','xx2'],  //'pattern'
-     *        ['yy','yy2'],  //'replace'
-     *        ]
-     * @example
-     *        $replaceParams = [
-     *        'xx',  //'search'
-     *        'yy', //'replace'
-     *        ]
-     *        $replaceParams = [
-     *        ['xx','xx2'],  //'search'
-     *        ['yy','yy2'],  //'replace'
-     *        ]
+     * @return string
      */
-    public static function format($str, array $replaceParams = [], array $pregParams = []): string
+    public static function replaces(string $tplCode, array $vars): string
     {
-        if (!is_string($str) || !$str || (!$replaceParams && !$pregParams)) {
-            return $str;
-        }
-
-        if ($replaceParams && count($replaceParams) === 2) {
-            [$search, $replace] = $replaceParams;
-            $str = str_replace($search, $replace, $str);
-        }
-
-        if ($pregParams && count($pregParams) === 2) {
-            [$pattern, $replace] = $pregParams;
-            $str = preg_replace($pattern, $replace, $str);
-        }
-
-        return trim($str);
+        return strtr($tplCode, $vars);
     }
 
     /**
-     * 格式化，用空格分隔各个词组
+     * @param string $tplCode
+     * @param array $vars
+     * @param string $format
      *
-     * @param string $keyword 字符串
-     *
-     * @return string 格式化后的字符串
+     * @return string
      */
-    public static function wordFormat(string $keyword): string
+    public static function renderTemplate(string $tplCode, array $vars, string $format = '{{%s}}'): string
     {
-        // 将全角角逗号换为空格
-        $keyword = str_replace(['，', ','], ' ', $keyword);
-
-        return preg_replace([
-            // 去掉两个空格以上的
-            '/\s(?=\s)/',
-            // 将非空格替换为一个空格
-            '/[\n\r\t]/'
-        ], ['', ' '], trim($keyword));
-    }
-
-    /**
-     * 缩进格式化内容，去空白/注释
-     *
-     * @param     $fileName
-     * @param int $type
-     *
-     * @return mixed
-     */
-    public static function deleteStripSpace($fileName, $type = 0)
-    {
-        $data = trim(file_get_contents($fileName));
-        $data = 0 === strpos($data, '<?php') ? substr($data, 5) : $data;
-        $data = substr($data, -2) === '?>' ? substr($data, 0, -2) : $data;
-
-        //去掉所有注释 换行空白保留
-        if ((int)$type === 1) {
-            $preg_arr = [
-                '/\/\*.*?\*\/\s*/is'    // 去掉所有多行注释/* .... */
-                ,
-                '/\/\/.*?[\r\n]/is'    // 去掉所有单行注释//....
-                ,
-                '/\#.*?[\r\n]/is'      // 去掉所有单行注释 #....
-            ];
-
-            return preg_replace($preg_arr, '', $data);
+        // get left chars
+        [$left, ] = explode('%s', $format);
+        if (!$vars || !str_contains($tplCode, $left)) {
+            return $tplCode;
         }
 
-        $preg_arr = [
-            '/\/\*.*?\*\/\s*/is'    // 去掉所有多行注释 /* .... */
-            ,
-            '/\/\/.*?[\r\n]/is'    // 去掉所有单行注释 //....
-            ,
-            '/\#.*?[\r\n]/is'      // 去掉所有单行注释 #....
-            ,
-            '/(?!\w)\s*?(?!\w)/is' //去掉空白行
-        ];
+        $fmtVars = [];
+        foreach ($vars as $name => $var) {
+            $name = sprintf($format, (string)$name);
+            // add
+            $fmtVars[$name] = $var;
+        }
 
-        return preg_replace($preg_arr, '', $data);
+        return strtr($tplCode, $fmtVars);
     }
 
     ////////////////////////////////////////////////////////////
@@ -400,6 +337,88 @@ abstract class StringHelper
     }
 
     /**
+     * Escapes a token through escape shell arg if it contains unsafe chars.
+     *
+     * @param string $token
+     *
+     * @return string
+     */
+    public static function escapeToken(string $token): string
+    {
+        return preg_match('{^[\w-]+$}', $token) ? $token : escapeshellarg($token);
+    }
+
+    /**
+     * @param string $str
+     *
+     * @return string
+     */
+    public static function removeQuotes(string $str): string
+    {
+        if (preg_match("/^\".*\"$/", $str) || preg_match("/^'.*'$/", $str)) {
+            return mb_substr($str, 1, -1);
+        }
+
+        return $str;
+    }
+
+    /**
+     * @param string $str
+     * @param bool $quoteAll
+     *
+     * @return string
+     */
+    public static function paramQuotes(string $str, bool $quoteAll = false): string
+    {
+        if ($str === '') {
+            return "''";
+        }
+
+        if (
+            !$quoteAll &&
+            (preg_match("/^\".*\"$/", $str) || preg_match("/^'.*'$/", $str))
+        ) {
+            return $str;
+        }
+
+        $quote = str_contains($str, "'") ? '"' : "'";
+
+        return $quote . $str . $quote;
+    }
+
+    /**
+     * @param array $list
+     * @param string $wrapChar
+     *
+     * @return array
+     */
+    public static function wrapList(array $list, string $wrapChar): array
+    {
+        $new = [];
+        foreach ($list as $val) {
+            $new[] = self::wrap($val, $wrapChar);
+        }
+
+        return $new;
+    }
+
+    /**
+     * @param string|int|mixed $str
+     * @param string $wrapChar
+     *
+     * @return string
+     */
+    public static function wrap($str, string $wrapChar): string
+    {
+        $str = (string)$str;
+        if ($str === '') {
+            return $str;
+        }
+
+        return $wrapChar . $str . $wrapChar;
+    }
+
+    /**
      * @param string $arg
      *
      * @return string
@@ -407,13 +426,12 @@ abstract class StringHelper
     public static function shellQuote(string $arg): string
     {
         $quote = '';
-
-        if (strpos($arg, '"') !== false) {
+        if (str_contains($arg, '"')) {
             $quote = "'";
-        } elseif ($arg === '' || strpos($arg, "'") !== false || strpos($arg, ' ') !== false) {
+        } elseif ($arg === '' || str_contains($arg, "'") || str_contains($arg, ' ')) {
             $quote = '"';
         }
 
-        return $quote ? $arg : "$quote{$arg}$quote";
+        return $quote ? $arg : "$quote$arg$quote";
     }
 }

@@ -12,6 +12,7 @@ namespace Toolkit\Stdlib\Arr;
 use ArrayAccess;
 use ArrayObject;
 use stdClass;
+use Toolkit\Stdlib\Helper\DataHelper;
 use Traversable;
 use function array_change_key_case;
 use function array_diff;
@@ -29,6 +30,7 @@ use function count;
 use function explode;
 use function get_class;
 use function gettype;
+use function implode;
 use function in_array;
 use function is_array;
 use function is_numeric;
@@ -39,7 +41,6 @@ use function is_string;
 use function mb_strlen;
 use function method_exists;
 use function strlen;
-use function strpos;
 use function strtolower;
 use function trim;
 
@@ -102,7 +103,7 @@ class ArrayHelper
      *
      * @return mixed
      */
-    public static function toObject($array, $class = stdClass::class)
+    public static function toObject($array, string $class = stdClass::class)
     {
         $object = new $class;
 
@@ -159,7 +160,7 @@ class ArrayHelper
      */
     public static function valueToLower(array $arr): array
     {
-        return self::changeValueCase($arr, 0);
+        return self::changeValueCase($arr, false);
     }
 
     /**
@@ -175,12 +176,12 @@ class ArrayHelper
     /**
      * 将数组中的值全部转为大写或小写
      *
-     * @param array $arr
-     * @param int   $toUpper 1 值大写 0 值小写
+     * @param array|iterable $arr
+     * @param bool           $toUpper
      *
      * @return array
      */
-    public static function changeValueCase($arr, $toUpper = 1): array
+    public static function changeValueCase($arr, bool $toUpper = true): array
     {
         $function = $toUpper ? 'strtoupper' : 'strtolower';
         $newArr   = []; //格式化后的数组
@@ -212,7 +213,7 @@ class ArrayHelper
         // 以逗号分隔的会被拆开，组成数组
         if (is_string($check)) {
             $check = trim($check, ', ');
-            $check = strpos($check, ',') !== false ? (array)explode(',', $check) : [$check];
+            $check = str_contains($check, ',') ? explode(',', $check) : [$check];
         }
 
         return !array_diff((array)$check, $sampleArr);
@@ -232,7 +233,7 @@ class ArrayHelper
         // 以逗号分隔的会被拆开，组成数组
         if (is_string($check)) {
             $check = trim($check, ', ');
-            $check = strpos($check, ',') !== false ? (array)explode(',', $check) : [$check];
+            $check = str_contains($check, ',') ? explode(',', $check) : [$check];
         }
 
         return (bool)array_intersect((array)$check, $sampleArr);
@@ -242,19 +243,19 @@ class ArrayHelper
      * ******* 不区分大小写，检查 一个或多个值是否 全存在数组中 *******
      * 有一个不存在即返回 false
      *
-     * @param string|array $need
-     * @param array        $arr  只能检查一维数组
-     * @param bool         $type 是否同时验证类型
+     * @param string|array   $need
+     * @param array|iterable $arr  只能检查一维数组
+     * @param bool           $type 是否同时验证类型
      *
      * @return bool | string 不存在的会返回 检查到的 字段，判断时 请使用 ArrHelper::existsAll($need,$arr)===true 来验证是否全存在
      */
-    public static function existsAll($need, $arr, $type = false)
+    public static function existsAll($need, $arr, bool $type = false)
     {
         if (is_array($need)) {
             foreach ((array)$need as $v) {
                 self::existsAll($v, $arr, $type);
             }
-        } elseif (strpos($need, ',') !== false) {
+        } elseif (str_contains($need, ',')) {
             $need = explode(',', $need);
             self::existsAll($need, $arr, $type);
         } else {
@@ -273,13 +274,13 @@ class ArrayHelper
      * ******* 不区分大小写，检查 一个或多个值是否存在数组中 *******
      * 有一个存在就返回 true 都不存在 return false
      *
-     * @param string|array $need
-     * @param array        $arr  只能检查一维数组
-     * @param bool         $type 是否同时验证类型
+     * @param string|array   $need
+     * @param array|iterable $arr  只能检查一维数组
+     * @param bool           $type 是否同时验证类型
      *
      * @return bool
      */
-    public static function existsOne($need, $arr, $type = false): bool
+    public static function existsOne($need, $arr, bool $type = false): bool
     {
         if (is_array($need)) {
             foreach ((array)$need as $v) {
@@ -289,7 +290,7 @@ class ArrayHelper
                 }
             }
         } else {
-            if (strpos($need, ',') !== false) {
+            if (str_contains($need, ',')) {
                 $need = explode(',', $need);
 
                 return self::existsOne($need, $arr, $type);
@@ -309,28 +310,59 @@ class ArrayHelper
     /**
      * get key Max Width
      *
-     * @param array $data
-     *     [
+     * ```php
+     * $data = [
      *     'key1'      => 'value1',
      *     'key2-test' => 'value2',
-     *     ]
-     * @param bool  $expectInt
+     * ]
+     * ```
+     *
+     * @param array $data
+     * @param bool  $excludeInt
      *
      * @return int
      */
-    public static function getKeyMaxWidth(array $data, $expectInt = true): int
+    public static function getKeyMaxWidth(array $data, bool $excludeInt = true): int
     {
-        $keyMaxWidth = 0;
-
+        $maxWidth = 0;
         foreach ($data as $key => $value) {
             // key is not a integer
-            if (!$expectInt || !is_numeric($key)) {
-                $width       = mb_strlen($key, 'UTF-8');
-                $keyMaxWidth = $width > $keyMaxWidth ? $width : $keyMaxWidth;
+            if (!$excludeInt || !is_numeric($key)) {
+                $width    = mb_strlen((string)$key, 'UTF-8');
+                $maxWidth = $width > $maxWidth ? $width : $maxWidth;
             }
         }
 
-        return $keyMaxWidth;
+        return $maxWidth;
+    }
+
+    /**
+     * get max width
+     *
+     * ```php
+     * $keys = [
+     *     'key1',
+     *     'key2-test',
+     * ]
+     * ```
+     *
+     * @param array $keys
+     * @param bool  $excludeInt
+     *
+     * @return int
+     */
+    public static function getMaxWidth(array $keys, bool $excludeInt = true): int
+    {
+        $maxWidth = 0;
+        foreach ($keys as $key) {
+            // key is not a integer
+            if (!$excludeInt || !is_numeric($key)) {
+                $keyWidth = mb_strlen((string)$key, 'UTF-8');
+                $maxWidth = $keyWidth > $maxWidth ? $keyWidth : $maxWidth;
+            }
+        }
+
+        return $maxWidth;
     }
 
     ////////////////////////////////////////////////////////////
@@ -387,7 +419,7 @@ class ArrayHelper
      *
      * @return array
      */
-    public static function divide($array): array
+    public static function divide(array $array): array
     {
         return [array_keys($array), array_values($array)];
     }
@@ -456,7 +488,7 @@ class ArrayHelper
      *
      * @return array
      */
-    public static function flatten($array, int $depth = INF): array
+    public static function flatten(array $array, int $depth = INF): array
     {
         return array_reduce($array, static function ($result, $item) use ($depth) {
             if (is_object($item) && method_exists($item, 'toArray')) {
@@ -483,7 +515,7 @@ class ArrayHelper
      *
      * @return void
      */
-    public static function forget(&$array, $keys): void
+    public static function forget(array &$array, $keys): void
     {
         $original = &$array;
         $keys     = (array)$keys;
@@ -571,7 +603,7 @@ class ArrayHelper
      *
      * @return array
      */
-    public static function prepend($array, $value, $key = null): array
+    public static function prepend(array $array, $value, $key = null): array
     {
         if (null === $key) {
             array_unshift($array, $value);
@@ -585,13 +617,13 @@ class ArrayHelper
     /**
      * remove the $key of the $arr, and return value.
      *
-     * @param string $key
-     * @param array  $arr
-     * @param mixed  $default
+     * @param string|int $key
+     * @param array      $arr
+     * @param mixed      $default
      *
      * @return mixed
      */
-    public static function remove(&$arr, $key, $default = null)
+    public static function remove(array &$arr, $key, $default = null)
     {
         if (isset($arr[$key])) {
             $value = $arr[$key];
@@ -606,9 +638,9 @@ class ArrayHelper
     /**
      * Get a value from the array, and remove it.
      *
-     * @param array  $array
-     * @param string $key
-     * @param mixed  $default
+     * @param array|ArrayAccess $array
+     * @param string|int        $key
+     * @param mixed             $default
      *
      * @return mixed
      */
@@ -629,7 +661,7 @@ class ArrayHelper
      *
      * @return array
      */
-    public static function only($array, $keys): array
+    public static function only(array $array, $keys): array
     {
         return array_intersect_key($array, array_flip((array)$keys));
     }
@@ -641,7 +673,7 @@ class ArrayHelper
      *
      * @return array
      */
-    public static function shuffle($array): array
+    public static function shuffle(array $array): array
     {
         shuffle($array);
 
@@ -656,7 +688,7 @@ class ArrayHelper
      *
      * @return array
      */
-    public static function where($array, callable $callback): array
+    public static function where(array $array, callable $callback): array
     {
         return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
     }
@@ -680,24 +712,24 @@ class ArrayHelper
     /**
      * array 递归 转换成 字符串
      *
-     * @param array     $array  [大于1200字符 strlen($string)>1200
-     * @param int       $length
-     * @param array|int $cycles [至多循环六次 $num >= 6
-     * @param bool      $showKey
-     * @param bool      $addMark
-     * @param string    $separator
-     * @param string    $string
+     * @param array  $array
+     * @param int    $length
+     * @param int    $cycles 至多循环六次 $num >= 6
+     * @param bool   $showKey
+     * @param bool   $addMark
+     * @param string $separator
+     * @param string $string
      *
      * @return string
      */
     public static function toString(
         $array,
-        $length = 800,
-        $cycles = 6,
-        $showKey = true,
-        $addMark = false,
-        $separator = ', ',
-        $string = ''
+        int $length = 800,
+        int $cycles = 6,
+        bool $showKey = true,
+        bool $addMark = false,
+        string $separator = ', ',
+        string $string = ''
     ): string {
         if (!is_array($array) || empty($array)) {
             return '';
@@ -718,14 +750,14 @@ class ArrayHelper
 
             if (is_array($value)) {
                 $string .= $keyStr . 'Array(' . self::toString(
-                    $value,
-                    $length,
-                    $cycles,
-                    $showKey,
-                    $addMark,
-                    $separator,
-                    $string
-                ) . ')' . $separator;
+                        $value,
+                        $length,
+                        $cycles,
+                        $showKey,
+                        $addMark,
+                        $separator,
+                        $string
+                    ) . ')' . $separator;
             } elseif (is_object($value)) {
                 $string .= $keyStr . 'Object(' . get_class($value) . ')' . $separator;
             } elseif (is_resource($value)) {
@@ -754,9 +786,9 @@ class ArrayHelper
      * @param array $array
      * @param int   $length
      *
-     * @return mixed|null|string|string[]
+     * @return string
      */
-    public static function toFormatString($array, $length = 400)
+    public static function toFormatString(array $array, int $length = 400): string
     {
         $string = var_export($array, true);
 
@@ -803,7 +835,23 @@ class ArrayHelper
         }
 
         // $num++;
-
         return $array;
+    }
+
+    /**
+     * @param array $data
+     * @param string $kvSep
+     * @param string $lineSep
+     *
+     * @return string
+     */
+    public static function toKVString(array $data, string $kvSep = '=', string $lineSep = "\n"): string
+    {
+        $lines = [];
+        foreach ($data as $key => $val) {
+            $lines = $key . $kvSep . DataHelper::toString($val);
+        }
+
+        return implode($lineSep, $lines);
     }
 }

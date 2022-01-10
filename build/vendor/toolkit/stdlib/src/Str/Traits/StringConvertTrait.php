@@ -10,19 +10,28 @@
 namespace Toolkit\Stdlib\Str\Traits;
 
 use Toolkit\Stdlib\Helper\DataHelper;
+use Toolkit\Stdlib\Str\StringHelper;
+use function array_filter;
 use function array_map;
 use function array_values;
 use function count;
 use function explode;
+use function is_bool;
+use function is_numeric;
 use function mb_convert_encoding;
 use function mb_convert_variables;
 use function mb_detect_encoding;
 use function mb_strwidth;
+use function preg_quote;
 use function preg_split;
+use function str_contains;
 use function str_pad;
 use function str_split;
+use function stripos;
+use function strlen;
 use function strpos;
 use function trim;
+use function vdump;
 use const PREG_SPLIT_NO_EMPTY;
 
 /**
@@ -33,6 +42,25 @@ use const PREG_SPLIT_NO_EMPTY;
 trait StringConvertTrait
 {
     /**
+     * @param string $val
+     *
+     * @return bool|string
+     */
+    public static function tryToBool(string $val)
+    {
+        // check it is a bool value.
+        if (false !== stripos(StringHelper::TRUE_WORDS, "|$val|")) {
+            return true;
+        }
+
+        if (false !== stripos(StringHelper::FALSE_WORDS, "|$val|")) {
+            return false;
+        }
+
+        return $val;
+    }
+
+    /**
      * @param string $str
      *
      * @return bool
@@ -42,120 +70,301 @@ trait StringConvertTrait
         return DataHelper::boolean($str);
     }
 
+    /**
+     * @param string $val
+     *
+     * @return bool
+     */
+    public static function toBool2(string $val): bool
+    {
+        // check it is a bool value.
+        return false !== stripos(StringHelper::TRUE_WORDS, "|$val|");
+    }
+
+    /**
+     * @param string $str
+     *
+     * @return bool
+     */
+    public static function toBoolTrue(string $str): bool
+    {
+        return DataHelper::boolean($str);
+    }
+
+    /**
+     * auto convert string to typed value
+     *
+     * @param string $str
+     * @param bool $parseBool
+     * @param int $intMaxLen
+     *
+     * @return float|int|string|bool
+     */
+    public static function toTyped(string $str, bool $parseBool = false, int $intMaxLen = 11)
+    {
+        if (is_numeric($str) && strlen($str) <= $intMaxLen) {
+            if (str_contains($str, '.')) {
+                $val = (float)$str;
+            } else {
+                $val = (int)$str;
+            }
+
+            return $val;
+        }
+
+        // parse bool: true, false
+        if ($parseBool && strlen($str) < 6) {
+            return self::tryToBool($str);
+        }
+
+        return $str;
+    }
+
     ////////////////////////////////////////////////////////////////////////
     /// split to array
     ////////////////////////////////////////////////////////////////////////
 
     /**
-     * var_dump(str2array('34,56,678, 678, 89, '));
-     *
-     * @param string $str
-     * @param string $sep
-     *
-     * @return array
-     */
-    public static function str2array(string $str, string $sep = ','): array
-    {
-        $str = trim($str, "$sep ");
-
-        if (!$str) {
-            return [];
-        }
-
-        return preg_split("/\s*$sep\s*/", $str, -1, PREG_SPLIT_NO_EMPTY);
-    }
-
-    /**
      * @param string $string
      * @param string $delimiter
-     * @param int    $limit
+     * @param int $limit
      *
      * @return array
      */
     public static function str2ints(string $string, string $delimiter = ',', int $limit = 0): array
     {
-        $values = self::toArray($string, $delimiter, $limit);
-
-        return array_map('intval', $values);
-    }
-
-    /**
-     * @param string $string
-     * @param string $delimiter
-     * @param int    $limit
-     *
-     * @return array
-     */
-    public static function toInts(string $string, string $delimiter = ',', int $limit = 0): array
-    {
-        return self::str2ints($string, $delimiter, $limit);
-    }
-
-    /**
-     * @param string $string
-     * @param string $delimiter
-     * @param int    $limit
-     *
-     * @return array
-     */
-    public static function toArray(string $string, string $delimiter = ',', int $limit = 0): array
-    {
-        $string = trim($string, "$delimiter ");
-        if ($string === '') {
-            return [];
-        }
-
-        $values  = [];
-        $rawList = $limit < 1 ? explode($delimiter, $string) : explode($delimiter, $string, $limit);
-
-        foreach ($rawList as $val) {
-            if (($val = trim($val)) !== '') {
-                $values[] = $val;
-            }
-        }
-
-        return $values;
+        return self::toInts($string, $delimiter, $limit);
     }
 
     /**
      * @param string $str
+     * @param string $delimiter
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function toInts(string $str, string $delimiter = ',', int $limit = 0): array
+    {
+        $intArr = [];
+        // $values = self::splitTrimFiltered($str, $delimiter, $limit);
+        $values = self::toNoEmptyArray($str, $delimiter, $limit);
+
+        foreach ($values as $value) {
+            if (is_numeric($value)) {
+                $intArr[] = (int)$value;
+            }
+        }
+
+        return $intArr;
+    }
+
+    /**
+     * Like explode, but will trim each item and filter empty item.
+     * - alias of toNoEmptyArray()
+     *
+     * @param string $str
      * @param string $separator
-     * @param int    $limit
+     * @param int $limit
      *
      * @return array
      */
     public static function explode(string $str, string $separator = '.', int $limit = 0): array
     {
-        return static::split2Array($str, $separator, $limit);
+        return self::toNoEmptyArray($str, $separator, $limit);
+        // return self::splitTrimFiltered($str, $separator, $limit);
     }
 
     /**
-     * @param string $string
-     * @param string $delimiter
-     * @param int    $limit
+     * alias of toNoEmptyArray()
+     *
+     * @param string $str
+     * @param string $sep
+     * @param int $limit
      *
      * @return array
      */
-    public static function split2Array(string $string, string $delimiter = ',', int $limit = 0): array
+    public static function toArray(string $str, string $sep = ',', int $limit = 0): array
     {
-        $string = trim($string, "$delimiter ");
+        return self::toNoEmptyArray($str, $sep, $limit);;
+    }
 
-        if (!strpos($string, $delimiter)) {
-            return [$string];
+    /**
+     * alias of toNoEmptyArray()
+     *
+     * @param string $str
+     * @param string $sep
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function str2array(string $str, string $sep = ',', int $limit = 0): array
+    {
+        return self::toNoEmptyArray($str, $sep, $limit);
+    }
+
+    /**
+     * alias of toNoEmptyArray()
+     *
+     * @param string $str
+     * @param string $delimiter
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function split2Array(string $str, string $delimiter = ',', int $limit = 0): array
+    {
+        return self::toNoEmptyArray($str, $delimiter, $limit);
+    }
+
+    /**
+     * like explode, split string to no empty array
+     *
+     * - Difference toNoEmptyArray() and splitTrimFiltered().
+     *
+     * Please see {@see StringHelperTest::testDiff_splitTrimFiltered_toNoEmptyArray()}
+     * So, recommend use toNoEmptyArray() instead splitTrimFiltered()
+     *
+     * @param string $str
+     * @param string $sep
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function toNoEmptyArray(string $str, string $sep = ',', int $limit = -1): array
+    {
+        $str = trim($str, "$sep ");
+        if (!$str) {
+            return [];
         }
 
-        if ($limit < 1) {
-            $list = explode($delimiter, $string);
+        if ($sep === ' ') {
+            $pattern = '/\s+/';
         } else {
-            $list = explode($delimiter, $string, $limit);
+            $pattern = '/\s*' . preg_quote($sep, '/') . '\s*/';
         }
 
+        return preg_split($pattern, $str, $limit, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
+     * @param string $str
+     * @param string $sep
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function splitNoEmptyArray(string $str, string $sep = ',', int $limit = 0): array
+    {
+        return self::toNoEmptyArray($str, $sep, $limit);;
+    }
+
+    /**
+     * Like explode, but will trim each item.
+     *
+     * @param string $str
+     * @param string $delimiter
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function toTrimmedArray(string $str, string $delimiter = ',', int $limit = 0): array
+    {
+        return self::splitTrimmed($str, $delimiter, $limit);
+    }
+
+    /**
+     * Like explode, but will trim each item.
+     *
+     * @param string $str
+     * @param string $delimiter
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function splitTrimmed(string $str, string $delimiter = ',', int $limit = 0): array
+    {
+        $str = trim($str);
+        if (!strpos($str, $delimiter)) {
+            return [$str];
+        }
+
+        $list = $limit > 1 ? explode($delimiter, $str, $limit) : explode($delimiter, $str);
+
+        return array_map('trim', $list);
+    }
+
+    /**
+     * @param string $str
+     * @param string $delimiter
+     * @param int $intMaxLen
+     *
+     * @return array
+     */
+    public static function toTypedArray(string $str, string $delimiter = ',', int $intMaxLen = 11): array
+    {
+        return self::toTypedList($str, $delimiter, $intMaxLen);
+    }
+
+    /**
+     * @param string $str
+     * @param string $delimiter
+     * @param int $intMaxLen
+     *
+     * @return array
+     */
+    public static function splitTypedList(string $str, string $delimiter = ',', int $intMaxLen = 11): array
+    {
+        return self::toTypedList($str, $delimiter, $intMaxLen);
+    }
+
+    /**
+     * @param string $str
+     * @param string $sep
+     * @param int $intMaxLen
+     *
+     * @return array
+     */
+    public static function toTypedList(string $str, string $sep = ',', int $intMaxLen = 11): array
+    {
+        if (!$str) {
+            return [];
+        }
+
+        // $arr = self::splitTrimFiltered($str, $delimiter);
+        $arr = self::toNoEmptyArray($str, $sep);
+        foreach ($arr as &$val) {
+            $val = self::toTyped($val, true, $intMaxLen);
+        }
+
+        return $arr;
+    }
+
+    /**
+     * Like explode, but will trim each item and filter empty item.
+     *
+     * @param string $str
+     * @param string $delimiter
+     * @param int $limit
+     *
+     * @return array
+     */
+    public static function splitTrimFiltered(string $str, string $delimiter = ',', int $limit = 0): array
+    {
+        if (!$str = trim($str)) {
+            return [];
+        }
+
+        if (!strpos($str, $delimiter)) {
+            return [$str];
+        }
+
+        $list = $limit < 1 ? explode($delimiter, $str) : explode($delimiter, $str, $limit);
         return array_values(array_filter(array_map('trim', $list), 'strlen'));
     }
 
     /**
      * @param string $string
-     * @param int    $width
+     * @param int $width
      *
      * @return array
      */
@@ -189,20 +398,29 @@ trait StringConvertTrait
         }
 
         mb_convert_variables($encoding, 'utf8', $lines);
-
         return $lines;
     }
 
     /**
      * @param string $str
-     * @param int    $length
      *
-     * @return array|string[]
+     * @return array
+     */
+    public static function splitUtf8(string $str): array
+    {
+        return preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
+     * @param string $str
+     * @param int $length
+     *
+     * @return string[]
      * @link https://www.php.net/manual/zh/function.str-split.php
      */
     public static function splitUnicode(string $str, int $length = 1): array
     {
-        if ($length > 0) {
+        if ($length > 1) {
             $ret = [];
             $len = mb_strlen($str, 'UTF-8');
             for ($i = 0; $i < $len; $i += $length) {
@@ -213,5 +431,27 @@ trait StringConvertTrait
         }
 
         return preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
+     * @param string $str
+     * @param int $length
+     *
+     * @return string[]
+     * @link https://www.php.net/manual/zh/function.str-split.php
+     */
+    public static function splitUnicode2(string $str, int $length = 1): array
+    {
+        $tmp = preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY);
+
+        if ($length > 1) {
+            $chunks = array_chunk($tmp, $length);
+            foreach ($chunks as $i => $chunk) {
+                $chunks[$i] = implode('', (array)$chunk);
+            }
+            $tmp = $chunks;
+        }
+
+        return $tmp;
     }
 }

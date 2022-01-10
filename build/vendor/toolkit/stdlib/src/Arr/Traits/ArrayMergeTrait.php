@@ -10,7 +10,6 @@
 namespace Toolkit\Stdlib\Arr\Traits;
 
 use RuntimeException;
-use function array_key_exists;
 use function array_merge;
 use function array_shift;
 use function is_array;
@@ -23,6 +22,26 @@ use function is_int;
  */
 trait ArrayMergeTrait
 {
+    /**
+     * 替换值合并数组
+     * - 只会将同时存在于两个数组的key，使用第二个数组对应的值替换
+     *
+     * @param array $base
+     * @param array $replacements
+     *
+     * @return array
+     */
+    public static function replace(array $base, array $replacements): array
+    {
+        foreach ($base as $key => $value) {
+            if (isset($replacements[$key])) {
+                $base[$key] = $replacements[$key];
+            }
+        }
+
+        return $base;
+    }
+
     /**
      * quick merge `append` array to `base` array.
      * - Process at most secondary arrays
@@ -40,7 +59,7 @@ trait ArrayMergeTrait
                 if (is_array($item)) {
                     $base[$key] = array_merge($base[$key], $item);
                 } else {
-                    throw new RuntimeException("Array merge error! the '{$key}' must be an array");
+                    throw new RuntimeException("Array merge error! the '$key' must be an array");
                 }
             } else { // set new value OR add new key.
                 $base[$key] = $item;
@@ -51,16 +70,18 @@ trait ArrayMergeTrait
     }
 
     /**
+     * Recursion merge new array to src array.
      * 递归合并两个多维数组,后面的值将会递归覆盖原来的值
      *
-     * @param array|null $src
-     * @param array      $new
+     * @param array $src
+     * @param array $new
+     * @param int $depth max merge depth
      *
      * @return array
      */
-    public static function merge($src, array $new): array
+    public static function merge(array $src, array $new, int $depth = 10): array
     {
-        if (!$src || !is_array($src)) {
+        if (!$src) {
             return $new;
         }
 
@@ -75,8 +96,8 @@ trait ArrayMergeTrait
                 } else {
                     $src[$key] = $value;
                 }
-            } elseif (array_key_exists($key, $src) && is_array($value)) {
-                $src[$key] = self::merge($src[$key], $new[$key]);
+            } elseif ($depth > 0 && isset($src[$key]) && is_array($value)) {
+                $src[$key] = self::merge($src[$key], $value, --$depth);
             } else {
                 $src[$key] = $value;
             }

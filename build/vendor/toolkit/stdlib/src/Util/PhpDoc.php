@@ -11,15 +11,14 @@ namespace Toolkit\Stdlib\Util;
 
 use function array_merge;
 use function in_array;
-use function is_array;
+use function preg_match;
+use function preg_replace;
 use function preg_split;
 use function str_replace;
-use function preg_replace;
-use function preg_match;
 use function substr;
 use function trim;
-use const PREG_SPLIT_NO_EMPTY;
 use const PREG_OFFSET_CAPTURE;
+use const PREG_SPLIT_NO_EMPTY;
 
 /**
  * Class PhpDoc
@@ -29,6 +28,17 @@ use const PREG_OFFSET_CAPTURE;
 class PhpDoc
 {
     /**
+     * @param string $doc
+     * @param array $options
+     *
+     * @return array
+     */
+    public static function getTags(string $doc, array $options = []): array
+    {
+        return self::parseDocs($doc, $options);
+    }
+
+    /**
      * 以下三个方法来自 yii2 console/Controller.php 做了一些调整
      */
 
@@ -36,14 +46,17 @@ class PhpDoc
      * Parses the comment block into tags.
      *
      * @param string $comment The comment block text
-     * @param array  $options
+     * @param array $options
      *                        - 'allow'  // only allowed tags
+     *                        - 'multi'  // allowed multi tag names
      *                        - 'ignore' // ignored tags
      *                        - 'default' => 'description', // default tag name, first line text will attach to it.
      *
+     * @psalm-param array{allow: array, multi: array, ignore: array, default: string} $options
+     *
      * @return array The parsed tags
      */
-    public static function getTags(string $comment, array $options = []): array
+    public static function parseDocs(string $comment, array $options = []): array
     {
         if (!$comment = trim($comment, "/ \n")) {
             return [];
@@ -51,16 +64,22 @@ class PhpDoc
 
         $options = array_merge([
             'allow'   => [], // only allowed tags
-            'ignore'  => ['param', 'return'], // ignore tags
+            'multi'   => [], // allowed multi tags
+            'ignore'  => ['param', 'return'], // ignored tags
             'default' => 'description', // default tag name, first line text will attach to it.
         ], $options);
 
-        $allow   = (array)$options['allow'];
+        $multi   = (array)$options['multi'];
+        $allowed = (array)$options['allow'];
         $ignored = (array)$options['ignore'];
         $default = (string)$options['default'];
 
         $comment = str_replace("\r\n", "\n", $comment);
-        $comment = "@{$default} \n" . str_replace("\r", '', trim(preg_replace('/^\s*\**( |\t)?/m', '', $comment)));
+        $comment = "@$default \n" . str_replace(
+                "\r",
+                '',
+                trim(preg_replace('/^\s*\**( |\t)?/m', '', $comment))
+            );
 
         $tags  = [];
         $parts = preg_split('/^\s*@/m', $comment, -1, PREG_SPLIT_NO_EMPTY);
@@ -73,16 +92,15 @@ class PhpDoc
                 }
 
                 // always allow default tag
-                if ($default !== $name && $allow && !in_array($name, $allow, true)) {
+                if ($default !== $name && $allowed && !in_array($name, $allowed, true)) {
                     continue;
                 }
 
-                if (!isset($tags[$name])) {
-                    $tags[$name] = trim($matches[2]);
-                } elseif (is_array($tags[$name])) {
+                // allow multi tag
+                if ($multi && in_array($name, $multi, true)) {
                     $tags[$name][] = trim($matches[2]);
                 } else {
-                    $tags[$name] = [$tags[$name], trim($matches[2])];
+                    $tags[$name] = trim($matches[2]);
                 }
             }
         }

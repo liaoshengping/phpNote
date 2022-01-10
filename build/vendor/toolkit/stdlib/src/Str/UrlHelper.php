@@ -9,6 +9,8 @@
 
 namespace Toolkit\Stdlib\Str;
 
+use InvalidArgumentException;
+use function implode;
 use function preg_match;
 use function http_build_query;
 use function curl_init;
@@ -46,11 +48,11 @@ class UrlHelper
      */
     public static function isRelative(string $url): bool
     {
-        return false === strpos($url, '//') && strpos($url, '://') === false;
+        return !str_contains($url, '//') && !str_contains($url, '://');
     }
 
     /**
-     * @param $str
+     * @param string $str
      *
      * @return bool
      */
@@ -62,22 +64,59 @@ class UrlHelper
     }
 
     /**
-     * @param $url
+     * @param string $str
+     *
+     * @return bool
+     */
+    public static function isGitUrl(string $str): bool
+    {
+        if (str_starts_with($str, 'git@')) {
+            $str = 'ssh://' . $str;
+        }
+
+        $rule = '/^(http|https|ssh):\/\/(.+@)*([\w\.]+)(:[\d]+)?\/*(.*)/i';
+
+        return preg_match($rule, $str) === 1;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return bool
+     */
+    public static function simpleCheck(string $url): bool
+    {
+        return preg_match('/^(\w+://)(.+@)*([\w\.]+)(:[\d]+)?/*(.*)/', $url) === 1;
+    }
+
+    /**
+     * @param string $url
      *
      * @return bool
      */
     public static function isFullUrl(string $url): bool
     {
-        return 0 === strpos($url, 'http:') || 0 === strpos($url, 'https:') || 0 === strpos($url, '//');
+        return str_starts_with($url, 'http:') || str_starts_with($url, 'https:') || str_starts_with($url, '//');
     }
 
     /**
-     * @param string       $baseUrl
-     * @param array|object $data
+     * @param string $baseUri
+     * @param string ...$paths
      *
      * @return string
      */
-    public static function build(string $baseUrl, $data = null): string
+    public static function joinPath(string $baseUri, string ...$paths): string
+    {
+        return $baseUri . ($paths ? '/' . implode('/', $paths) : '');
+    }
+
+    /**
+     * @param string $baseUrl
+     * @param array $data
+     *
+     * @return string
+     */
+    public static function build(string $baseUrl, array $data = []): string
     {
         if ($data && ($param = http_build_query($data))) {
             if ($baseUrl) {
@@ -91,7 +130,7 @@ class UrlHelper
     }
 
     /**
-     * @param $url
+     * @param string $url
      *
      * @return bool
      */
@@ -111,9 +150,8 @@ class UrlHelper
                 return $statusCode === 200;
             }
         } elseif (function_exists('get_headers')) {
-            $headers = get_headers($url, 1);
-
-            return strpos($headers[0], 200) > 0;
+            $headers = get_headers($url, true);
+            return strpos($headers[0], '200') > 0;
         } else {
             $opts     = [
                 'http' => ['timeout' => 5,]
@@ -195,6 +233,27 @@ class UrlHelper
     }
 
     /**
+     * @param string $url
+     *
+     * @return array
+     */
+    public static function parse2(string $url): array
+    {
+        $info = parse_url($url);
+        if ($info === false) {
+            throw new InvalidArgumentException('invalid request url: ' . $url);
+        }
+
+        return array_merge([
+            'scheme' => 'http',
+            'host'   => '',
+            'port'   => 80,
+            'path'   => '/',
+            'query'  => '',
+        ], $info);
+    }
+
+    /**
      * url_encode form urlencode(),但是 : / ? & = ...... 几个符号不会被转码为 %3A %2F %3F %26 %3D ......
      * $url="ftp://ud03:password@www.xxx.net/中文/中文.rar";
      * $url1 =  url_encode1($url);
@@ -202,23 +261,21 @@ class UrlHelper
      * $url2 =  urldecode($url);
      * echo $url1.PHP_EOL.$url2.PHP_EOL;
      *
-     * @param $url
+     * @param string $url
      *
-     * @return mixed|string
+     * @return string
      */
-    public static function encode(string $url)
+    public static function encode(string $url): string
     {
         if (!$url = trim($url)) {
             return $url;
         }
 
         // 若已被编码的url，将被解码，再继续重新编码
-        $url = urldecode($url);
+        $decodeUrl = urldecode($url);
+        $encodeUrl = urlencode($decodeUrl);
 
-        $encodeUrl = urlencode($url);
-        $encodeUrl = str_replace(self::$entities, self::$replacements, $encodeUrl);
-
-        return $encodeUrl;
+        return str_replace(self::$entities, self::$replacements, $encodeUrl);
     }
 
     /**
@@ -231,9 +288,9 @@ class UrlHelper
      *
      * @param string $url
      *
-     * @return mixed|string
+     * @return string
      */
-    public static function encode2(string $url)
+    public static function encode2(string $url): string
     {
         if (!$url = trim($url)) {
             return $url;
@@ -244,8 +301,6 @@ class UrlHelper
 
         $encodeUrl = rawurlencode(mb_convert_encoding($url, 'utf-8'));
         // $url  = rawurlencode($url);
-        $encodeUrl = str_replace(self::$entities, self::$replacements, $encodeUrl);
-
-        return $encodeUrl;
+        return str_replace(self::$entities, self::$replacements, $encodeUrl);
     }
 }

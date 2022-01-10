@@ -12,6 +12,7 @@ namespace Toolkit\Cli\Color;
 use Toolkit\Cli\Color;
 use function preg_match_all;
 use function preg_replace;
+use function preg_replace_callback;
 use function sprintf;
 use function str_replace;
 use function strpos;
@@ -26,7 +27,8 @@ class ColorTag
     // regex used for removing color tags
     public const STRIP_TAG = '/<[\/]?[a-zA-Z0-9=;]+>/';
 
-    // Regex to match tags/
+    // Regex to match tags
+    // TIP: `?` - 非贪婪匹配; 若不加，会导致有多个相同标签时，第一个开始会匹配到最后一个的关闭
     public const MATCH_TAG = '/<([a-zA-Z0-9=;_]+)>(.*?)<\/\\1>/s';
 
     // color
@@ -86,7 +88,7 @@ class ColorTag
      */
     public static function wrap(string $text, string $tag): string
     {
-        if (!$text || !$tag) {
+        if ($text === '' || !$tag) {
             return $text;
         }
 
@@ -109,10 +111,11 @@ class ColorTag
 
     /**
      * @param string $text
+     * @param bool   $recursive parse nested tags
      *
      * @return string
      */
-    public static function parse(string $text): string
+    public static function parse(string $text, bool $recursive = false): string
     {
         if (!$text || false === strpos($text, '</')) {
             return $text;
@@ -123,24 +126,41 @@ class ColorTag
             return self::strip($text);
         }
 
-        // match color tags
-        if (!$matches = self::matchAll($text)) {
-            return $text;
-        }
+        return self::pregReplaceTags($text, $recursive);
+    }
 
-        foreach ((array)$matches[0] as $i => $m) {
-            $key = $matches[1][$i];
+    /**
+     * @param string $text
+     * @param bool   $recursive
+     *
+     * @return string
+     */
+    public static function pregReplaceTags(string $text, bool $recursive = false): string
+    {
+        return preg_replace_callback(self::MATCH_TAG, static function (array $match) use ($recursive) {
+            $colorCode = '';
+            $tagName   = $match[1];
 
-            if (isset(Color::STYLES[$key])) {
-                $text = self::replaceColor($text, $key, $matches[2][$i], Color::STYLES[$key]);
-
-                /** Custom style format @see Color::stringToCode() */
-            } elseif (strpos($key, '=')) {
-                $text = self::replaceColor($text, $key, $matches[2][$i], Color::stringToCode($key));
+            if (isset(Color::STYLES[$tagName])) {
+                $colorCode = Color::STYLES[$tagName];
+            } elseif (strpos($tagName, '=')) {
+                $colorCode = Color::stringToCode($tagName);
             }
-        }
 
-        return $text;
+            // enhance: support parse nested tags
+            $body = $match[2];
+            if ($recursive && false !== strpos($body, '</')) {
+                $body = self::pregReplaceTags($body, $recursive);
+            }
+
+            // wrap body with color codes
+            if ($colorCode) {
+                return sprintf("\033[%sm%s\033[0m", $colorCode, $body);
+            }
+
+            // return raw contents.
+            return $match[0];
+        }, $text);
     }
 
     /**

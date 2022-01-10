@@ -13,11 +13,18 @@ use ArrayAccess;
 use Closure;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionFunctionAbstract;
 use ReflectionMethod;
+use ReflectionNamedType;
 use RuntimeException;
+use Toolkit\Stdlib\Helper\PhpHelper;
 use Traversable;
+use UnexpectedValueException;
 use function base64_decode;
 use function base64_encode;
+use function basename;
+use function dirname;
+use function gettype;
 use function gzcompress;
 use function gzuncompress;
 use function is_array;
@@ -30,6 +37,9 @@ use function method_exists;
 use function property_exists;
 use function serialize;
 use function spl_object_hash;
+use function sprintf;
+use function str_replace;
+use function strpos;
 use function ucfirst;
 use function unserialize;
 
@@ -47,7 +57,7 @@ class ObjectHelper
      * - 会先尝试用 setter 方法设置属性
      * - 再尝试直接设置属性
      *
-     * @param mixed $object An object instance
+     * @param object|mixed $object An object instance
      * @param array $options
      *
      * @return mixed
@@ -90,12 +100,27 @@ class ObjectHelper
     /**
      * 给对象设置属性值
      *
-     * @param       $object
+     * @param object|mixed  $object
      * @param array $options
      */
     public static function setAttrs($object, array $options): void
     {
         self::configure($object, $options);
+    }
+
+    /**
+     * @param object|mixed $object
+     * @param array $data
+     *
+     * @throws ReflectionException
+     */
+    public static function mappingProps($object, array $data): void
+    {
+        $rftObj = PhpHelper::reflectClass($object);
+        foreach ($rftObj->getProperties() as $rftProp) {
+            // TODO
+            // $typeName = $rftProp->getType()
+        }
     }
 
     /**
@@ -158,7 +183,7 @@ class ObjectHelper
     }
 
     /**
-     * @param object $object
+     * @param object|mixed $object
      *
      * @return bool
      */
@@ -169,11 +194,11 @@ class ObjectHelper
 
     /**
      * @param mixed $object
-     * @param bool  $unique
+     * @param bool $unique
      *
      * @return string
      */
-    public static function hash($object, $unique = true): string
+    public static function hash($object, bool $unique = true): string
     {
         if (is_object($object)) {
             $hash = spl_object_hash($object);
@@ -190,56 +215,62 @@ class ObjectHelper
     }
 
     /**
-     * @from https://github.com/ventoviro/windwalker
-     * Build an array of constructor parameters.
+     * Build an array of class method parameters.
      *
-     * @param ReflectionMethod $method Method for which to build the argument array.
-     * @param array            $extraArgs
+     * @param ReflectionFunctionAbstract $rftFunc
+     * @param array                      $provideArgs
+     *
+     * @psalm-param array<string, mixed> $provideArgs
      *
      * @return array
-     * @throws RuntimeException
      * @throws ReflectionException
      */
-    public static function getMethodArgs(ReflectionMethod $method, array $extraArgs = []): array
+    public static function buildReflectCallArgs(ReflectionFunctionAbstract $rftFunc, array $provideArgs = []): array
     {
-        $methodArgs = [];
+        $funcArgs = [];
+        foreach ($rftFunc->getParameters() as $param) {
+            $name = $param->getName();
+            $pType = $param->getType();
+            if (!$pType instanceof ReflectionNamedType) {
+                if ($param->isOptional()) {
+                    $funcArgs[] = $param->getDefaultValue();
+                    continue;
+                }
 
-        foreach ($method->getParameters() as $idx => $param) {
-            // if user have been provide arg
-            if (isset($extraArgs[$idx])) {
-                $methodArgs[] = $extraArgs[$idx];
+                throw new RuntimeException(sprintf(
+                    'Could not resolve the %dth parameter(%s)',
+                    $param->getPosition(),
+                    $name
+                ));
+            }
+
+            // filling by param type. eg: an class name
+            $typeName = $pType->getName();
+            if ($typeName !== Closure::class && isset($provideArgs[$typeName])) {
+                $funcArgs[] = $provideArgs[$typeName];
                 continue;
             }
 
-            $dependencyClass = $param->getClass();
-
-            // If we have a dependency, that means it has been type-hinted.
-            if ($dependencyClass && ($depClass = $dependencyClass->getName()) !== Closure::class) {
-                $depClass  = $dependencyClass->getName();
-                $depObject = self::create($depClass);
-
-                if ($depObject instanceof $depClass) {
-                    $methodArgs[] = $depObject;
-                    continue;
-                }
+            // filling by param name and type is same.
+            if (isset($provideArgs[$name]) && $typeName === gettype($provideArgs[$name])) {
+                $funcArgs[] = $provideArgs[$name];
+                continue;
             }
 
             // Finally, if there is a default parameter, use it.
             if ($param->isOptional()) {
-                $methodArgs[] = $param->getDefaultValue();
+                $funcArgs[] = $param->getDefaultValue();
                 continue;
             }
 
-            // $dependencyVarName = $param->getName();
-            // Couldn't resolve dependency, and no default was provided.
             throw new RuntimeException(sprintf(
-                'Could not resolve dependency: %s for the %dth parameter',
+                'Could not resolve the %dth parameter(%s)',
                 $param->getPosition(),
-                $param->getName()
+                $name
             ));
         }
 
-        return $methodArgs;
+        return $funcArgs;
     }
 
     /**
@@ -280,6 +311,7 @@ class ObjectHelper
      */
     public static function createByArray($config)
     {
+        // is class name.
         if (is_string($config)) {
             return new $config;
         }
@@ -295,5 +327,100 @@ class ObjectHelper
         }
 
         return null;
+    }
+
+    /**
+     * Build an array of class method parameters.
+     *
+     * @param ReflectionMethod $method      Method for which to build the argument array.
+     * @param array            $provideArgs Manual provide params map.
+     *
+     * @return array
+     * @throws RuntimeException
+     * @throws ReflectionException
+     */
+    public static function getMethodArgs(ReflectionMethod $method, array $provideArgs = []): array
+    {
+        $methodArgs = [];
+
+        foreach ($method->getParameters() as $idx => $param) {
+            // if user have been provide arg
+            if (isset($provideArgs[$idx])) {
+                $methodArgs[] = $provideArgs[$idx];
+                continue;
+            }
+
+            // $depRftClass = $param->getClass();
+            $depRftClass = $param->getType();
+
+            // If we have a dependency, that means it has been type-hinted.
+            if ($depRftClass && ($depClass = $depRftClass->getName()) !== Closure::class) {
+                $depObject = self::create($depClass);
+
+                if ($depObject instanceof $depClass) {
+                    $methodArgs[] = $depObject;
+                    continue;
+                }
+            }
+
+            // Finally, if there is a default parameter, use it.
+            if ($param->isOptional()) {
+                $methodArgs[] = $param->getDefaultValue();
+                continue;
+            }
+
+            // $dependencyVarName = $param->getName();
+            // Couldn't resolve dependency, and no default was provided.
+            throw new RuntimeException(sprintf(
+                'Could not resolve dependency: %s for the %dth parameter',
+                $param->getName(),
+                $param->getPosition()
+            ));
+        }
+
+        return $methodArgs;
+    }
+
+    /**
+     * Get class namespace
+     *
+     * @param string $fullClass
+     *
+     * @return string
+     */
+    public static function spaceName(string $fullClass): string
+    {
+        $fullClass = str_replace('\\', '/', $fullClass);
+
+        return strpos($fullClass, '/') ? dirname($fullClass) : '';
+    }
+
+    /**
+     * Get class name without namespace.
+     *
+     * @param string $fullClass
+     *
+     * @return string
+     */
+    public static function className(string $fullClass): string
+    {
+        $fullClass = str_replace('\\', '/', $fullClass);
+
+        return basename($fullClass);
+    }
+
+    /**
+     * @param object $obj
+     * @param string $errMsg
+     *
+     * @return object
+     */
+    public static function requireNotNull($obj, string $errMsg = '')
+    {
+        if ($obj === null) {
+            throw new UnexpectedValueException($errMsg ?: 'object must not be null');
+        }
+
+        return $obj;
     }
 }

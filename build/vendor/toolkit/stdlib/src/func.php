@@ -113,3 +113,16 @@ if (!function_exists('eprints')) {
         echo Toolkit\Stdlib\Php::exportVar(...$vars), PHP_EOL;
     }
 }
+
+if (!function_exists('env_val')) {
+    /**
+     * @param string $key
+     * @param string $default
+     *
+     * @return string
+     */
+    function env_val(string $key, string $default = ''): string
+    {
+        return Toolkit\Stdlib\OS::getEnvStrVal($key, $default);
+    }
+}

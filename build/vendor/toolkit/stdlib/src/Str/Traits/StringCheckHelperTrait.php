@@ -9,13 +9,17 @@
 
 namespace Toolkit\Stdlib\Str\Traits;
 
+use Toolkit\Stdlib\Str\StringHelper;
 use function function_exists;
 use function is_array;
 use function is_string;
 use function mb_strpos;
 use function mb_strrpos;
 use function preg_match;
+use function str_ends_with;
+use function str_starts_with;
 use function stripos;
+use function strlen;
 use function strpos;
 use function strrpos;
 use function strtolower;
@@ -28,9 +32,30 @@ use function trim;
  */
 trait StringCheckHelperTrait
 {
-    ////////////////////////////////////////////////////////////////////////
-    /// Check value
-    ////////////////////////////////////////////////////////////////////////
+    /**
+     * check is bool string. eg: 'true', 'false'
+     *
+     * @param string $str
+     *
+     * @return bool
+     */
+    public static function isBool(string $str): bool
+    {
+        return false !== stripos(StringHelper::TRUE_WORDS, "|$str|")
+            || false !== stripos(StringHelper::FALSE_WORDS, "|$str|");
+    }
+
+    /**
+     * check is null string. eg: 'Null', 'null'
+     *
+     * @param string $str
+     *
+     * @return bool
+     */
+    public static function isNull(string $str): bool
+    {
+        return false !== stripos('|null|', "|$str|");
+    }
 
     /**
      * @param string $string
@@ -52,6 +77,16 @@ trait StringCheckHelperTrait
      * @param string|array $needle
      * @return bool
      */
+    public static function notContains(string $string, $needle): bool
+    {
+        return !self::has($string, $needle);
+    }
+
+    /**
+     * @param string       $string
+     * @param string|array $needle
+     * @return bool
+     */
     public static function contains(string $string, $needle): bool
     {
         return self::has($string, $needle);
@@ -65,18 +100,48 @@ trait StringCheckHelperTrait
     public static function has(string $string, $needle): bool
     {
         if (is_string($needle)) {
-            return strpos($string, $needle) !== false;
+            return str_contains($string, $needle);
         }
 
         if (is_array($needle)) {
             foreach ((array)$needle as $item) {
-                if (strpos($string, $item) !== false) {
+                if (str_contains($string, $item)) {
                     return true;
                 }
             }
         }
-
         return false;
+    }
+
+    /**
+     * @param string       $string
+     * @param string|array $needle
+     * @return bool
+     */
+    public static function containsAll(string $string, $needle): bool
+    {
+        return self::hasAll($string, $needle);
+    }
+
+    /**
+     * @param string       $string
+     * @param string|array $needle
+     * @return bool
+     */
+    public static function hasAll(string $string, $needle): bool
+    {
+        if (is_string($needle)) {
+            return str_contains($string, $needle);
+        }
+
+        if (is_array($needle)) {
+            foreach ((array)$needle as $item) {
+                if (!str_contains($string, $item)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -111,8 +176,30 @@ trait StringCheckHelperTrait
                 }
             }
         }
-
         return false;
+    }
+
+    /**
+     * Check all substr must in the haystack, will ignore case
+     *
+     * @param string       $haystack
+     * @param string|array $needle
+     * @return bool
+     */
+    public static function iHasAll(string $haystack, $needle): bool
+    {
+        if (is_string($needle)) {
+            return stripos($haystack, $needle) !== false;
+        }
+
+        if (is_array($needle)) {
+            foreach ((array)$needle as $item) {
+                if (stripos($haystack, $item) === false) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -191,26 +278,186 @@ trait StringCheckHelperTrait
 
     /**
      * @param string $str
-     * @param string $prefix
+     * @param string $needle
      *
      * @return bool
      */
-    public static function hasPrefix(string $str, string $prefix): bool
+    public static function startWith(string $str, string $needle): bool
     {
-        return self::strpos($str, $prefix) === 0;
+        return self::hasPrefix($str, $needle);
     }
 
     /**
      * @param string $str
-     * @param string $suffix
+     * @param string $needle
      *
      * @return bool
      */
-    public static function hasSuffix(string $str, string $suffix): bool
+    public static function hasPrefix(string $str, string $needle): bool
     {
-        $pos = self::strpos($str, $suffix);
+        return str_starts_with($str, $needle);
+    }
 
-        return $pos !== false && self::substr($str, - self::strlen($suffix)) === $suffix;
+    /**
+     * @param string $str
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function isStartWithIC(string $str, string $needle): bool
+    {
+        return self::hasPrefixIC($str, $needle);
+    }
+
+    /**
+     * @param string $str
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function startWithIC(string $str, string $needle): bool
+    {
+        return self::hasPrefixIC($str, $needle);
+    }
+
+    /**
+     * ignore case, the passed $str ends with the $needle string
+     *
+     * @param string $str
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function hasPrefixIC(string $str, string $needle): bool
+    {
+        return stripos($str, $needle) === 0;
+    }
+
+    /**
+     * check $str is start withs one of $needle
+     *
+     * @param string $str
+     * @param string|array $needle
+     *
+     * @return bool
+     */
+    public static function isStartWiths(string $str, $needle): bool
+    {
+        if (is_array($needle)) {
+            foreach ($needle as $sub) {
+                if (str_starts_with($str, $sub)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        return str_starts_with($str, $needle);
+    }
+
+    /**
+     * @param string $str
+     * @param string|array $needle
+     *
+     * @return bool
+     */
+    public static function startWiths(string $str, $needle): bool
+    {
+        return self::isStartWiths($str, $needle);
+    }
+
+    /**
+     * @param string $str
+     * @param string[] $needles
+     *
+     * @return bool
+     */
+    public static function hasPrefixes(string $str, array $needles): bool
+    {
+        return self::isStartWiths($str, $needles);
+    }
+
+    /**
+     * the passed $str ends with the $needle string
+     *
+     * @param string $str
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function hasSuffix(string $str, string $needle): bool
+    {
+        return str_ends_with($str, $needle);
+    }
+
+    /**
+     * @param string $str
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function endWithIC(string $str, string $needle): bool
+    {
+        return self::hasSuffixIC($str, $needle);
+    }
+
+    /**
+     * ignore case, check $str is ends with the $needle string
+     *
+     * @param string $str
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function hasSuffixIC(string $str, string $needle): bool
+    {
+        $pos = stripos($str, $needle);
+
+        return $pos !== false && $pos + strlen($needle) === strlen($str);
+    }
+
+    /**
+     * @param string $str
+     * @param string|array $needle
+     *
+     * @return bool
+     */
+    public static function endWiths(string $str, $needle): bool
+    {
+        return self::hasSuffixes($str, $needle);
+    }
+
+    /**
+     * @param string $str
+     * @param string|array $needle
+     *
+     * @return bool
+     */
+    public static function isEndWiths(string $str, $needle): bool
+    {
+        return self::hasSuffixes($str, $needle);
+    }
+
+    /**
+     * Assert is start withs one
+     *
+     * @param string $str
+     * @param string|array $needles
+     *
+     * @return bool
+     */
+    public static function hasSuffixes(string $str, $needles): bool
+    {
+        if (is_array($needles)) {
+            foreach ($needles as $needle) {
+                if (str_ends_with($str, $needle)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        return str_ends_with($str, $needles);
     }
 
     /**

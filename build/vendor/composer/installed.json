@@ -916,17 +916,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.31",
-            "version_normalized": "4.4.31.0",
+            "version": "v4.4.36",
+            "version_normalized": "4.4.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "43ede438d4cb52cd589ae5dc070e9323866ba8e0"
+                "reference": "346e1507eeb3f566dcc7a116fefaa407ee84691b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/43ede438d4cb52cd589ae5dc070e9323866ba8e0",
-                "reference": "43ede438d4cb52cd589ae5dc070e9323866ba8e0",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/346e1507eeb3f566dcc7a116fefaa407ee84691b",
+                "reference": "346e1507eeb3f566dcc7a116fefaa407ee84691b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -945,7 +945,7 @@
             "require-dev": {
                 "symfony/http-kernel": "^3.4|^4.0|^5.0"
             },
-            "time": "2021-09-24T13:30:14+00:00",
+            "time": "2021-11-29T08:40:48+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -973,7 +973,7 @@
             "description": "Provides tools to ease debugging PHP code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/debug/tree/v4.4.31"
+                "source": "https://github.com/symfony/debug/tree/v4.4.36"
             },
             "funding": [
                 {
@@ -1069,17 +1069,17 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.30",
-            "version_normalized": "4.4.30.0",
+            "version": "v4.4.36",
+            "version_normalized": "4.4.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "70362f1e112280d75b30087c7598b837c1b468b6"
+                "reference": "1fef05633cd61b629e963e5d8200fb6b67ecf42c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/70362f1e112280d75b30087c7598b837c1b468b6",
-                "reference": "70362f1e112280d75b30087c7598b837c1b468b6",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/1fef05633cd61b629e963e5d8200fb6b67ecf42c",
+                "reference": "1fef05633cd61b629e963e5d8200fb6b67ecf42c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1092,7 +1092,7 @@
                 "php": ">=7.1.3",
                 "symfony/polyfill-php80": "^1.16"
             },
-            "time": "2021-08-04T20:31:23+00:00",
+            "time": "2021-12-15T10:33:10+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1120,7 +1120,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v4.4.30"
+                "source": "https://github.com/symfony/finder/tree/v4.4.36"
             },
             "funding": [
                 {
@@ -1140,17 +1140,17 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.23.1",
-            "version_normalized": "1.23.1.0",
+            "version": "v1.24.0",
+            "version_normalized": "1.24.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
+                "reference": "0abb51d2f102e00a4eefcf46ba7fec406d245825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9174a3d80210dca8daa7f31fec659150bbeabfc6",
-                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/0abb51d2f102e00a4eefcf46ba7fec406d245825",
+                "reference": "0abb51d2f102e00a4eefcf46ba7fec406d245825",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1162,10 +1162,13 @@
             "require": {
                 "php": ">=7.1"
             },
+            "provide": {
+                "ext-mbstring": "*"
+            },
             "suggest": {
                 "ext-mbstring": "For best performance"
             },
-            "time": "2021-05-27T12:26:48+00:00",
+            "time": "2021-11-30T18:21:41+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1209,7 +1212,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.1"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.24.0"
             },
             "funding": [
                 {
@@ -1229,17 +1232,17 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.23.1",
-            "version_normalized": "1.23.1.0",
+            "version": "v1.24.0",
+            "version_normalized": "1.24.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be"
+                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/1100343ed1a92e3a38f9ae122fc0eb21602547be",
-                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/57b712b08eddb97c762a8caa32c84e037892d2e9",
+                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1251,7 +1254,7 @@
             "require": {
                 "php": ">=7.1"
             },
-            "time": "2021-07-28T13:41:28+00:00",
+            "time": "2021-09-13T13:58:33+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1301,7 +1304,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.23.1"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.24.0"
             },
             "funding": [
                 {
@@ -1321,17 +1324,17 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v5.4.1",
-            "version_normalized": "5.4.1.0",
+            "version": "v5.4.2",
+            "version_normalized": "5.4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "8c82cd35ed861236138d5ae1c78c0c7ebcd62107"
+                "reference": "ff8bb2107b6a549dc3c5dd9c498dcc82c9c098ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/8c82cd35ed861236138d5ae1c78c0c7ebcd62107",
-                "reference": "8c82cd35ed861236138d5ae1c78c0c7ebcd62107",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/ff8bb2107b6a549dc3c5dd9c498dcc82c9c098ca",
+                "reference": "ff8bb2107b6a549dc3c5dd9c498dcc82c9c098ca",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1376,7 +1379,7 @@
                 "symfony/config": "",
                 "symfony/yaml": ""
             },
-            "time": "2021-12-05T20:33:52+00:00",
+            "time": "2021-12-25T19:45:36+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1407,7 +1410,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v5.4.1"
+                "source": "https://github.com/symfony/translation/tree/v5.4.2"
             },
             "funding": [
                 {
@@ -1514,17 +1517,17 @@
         },
         {
             "name": "toolkit/cli-utils",
-            "version": "v1.2.10",
-            "version_normalized": "1.2.10.0",
+            "version": "v1.2.14",
+            "version_normalized": "1.2.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-toolkit/cli-utils.git",
-                "reference": "909008ec32b33c6b248adb700f060ac27b588794"
+                "reference": "c1e9e0d25d32400536d9b5496c02b1eee19c8c29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-toolkit/cli-utils/zipball/909008ec32b33c6b248adb700f060ac27b588794",
-                "reference": "909008ec32b33c6b248adb700f060ac27b588794",
+                "url": "https://api.github.com/repos/php-toolkit/cli-utils/zipball/c1e9e0d25d32400536d9b5496c02b1eee19c8c29",
+                "reference": "c1e9e0d25d32400536d9b5496c02b1eee19c8c29",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1537,12 +1540,15 @@
                 "php": ">7.1.0"
             },
             "require-dev": {
+                "ext-posix": "*",
+                "ext-readline": "*",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5"
             },
             "suggest": {
-                "inhere/console": "a lightweight php console application library."
+                "inhere/console": "a lightweight php console application library.",
+                "toolkit/pflag": "Command line flag parse library of the php"
             },
-            "time": "2021-08-06T14:39:02+00:00",
+            "time": "2021-10-30T07:02:24+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1570,21 +1576,25 @@
                 "php",
                 "tool"
             ],
+            "support": {
+                "issues": "https://github.com/php-toolkit/cli-utils/issues",
+                "source": "https://github.com/php-toolkit/cli-utils/tree/v1.2.14"
+            },
             "install-path": "../toolkit/cli-utils"
         },
         {
             "name": "toolkit/stdlib",
-            "version": "v1.0.17",
-            "version_normalized": "1.0.17.0",
+            "version": "v1.2.0",
+            "version_normalized": "1.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-toolkit/stdlib.git",
-                "reference": "234bbaff905ccc804680c6486d84d283db27405b"
+                "reference": "a33c3ccc63f388c81a75d0fec3893c9d0212286b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-toolkit/stdlib/zipball/234bbaff905ccc804680c6486d84d283db27405b",
-                "reference": "234bbaff905ccc804680c6486d84d283db27405b",
+                "url": "https://api.github.com/repos/php-toolkit/stdlib/zipball/a33c3ccc63f388c81a75d0fec3893c9d0212286b",
+                "reference": "a33c3ccc63f388c81a75d0fec3893c9d0212286b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1595,12 +1605,13 @@
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">7.1.0"
+                "php": ">7.1.0",
+                "symfony/polyfill-php80": "~1.0"
             },
             "suggest": {
                 "inhere/php-validate": "Very lightweight data validate tool"
             },
-            "time": "2021-08-07T02:34:53+00:00",
+            "time": "2021-12-02T14:51:12+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1632,21 +1643,25 @@
                 "string",
                 "tool"
             ],
+            "support": {
+                "issues": "https://github.com/php-toolkit/stdlib/issues",
+                "source": "https://github.com/php-toolkit/stdlib/tree/v1.2.0"
+            },
             "install-path": "../toolkit/stdlib"
         },
         {
             "name": "toolkit/sys-utils",
-            "version": "v1.2.7",
-            "version_normalized": "1.2.7.0",
+            "version": "v1.2.8",
+            "version_normalized": "1.2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-toolkit/sys-utils.git",
-                "reference": "c294cca060b7ba8b4b161bf33df76a344e0b8796"
+                "reference": "594725f5145a46d0e69568138754fe2e9cfe00c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-toolkit/sys-utils/zipball/c294cca060b7ba8b4b161bf33df76a344e0b8796",
-                "reference": "c294cca060b7ba8b4b161bf33df76a344e0b8796",
+                "url": "https://api.github.com/repos/php-toolkit/sys-utils/zipball/594725f5145a46d0e69568138754fe2e9cfe00c1",
+                "reference": "594725f5145a46d0e69568138754fe2e9cfe00c1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1663,7 +1678,7 @@
                 "inhere/console": "a lightweight php console application library.",
                 "inhere/php-validate": "Very lightweight data validate tool"
             },
-            "time": "2021-07-25T16:01:25+00:00",
+            "time": "2021-10-12T12:36:42+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1687,8 +1702,13 @@
             "keywords": [
                 "library",
                 "php",
+                "system",
                 "tool"
             ],
+            "support": {
+                "issues": "https://github.com/php-toolkit/sys-utils/issues",
+                "source": "https://github.com/php-toolkit/sys-utils/tree/v1.2.8"
+            },
             "install-path": "../toolkit/sys-utils"
         }
     ],

@@ -64,50 +64,113 @@ class StrBuffer
         $this->write($str);
     }
 
+    /**
+     * @param string $content
+     *
+     * @return self
+     */
+    public function write(string $content): self
+    {
+        $this->parts[] = $content;
+        return $this;
+    }
+
+    /**
+     * @param string $fmt
+     * @param mixed  ...$args
+     *
+     * @return self
+     */
+    public function writef(string $fmt, ...$args): self
+    {
+        $this->parts[] = sprintf($fmt, ...$args);
+        return $this;
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return self
+     */
+    public function writeln(string $content): self
+    {
+        $this->parts[] = $content . "\n";
+        return $this;
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return self
+     */
+    public function append(string $content): self
+    {
+        $this->write($content);
+        return $this;
+    }
+
+    /**
+     * @param string ...$contents
+     *
+     * @return self
+     */
+    public function appends(string ...$contents): self
+    {
+        foreach ($contents as $content) {
+            $this->parts[] = $content;
+        }
+        return $this;
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return self
+     */
+    public function prepend(string $content): self
+    {
+        array_unshift($this->parts, $content);
+        return $this;
+    }
+
+    /**
+     * @param string ...$contents
+     *
+     * @return self
+     */
+    public function prepends(string ...$contents): self
+    {
+        array_unshift($this->parts, ...$contents);
+        return $this;
+    }
+
     public function reset(): void
     {
         $this->parts = [];
     }
 
     /**
-     * @param string $content
+     * Get and clear data
+     *
+     * @return string
      */
-    public function write(string $content): void
+    public function fetch(): string
     {
-        $this->parts[] = $content;
+        $strings = $this->parts;
+        // clear
+        $this->parts = [];
+
+        return implode($strings);
     }
 
     /**
-     * @param string $fmt
-     * @param mixed  ...$args
+     * Get and clear data
+     *
+     * @return string
      */
-    public function writef(string $fmt, ...$args): void
+    public function getAndClear(): string
     {
-        $this->parts[] = sprintf($fmt, ...$args);
-    }
-
-    /**
-     * @param string $content
-     */
-    public function writeln(string $content): void
-    {
-        $this->parts[] = $content . "\n";
-    }
-
-    /**
-     * @param string $content
-     */
-    public function append(string $content): void
-    {
-        $this->write($content);
-    }
-
-    /**
-     * @param string $content
-     */
-    public function prepend(string $content): void
-    {
-        array_unshift($this->parts, $content);
+        return $this->fetch();
     }
 
     /**
@@ -115,11 +178,7 @@ class StrBuffer
      */
     public function clear(): string
     {
-        $strings = $this->parts;
-        // clear
-        $this->parts = [];
-
-        return implode($strings);
+        return $this->getAndClear();
     }
 
     /**
@@ -131,11 +190,21 @@ class StrBuffer
     }
 
     /**
+     * @param string $sep
+     *
+     * @return string
+     */
+    public function join(string $sep): string
+    {
+        return implode($sep, $this->parts);
+    }
+
+    /**
      * @return string
      */
     public function toString(): string
     {
-        return implode($this->parts);
+        return implode('', $this->parts);
     }
 
     /**
