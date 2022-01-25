@@ -18,36 +18,70 @@
                 @endisset
             </div>
             <?php
-                $width = round(100/count($items),2);
 
+            $width = round(100 / count($items), 2);
+            if (!empty($row)) {
+                $width = $width * $row;
+            }else{
+                $row = 1;
+            }
             ?>
-                <div class="d-flex  w-100 " data-aos="fade-up" data-aos-delay="600">
-                    @foreach($items as $key => $item)
-                        <div class="d-flex justify-content-around" data-aos="fade-up"
-                             data-aos-delay="{{$key}}000" style="width: {{$width}}%" >
-                            <div class="d-flex justify-content-center flex-column align-items-center">
-                                <div class="mt-2 mx-1">
-                                    <img class="rounded-2" src="{{$item['image_url']}}">
-                                </div>
-                                @isset($item['title'])
-                                    <div class="mt-2">
-                                        <h6>{{$item['title']}}</h6>
+            <div class="d-flex  w-100 flex-md-wrap flex-sm-wrap " style="flex-wrap: wrap" data-aos="fade-up" data-aos-delay="600" >
+                @foreach($items as $key => $item)
+                    <div class="d-flex justify-content-around " data-aos="fade-up"
+                         data-aos-delay="{{$key}}000" >
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <div class="mt-2 mx-1" style="position: relative ;">
+                                @if(!empty($item['image_center_icon']))
+                                    <div style="position: absolute;width: 100%;height:100%;display: flex;justify-content: center;align-items: center">
+                                        <div>
+                                            <img src="{{$item['image_center_icon']}}">
+                                            @if(!empty($item['center_text']))
+                                                <div style="color: white;text-align: center">{{$item['center_text']}}</div>
+                                            @endif
+                                        </div>
                                     </div>
-                                @endisset
 
-                                @isset($item['title_sub'])
-                                    <div class="d-flex justify-content-center flex-column align-items-center">
-                                        {!! $item['title_sub'] !!}
-                                    </div>
-                                @endisset
+                                @endif
+                                <img class="rounded-2" style="
+                                @if(!empty($item['image_width']))
+                                        width:{{$item['image_width']}}
+                                @endif
+                                        " src="{{$item['image_url']}}">
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                            @isset($item['title'])
+                                <div class="mt-2">
+                                    <h6>{{$item['title']}}</h6>
+                                </div>
+                            @endisset
 
+                            @isset($item['title_sub'])
+                                <div class="d-flex justify-content-center flex-column align-items-center">
+                                    {!! $item['title_sub'] !!}
+                                </div>
+                            @endisset
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
 
         </div>
     </div>
 
 </div>
+
+<style>
+    {{--style="width: calc(calc(100% / {{count($items)/$row}}) - 10px)"--}}
+    ._width{
+        width: {{$width}}%;
+    }
+
+    /*@media screen and (max-width: 992px) {*/
+
+    /*    ._width{*/
+    /*        width: 50%;*/
+    /*    }*/
+    /*}*/
+
+</style>

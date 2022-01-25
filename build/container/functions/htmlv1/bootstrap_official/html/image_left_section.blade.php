@@ -5,13 +5,27 @@
 @if(isset($bg_color))
 {{$bg_color}}
 @else
+        @if(empty($bg_style))
         bg-milky
 @endif
 
-        ">
+@endif
+
+        "
+style="
+@if(isset($bg_style))
+{{$bg_style}}
+@endif
+"
+>
     <div class="container">
 
         <div class="row align-items-center mb-n6">
+            @isset($big_title)
+                <div data-aos="fade-up" data-aos-delay="100" style="font-size: 40px; margin-bottom: 20px" class="col-lg-12 d-flex justify-content-center">
+                    {{$big_title}}
+                </div>
+            @endisset
 
             <div class="col-lg-5 mb-6">
                 <!-- About Thumb Start -->
@@ -25,7 +39,9 @@
 
                 <!-- About Content Start  -->
                 <div class="about-content" data-aos="fade-up" data-aos-delay="600">
+
                     <div class="about-title">
+
                         @isset($title)
                             {!! $title !!}
                         @endisset

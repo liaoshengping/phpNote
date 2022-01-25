@@ -19520,7 +19520,7 @@ input[type="checkbox"]:checked + label:after {
 }
 
 .testimonial-carousel .testimonial-gallery-thumbs {
-    width: 290px;
+    width: 450px;
     margin: 0 auto
 }
 
@@ -20070,6 +20070,9 @@ input[type="checkbox"]:checked + label:after {
     .main-menu > ul > li + li {
         margin-left: 25px
     }
+    .md-none{
+        display: none;
+    }
 }
 
 .main-menu > ul > li > a {
@@ -20167,6 +20170,14 @@ input[type="checkbox"]:checked + label:after {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .mega-menu {
         width: 960px
+
+    }
+
+}
+@media screen and (max-width: 992px) {
+
+    .md-none{
+        display: none;
     }
 }
 
@@ -21982,7 +21993,7 @@ input[type="checkbox"]:checked + label:after {
 }
 
 .about-content .about-title {
-    font-size: 48px;
+    font-size: 30px;
     color: #222222;
     display: block;
     line-height: 1.1;

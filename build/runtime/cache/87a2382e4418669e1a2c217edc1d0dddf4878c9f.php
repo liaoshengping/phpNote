@@ -6,13 +6,29 @@
 <?php echo e($bg_color); ?>
 
 <?php else: ?>
+        <?php if(empty($bg_style)): ?>
         bg-milky
 <?php endif; ?>
 
-        ">
+<?php endif; ?>
+
+        "
+style="
+<?php if(isset($bg_style)): ?>
+<?php echo e($bg_style); ?>
+
+<?php endif; ?>
+"
+>
     <div class="container">
 
         <div class="row align-items-center mb-n6">
+            <?php if(isset($big_title)): ?>
+                <div data-aos="fade-up" data-aos-delay="100" style="font-size: 40px; margin-bottom: 20px" class="col-lg-12 d-flex justify-content-center">
+                    <?php echo e($big_title); ?>
+
+                </div>
+            <?php endif; ?>
 
             <div class="col-lg-5 mb-6">
                 <!-- About Thumb Start -->
@@ -26,7 +42,9 @@
 
                 <!-- About Content Start  -->
                 <div class="about-content" data-aos="fade-up" data-aos-delay="600">
+
                     <div class="about-title">
+
                         <?php if(isset($title)): ?>
                             <?php echo $title; ?>
 
