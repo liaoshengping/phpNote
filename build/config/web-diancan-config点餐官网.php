@@ -16,6 +16,10 @@ const TYPE_IMAGE_RIGHT_SECTION = 'image_right_section';
 const TYPE_IMAGE_LEFT_SECTION = 'image_left_section';
 const TYPE_QE_MIN = 'qr_min';  //二维码在中间上下都是文字
 
+//高度定制化
+const TYPE_DOWNLOAD = 'download';  //二维码在中间上下都是文字
+const TYPE_CONTACT = 'contact';  //二维码在中间上下都是文字
+
 
 return [
     "frame" => HTMLV1,
@@ -31,40 +35,75 @@ return [
     'menus' => [
         [
             'name' => '首页',
-            'href' => '#',
+            'href' => 'index.html',
         ],
         [
-            'name' => '产品介绍',
-            'href' => 'introduction.html',
+            'name' => '软件产品',
+            'href' => 'scan_diancan.html',
             'sub_type' => 'one', //先实现一级的
             'sub' => [
                 [
-                    'name' => '产品介绍',
-                    'href' => '#',
-                ]
+                    'name' => '扫码点餐',
+                    'href' => 'scan_diancan.html',
+                ],
+                [
+                    'name' => '智慧食堂',
+                    'href' => 'zhihuishitang.html',
+                ],
+                [
+                    'name' => '点单宝',
+                    'href' => 'diandanbao.html',
+                ],
             ],
 
         ],
         [
-            'name' => '方案介绍',
-            'href' => '#',
-        ],
-        [
-            'name' => '下载登录',
-            'href' => '#',
-        ],
-        [
-            'name' => '关于两粒米',
+            'name' => '应用场景',
             'href' => '#',
             'sub_type' => 'one', //先实现一级的
             'sub' => [
                 [
-                    'name' => '关于两粒米',
-                    'href' => '#',
+                    'name' => 'AI食堂团餐解决方案',
+                    'href' => 'aijiesuan.html',
                 ],
                 [
-                    'name' => '关于我们团队',
-                    'href' => '#',
+                    'name' => '美食城解决方案',
+                    'href' => 'meishicheng.html',
+                ],
+                [
+                    'name' => '刷脸团餐解决方案',
+                    'href' => 'qingwa.html',
+                ],
+                [
+                    'name' => '无接触扫码点餐解决方案',
+                    'href' => 'wujiechu.html',
+                ],
+            ],
+        ],
+        [
+            'name' => '智慧硬件',
+            'href' => 'yingjianbuy.html',
+        ],
+        [
+            'name' => '下载登录',
+            'href' => 'download.html',
+        ],
+        [
+            'name' => '关于我们',
+            'href' => '#',
+            'sub_type' => 'one', //先实现一级的
+            'sub' => [
+                [
+                    'name' => '公司简介',
+                    'href' => 'jianjie.html',
+                ],
+                [
+                    'name' => '公司资质',
+                    'href' => 'zizhi.html',
+                ],
+                [
+                    'name' => '联系我们',
+                    'href' => 'contact.html',
                 ],
             ],
 
@@ -416,6 +455,7 @@ return [
                 ]
             ],
         ],
+        //扫码点餐
         [
             'file_name' => 'scan_diancan.html', //扫码点餐小程序
             'layout' => 'header_footer',//头部加脚页
@@ -536,6 +576,7 @@ return [
                 ],
             ],
         ],
+//        2-2智慧食堂
         [
             'file_name' => 'zhihuishitang.html', //智慧食堂
             'layout' => 'header_footer',//头部加脚页
@@ -564,11 +605,11 @@ return [
                 [
                     'type' => TYPE_ITEM_IMAGES,
                     'bg_color' => 'bg-white',
-                    'title'=>'智慧食堂VS传统食堂',
-                    'title_sub'=>'全新就餐体验，尽在两粒米智慧食堂！',
+                    'title' => '智慧食堂VS传统食堂',
+                    'title_sub' => '全新就餐体验，尽在两粒米智慧食堂！',
                     'items' => [
                         [
-                            'image_url' =>'assets/images/diancan/zhihuishitang/2/1.jpg',
+                            'image_url' => 'assets/images/diancan/zhihuishitang/2/1.jpg',
                         ]
                     ]
                 ],
@@ -581,21 +622,21 @@ return [
                 [
                     'type' => TYPE_IMAGE_LEFT_SECTION,
                     'image_url' => 'assets/images/diancan/zhihuishitang/4/透明.png',
-                    'big_title'=>'开启智慧食堂新时代',
+                    'big_title' => '开启智慧食堂新时代',
 //                    'title' => '智能计算起送价/配送费',
 //                    'big_title'=>'让餐饮店生意更简单',
-                    'bg_style' =>'background-color:#f2f3f5;',
+                    'bg_style' => 'background-color:#f2f3f5;',
                     'title_sub' => '',
                     'text' => '<img src="assets/images/diancan/zhihuishitang/4/1.jpg">',
                 ],
                 [
                     'type' => TYPE_ITEM_IMAGES,
                     'bg_color' => 'bg-white',
-                    'title'=>'两粒米智慧食堂场景',
-                    'title_sub'=>'为商户提供全方位效率提升方案，节约运营成本。',
+                    'title' => '两粒米智慧食堂场景',
+                    'title_sub' => '为商户提供全方位效率提升方案，节约运营成本。',
                     'items' => [
                         [
-                            'image_url' =>'assets/images/diancan/zhihuishitang/5/图.jpg',
+                            'image_url' => 'assets/images/diancan/zhihuishitang/5/图.jpg',
                         ]
                     ]
                 ],
@@ -633,7 +674,6 @@ return [
 营养分析 订单可溯',
                             'image_width' => '350px'
                         ],
-
 
 
                         [
@@ -691,257 +731,1023 @@ return [
                         ],
 
 
-
-
                     ]
                 ],
 
 
             ],
         ],
+//        2-3点单宝
         [
-            'file_name' => 'mini_code.html',//产品页
-            'layout' => 'header_footer',
+
+            'file_name' => 'diandanbao.html', //
+            'layout' => 'header_footer',//头部加脚页
             'content' => [
                 [
                     'type' => TYPE_BANNER_STAIC,
-                    'image_url' => 'https://s4.ax1x.com/2021/12/24/TJqG7T.png',
-                    'title' => '餐饮店的微商城小程序',
-                    'tital_top' => '餐饮店的微商城小程序',
-                    'tital_bottom' => '低成本拓客·自动客流·高效接单·稳定维护',
+                    'image_left' => 'assets/images/diancan/diandanbao/1/png.png',
+                    'image_right' => 'assets/images/diancan/diandanbao/1/png1.png',
+                    'bg_image_url' => 'assets/images/diancan/diandanbao/1/背景.jpg',
                 ],
                 [
-                    'type' => TYPE_BANNER,
-                    'items' => [
-                        [
-                            'title' => '餐饮店的微商城小程序',
-                            'title_sub' => '低成本拓客·自动客流·高效接单·稳定维护',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJqG7T.png',
-                            'href' => [
-                                'name' => '下载',
-                                'url' => '#'
-                            ]
-                        ],
-                        [
-                            'title' => '天下没有难做的生意',
-                            'title_sub' => '小标题',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJqG7T.png',
-                            'href' => [
-                                'name' => '下载',
-                                'url' => '#'
-                            ]
-                        ]
-                    ],
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' => 'assets/images/diancan/diandanbao/2/透明.png',
+                    'title' => '安全、高效、便捷的移动支付工具',
+                    'big_title' => '<div style="text-align: center;">
+<div>点单宝</div>
+    
+<div><h4>让餐饮店的收银管理更简单</h4></div>
+</div>',
+// 'big_title'=>'让餐饮店生意更简单',
 
+                    'title_sub' => '',
+                    'bg_color' => 'bg-white',
+                    'text' => '两粒米点单宝是仝心科技倾力打造的安全、高效、便捷的移动支付工具，
+集成了微信、支付宝、花呗、信用卡等多种支付方式。
+实现更低费率，更安全的移动支付工具。',
+                ],
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' => 'assets/images/diancan/diandanbao/3/透明.png',
+                    'title' => '<img src="assets/images/diancan/diandanbao/3/1.jpg">',
+                    'big_title' => '<div style="text-align: center;">
+<div>点单宝</div>
+    
+<div><h4>让餐饮店的收银管理更简单</h4></div>
+</div>',
+                    'bg_style' => 'background-color:#f2f3f5;'
+// 'big_title'=>'让餐饮店生意更简单',
 
+//                    'title_sub' => '',
+//                    'text' => '两粒米点单宝是仝心科技倾力打造的安全、高效、便捷的移动支付工具，
+//集成了微信、支付宝、花呗、信用卡等多种支付方式。
+//实现更低费率，更安全的移动支付工具。',
                 ],
                 [
-                    'type' => TYPE_BREADCRUMB,
-                    'text' => '首页>产品介绍>小程序'
-                ],
-//                [
-//                    'type'=>TYPE_IMAGE_LEFT_SECTION
-//                ],
-                [
-                    'type' => TYPE_TITILE_ITEMS_IMAGE,
-                    'title' => '为什么要用两粒米小程序?',
-                    'title_sub' => '解决餐饮店推广四大痛点',
-                    'bg_color' => 'bg-gary',
+                    'type' => TYPE_ITEM_IMAGES,
+                    'bg_color' => 'bg-white',
+                    'title' => '点单宝全方位效率提升方案',
+                    'title_sub' => '为商户提供全方位效率提升方案，节约运营成本。',
                     'items' => [
                         [
-                            'title' => '突出门店知名度',
-                            'title_sub' => '位置偏僻，客流量低',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/23/TGIXz6.png',
-                        ],
-                        [
-                            'title' => '提高客户回头率',
-                            'title_sub' => '可对接多个外卖平台',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/23/TGIXz6.png',
-                        ],
-                        [
-                            'title' => '解决排队等候问题',
-                            'title_sub' => '扫码自动出单，点餐效率高',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/23/TGIXz6.png',
-                        ],
-                        [
-                            'title' => '提高客户满意度',
-                            'title_sub' => '支持在线下单，结算',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/23/TGIXz6.png',
-                        ],
-                    ]
-                ],
-                [
-                    'type' => TYPE_TITILE_ITEMS_IMAGE,
-                    'title' => '两种点餐方式任意选',
-//                    'title_sub' => '解决餐饮店推广四大痛点',
-                    'items' => [
-                        [
-//                            'title' => '突出门店知名度',
-//                            'title_sub' => '位置偏僻，客流量低',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJbTfJ.png',
-                        ],
-                        [
-//                            'title' => '提高客户回头率',
-//                            'title_sub' => '可对接多个外卖平台',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJbTfJ.png',
+                            'image_url' => 'assets/images/diancan/diandanbao/4/1.jpg',
                         ]
                     ]
                 ],
                 [
                     'type' => TYPE_ITEM_IMAGES,
-                    'bg_color' => 'bg-white',
+//                    'bg_color' => 'bg-white',
+                    'bg_style' => 'background-color:#f2f3f5',
+                    'title' => '服务员代点餐方式',
+                    'title_sub' => '服务员用点单宝APP代点餐，选择菜品与付款方式，
+为顾客提供快速、便捷的点单服务，实现顾客与服务员之间的交流互动',
                     'items' => [
                         [
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJvyfU.png'
-                        ],
-                        [
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJvyfU.png'
+                            'image_url' => 'assets/images/diancan/diandanbao/5/1.jpg',
                         ]
                     ]
+                ],
+                [
+                    'type' => TYPE_QE_MIN,
+                    'bg_image_url' => 'assets/images/diancan/diandanbao/6/背景.jpg',
+                    'title' => '<div style="color: white;font-size: 30px">免费申请开通点单宝</div>',
+                    'title_sub' => '<div style="color: white;font-size: 20px;height: 300px;display: flex;justify-content: center; align-items:center;flex-direction: column">
+<div>如果您想了解更多或者开通点单宝，欢迎咨询客服进行对接</div>
+            <a href="##"><div style="margin-top: 10px; background-color: yellow;padding: 20px; color: #0d0a0a;border-radius: 10px;">申请开通</div></a>
+</div>'
                 ]
 
 
             ],
         ],
+//       3-1 Ai 结算
         [
-            'file_name' => 'introduction.html',//产品页
-            'layout' => 'header_footer',
+
+            'file_name' => 'aijiesuan.html', //
+            'layout' => 'header_footer',//头部加脚页
             'content' => [
                 [
-                    'type' => TYPE_BANNER_STAIC,
-                    'image_url' => 'https://s4.ax1x.com/2021/12/24/TJqG7T.png',
-                    'title' => '代理商独立管理后台',
-                    'tital_top' => '两粒米智慧餐饮（扫码点餐/云消费系统）',
-                    'tital_bottom' => '合作伙伴可轻松管理自有商户，轻松查看数据和配置参数',
-                ],
-                [
-                    'type' => TYPE_BANNER,
+                    'type' => TYPE_ITEM_IMAGES,
+                    'bg_color' => '',
+                    'bg_style' => 'background-color:#f2f3f5',
+                    'title' => '两粒米AI智能结算系统',
+                    'title_sub' => '三方共赢 收银快、准、省',
                     'items' => [
                         [
-                            'title' => '代理商独立管理后台',
-                            'title_sub' => '合作伙伴可轻松管理自有商户，轻松查看数据和配置参数',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJqG7T.png',
-                            'href' => [
-                                'name' => '下载',
-                                'url' => '#'
-                            ]
-                        ],
-                        [
-                            'title' => '天下没有难做的生意',
-                            'title_sub' => '小标题',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TJqG7T.png',
-                            'href' => [
-                                'name' => '下载',
-                                'url' => '#'
-                            ]
+                            'image_url' => 'assets/images/diancan/fangan1/1/11.jpg',
                         ]
-                    ],
-
-
+                    ]
                 ],
-                [
-                    'type' => TYPE_BREADCRUMB,
-                    'text' => '首页>系统介绍>两粒米介绍'
-                ],
-//                [
-//                    'type'=>TYPE_IMAGE_LEFT_SECTION
-//                ],
                 [
                     'type' => TYPE_TITILE_ITEMS_IMAGE,
-                    'title' => '餐饮行业最专业的微信点餐小程序?',
-                    'title_sub' => '<div>传统餐饮的经营模式已不能满足当下消费者的需求</div><div>改变商业模式才是称霸未来餐饮界的捞金利器</div>',
-                    'bg_color' => 'bg-gary',
+                    'title' => '全流程自助 不止速度',
+                    'title_sub' => '用户自选用餐，AI图像识别结算仅需0.3S，数据上云，支持用餐营养分析和运营管理分析',
+//                    'bg_color' => 'bg-gary',
+                    'bg_color'=>'bg-white',
+                    'row' => 1,
                     'items' => [
                         [
-                            'title' => '点单买单时间',
-                            'title_sub' => '<h6 class="text-red">解决超过10分钟/单</h6>',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TYivYn.png',
+
+                            'image_url' => 'assets/images/diancan/fangan1/2/1.png',
+                            'center_text' => '快餐店',
+                            'image_width' => '350px',
+                            'title'=>'选餐',
+                            'title_sub'=>'用餐者再窗口选餐<br>
+                            放置在托盘上',
                         ],
                         [
-                            'title' => '错菜，漏菜率',
-                            'title_sub' => '<h6 class="text-red">降低至 0%</h6>',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TYivYn.png',
+
+                            'image_url' => 'assets/images/diancan/fangan1/2/2.png',
+                            'center_text' => '烘焙店',
+                            'image_width' => '350px',
+                                 'title'=>'识别',
+                            'title_sub'=>'将托盘放置到识别区<br>
+                            系统自动识别菜品',
                         ],
                         [
-                            'title' => '服务效率',
-                            'title_sub' => '<h6 class="text-red">提升80%</h6>',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TYivYn.png',
+
+                            'image_url' => 'assets/images/diancan/fangan1/2/3.png',
+                            'center_text' => '奶茶店',
+                            'image_width' => '350px',
+                            'title'=>'支付',
+                            'title_sub'=>'确认菜品无误后<br>
+                            使用卡/二维码/人脸识别',
                         ],
-                        [
-                            'title' => '人工成本',
-                            'title_sub' => '<h6 class="text-red">节省50%</h6>',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TYivYn.png',
-                        ],
-//                        [
-//                            'title' => '翻桌率',
-//                            'title_sub' => '<h6 class="text-red">提升30%</h6>',
-//                            'image_url' => 'https://s4.ax1x.com/2021/12/24/TYivYn.png',
-//                        ],
+
+
+
                     ]
                 ],
                 [
                     'type' => TYPE_IMAGE_RIGHT_SECTION,
-                    'image_url' => 'https://s4.ax1x.com/2021/12/25/Tam6iV.png',
-                    'title' => '大标题1',
+                    'image_url' =>  'assets/images/diancan/fangan1/3/透明.png',
+                    'title' => '快速识别 极速运算',
+//                    'bg_color'=>'bg-white',
+// 'big_title'=>'让餐饮店生意更简单',
+                    'big_title' => '<div style="text-align: center;">
+<div>广阔的市场发展前景</div>
+    
+<div><h4>智能科技引领时代发展，享受生活便捷</h4></div>
+</div>',
                     'title_sub' => '',
-                    'text' => '小标题2',
+                    'text' => '采用阿里口碑算法，识别成功率高达99%，识别
+图像仅需80ms（0.08秒），从识别至支付完成，
+最快2秒完成1单。',
                 ],
                 [
                     'type' => TYPE_IMAGE_LEFT_SECTION,
-                    'image_url' => 'https://s4.ax1x.com/2021/12/25/TamId1.png',
-                    'title' => '大标题3',
-                    'bg_color' => 'bg_white',
+                    'image_url' =>  'assets/images/diancan/fangan1/4/透明.png',
+                    'title' => '并单结算、优惠活动',
+                    'bg_color'=>'bg-white',
                     'title_sub' => '',
-                    'text' => '小标题4',
+                    'text' => '支持多个订单合并支付，同时增设附加费和优惠，
+实现促销活动。',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan1/5/透明.png',
+                    'title' => '菜品轻松录入',
+//                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '轻松拍照三张录入新菜品。先本地存储，再同
+步云端服务器，确保多店同步数据',
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' => 'assets/images/diancan/fangan1/6/透明.png',
+                    'title' => '批量管理菜品',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '批量导入菜品名称及价格，在终端上传图片、编
+辑，菜品数据同步总部云平台。',
                 ],
                 [
                     'type' => TYPE_IMAGE_RIGHT_SECTION,
-                    'image_url' => 'https://s4.ax1x.com/2021/12/25/Tanymd.png',
-                    'title' => '大标题',
+                    'image_url' =>  'assets/images/diancan/fangan1/7/透明.png',
+                    'title' => '结算界面一目了然',
+//                    'bg_color'=>'bg-white',
                     'title_sub' => '',
-                    'text' => '小标题',
+                    'text' => '操作简单、支持扫码、IC卡、刷脸等多种支付
+方式，任您选择',
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' => 'assets/images/diancan/fangan1/8/透明.png',
+                    'title' => '数据分析',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '商品销售订单/数量查询，轻松管理销售爆品，
+一键分析统计业绩利润',
+                ],
+                [
+                    'type' => TYPE_TITILE_ITEMS_IMAGE,
+                    'title' => '两粒米AI智慧食堂使用场景',
+                    'title_sub' => '更多应用场景...',
+//                    'bg_color' => 'bg-white',
+                    'row' => 2,
+                    'items' => [
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan1/9/1.png',
+                            'title' => '面包店',
+                            'image_width' => '250px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan1/9/2.png',
+                            'title' => '食堂',
+                            'image_width' => '250px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan1/9/3.png',
+                            'title' => '快餐店',
+                            'image_width' => '250px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan1/9/4.png',
+                            'title' => '面店',
+                            'image_width' => '250px'
+                        ]
+
+                    ]
+                ],
+
+
+
+            ]
+        ],
+//        3-2  美食城
+        [
+            'file_name' => 'meishicheng.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+                    'bg_color' => '',
+                    'bg_style' => 'background-color:#f2f3f5',
+                    'title' => '两粒米便携食堂消费机',
+                    'title_sub' => '一款集扫码、刷卡支付于一体的无线POS终端
+食堂专用产品支持补贴累计清零模式，消费补贴充值一体，支持消费外接小票打印功能',
+                    'items' => [
+                        [
+                            'image_url' => 'assets/images/diancan/fangan2/1/11.jpg',
+                        ]
+                    ]
+                ],
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan2/2/透明.png',
+                    'title' => '支付方式多样化',
+                    'bg_color'=>'bg-white',
+// 'big_title'=>'让餐饮店生意更简单',
+                    'big_title' => '<div style="text-align: center;">
+<div>小能手 收款大轻松</div>
+    
+<div><h4>满足主流支付场景的聚合支付终端</h4></div>
+</div>',
+                    'title_sub' => '',
+                    'text' => '支持单位一卡通定制接入、微信、支付宝、
+信用卡等多种方式',
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan2/3/透明.png',
+                    'title' => '智能语音播报',
+//                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '通过真人语音实时播报，第一时间了解消费数据，防止错单漏单，
+实现促销活动。',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan2/4/透明.png',
+                    'title' => 'WiFi+4G联网方式',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '支持网络自由切换，随时随地都可以联网
+收银',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan2/5/透明.png',
+                    'title' => '多元化报表统计',
+//                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '消费明细、消费汇总、餐别明细等实时
+上传 无需单独下载 ',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan2/6/透明.png',
+                    'title' => '停电可刷卡',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '内置备用可充电锂电池，停电后仍可刷卡, 方便高效',
+                ],
+                [
+                    'type' => TYPE_TITILE_ITEMS_IMAGE,
+                    'title' => '适用于各种食堂刷卡需求',
+                    'title_sub' => '学校/工厂/企业/工地食堂均适用',
+//                    'bg_color' => 'bg-gary',
+                    'row' => 12,
+                    'items' => [
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan2/7/1.png',
+                            'title' => '快餐店',
+                            'image_width' => '250px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan2/7/2.png',
+                            'title' => '烘焙店',
+                            'image_width' => '250px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan2/7/3.png',
+                            'title' => '奶茶店',
+                            'image_width' => '250px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/fangan2/7/4.png',
+                            'title' => '奶茶店',
+                            'image_width' => '250px'
+                        ],
+
+
+
+                    ]
+                ],
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+                    'bg_color' => 'bg-white',
+//                    'bg_style' => 'background-color:#f2f3f5',
+                    'title' => '云端操作使用',
+                    'title_sub' => '简单操作 仅需两步',
+                    'items' => [
+                        [
+                            'image_url' => 'assets/images/diancan/fangan2/8/图.jpg',
+                        ]
+                    ]
+                ],
+
+
+
+            ]
+        ],
+
+//        3-3 青蛙
+        [
+            'file_name' => 'qingwa.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_QE_MIN,
+                    'title'=>'<div style="height: 600px"></div>',
+                    'bg_image_url' => 'assets/images/diancan/fangan3/1/1.jpg',
+                ],
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+//                    'bg_color' => 'bg-white',
+                    'bg_style' => 'background-color:#f2f3f5',
+                    'title' => '我们的优势',
+//                    'title_sub' => '简单操作 仅需两步',
+                    'items' => [
+                        [
+                            'image_url' => 'assets/images/diancan/fangan3/2/11.jpg',
+                        ]
+                    ]
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan3/3/透明.png',
+                    'title' => '快速刷脸',
+                    'bg_color'=>'bg-white',
+// 'big_title'=>'让餐饮店生意更简单',
+                    'big_title' => '<div style="text-align: center;">
+<div>微信刷脸支付，新一代收银神器</div>
+    
+<div><h4>支付更快捷方便，营销功能更齐全</h4></div>
+</div>',
+                    'title_sub' => '',
+                    'text' => '3D结构光摄像头，刷脸速度更快，支付更安全',
+                ],
+
+
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan3/4/透明.png',
+                    'title' => '一体双屏',
+//                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '前屏刷脸支付，后屏可实时感知前屏状态，更加方
+便地引导顾客操作',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan3/5/透明.png',
+                    'title' => '优惠看得见',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '青蛙+会员：刷脸付款享优惠',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan3/6/透明.png',
+                    'title' => '互动海报',
+//                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '进阶互动海报投送，收银员可通过后屏向顾客投送
+互动物料；包括图片，视频，小程序以及H5等',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan3/7/透明.png',
+                    'title' => '微信生态',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '支持在微信青蛙Pro上运行所有微信小程序；刷
+脸支付支持展示微信卡包相关信息，并提供非会
+员注册入口及“开卡有礼”功能。',
+                ],
+
+
+            ]
+        ],
+
+//        3-4 方案无接触
+        [
+            'file_name' => 'wujiechu.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+//                    'bg_color' => 'bg-white',
+                    'bg_style' => 'background-color:#f2f3f5',
+                    'title' => '两粒米无接触式智慧食堂',
+                    'title_sub' => '在食堂大厅摆放智能餐柜，食堂各档口可将用户预订好的餐品提前摆放到智能餐柜中
+（智能餐柜有保温功能），用户在就餐时可直接在智能餐柜通过手机订餐二维码进行取餐，
+省去了在档口的拥挤，提升了用户就餐体验，同时大大的增加了食堂各档口就餐时间内的服务能力，
+为食堂带来更多的收入。',
+                    'items' => [
+                        [
+                            'image_url' => 'assets/images/diancan/fangan4/1/1.jpg',
+                        ]
+                    ]
+                ],
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan4/2/透明.png',
+                    'title' => '无接触式配送',
+                    'big_title' => '<div style="text-align: center;">
+<div>广阔的市场发展前景</div>
+    
+<div><h4>智能科技引领时代发展，享受生活便捷</h4></div>
+</div>',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '之前受疫情影响，政府推动“无接触配送”加速
+培养用户取餐习惯，让用户从心里上逐渐认可新
+形势取餐方式',
+                ],
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan4/3/透明.png',
+                    'title' => '外卖丢失、易凉问题',
+//                    'bg_color'=>'bg-white',
+// 'big_title'=>'让餐饮店生意更简单',
+//                    'big_title' => '<div style="text-align: center;">
+//<div>微信刷脸支付，新一代收银神器</div>
+//
+//<div><h4>支付更快捷方便，营销功能更齐全</h4></div>
+//</div>',
+                    'title_sub' => '',
+                    'text' => '提供系统化外卖送餐点分类储存，拒绝丢失；搭配
+智能加热、温控、紫外线消毒功能，保证用餐的品
+质和安全',
+                ],
+
+
+                [
+                    'type' => TYPE_IMAGE_RIGHT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan4/4/图.jpg',
+                    'title' => '持续的收益',
+                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '包含广告收益、外卖员收费、线上收入、等多种
+收益模式，一次投资、持久使用。坐在家里能轻
+松赚钱',
+                ],
+
+                [
+                    'type' => TYPE_IMAGE_LEFT_SECTION,
+                    'image_url' =>  'assets/images/diancan/fangan4/5/图.jpg',
+                    'title' => '可视化报表和统计',
+//                    'bg_color'=>'bg-white',
+                    'title_sub' => '',
+                    'text' => '易查询，可清晰分析出各档口消费情况、当天营业
+情况和成本管控，也避免了相关浪费',
+                ],
+
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+                    'bg_color' => 'bg-white',
+//                    'bg_style' => 'background-color:#f2f3f5',
+//                    'title' => '两粒米无接触式智慧食堂',
+//                    'title_sub' => '在食堂大厅摆放智能餐柜，食堂各档口可将用户预订好的餐品提前摆放到智能餐柜中
+//（智能餐柜有保温功能），用户在就餐时可直接在智能餐柜通过手机订餐二维码进行取餐，
+//省去了在档口的拥挤，提升了用户就餐体验，同时大大的增加了食堂各档口就餐时间内的服务能力，
+//为食堂带来更多的收入。',
+                    'items' => [
+                        [
+                            'image_url' => 'assets/images/diancan/fangan4/6/1.jpg',
+                        ]
+                    ]
+                ],
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+//                    'bg_color' => 'bg-white',
+                    'bg_style' => 'background-color:#f2f3f5',
+                    'title' => '多种功能满足不同需求',
+                    'title_sub' => '支持多场景运营模式，满足不同客户场景提供APP嵌入用户对接',
+                    'items' => [
+                        [
+                            'image_url' => 'assets/images/diancan/fangan4/7/1.jpg',
+                        ]
+                    ]
+                ],
+
+
+            ]
+        ],
+
+//        4-1 硬件购买
+        [
+            'file_name' => 'yingjianbuy.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_QE_MIN,
+                    'title'=>'硬件购买',
+                    'bg_image_url' => 'assets/images/diancan/diandanbao/1/背景.jpg',
+                ],
+                [
+                    'type' => TYPE_BREADCRUMB,
+                    'text' => '首页>硬件购买'
+                ],
+                [
+                    'type' => TYPE_TITILE_ITEMS_IMAGE,
+//                    'title' => '支持多个行业',
+//                    'title_sub' => '丰富的功能，灵活的设计，让我们可以支持多个不同的行业提供更合适您的解决方案',
+                    'bg_color' => 'bg-gary',
+                    'row' => 1,
+                    'items' => [
+                        [
+
+                            'image_url' => 'assets/images/diancan/yingjian/1.png',
+                            'image_width' => '350px',
+                            'bottom'=>'
+<div style="width: 350px;word-break:hyphenate;margin-top: 20px;">
+   <div ><h5 style="color: #e74848 !important;">芯烨外卖订单打印机</h5></div>
+   <div>设备型号：XP-C58H</div>
+
+支持接口：蓝牙  wifi  无线网  USB<br>
+
+打印方式：直接式热敏打印<br>
+
+打印纸宽度：58mm<br>
+    <div style="width: 100%;display: flex;justify-content: end">
+    
+    <a href="##">
+    <div style="background-color: #fddc7a;padding-bottom: 5px;padding-top: 5px;padding-right: 10px;padding-left: 10px;border-radius: 30px;">
+    前往购买
+    </div>
+    </a>
+    
+
+</div>
+</div>',
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/yingjian/2.png',
+                            'image_width' => '350px',
+                            'bottom'=>'
+<div style="width: 350px;word-break:hyphenate;margin-top: 20px;">
+   <div ><h5 style="color: #e74848 !important;">芯烨外卖订单打印机</h5></div>
+   <div>设备型号：XP-C58H</div>
+
+支持接口：蓝牙  wifi  无线网  USB<br>
+
+打印方式：直接式热敏打印<br>
+
+打印纸宽度：58mm<br>
+    <div style="width: 100%;display: flex;justify-content: end">
+    
+    <a href="##">
+    <div style="background-color: #fddc7a;padding-bottom: 5px;padding-top: 5px;padding-right: 10px;padding-left: 10px;border-radius: 30px;">
+    前往购买
+    </div>
+    </a>
+    
+
+</div>
+</div>'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/yingjian/3.png',
+                            'image_width' => '350px',
+                            'bottom'=>'
+<div style="width: 350px;word-break:hyphenate;margin-top: 20px;">
+   <div ><h5 style="color: #e74848 !important;">芯烨外卖订单打印机</h5></div>
+   <div>设备型号：XP-C58H</div>
+
+支持接口：蓝牙  wifi  无线网  USB<br>
+
+打印方式：直接式热敏打印<br>
+
+打印纸宽度：58mm<br>
+    <div style="width: 100%;display: flex;justify-content: end">
+    
+    <a href="##">
+    <div style="background-color: #fddc7a;padding-bottom: 5px;padding-top: 5px;padding-right: 10px;padding-left: 10px;border-radius: 30px;">
+    前往购买
+    </div>
+    </a>
+    
+
+</div>
+</div>'
+                        ],
+
+
+
+                    ]
+                ],
+
+            ]
+        ],
+
+//        5-1 下载登录
+
+        [
+            'file_name' => 'download.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_QE_MIN,
+                    'title'=>'系统下载',
+                    'bg_image_url' => 'assets/images/diancan/diandanbao/1/背景.jpg',
+                ],
+                [
+                    'type' => TYPE_BREADCRUMB,
+                    'text' => '首页>系统下载'
+                ],
+                [
+                    'type' => TYPE_DOWNLOAD,
+                    'items'=>[
+                        [
+                            'image_url'=>'assets/images/diancan/download/1/透明.png',
+                            'items'=>[
+                                [
+                                    'image_url'=>'assets/images/diancan/download/1/1.png',
+                                    'title'=>'两粒米掌柜手机端',
+                                    'ver'=>'版本号：v7.1',
+                                    'date'=>'更新时间：2021-10-19',
+                                    'button_text'=>'扫一扫立即体验',
+                                    'content'=>'软件大小：约33MB<br>
+适配系统：支持 XP/ Win 7/Win 8/Win 8.1/Win 10<br>
+温馨提示：原6.0版本用户请<a style="color: red" href="##">点击此处</a>下载V6.0安装包<br>',
+                                ],
+                                [
+                                    'image_url'=>'assets/images/diancan/download/1/2.png',
+                                    'title'=>'两粒米商户后台电脑端',
+                                    'ver'=>'版本号：v7.1',
+                                    'date'=>'更新时间：2021-10-21',
+                                    'button_text'=>'立即登录',
+                                    'content'=>'打开方式：浏览器打开<br>
+适配系统：无需下载<br>
+温馨提示：使用谷歌浏览器打开系统网页效果更好',
+                                ],
+
+                            ],
+                        ],
+
+                        [
+                            'image_url'=>'assets/images/diancan/download/2/透明.png',
+                            'items'=>[
+                                [
+                                    'image_url'=>'assets/images/diancan/download/2/1.png',
+                                    'title'=>'两粒米点单宝',
+                                    'ver'=>'版本号：v7.1',
+                                    'date'=>'更新时间：2021-10-19',
+                                    'button_text'=>'最新版下载',
+                                    'content'=>'软件大小：约33MB<br>
+适配系统：支持 XP/ Win 7/Win 8/Win 8.1/Win 10<br>
+温馨提示：原6.0版本用户请<a style="color: red" href="##">点击此处</a>下载V6.0安装包<br>',
+                                ],
+                                [
+                                    'image_url'=>'assets/images/diancan/download/2/2.png',
+                                    'title'=>'乐刷APP下载',
+                                    'ver'=>'版本号：v7.1',
+                                    'button_text'=>'最新版下载',
+                                    'date'=>'更新时间：2021-10-08',
+                                    'content'=>'打开方式：浏览器打开<br>
+适配系统：无需下载<br>
+温馨提示：使用谷歌浏览器打开系统网页效果更好',
+                                ],
+
+                            ],
+                        ],
+                        [
+                            'image_url'=>'assets/images/diancan/download/3/透明.png',
+                            'items'=>[
+                                [
+                                    'image_url'=>'assets/images/diancan/download/3/1.png',
+                                    'title'=>'两粒米服务商后台',
+                                    'ver'=>'版本号：v7.1',
+                                    'date'=>'更新时间：2021-10-19',
+                                    'button_text'=>'立即登录',
+                                    'content'=>'软件大小：约33MB<br>
+适配系统：支持 XP/ Win 7/Win 8/Win 8.1/Win 10<br>
+温馨提示：原6.0版本用户请<a style="color: red" href="##">点击此处</a>下载V6.0安装包<br>',
+                                ],
+                                [
+                                    'image_url'=>'assets/images/diancan/download/3/2.png',
+                                    'title'=>'乐刷服务商后台',
+                                    'ver'=>'版本号：v7.1',
+                                    'button_text'=>'立即登录',
+                                    'date'=>'更新时间：2021-10-08',
+                                    'content'=>'打开方式：浏览器打开<br>
+适配系统：无需下载<br>
+温馨提示：使用谷歌浏览器打开系统网页效果更好',
+                                ],
+
+                            ],
+                        ],
+                        [
+                            'image_url'=>'assets/images/diancan/download/4/透明.png',
+                            'items'=>[
+                                [
+                                    'image_url'=>'assets/images/diancan/download/4/1.png',
+                                    'title'=>'两粒米智慧食堂商户后台',
+                                    'ver'=>'版本号：v7.1',
+                                    'date'=>'更新时间：2021-10-19',
+                                    'button_text'=>'立即登录',
+                                    'content'=>'软件大小：约33MB<br>
+适配系统：支持 XP/ Win 7/Win 8/Win 8.1/Win 10<br>
+温馨提示：原6.0版本用户请<a style="color: red" href="##">点击此处</a>下载V6.0安装包<br>',
+                                ],
+                                [
+                                    'image_url'=>'assets/images/diancan/download/4/2.png',
+                                    'title'=>'两粒米智慧食堂服务商后台',
+                                    'ver'=>'版本号：v7.1',
+                                    'button_text'=>'立即登录',
+                                    'date'=>'更新时间：2021-10-08',
+                                    'content'=>'打开方式：浏览器打开<br>
+适配系统：无需下载<br>
+温馨提示：使用谷歌浏览器打开系统网页效果更好',
+                                ],
+
+                            ],
+                        ],
+                    ],
+                ],
+
+            ]
+        ],
+
+
+//        6-1 公司简介
+        [
+            'file_name' => 'jianjie.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_QE_MIN,
+                    'title'=>'公司简介',
+                    'bg_image_url' => 'assets/images/diancan/diandanbao/1/背景.jpg',
+                ],
+                [
+                    'type' => TYPE_BREADCRUMB,
+                    'text' => '首页>关于团队'
+                ],
+
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+                    'bg_color' => 'bg-white',
+                    'title'=>'上海仝心科技有限公司',
+                    'title_sub'=>'两粒米采用以物联网、互联网、云计算技术为基础，智能硬件搭载云端服务，并打造出各种极为智能
+便捷的应用技术，提供一站式的解决方案。两粒米主营产品有智慧食堂云消费系统、扫码点餐系统、美食
+城云管理系统、智慧硬件等，产品使用范围涉及企业政府食堂、医院校园食堂、餐饮连锁、景区、服务区、
+美食城店等各个领域。两粒米励志打造智慧餐饮，让科技改变生活！',
+                ],
+
+                [
+                    'type' => TYPE_ITEM_IMAGES,
+//                    'bg_color' => 'bg-white',
+                    'title'=>'企业文化',
+                    'bg_style' => 'background-color:#f2f3f5',
+//                    'title_sub'=>'全新就餐体验，尽在两粒米智慧食堂！',
+                    'items' => [
+                        [
+                            'image_url' =>'assets/images/diancan/jianjie/2/1.jpg',
+                        ]
+                    ]
+                ],
+                [
+                    'type' => TYPE_QE_MIN,
+                    'title'=>'<div style="color: white !important;">专业打造“智慧餐厅”，让每一个商户好开店、开好店！</div>',
+                    'bg_image_url' => 'assets/images/diancan/jianjie/3/背景图.jpg',
+                ],
+
+
+
+
+            ]
+        ],
+
+//        6-2 资质
+        [
+            'file_name' => 'zizhi.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_QE_MIN,
+                    'title'=>'公司资质',
+                    'bg_image_url' => 'assets/images/diancan/diandanbao/1/背景.jpg',
+                ],
+                [
+                    'type' => TYPE_BREADCRUMB,
+                    'text' => '首页>公司资质'
                 ],
 
                 [
                     'type' => TYPE_TITILE_ITEMS_IMAGE,
-                    'title' => '餐饮行业最专业的微信点餐小程序?',
+                    'title' => '两粒米知识产权相关',
+                    'title_sub' => '相关图标',
                     'bg_color' => 'bg-gary',
-                    'row' => 2,//两行显示
                     'items' => [
                         [
-                            'title' => '1',
-                            'image_url' => 'https://s4.ax1x.com/2021/12/25/TaurCV.png',
+
+                            'image_url' => 'assets/images/diancan/zizhi/1/1.png',
+                            'image_width' => '350px'
+                        ],
+
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/1/2.png',
+                            'image_width' => '350px'
                         ],
                         [
-                            'title' => '2',
 
-                            'image_url' => 'https://s4.ax1x.com/2021/12/25/TaurCV.png',
+                            'image_url' => 'assets/images/diancan/zizhi/1/3.png',
+                            'image_width' => '350px'
                         ],
                         [
-                            'title' => '3',
 
-                            'image_url' => 'https://s4.ax1x.com/2021/12/25/TaurCV.png',
+                            'image_url' => 'assets/images/diancan/zizhi/1/4.png',
+                            'image_width' => '350px'
                         ],
                         [
-                            'title' => '4',
 
-                            'image_url' => 'https://s4.ax1x.com/2021/12/25/TaurCV.png',
+                            'image_url' => 'assets/images/diancan/zizhi/1/5.png',
+                            'image_width' => '350px'
                         ],
                         [
-                            'title' => '5',
 
-                            'image_url' => 'https://s4.ax1x.com/2021/12/25/TaurCV.png',
+                            'image_url' => 'assets/images/diancan/zizhi/1/6.png',
+                            'image_width' => '350px'
                         ],
                         [
-                            'title' => '6',
 
-                            'image_url' => 'https://s4.ax1x.com/2021/12/25/TaurCV.png',
+                            'image_url' => 'assets/images/diancan/zizhi/1/7.png',
+                            'image_width' => '350px'
                         ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/1/8.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/1/9.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/1/10.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/1/11.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/1/12.png',
+                            'image_width' => '350px'
+                        ],
+
                     ]
                 ],
 
-            ],
-        ]
+                [
+                    'type' => TYPE_TITILE_ITEMS_IMAGE,
+                    'title' => '两粒米相关软件著作权',
+//                    'title_sub' => '相关图标',
+                    'bg_color' => 'bg-gary',
+                    'items' => [
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/1.png',
+                            'image_width' => '350px'
+                        ],
+
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/2.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/3.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/4.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/5.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/6.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/7.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/8.png',
+                            'image_width' => '350px'
+                        ],
+                        [
+
+                            'image_url' => 'assets/images/diancan/zizhi/2/9.png',
+                            'image_width' => '350px'
+                        ],
+
+
+                    ]
+                ],
+
+
+            ]
+        ],
+
+//        6-3 联系我们
+        [
+            'file_name' => 'contact.html', //
+            'layout' => 'header_footer',//头部加脚页
+            'content' => [
+                [
+                    'type' => TYPE_QE_MIN,
+                    'title'=>'联系我们',
+                    'bg_image_url' => 'assets/images/diancan/diandanbao/1/背景.jpg',
+                ],
+                [
+                    'type' => TYPE_BREADCRUMB,
+                    'text' => '首页>联系我们'
+                ],
+               [
+                   'type'=>TYPE_CONTACT,
+                   'tel'=>'<h3>官方热线：4000-526-528</h3>'
+               ]
+            ]
+        ],
+
     ],
 
 ];

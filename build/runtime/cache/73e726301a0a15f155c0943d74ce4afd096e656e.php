@@ -9,7 +9,7 @@
                 <div class="row align-items-center position-relative">
 
                     <!-- Header Logo Start -->
-                    <div class="col-md-6 col-lg-3 col-xl-2 col-6">
+                    <div class="col-md-2 col-lg-2 col-xl-2 col-6">
                         <div class="header-logo">
                             <a href="/"><img src="<?php echo e($logo); ?>" alt="Site Logo"/></a>
                         </div>
@@ -17,7 +17,7 @@
                     <!-- Header Logo End -->
 
                     <!-- Header Menu Start -->
-                    <div class="col-lg-6 d-none d-lg-block">
+                    <div class="col-lg-8 d-none d-lg-block">
 
                         <div class="main-menu">
                             <ul>
@@ -46,26 +46,12 @@
                     <!-- Header Menu End -->
 
                     <!-- Header Action Start -->
-                    <div class="col-md-6 col-lg-3 col-xl-4 col-6 justify-content-end">
+                    <div class="col-md-2 col-lg-2 col-xl-2 col-6 justify-content-end">
                         <div class="header-actions">
-                            <a href="javascript:void(0)"
-                               class="header-action-btn header-action-btn-search d-none d-lg-block"><i
-                                        class="pe-7s-search"></i></a>
-                            <div class="dropdown-user d-none d-lg-block">
-                                <a href="javascript:void(0)" class="header-action-btn"><i class="pe-7s-user"></i></a>
-                                <ul class="dropdown-menu-user">
-                                    <li><a class="dropdown-item" href="#">Usd</a></li>
-                                    <li><a class="dropdown-item" href="#">Pound</a></li>
-                                    <li><a class="dropdown-item" href="#">Taka</a></li>
-                                </ul>
-                            </div>
-                            <a href="wishlist.html" class="header-action-btn header-action-btn-wishlist">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="header-action-btn header-action-btn-cart">
-                                <i class="pe-7s-cart"></i>
-                                <span class="header-action-num">3</span>
-                            </a>
+
+
+                            <a href="##"><button style="margin-top: 10px; padding: 5px; width: 150px;background-color: #fbd922;border: white 0px solid;border-radius: 20px;">注册登录</button></a>
+
                             <!-- Mobile Menu Hambarger Action Button Start -->
                             <a href="javascript:void(0)"
                                class="header-action-btn header-action-btn-menu d-lg-none d-md-block">
@@ -84,23 +70,7 @@
     <!-- Header Bottom End -->
 
     <!-- Offcanvas Search Start -->
-    <div class="offcanvas-search">
-        <div class="offcanvas-search-inner">
 
-            <!-- Button Close Start -->
-            <div class="offcanvas-btn-close">
-                <i class="pe-7s-close"></i>
-            </div>
-            <!-- Button Close End -->
-
-            <!-- Offcanvas Search Form Start -->
-            <form class="offcanvas-search-form" action="#">
-                <input type="text" placeholder="Search Product..." class="offcanvas-search-input">
-            </form>
-            <!-- Offcanvas Search Form End -->
-
-        </div>
-    </div>
     <!-- Offcanvas Search End -->
 
     <!-- Cart Offcanvas Start -->
@@ -504,12 +474,7 @@
         <!-- Mobile Menu Inner Wrapper Start -->
         <div class="mobile-menu-inner-wrapper">
             <!-- Mobile Menu Search Box Start -->
-            <div class="search-box-offcanvas">
-                <form>
-                    <input class="search-input-offcanvas" type="text" placeholder="Search product...">
-                    <button class="search-btn"><i class="pe-7s-search"></i></button>
-                </form>
-            </div>
+
             <!-- Mobile Menu Search Box End -->
 
             <!-- Mobile Menu Start -->
@@ -538,53 +503,11 @@
             <!-- Mobile Menu End -->
 
             <!-- Language, Currency & Link Start -->
-            <div class="offcanvas-lag-curr mb-6">
-                <div class="header-top-lan-curr-link">
-                    <div class="header-top-lan dropdown">
-                        <h4 class="title">Language:</h4>
-                        <button class="dropdown-toggle" data-bs-toggle="dropdown">English <i
-                                    class="fa fa-angle-down"></i></button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a class="dropdown-item" href="#">English</a></li>
-                            <li><a class="dropdown-item" href="#">Japanese</a></li>
-                            <li><a class="dropdown-item" href="#">Arabic</a></li>
-                            <li><a class="dropdown-item" href="#">Romanian</a></li>
-                        </ul>
-                    </div>
-                    <div class="header-top-curr dropdown">
-                        <h4 class="title">Currency:</h4>
-                        <button class="dropdown-toggle" data-bs-toggle="dropdown">USD <i class="fa fa-angle-down"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a class="dropdown-item" href="#">USD</a></li>
-                            <li><a class="dropdown-item" href="#">Pound</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
             <!-- Language, Currency & Link End -->
 
             <!-- Contact Links/Social Links Start -->
-            <div class="mt-auto bottom-0">
 
-                <!-- Contact Links Start -->
-                <ul class="contact-links">
-                    <li><i class="fa fa-phone"></i><a href="#"> +012 3456 789</a></li>
-                    <li><i class="fa fa-envelope-o"></i><a href="#"> info@example.com</a></li>
-                    <li><i class="fa fa-clock-o"></i> <span>Monday - Sunday 9.00 - 18.00</span></li>
-                </ul>
-                <!-- Contact Links End -->
-
-                <!-- Social Widget Start -->
-                <div class="widget-social">
-                    <a title="Facebook" href="#"><i class="fa fa-facebook-f"></i></a>
-                    <a title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
-                    <a title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                    <a title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
-                    <a title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
-                </div>
-                <!-- Social Widget Ende -->
-            </div>
             <!-- Contact Links/Social Links End -->
         </div>
         <!-- Mobile Menu Inner Wrapper End -->

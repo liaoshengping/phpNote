@@ -13,7 +13,10 @@
 
             <div data-aos="fade-up" data-aos-delay="200"
                  class="col-lg-12 mb-6 d-flex flex-column align-items-center justify-content-center ">
-                <div><h2><?php echo e($title); ?></h2></div>
+                <?php if(!empty($title)): ?>
+                    <div><h2><?php echo e($title); ?></h2></div>
+
+                <?php endif; ?>
                 <?php if(isset($title_sub)): ?>
                     <div class="d-flex justify-content-center flex-column align-items-center"><?php echo $title_sub; ?></div>
                 <?php endif; ?>
@@ -23,14 +26,15 @@
             $width = round(100 / count($items), 2);
             if (!empty($row)) {
                 $width = $width * $row;
-            }else{
+            } else {
                 $row = 1;
             }
             ?>
-            <div class="d-flex  w-100 flex-md-wrap flex-sm-wrap " style="flex-wrap: wrap" data-aos="fade-up" data-aos-delay="600" >
+            <div class="d-flex  w-100 flex-md-wrap flex-sm-wrap " style="flex-wrap: wrap" data-aos="fade-up"
+                 data-aos-delay="600">
                 <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="d-flex justify-content-around " data-aos="fade-up"
-                         data-aos-delay="<?php echo e($key); ?>000" >
+                         data-aos-delay="<?php echo e($key); ?>000">
                         <div class="d-flex justify-content-center flex-column align-items-center">
                             <div class="mt-2 mx-1" style="position: relative ;">
                                 <?php if(!empty($item['image_center_icon'])): ?>
@@ -58,10 +62,16 @@
                             <?php endif; ?>
 
                             <?php if(isset($item['title_sub'])): ?>
-                                <div class="d-flex justify-content-center flex-column align-items-center">
+                                <div class="d-flex justify-content-center flex-column align-items-center"
+                                     style="text-align: center">
                                     <?php echo $item['title_sub']; ?>
 
                                 </div>
+                            <?php endif; ?>
+
+                            <?php if(!empty($item['bottom'])): ?>
+                                <?php echo $item['bottom']; ?>
+
                             <?php endif; ?>
                         </div>
                     </div>
@@ -76,7 +86,7 @@
 
 <style>
     
-    ._width{
+    ._width {
         width: <?php echo e($width); ?>%;
     }
 
