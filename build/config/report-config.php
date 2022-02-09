@@ -18,10 +18,10 @@ const WORK_NAME = 'yibage';
 
 return [
     "frame" => LARAVEL,
-    'frame_path' => FRAME_PATH,
-    'frame_controller_path' => FRAME_PATH . "app\Http\Controllers/",
-    'frame_modebase_path' => FRAME_PATH . 'app\Models\base\\',
-    'frame_mode_path' => FRAME_PATH . "app\Models/",
+    'frame_path' => xenv('report_path'),
+    'frame_controller_path' => xenv('report_path') . "app\Http\Controllers/",
+    'frame_modebase_path' => xenv('report_path') . 'app\Models\base\\',
+    'frame_mode_path' => xenv('report_path') . "app\Models/",
     'base_model_namespace_path' => "App\Models\base",
     'model_namespace_path' => "App\Models",
     'controller_namespace_path' => "App\Http\Controllers",
