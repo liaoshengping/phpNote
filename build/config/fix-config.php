@@ -30,12 +30,11 @@ return [
     /**
      * 数据库信息
      */
-    "host" => '47.104.104.162',
+    "host" => xenv('host'),
     "database" => 'fix_station',
     "port" => xenv("port", "3306"),
     "username" => xenv("username", "root"),
     "password" => xenv("password", "123456"),
-
 
     "fornt" => "",
     "enum_path" => "",//没有则不创建，或在model中定义,

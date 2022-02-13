@@ -21,10 +21,10 @@ class Pdos extends BaseClient
      * 构造
      * @return PDOs
      */
-    public function init($dbHost, $dbUser, $dbPasswd, $dbName, $dbCharset= "utf-8")
+    public function init($dbHost, $dbUser, $dbPasswd, $dbName,$port, $dbCharset= "utf-8")
     {
         try {
-            $this->dsn = 'mysql:host=' . $dbHost . ';dbname=' . $dbName;
+            $this->dsn = 'mysql:host=' . $dbHost . ';dbname=' . $dbName.';port='.$port;
             $this->dbh = new \PDO($this->dsn, $dbUser, $dbPasswd);
             $this->dbh->exec('SET character_set_connection=' . $dbCharset . ', character_set_results=' . $dbCharset . ', character_set_client=binary');
         } catch (\PDOException $e) {

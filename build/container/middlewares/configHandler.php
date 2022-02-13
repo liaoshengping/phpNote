@@ -21,7 +21,7 @@ class configHandler implements Middlewares
 //
 //        Show::block('是你输入的是'.$userInput,'success','warning');
 
-        $app->db->init(config('host'),config('username'),config('password'),config('database'));
+        $app->db->init(config('host'),config('username'),config('password'),config('database'),config('port'));
         //记录当前表明
 
         //所有表
