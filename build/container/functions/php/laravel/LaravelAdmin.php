@@ -303,7 +303,11 @@ trait LaravelAdmin
                 $list.='       $form->text("'.config('user_id_translate_the_name').'", __("用户"))->disable()'.$default_str.$help_str.';'.PHP_EOL;
                 continue;
             }
-
+            //图片判断
+            if ($item['name'] == 'image_url'){
+                $list.='$form->image(\'image_url\',\'图片\');';
+                continue;
+            }
 
             $enum = !empty($this->enums[$item['name']])?$this->enums[$item['name']]:'';
             if ($enum){
