@@ -742,7 +742,6 @@ return [
                         ],
 
 
-
                     ],
 
                 ]
@@ -823,7 +822,7 @@ return [
 
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['show','list'],
+            'controller_actions' => ['show', 'list'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -857,7 +856,7 @@ return [
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
                         ]
-                ,
+                        ,
                         [
                             'table_name' => 'product',
                             'target' => 'id', //目标表中的字段
@@ -1129,8 +1128,28 @@ return [
 
                 ]
             ]
-        ]
+        ],
+        'step' => [
+            'name' => '新手引导',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
 
+            ],
+//            'is_auth'=>true,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['list'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+
+        ]
     ],
 
 
