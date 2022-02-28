@@ -378,6 +378,15 @@ return [
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
                         ],
+                        [
+                            'table_name' => 'area',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'area_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
                     ],
 
                 ]
