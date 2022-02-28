@@ -144,7 +144,9 @@ return [
 
             ],
             'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
-
+            "change_status" => [
+                'key'=>'status',
+            ],
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
             'controller_actions' => ['list', 'show'],
@@ -157,26 +159,7 @@ return [
                 [
                     'relation' => "hasMany",
                     'tables' => [
-                        [
-                            'table_name' => 'order_product',
-                            'target' => 'order_id', //目标表中的字段
-                            'origin' => 'id',//本表的字段
-                            'limit' => 20,//查询为10条
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => false,//创建时，是否可以关联添加
-                        ],
-                        [
-                            'table_name' => 'order_fee',
-                            'target' => 'order_id', //目标表中的字段
-                            'origin' => 'id',//本表的字段
-                            'limit' => 20,//查询为10条
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => false,//创建时，是否可以关联添加
-                        ],
+
                     ],
                 ],
                 [
@@ -192,15 +175,6 @@ return [
                             'create_relation' => false,//创建时，是否可以关联添加
                         ],
                         [
-                            'table_name' => 'fix_station',
-                            'target' => 'id', //目标表中的字段
-                            'origin' => 'fix_station_id',//本表的字段
-                            'list_show' => true,
-                            'list_exist' => true,
-                            'one_show' => true,
-                            'create_relation' => false,//创建时，是否可以关联添加
-                        ],
-                        [
                             'table_name' => 'payment',
                             'target' => 'id', //目标表中的字段
                             'origin' => 'payment_id',//本表的字段
@@ -210,9 +184,18 @@ return [
                             'create_relation' => false,//创建时，是否可以关联添加
                         ],
                         [
-                            'table_name' => 'order_sale',
-                            'target' => 'order_id', //目标表中的字段
-                            'origin' => 'id',//本表的字段
+                            'table_name' => 'area',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'area_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => true,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'address',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'address_id',//本表的字段
                             'list_show' => true,
                             'list_exist' => true,
                             'one_show' => true,

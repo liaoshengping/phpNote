@@ -16,72 +16,73 @@ trait LaravelAdmin
     private $ControllerPath;
 
     private $filterTemplate;
+
     /**
      * 生成laravel控制器
      */
-    public function buildLaravelAdminController(){
+    public function buildLaravelAdminController()
+    {
         //检查admin 控制器是否存在
         /**
          * @var Application $app
          */
         $app = $this->app;
 
-        if (!$this->checkPath()){
+        if (!$this->checkPath()) {
             return false;
         }
 
         $this->AdminTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/admin_controller');
 
         //基础
-        $this->AdminTemplate = str_replace('{{name}}',$this->getThisTags(),$this->AdminTemplate);
+        $this->AdminTemplate = str_replace('{{name}}', $this->getThisTags(), $this->AdminTemplate);
 
-        $this->AdminTemplate = str_replace('{{ClassName}}',$app->className,$this->AdminTemplate);
+        $this->AdminTemplate = str_replace('{{ClassName}}', $app->className, $this->AdminTemplate);
 
         //列表
         $column = $this->column();
-        $this->AdminTemplate = str_replace('{{column}}',$column,$this->AdminTemplate);
+        $this->AdminTemplate = str_replace('{{column}}', $column, $this->AdminTemplate);
         //详情
         $field = $this->field();
-        $this->AdminTemplate = str_replace('{{field}}',$field,$this->AdminTemplate);
+        $this->AdminTemplate = str_replace('{{field}}', $field, $this->AdminTemplate);
 
         //表单编辑
         $form = $this->form();
-        $this->AdminTemplate = str_replace('{{form}}',$form,$this->AdminTemplate);
-
+        $this->AdminTemplate = str_replace('{{form}}', $form, $this->AdminTemplate);
 
 
         //保存位置
-        file_put_contents($this->ControllerPath,$this->AdminTemplate);
+        file_put_contents($this->ControllerPath, $this->AdminTemplate);
 
-        Show::block('成功保存：'.$this->ControllerPath);
+        Show::block('成功保存：' . $this->ControllerPath);
 
         //生成路由
         $frame_path = config('frame_path');
-        $route = $frame_path.'app/Admin/routes.php';
+        $route = $frame_path . 'app/Admin/routes.php';
         $routesFile = file_get_contents($route);
 
-        $controllerName = $app->className.'Controller';
+        $controllerName = $app->className . 'Controller';
         $remark = '//@router请勿修改和删除这个';
-        $name = '$router->resource("'.$app->className.'", '.$controllerName.'::class);';
-        $res_name = $name.PHP_EOL;
-        $res_name =$res_name.$remark;
-        do{
-            if (strstr($routesFile,$name)){
+        $name = '$router->resource("' . $app->className . '", ' . $controllerName . '::class);';
+        $res_name = $name . PHP_EOL;
+        $res_name = $res_name . $remark;
+        do {
+            if (strstr($routesFile, $name)) {
                 break;
             }
-            if (!strstr($routesFile,$remark)){
-                Show::block('请在routes.php添加'.$remark);
+            if (!strstr($routesFile, $remark)) {
+                Show::block('请在routes.php添加' . $remark);
                 return false;
             }
-        }while(false);
+        } while (false);
 
         //数据库添加 菜单名称
-        $routesFile = str_replace($remark,$res_name,$routesFile);
+        $routesFile = str_replace($remark, $res_name, $routesFile);
 
-        file_put_contents($route,$routesFile);
+        file_put_contents($route, $routesFile);
 
         //添加菜单成功
-        Show::block('路由配置成功'.$route);
+        Show::block('路由配置成功' . $route);
 
         //数据库添加菜单路径
 
@@ -92,21 +93,22 @@ trait LaravelAdmin
      * 检查路径
      * @return bool
      */
-    private function checkPath(){
+    private function checkPath()
+    {
         /**
          * @var Application $app
          */
 
         $app = $this->app;
         //model name
-        $ControllerName  = $app->className.'Controller';
+        $ControllerName = $app->className . 'Controller';
         $frame_path = config('frame_path');
-        $Controller = $frame_path.'app/Admin/Controllers/'.$ControllerName.'.php';
+        $Controller = $frame_path . 'app/Admin/Controllers/' . $ControllerName . '.php';
         $exsit = is_file($Controller);
-        $this->ControllerPath= $Controller;
+        $this->ControllerPath = $Controller;
 
-        if (is_file($this->ControllerPath) && $this->getCurrentSetting('no_cover_admin')){
-            Show::block('错误已经设置不可以强制覆盖：'.$this->ControllerPath,'error','error');
+        if (is_file($this->ControllerPath) && $this->getCurrentSetting('no_cover_admin')) {
+            Show::block('错误已经设置不可以强制覆盖：' . $this->ControllerPath, 'error', 'error');
             return false;
         }
 
@@ -117,7 +119,8 @@ trait LaravelAdmin
     /**
      * 列表
      */
-    private  function column(){
+    private function column()
+    {
         $list = '';
         /**
          * @var Application $app
@@ -130,24 +133,24 @@ trait LaravelAdmin
         $filter = '';
         foreach ($app->struct->struct as $item) {
 
-            if (strstr($item['name'],'name')){
-                $filter.= '       $filter->like("'.$item['name'].'", "'.$item["comment"].'");'.PHP_EOL;
+            if (strstr($item['name'], 'name')) {
+                $filter .= '       $filter->like("' . $item['name'] . '", "' . $item["comment"] . '");' . PHP_EOL;
                 continue;
             }
             //枚举筛选
-            if (!empty($item['enum'])){
-                $enumsClass = $app->className.'::'.$item['name'];
-                $filter.= '       $filter->in("'.$item["name"].'","'.$item['comment'].'")->checkbox('.$enumsClass.');'.PHP_EOL;
+            if (!empty($item['enum'])) {
+                $enumsClass = $app->className . '::' . $item['name'];
+                $filter .= '       $filter->in("' . $item["name"] . '","' . $item['comment'] . '")->checkbox(' . $enumsClass . ');' . PHP_EOL;
             }
             //时间筛选
-            if ($item['name'] == 'created_at'){
-                $filter.='     $filter->between("created_at", "创建时间")->datetime();';
+            if ($item['name'] == 'created_at') {
+                $filter .= '     $filter->between("created_at", "创建时间")->datetime();';
 
             }
 
 
         }
-        if ($filter){
+        if ($filter) {
             $template = '
         $grid->batchActions(function (Grid\Tools\BatchActions $batch) {
             $batch->disableDelete();
@@ -156,16 +159,16 @@ trait LaravelAdmin
             $grid->filter(function($filter){
     {{filter}}
 });';
-            $template= str_replace('{{filter}}',$filter,$template);
+            $template = str_replace('{{filter}}', $filter, $template);
 
         }
-        $this->AdminTemplate = str_replace("{{filter}}",$template,$this->AdminTemplate);
+        $this->AdminTemplate = str_replace("{{filter}}", $template, $this->AdminTemplate);
 
         $orderBy = '';
 
         $orderBy = '$grid->model()->orderBy(\'created_at\',\'desc\');';
         //默认倒叙
-        $this->AdminTemplate = str_replace("{{orderBy}}",$orderBy,$this->AdminTemplate);
+        $this->AdminTemplate = str_replace("{{orderBy}}", $orderBy, $this->AdminTemplate);
 
         //操作
         $action = ' $grid->actions(function ($actions) {
@@ -180,17 +183,22 @@ trait LaravelAdmin
     //$actions->disableView();
 });';
 
-        $this->AdminTemplate = str_replace("{{action}}",$action,$this->AdminTemplate);
+        $this->AdminTemplate = str_replace("{{action}}", $action, $this->AdminTemplate);
         foreach ($app->struct->struct as $item) {
 
-            if (in_array($item['name'],['updated_at','deleted_at'])) continue;
+            if (in_array($item['name'], ['updated_at', 'deleted_at'])) continue;
 
-            $enum = !empty($this->enums[$item['name']])?$this->enums[$item['name']]:'';
-          if ($enum){
-              $list.='       $grid->column("'.$item['name'].'", __("'.$enum['key_note'].'"))->using('.$app->className.'::'.$item['name'].');'.PHP_EOL;
-          }else{
-              $list.='       $grid->column("'.$item['name'].'", __("'.$item['comment'].'"));'.PHP_EOL;
-          }
+            if ($item['name'] == 'image_url') {
+                $list .= '       $grid->column("image_url", __("图片"))->image();';
+                continue;
+            }
+
+            $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
+            if ($enum) {
+                $list .= '       $grid->column("' . $item['name'] . '", __("' . $enum['key_note'] . '"))->using(' . $app->className . '::' . $item['name'] . ');' . PHP_EOL;
+            } else {
+                $list .= '       $grid->column("' . $item['name'] . '", __("' . $item['comment'] . '"));' . PHP_EOL;
+            }
 
         }
         return $list;
@@ -200,13 +208,14 @@ trait LaravelAdmin
     /**
      * 详情
      */
-    private  function field(){
+    private function field()
+    {
         $list = '';
         /**
          * @var Application $app
          */
         $app = $this->app;
-        $lng= false;
+        $lng = false;
         foreach ($app->struct->struct as $item) {
 //            ["name"]=>
 //  string(2) "id"
@@ -217,19 +226,19 @@ trait LaravelAdmin
 //            ["default"]=>
 //  NULL
             //经纬度
-            if ($item['name'] =='lng' || $item['name']== 'lat'){
-                if ($lng == false){
-                    $list.= '       $show->field("经纬度")->latlong("lat", "lng", $height = 400, $zoom = 16);'.PHP_EOL;
+            if ($item['name'] == 'lng' || $item['name'] == 'lat') {
+                if ($lng == false) {
+                    $list .= '       $show->field("经纬度")->latlong("lat", "lng", $height = 400, $zoom = 16);' . PHP_EOL;
                 }
                 $lng = true;
                 continue;
             }
 
-            $enum = !empty($this->enums[$item['name']])?$this->enums[$item['name']]:'';
-            if ($enum){
-                $list.='       $show->'.$item['name'].'("'.$enum['key_note'].'")->using('.$app->className.'::'.$item['name'].');'.PHP_EOL;
-            }else{
-                $list.='       $show->field("'.$item['name'].'", __("'.$item['comment'].'"));'.PHP_EOL;
+            $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
+            if ($enum) {
+                $list .= '       $show->' . $item['name'] . '("' . $enum['key_note'] . '")->using(' . $app->className . '::' . $item['name'] . ');' . PHP_EOL;
+            } else {
+                $list .= '       $show->field("' . $item['name'] . '", __("' . $item['comment'] . '"));' . PHP_EOL;
             }
         }
         return $list;
@@ -238,7 +247,8 @@ trait LaravelAdmin
     /**
      * 编辑
      */
-    private  function form(){
+    private function form()
+    {
         /**
          * @var Application $app
          */
@@ -248,7 +258,7 @@ trait LaravelAdmin
          * @var Application $app
          */
         $app = $this->app;
-        $lng= false;
+        $lng = false;
 
 
         //右上角的操作按钮
@@ -266,58 +276,56 @@ trait LaravelAdmin
     // 添加一个按钮, 参数可以是字符串, 或者实现了Renderable或Htmlable接口的对象实例
    // $tools->add(\'<a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;&nbsp;delete</a>\');
 });';
-        $this->AdminTemplate = str_replace('{{tools}}',$tools,$this->AdminTemplate);
-
+        $this->AdminTemplate = str_replace('{{tools}}', $tools, $this->AdminTemplate);
 
 
         foreach ($app->struct->struct as $item) {
 
 
-
-            if (in_array($item['name'],config('exclude_fillable'))) continue;
-            if ($item['name'] =='lng' || $item['name']== 'lat'){
-                if ($lng == false){
-                    $list.='       $form->latlong("lat", "lng", "经纬度")->default(["lat" =>23.129102812719083, "lng" =>113.26416495256126]);'.PHP_EOL;
+            if (in_array($item['name'], config('exclude_fillable'))) continue;
+            if ($item['name'] == 'lng' || $item['name'] == 'lat') {
+                if ($lng == false) {
+                    $list .= '       $form->latlong("lat", "lng", "经纬度")->default(["lat" =>23.129102812719083, "lng" =>113.26416495256126]);' . PHP_EOL;
                 }
                 $lng = true;
                 continue;
             }
-            $default_str ='';
-            if (!empty($item['default'])){
-                $default_str = '->default("'.$item['default'].'")';
+            $default_str = '';
+            if (!empty($item['default'])) {
+                $default_str = '->default("' . $item['default'] . '")';
             }
 
             //帮助
-            $help_str = !empty($item['help'])?$item['help']:'';
-            if ($help_str){
-                $help_str = '->help("'.$item['help'].'")';
+            $help_str = !empty($item['help']) ? $item['help'] : '';
+            if ($help_str) {
+                $help_str = '->help("' . $item['help'] . '")';
             }
 
-            if ($item['name'] == $app->table->pk){
-                $list.='       $form->text("'.$item['name'].'", __("'.$item['comment'].'"))->disable()'.$default_str.$help_str.';'.PHP_EOL;
+            if ($item['name'] == $app->table->pk) {
+                $list .= '       $form->text("' . $item['name'] . '", __("' . $item['comment'] . '"))->disable()' . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
 
             //如果用到userid
-            if ($item['name'] == 'user_id'  && config('user_id_translate_the_name')){
-                $list.='       $form->text("'.config('user_id_translate_the_name').'", __("用户"))->disable()'.$default_str.$help_str.';'.PHP_EOL;
+            if ($item['name'] == 'user_id' && config('user_id_translate_the_name')) {
+                $list .= '       $form->text("' . config('user_id_translate_the_name') . '", __("用户"))->disable()' . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
             //图片判断
-            if ($item['name'] == 'image_url'){
-                $list.='$form->image(\'image_url\',\'图片\');';
+            if ($item['name'] == 'image_url') {
+                $list .= '$form->image(\'image_url\',\'图片\');';
                 continue;
             }
 
-            $enum = !empty($this->enums[$item['name']])?$this->enums[$item['name']]:'';
-            if ($enum){
-                $list.='       $form->select("'.$item['name'].'", __("'.$enum['key_note'].'"))->options('.$app->className.'::'.$item['name'].')'.$default_str.$help_str.';'.PHP_EOL;
-            }else{
+            $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
+            if ($enum) {
+                $list .= '       $form->select("' . $item['name'] . '", __("' . $enum['key_note'] . '"))->options(' . $app->className . '::' . $item['name'] . ')' . $default_str . $help_str . ';' . PHP_EOL;
+            } else {
 
-                if ($item['type']== 'int'){
-                    $list.='       $form->number("'.$item['name'].'", __("'.$item['comment'].'"))'.$default_str.$help_str.';'.PHP_EOL;
-                }else{
-                    $list.='       $form->text("'.$item['name'].'", __("'.$item['comment'].'"))'.$default_str.$help_str.';'.PHP_EOL;
+                if ($item['type'] == 'int') {
+                    $list .= '       $form->number("' . $item['name'] . '", __("' . $item['comment'] . '"))' . $default_str . $help_str . ';' . PHP_EOL;
+                } else {
+                    $list .= '       $form->text("' . $item['name'] . '", __("' . $item['comment'] . '"))' . $default_str . $help_str . ';' . PHP_EOL;
 
                 }
             }
