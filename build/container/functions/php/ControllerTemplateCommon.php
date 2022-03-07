@@ -85,7 +85,7 @@ trait ControllerTemplateCommon
          ]);' . PHP_EOL;
 
         }
-        if ($this->getCurrentSetting('relation_save')){
+        if ($this->getCurrentSetting('relation_save')) {
             $relation_save = '$res->saveRelation($data);';
         }
 
@@ -197,7 +197,7 @@ trait ControllerTemplateCommon
             {{checks}}
           }';
 
-            $check =  str_replace('{{checks}}',$this->getCheckModels(),$check);
+            $check = str_replace('{{checks}}', $this->getCheckModels(), $check);
         }
 
 
@@ -238,7 +238,7 @@ trait ControllerTemplateCommon
         ';
         }
 
-        $content = str_replace('{{check}}',$check,$content);
+        $content = str_replace('{{check}}', $check, $content);
 
 
         return [
@@ -250,15 +250,16 @@ trait ControllerTemplateCommon
     /**
      * 获取检查的Models
      */
-    public function getCheckModels(){
+    public function getCheckModels()
+    {
         $delete_check = $this->getCurrentSetting('delete_check');
         $datas = '';
-        foreach ($delete_check as $item){
-            $data ='$'.$item["table"].' = '.$item["model"].'::where("'.$item["key"].'",$id)->exists();
-           if ($'.$item["table"].'){
+        foreach ($delete_check as $item) {
+            $data = '$' . $item["table"] . ' = ' . $item["model"] . '::where("' . $item["key"] . '",$id)->exists();
+           if ($' . $item["table"] . '){
                return $this->failure(\'系统已存在该数据记录，不能删除\');
-           }'.PHP_EOL;
-            $datas.= $data;
+           }' . PHP_EOL;
+            $datas .= $data;
         }
         return $datas;
     }
@@ -368,9 +369,9 @@ trait ControllerTemplateCommon
 
         //这边无所谓，隐藏不隐藏，搜不到 {{request}} 这边是无效的
 //        if ($request_method != 'json') {
-            $requestForm = $this->getRequestFormByScence('list');
+        $requestForm = $this->getRequestFormByScence('list');
 
-            $template = str_replace('{{request}}', $requestForm, $template);
+        $template = str_replace('{{request}}', $requestForm, $template);
 //        } else {
 //            //json 请求
 //            $requestJson = '     *     @OA\RequestBody(
@@ -390,7 +391,7 @@ trait ControllerTemplateCommon
                     continue;
                 }
 
-                $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
+                $relation_name = !empty($item['relation_name']) ? $item['relation_name'] : $item['table_name'];
 
                 $with[] = "'" . $relation_name . "'";
             }
@@ -629,14 +630,22 @@ trait ControllerTemplateCommon
         $status_delete = $this->getCurrentSetting('status_delete');
 
 
-        if ($this->getCurrentSetting('list_keyword_search')){
+        if ($this->getCurrentSetting('list_keyword_search')) {
             $this->requestFieldsTemplate .= '
-       $' . config('keyword_name','keyword') . ' = $request->input("' . config('keyword_name','keyword') . '","");';
+       $' . config('keyword_name', 'keyword') . ' = $request->input("' . config('keyword_name', 'keyword') . '","");';
+        }
+
+        //筛选日期
+        if (config('data_list_filter_time')) {
+//            $created_at = config('data_list_filter_time');
+            $this->requestFieldsTemplate .= '
+       $start_at = $request->input("start_at","");';
+            $this->requestFieldsTemplate .= '
+       $end_at = $request->input("end_at","");';
         }
 
         //是否为必要参数
         foreach ($app->struct->struct as $item) {
-
 
 
             if (in_array($item['name'], $this->listFiltrateParameter())) {
@@ -676,46 +685,75 @@ trait ControllerTemplateCommon
 
             }
         }
-        if ($this->getCurrentSetting('list_keyword_search')){
+
+        //筛选日期
+        if (config('data_list_filter_time')) {
+            $created_at = config('data_list_filter_time');
+
             $query .= '
-            ->when($' . config('keyword_name','keyword') . ',function ($query)use($' . config('keyword_name','keyword') . '){
-                   $query->where(function ($query)use($' . config('keyword_name','keyword') . '){
+           ->when($start_at, function ($query) use ($start_at) {
+                    $query->where("' . $created_at . '", \'>=\', $start_at);
+                })';
+
+            $end_at_change = '';
+
+            if ($this->getCurrentSetting('list_created_at_add_time')) {
+                $day = $this->getCurrentSetting('list_created_at_add_time');
+                $end_at_change .= '
+                //时间戳
+                if(is_numeric($end_at)){
+                   $end_at =  strtotime(\'+1 ' . $day . '\',$end_at);
+                }else{
+                   $end_at = date("Y-m-d H:i:s",strtotime("+1 ' . $day . '",strtotime($end_at)));
+                }
+                ';
+            }
+            $query .= '
+
+           ->when($end_at, function ($query) use ($end_at) {
+                    '.$end_at_change.'
+                    $query->where("' . $created_at . '", \'<\', $end_at);
+                })';
+        }
+
+        if ($this->getCurrentSetting('list_keyword_search')) {
+            $query .= '
+            ->when($' . config('keyword_name', 'keyword') . ',function ($query)use($' . config('keyword_name', 'keyword') . '){
+                   $query->where(function ($query)use($' . config('keyword_name', 'keyword') . '){
                       {{keywordTemplate}}
                    });
                
             })';
-            $keywordTemplate ='';
+            $keywordTemplate = '';
+
+
             foreach ($this->getCurrentSetting('list_keyword_search') as $item) {
-                if ($item['op'] == 'like'){
-                    $keywordTemplate.='
-                       $query->orWhere("'.$item['key'].'","'.$item['op'].'","%$' . config('keyword_name','keyword') . '%");';
-                }else{
-                    $keywordTemplate.='
-                       $query->orWhere("'.$item['key'].'","'.$item['op'].'","$' . config('keyword_name','keyword') . '");';
+                if ($item['op'] == 'like') {
+                    $keywordTemplate .= '
+                       $query->orWhere("' . $item['key'] . '","' . $item['op'] . '","%$' . config('keyword_name', 'keyword') . '%");';
+                } else {
+                    $keywordTemplate .= '
+                       $query->orWhere("' . $item['key'] . '","' . $item['op'] . '","$' . config('keyword_name', 'keyword') . '");';
                 }
 
             }
 
-            $query = str_replace('{{keywordTemplate}}',$keywordTemplate,$query);
+
+            $query = str_replace('{{keywordTemplate}}', $keywordTemplate, $query);
 
 
         }
-
-
-
-
 
 
         $query .= ';';
 
-        if (config('common_query')){
+        if (config('common_query')) {
             $template = config('common_query');
-            if ($this->getCurrentSetting('time_between_field')){
-                $template = str_replace('created_at',$this->getCurrentSetting('time_between_field'),$template);
+            if ($this->getCurrentSetting('time_between_field')) {
+                $template = str_replace('created_at', $this->getCurrentSetting('time_between_field'), $template);
             }
-            $query.=$template;
+            $query .= $template;
         }
-
 
 
         return $query;

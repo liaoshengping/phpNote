@@ -805,7 +805,11 @@ class PHPCommon extends BaseClient
 
         foreach ($this->app->struct->struct as $item) {
 
-            if (strstr($item['name'], 'name') || strstr($item['name'], '_no')  || !empty($item['enum'])) {
+            if (strstr($item['name'], 'name')
+                || strstr($item['name'], '_no')
+                || strstr($item['name'], '_id')
+                || !empty($item['enum'])
+            ) {
                 $data[] = $item['name'];
                 continue;
             }

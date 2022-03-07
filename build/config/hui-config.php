@@ -35,6 +35,9 @@ return [
     "username" => xenv("username", "root"),
     "password" => xenv("password", "123456"),
 
+
+    "data_list_filter_time" => 'created_at',
+
     "fornt" => "",
     "enum_path" => "",//没有则不创建，或在model中定义,
     "database_file_name" => "database-edu-manager",
@@ -140,12 +143,15 @@ return [
             'fields' => [
                 ''
             ],
+
+            'list_created_at_add_time' => 'day',
+
             'input' => [
 
             ],
             'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
             "change_status" => [
-                'key'=>'status',
+                'key' => 'status',
             ],
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
@@ -366,15 +372,15 @@ return [
             'input' => [
 
             ],
-            'status_delete'=>[
-                'key'=>'status',
-                'value'=>'delete',
+            'status_delete' => [
+                'key' => 'status',
+                'value' => 'delete',
             ],
             'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
 
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['create','list','edit','show','delete'],
+            'controller_actions' => ['create', 'list', 'edit', 'show', 'delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
