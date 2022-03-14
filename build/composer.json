@@ -9,6 +9,7 @@
     "require": {
         "inhere/console": "^3.1",
         "millionmile/get_env": "^1.0",
-        "philo/laravel-blade": "^3.1"
+        "philo/laravel-blade": "^3.1",
+        "xaboy/form-builder": "~2.0"
     }
 }

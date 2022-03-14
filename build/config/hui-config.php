@@ -124,15 +124,15 @@ return [
 //                            'one_show' => true,
 //                            'create_relation' => true,//创建时，是否可以关联添加
 //                        ],
-                        [
-                            'table_name' => 'user_car',
-                            'target' => 'user_id', //目标表中的字段
-                            'origin' => 'id',//本表的字段
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => true,//创建时，是否可以关联添加
-                        ],
+//                        [
+//                            'table_name' => 'user_car',
+//                            'target' => 'user_id', //目标表中的字段
+//                            'origin' => 'id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => true,//创建时，是否可以关联添加
+//                        ],
                     ],
                 ]
             ]
@@ -481,7 +481,7 @@ return [
             'relations' => [
 
             ]
-        ]
+        ],
     ],
 
 

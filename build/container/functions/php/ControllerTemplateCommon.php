@@ -597,8 +597,15 @@ trait ControllerTemplateCommon
         $keyName = $this->model->getKeyName();
 
         $id = $request->get($keyName);
-
-        $res = $this->model{{with}}->find((int)$id);
+        
+        $with = property_exists($this,\'with\');
+        
+        if($with){
+          $query = $this->model->with($this->with);
+        }else{
+          $query = $this->model{{with}};
+        }
+        $res = $query->find((int)$id);
 
         if ($res) {
             return $this->successData($res);
@@ -711,7 +718,7 @@ trait ControllerTemplateCommon
             $query .= '
 
            ->when($end_at, function ($query) use ($end_at) {
-                    '.$end_at_change.'
+                    ' . $end_at_change . '
                     $query->where("' . $created_at . '", \'<\', $end_at);
                 })';
         }
