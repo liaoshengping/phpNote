@@ -20,7 +20,8 @@ class CommandHandler implements Middlewares
         'modelbase  table_name' => '只生成模型的base', // key-value
         'modelapi  tablename' => '生成api和模型',//
         'l-admin  tablename' => '生成Laravel-admin 控制器',//
-        'html filename' => '生成Laravel-admin 控制器',//
+        'html filename' => '生成官网',//
+        'huafei qudao'
     ];
 
     /**
@@ -51,6 +52,9 @@ class CommandHandler implements Middlewares
                 break;
             case 'html':
                 Show::info('生成静态页面');
+                break;
+            case "huafei":
+                Show::info('话费');
                 break;
             default:
                 Show::aList($this->help, '指示');

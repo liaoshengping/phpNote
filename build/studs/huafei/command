@@ -1,0 +1,120 @@
+<?php
+
+
+namespace app\task\command;
+
+
+use think\console\Command;
+use think\console\Input;
+use think\console\Output;
+use think\facade\Db;
+
+class {{ucname}} extends Command
+{
+    /**
+     * 配置指令.
+     */
+    protected function configure()
+    {
+        $this->setName('{{channel}}:createOrder')
+            ->setDescription('Create {{channel}} mobile order');
+    }
+
+    /**
+     * 指令执行
+     * @param Input $input
+     * @param Output $output
+     * @return bool|int|null
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\DbException
+     * @throws \think\db\exception\ModelNotFoundException
+     */
+    protected function execute(Input $input, Output $output)
+    {
+        $start = date('Y-m-d H:i:s');
+        echo '{{name}}开始下单' . PHP_EOL;
+
+        $lockKey = '{{channel}}_order_lock_key';
+        $lockVal = cache($lockKey);
+        if ($lockVal) {
+            echo '还在处理呢' . PHP_EOL;
+
+            return true;
+        }
+
+        cache($lockKey, 1, 120);
+
+        $api = Db::name('mobile_supplier')
+            ->where('code', '{{channel}}')
+            ->where('is_deleted', 0)
+            ->find();
+        if (empty($api)) {
+            echo '{{name}}接口配置有误' . PHP_EOL;
+            cache($lockKey, null);
+
+            return false;
+        }
+
+        $where = [];
+        $where[] = ['supplier_status', '=', 1];
+        $where[] = ['status', '=', 2];
+        $where[] = ['mobile_supplier_id', '=', $api['id']];
+        $where[] = ['order_type', '=', 2]; // 这家只有快充
+
+        $list = Db::name('mobile_order')
+            ->field('id, sub_order_id, mobile, amount')
+            ->where($where)
+            ->limit(100)
+            ->select()
+            ->toArray();
+
+        $model = new \api\{{ucname}}($api);
+        $done = 0;
+        $now = time();
+        foreach ($list as $v) {
+            $res = $model->create($v);
+            // 2050	下单异常	未确认（人工核实）或者通过查询接口确认
+            // 999	系统异常	未确认（人工核实）或者通过查询接口确认；面值必须传整数
+            if (!isset($res['nRtn']) || $res['nRtn'] === 2050 || $res['nRtn'] === 999) {
+                continue;
+            }
+
+            if (in_array($res['nRtn'], [0, 3003])) {
+                ++$done;
+                $update = [
+                    'supplier_status' => 2,
+                    'supplier_order_create_time' => $now,
+                    'remark' => '',
+                ];
+            } elseif (in_array($res['nRtn'], [1000, 1001, 1003, 1004, 2001, 2002, 2003, 2020, 2021, 1006, 2030])) {
+                $update = [
+                    'supplier_status' => 99, // 下单失败，切换其他通道等待再次尝试
+                    'remark' => $res['msg'] ?? '下单失败',
+                ];
+            } else {
+                continue;
+            }
+
+            $flag = Db::name('mobile_order')
+                ->where('id', $v['id'])
+                ->where('supplier_status', 1)
+                ->update($update);
+            if (!$flag) {
+                echo '更新异常：' . json_encode($update) . PHP_EOL;
+            }
+        }
+
+        $balance = $model->queryAmount();
+        if ($balance !== false) {
+            Db::name('mobile_supplier')
+                ->where('id', $api['id'])
+                ->update([
+                    'balance' => $balance,
+                ]);
+        }
+
+        cache($lockKey, null);
+
+        echo '{{name}}下单结束。成功下了 ' . $done . ' 单 ' . $start . '--' . date('Y-m-d H:i:s') . PHP_EOL;
+    }
+}

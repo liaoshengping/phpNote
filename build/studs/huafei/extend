@@ -1,0 +1,282 @@
+<?php
+namespace api;
+
+use app\common\model\Mobile;
+use think\facade\Db;
+
+/**
+ * Class {{ucname}}
+ * @package api
+ */
+class {{ucname}}
+{
+    private $mobileSupplierId = 0;
+    private $appId = '';
+    private $appSecret = '';
+    private $url = '';
+    private $szFormat = 'JSON';  // XML 或 JSON
+    private $error = '';
+    private $header = [
+        'Content-Type: application/json',
+    ];
+
+    // 接口状态码映射表
+    private $errorMap = [
+        // 充值
+        1000 => '系统接口维护',
+    ];
+
+
+    public function __construct($info)
+    {
+        $this->mobileSupplierId = $info['id'] ?? '';
+        $this->appId = $info['app_id'] ?? '';
+        $this->appSecret = $info['app_secret'] ?? '';
+        $this->url = $info['url'] ?? '';
+    }
+
+    /**
+     * 创建订单
+     * /plat/api/old/submitorder
+     * @param $order
+     * @return bool|mixed|string
+     */
+    public function create($order)
+    {
+        // 除了充值 50 100 200 的面值外，不符合的接口将会提示 nRtn=2030 没有该产品
+
+        $url = $this->url . '/plat/api/old/submitorder?';
+        $sortType = getMobileIsp($order['mobile']);
+        $sortType = $sortType == -1 ? 1 : $sortType;  // 1 移动
+        $params = [
+            'szAgentId' => $this->appId,
+            'szOrderId' => $order['sub_order_id'],   // 商户平台自行生成的订单编号
+            'szPhoneNum' => $order['mobile'],  // 充值号码、QQ号、加油卡号
+            'nMoney' => fen2yuan($order['amount']),  // 充值金额
+            'nSortType' => $sortType,  // 运营商编码
+            'nProductClass' => 1,  // 固定值
+            'nProductType' => 1,  // 固定值
+            'szProductId' => '',
+            'szTimeStamp' => date('Y-m-d H:i:s'),
+        ];
+
+        $params['szVerifyString'] = $this->getSign($params);
+        $params['szFormat'] = $this->szFormat;
+        $params['szNotifyUrl'] =  env('app.api_url') . '/api/notify/{{name}}Notify'; // 完成结果回调通知地址（不参与签名）
+        $url .= http_build_query($params);
+        $res = curlPost($url, json_encode($params), $this->header);
+        $res = json_decode($res, true);
+        if (isset($res['nRtn']) && $res['nRtn'] !== 0) {
+            $res['msg'] = $this->errorMap[$res['nRtn']] ?? '查询错误';
+        }
+
+        return $res;
+    }
+
+    /**
+     * 订单查询
+     * @param $orderId
+     * @return bool|mixed|string
+     */
+    public function query($orderId)
+    {
+        $url = $this->url . '/plat/api/old/queryorder';
+        $params = [
+            'szAgentId' => $this->appId,
+            'szOrderId' => $orderId,
+        ];
+        $params['szVerifyString'] = $this->getSign($params);
+        $params['szFormat'] = $this->szFormat;
+        $res = curlPost($url, json_encode($params), $this->header);
+        $res = json_decode($res, true);
+        return $res;
+    }
+
+    /**
+     * 查询余额
+     * /plat/api/old/queryBalance
+     * @return bool|int
+     */
+    public function queryAmount()
+    {
+        $url = $this->url . '/plat/api/old/queryBalance?';
+        $params = [
+            'szAgentId' => $this->appId,
+            'szVerifyString' => $this->getSign(),
+            'szFormat' => $this->szFormat,
+        ];
+
+        $url .= http_build_query($params);
+        $res = curlGet($url, $this->header);
+        $res = json_decode($res, true);
+        if ($res['nRtn'] === 0) {
+            return yuan2fen($res['fBalance']);
+        }
+
+        $this->error = $this->errorMap[$res['nRtn']] ?? '查询错误';
+
+        return false;
+    }
+
+    /**
+     * 订单回调
+     * @param $params
+     * @return string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\DbException
+     * @throws \think\db\exception\ModelNotFoundException
+     */
+    public function notify($params)
+    {
+        $subOrderId = $params['szOrderId'] ?? '';
+        $szRtnMsg = $params['szRtnMsg'] ?? ''; // 官方流水 => 凭证
+        $sign = $params['szVerifyString'] ?? '';
+        $retText = 'ok';
+
+        if (isset($params['szRtnMsg'])) {
+            unset($params['szRtnMsg']);
+        }
+
+        $checkSign = $this->getSign([
+            'szAgentId' => $params['szAgentId'],
+            'szOrderId' => $params['szOrderId'],
+            'szPhoneNum' => $params['szPhoneNum'],
+            'nDemo' => $params['nDemo'],
+            'fSalePrice' => $params['fSalePrice'],
+            'nFlag' => $params['nFlag'],
+        ]);
+        if ($sign !== $checkSign) {
+            $insert['result'] = '验签失败';
+            Db::name('mobile_notify')->insert($insert);
+
+            return $insert['result'];
+        }
+
+        if (!isset($params['nFlag']) || !in_array($params['nFlag'], [2, 3])) {
+            // 接口状态不存在时，不处理
+            $insert['result'] = '接口状态未知,不处理';
+            Db::name('mobile_notify')->insert($insert);
+
+            return $insert['result'];
+        }
+
+        $insert = [
+            'sub_order_id' => $subOrderId,
+            'params' => json_encode($params, JSON_UNESCAPED_UNICODE),
+            'result' => $retText,
+        ];
+
+        $order = Db::name('mobile_order')
+            ->where('sub_order_id', $subOrderId)
+            ->where('mobile_supplier_id', $this->mobileSupplierId)
+            ->find();
+        if (empty($order)) {
+            $insert['result'] = '订单不存在';
+            Db::name('mobile_notify')->insert($insert);
+
+            return $insert['result'];
+        }
+
+        // 判断面额是否一致
+        if ($params['nDemo'] != fen2yuan($order['amount'])) {
+            $insert['result'] = '面额有误' . $params['nDemo'];
+            Db::name('mobile_notify')->insert($insert);
+
+            return $insert['result'];
+        }
+
+        if (in_array($order['supplier_status'], [3, 4, 99])) {
+            $insert['result'] = '已经成功过';
+            Db::name('mobile_notify')->insert($insert);
+
+            return $retText;
+        }
+
+        if ($order['supplier_status'] != 2) {
+            $insert['result'] = '订单状态有误：' . $order['supplier_status'];
+            Db::name('mobile_notify')->insert($insert);
+
+            return $insert['result'];
+        }
+
+        // 供应商订单状态：1订单未创建 2订单已创建 3充值成功 4充值失败 99充值失败，等待重试
+        // nFlag 接口状态: 2 成功 3 失败
+        $supplierStatusMap = [
+            2 => 3,
+            3 => 99,
+        ];
+
+        $supplierStatus = $supplierStatusMap[$params['nFlag']];
+        if ($order['supplier_status'] == $supplierStatus) {
+            Db::name('mobile_notify')->insert($insert);
+
+            return $retText;
+        }
+        $update = [
+            'official_sn' => $szRtnMsg,
+            'supplier_status' => $supplierStatus,
+        ];
+        if (in_array($supplierStatus, [3, 99])) {
+            $update['finish_time'] = time();
+        }
+        if ($supplierStatus == 99) {
+            $order['notify_url'] = '';  // 失败通知先不发
+        }
+
+        Db::name('mobile_notify')->insert($insert);
+
+        Db::startTrans();
+        try {
+            // 如果是返佣模式，将订单结算方式改成待结算
+            if ($supplierStatus == 3 && $order['settle_type'] == SETTLE_TYPE_PROFIT) {
+                if ($order['profit'] == 0) {
+                    $update['settle_status'] = 3;
+                } elseif ($order['settle_status'] == 1) {
+                    $update['settle_status'] = 2;
+                }
+            }
+
+            Mobile::handleNotify($order, $update);
+
+            Db::commit();
+        } catch (\Exception $e) {
+            Db::rollback();
+
+            $insert['result'] = '订单更新失败' . $order['id'] . '。' . $e->getMessage();
+            Db::name('mobile_notify')->insert($insert);
+
+            return $insert['result'];
+        }
+
+        return $retText;
+    }
+
+    /**
+     * 生成签名
+     * @param $params
+     * @return string
+     */
+    public function getSign($params = [])
+    {
+        if ($params) {
+            if (isset($params['szVerifyString'])) {
+                unset($params['szVerifyString']);
+            }
+            $str = '';
+            foreach ($params as $k => $v) {
+                if ($v !== '') {
+                    $str .= $k . '=' . $v . '&';
+                }
+            }
+            $str .= 'szKey=' . $this->appSecret;
+        } else {
+            $str = 'szAgentId=' . $this->appId . '&szKey=' . $this->appSecret;
+        }
+        return strtolower(md5($str));
+    }
+
+    public function getError()
+    {
+        return $this->error;
+    }
+}

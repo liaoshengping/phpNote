@@ -32,6 +32,10 @@ class FrameProvider implements Provider
             return new Bootstrap($container); //簡單官網  https://sc.chinaz.com/moban/210528107370.htm
         };
 
+        $container['huafei'] = function ($container){
+            return new \container\functions\huafei\Bootstrap($container); //簡單官網  https://sc.chinaz.com/moban/210528107370.htm
+        };
+
 
 
     }
