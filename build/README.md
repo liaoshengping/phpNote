@@ -236,3 +236,8 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | create_relation | 创建时候是否关联可添加 | bool |
 
 
+## 话费接口（添加渠道）
+
+```
+php huafei huafei qudao
+```
