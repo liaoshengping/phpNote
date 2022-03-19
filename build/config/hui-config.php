@@ -319,7 +319,10 @@ return [
             'controller_actions' => ['list', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
-
+            'status_delete'=>[
+                'key'=>'status',
+                'value'=>'stop',
+            ],
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
             'relations' => [
