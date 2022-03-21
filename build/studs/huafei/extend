@@ -258,20 +258,14 @@ class {{ucname}}
      */
     public function getSign($params = [])
     {
-        if ($params) {
-            if (isset($params['szVerifyString'])) {
-                unset($params['szVerifyString']);
+        ksort($params);
+        $str = '';
+        foreach ($params as $k => $v) {
+            if ($v !== '') {
+                $str .= strtolower($k) . '=' . $v . '&';
             }
-            $str = '';
-            foreach ($params as $k => $v) {
-                if ($v !== '') {
-                    $str .= $k . '=' . $v . '&';
-                }
-            }
-            $str .= 'szKey=' . $this->appSecret;
-        } else {
-            $str = 'szAgentId=' . $this->appId . '&szKey=' . $this->appSecret;
         }
+        $str .= 'key=' . $this->appSecret;
         return strtolower(md5($str));
     }
 
