@@ -94,6 +94,7 @@ trait RequestForm
 
         if ($scence == 'create' && $create_other_params) {
             foreach ($create_other_params as $create_other_param) {
+
                 $requestForm .= '
      *      @OA\Parameter(
      *          name="' . $create_other_param["key"] . '",
@@ -124,9 +125,10 @@ trait RequestForm
          * @var Struct
          */
         foreach ($this->app->struct->struct as $item) {
-
-
             if ($scence == 'create') {
+                if ($this->getCurrentSetting('create_filter')){
+                    if (in_array($item['name'],$this->getCurrentSetting('create_filter'))) continue;
+                }
                 if (!in_array($item['name'], $create_input) && !empty($create_input)) continue;
             }
 
