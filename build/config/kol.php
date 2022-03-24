@@ -105,7 +105,7 @@ return [
         ],
         'projects' => [
             'name' => '项目管理',
-            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'request_method' => 'json',//form表单 json (Json Body的形式),
             'fields' => [
                 ''
             ],
