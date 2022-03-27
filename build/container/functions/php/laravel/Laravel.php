@@ -187,7 +187,7 @@ class Laravel extends PHPCommon
                         $tamplate .= '
    public function ' . $relation_name . '()
     {
-        return $this->belongsToMany(\\' . $model_base_namespace . $tagName . '::class,"'.$item['relation_table'].'", \'' . $item['target'] . '\', \'' . $item['origin'] . '\');
+        return $this->belongsToMany(\\' . $model_base_namespace . $tagName . '::class,"'.$item['relation_table'].'", \'' . $item['origin'] . '\', \'' .$item['target']. '\');
     }
                     ' . PHP_EOL;
                         break;

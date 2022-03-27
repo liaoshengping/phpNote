@@ -48,7 +48,7 @@ trait ControllerTemplateCommon
          * @var Application $this ->app
          */
         $api_doc = config('api_doc');
-        if ($api_doc == 'swagger' && !in_array('create',$this->getCurrentSetting('no_swagger_actions',[]))) {
+        if ($api_doc == 'swagger' && !in_array('create', $this->getCurrentSetting('no_swagger_actions', []))) {
             $template = $this->getStoreNote();
         } else {
             $template = '
@@ -87,15 +87,14 @@ trait ControllerTemplateCommon
         }
         if ($this->getCurrentSetting('relation_save')) {
             $relation_save = '$res->saveRelation($data);';
-        }else{
+        } else {
             //判断是否有  liaosp/laravel-relation-save 这个包
-            $composer_path = config('frame_path').'composer.json';
+            $composer_path = config('frame_path') . 'composer.json';
             $composer_file = file_get_contents($composer_path);
-            if (strstr($composer_file,'liaosp/laravel-relation-save')){
+            if (strstr($composer_file, 'liaosp/laravel-relation-save')) {
                 $relation_save = '$res->saveRelation($data);';
             }
         }
-
 
 
         $content = '
@@ -106,6 +105,13 @@ trait ControllerTemplateCommon
         }
         
         $data = $validate->getData();
+        
+        if (method_exists($this,"handleRequest")){ //处理数据
+
+             $data = $this->handleRequest($data);
+             
+         }
+        
         {{auth_store}}
         
         if (method_exists($this,"saveBefore")){ //保存之前发生的事
@@ -479,7 +485,7 @@ trait ControllerTemplateCommon
          * @var Application $this ->app
          */
         $api_doc = config('api_doc');
-        if ($api_doc == 'swagger' && !in_array('edit',$this->getCurrentSetting('no_swagger_actions',[]))) {
+        if ($api_doc == 'swagger' && !in_array('edit', $this->getCurrentSetting('no_swagger_actions', []))) {
             $template = $this->getEditNote();
         } else {
             $template = '
@@ -492,6 +498,19 @@ trait ControllerTemplateCommon
       {{content}}
       }';
         }
+
+        $relation_save = '';
+        if ($this->getCurrentSetting('relation_save')) {
+            $relation_save = '$model->saveRelation($data);';
+        } else {
+            //判断是否有  liaosp/laravel-relation-save 这个包
+            $composer_path = config('frame_path') . 'composer.json';
+            $composer_file = file_get_contents($composer_path);
+            if (strstr($composer_file, 'liaosp/laravel-relation-save')) {
+                $relation_save = '$model->saveRelation($data);';
+            }
+        }
+
         $request_method = $config['request_method'] ?? '';
 
         //这边无所谓，隐藏不隐藏，搜不到 {{request}} 这边是无效的
@@ -512,7 +531,7 @@ trait ControllerTemplateCommon
         $content = '
         $keyName = $this->model->getKeyName();
 
-        $id = $request->get($keyName);
+        $id = $request->input($keyName);
 
         $model = $this->model->find((int)$id);
 
@@ -522,14 +541,24 @@ trait ControllerTemplateCommon
 
 
         $validate = Validator::make($request->all(), $this->model->rule);
-
+        
         if (!$validate->passes()) {
             return $this->failure($validate->errors()->first());
         }
+        
+        $data = $validate->getData();
+        
+         if (method_exists($this,"handleRequest")){ //处理数据
 
-        $model->fill($validate->getData());
+             $data = $this->handleRequest($data);
+             
+         }
+
+        $model->fill($data);
 
         $res = $model->save();
+        
+        {{relation_save}}
 
         if ($res) {
             return $this->successData($model);
@@ -537,10 +566,13 @@ trait ControllerTemplateCommon
             return $this->failure();
         }
         ';
+        $template = str_replace('{{content}}', $content, $template);
+
+        $template = str_replace('{{relation_save}}', $relation_save, $template);
 
         return [
             'document' => '##修改',
-            'template' => str_replace('{{content}}', $content, $template),
+            'template' => $template,
         ];
     }
 
@@ -597,7 +629,7 @@ trait ControllerTemplateCommon
                     continue;
                 }
                 $table_name = $item['table_name'];
-                if (!empty($item['relation_name'])){
+                if (!empty($item['relation_name'])) {
                     $table_name = $item['relation_name'];
                 }
                 $with[] = "'" . $table_name . "'";

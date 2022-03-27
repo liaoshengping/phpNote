@@ -156,8 +156,8 @@ return [
                             'table_name' => 'users',//多对多关系的表
                             'relation_name' => 'project_user',
                             'relation_table' => 'project_user',
-                            'target' => 'user_id', //目标表中在关系表中的字段
-                            'origin' => 'project_id',//本表的字段在关系表中的字段
+                            'target' => 'user_id', //对象表中的字段
+                            'origin' => 'project_id',//table_name 对应的关系字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
@@ -486,6 +486,57 @@ return [
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
             'relations' => [
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'users',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'user_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+                ],
+            ]
+        ],
+        'project_log' => [
+            'name' => '项目日志',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => ['list'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'project_log_item',
+                            'target' => 'project_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ]
+                    ],
+                ],
                 [
                     'relation' => "hasOne",
                     'tables' => [
