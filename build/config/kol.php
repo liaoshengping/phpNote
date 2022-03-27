@@ -147,6 +147,15 @@ return [
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
                         ],
+                        [
+                            'table_name' => 'project_log',
+                            'target' => 'project_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => false,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
                     ],
                 ],
                 [
