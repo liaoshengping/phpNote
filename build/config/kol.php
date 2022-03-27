@@ -63,7 +63,7 @@ return [
 
     'exclude_fillable' => ['created_at', 'updated_at', 'deleted_at'],//$fillable  全局排除字段 ,即不可编辑的字段
 
-    'hidden_fields' => ['deleted_at', 'password', 'remember_token'], //全局需要隐藏的字段
+    'hidden_fields' => ['deleted_at', 'password', 'remember_token','updated_at'], //全局需要隐藏的字段
 
 
     //auth userid
@@ -116,10 +116,12 @@ return [
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
             'controller_actions' => ['create', 'list', 'edit', 'show'],
+
+            'no_swagger_actions' => ['create'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
-            'create_filter' => ['status', 'code', 'top_pid','pid','ex_at', 'ip'],//新增过滤字段
+            'create_filter' => ['status', 'code', 'top_pid', 'pid', 'ex_at', 'ip'],//新增过滤字段
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
@@ -129,8 +131,8 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'projects_platform',
-                            'target' => 'id', //目标表中的字段
-                            'origin' => 'project_id',//本表的字段
+                            'target' => 'project_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
@@ -138,8 +140,8 @@ return [
                         ],
                         [
                             'table_name' => 'project_kol_type',
-                            'target' => 'id', //目标表中的字段
-                            'origin' => 'project_id',//本表的字段
+                            'target' => 'project_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
@@ -148,9 +150,19 @@ return [
                     ],
                 ],
                 [
-                    'relation' => "hasOne",
+                    'relation' => "belongsToMany",
                     'tables' => [
-
+                        [
+                            'table_name' => 'users',//多对多关系的表
+                            'relation_name' => 'project_user',
+                            'relation_table' => 'project_user',
+                            'target' => 'user_id', //目标表中在关系表中的字段
+                            'origin' => 'project_id',//本表的字段在关系表中的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
                     ],
                 ]
             ]
@@ -208,8 +220,8 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'kol_price',
-                            'target' => 'id', //目标表中的字段
-                            'origin' => 'user_id',//本表的字段
+                            'target' => 'kol_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
@@ -244,9 +256,9 @@ return [
             'input' => [
 
             ],
-            'status_delete'=>[
-                'key'=>'status',
-                'value'=>'delete',
+            'status_delete' => [
+                'key' => 'status',
+                'value' => 'delete',
             ],
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
 
@@ -272,9 +284,9 @@ return [
             'input' => [
 
             ],
-            'status_delete'=>[
-                'key'=>'status',
-                'value'=>'delete',
+            'status_delete' => [
+                'key' => 'status',
+                'value' => 'delete',
             ],
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
 
@@ -300,9 +312,9 @@ return [
             'input' => [
 
             ],
-            'status_delete'=>[
-                'key'=>'status',
-                'value'=>'delete',
+            'status_delete' => [
+                'key' => 'status',
+                'value' => 'delete',
             ],
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
 
@@ -318,7 +330,6 @@ return [
 
             ]
         ],
-
         'kpi' => [
             'name' => 'Kpi信息管理',
             'request_method' => 'form',//form表单 json (Json Body的形式),
@@ -343,7 +354,154 @@ return [
 
             ]
         ],
+        'projects_platform' => [
+            'name' => '项目平台',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
 
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => ['create', 'list', 'edit', 'show', 'delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'projects_platform_require',
+                            'target' => 'projects_platform_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ]
+                    ],
+                ],
+            ]
+        ],
+        'projects_platform_require' => [
+            'name' => '项目平台要求',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => 'none',
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'dict',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'dict_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+                ],
+            ]
+        ],
+        'project_kol_type' => [
+            'name' => '项目平台要求',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => 'none',
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'dict',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'dict_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+                ],
+            ]
+        ],
+        'project_user' => [
+            'name' => '项目成员',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => ['create','list','delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'users',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'user_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+                ],
+            ]
+        ],
     ]
 
 ];

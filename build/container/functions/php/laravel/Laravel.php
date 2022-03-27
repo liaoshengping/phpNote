@@ -150,6 +150,7 @@ class Laravel extends PHPCommon
             $relationName = $relation['relation'];
 
             foreach ($relation['tables'] as $item) {
+
                 $tagName = $this->app->tool->struct($item['table_name']);
 
                 //危险警告
@@ -178,6 +179,15 @@ class Laravel extends PHPCommon
    public function ' . $relation_name . '()
     {
         return $this->hasOne(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\');
+    }
+                    ' . PHP_EOL;
+                        break;
+
+                    case 'belongsToMany':
+                        $tamplate .= '
+   public function ' . $relation_name . '()
+    {
+        return $this->belongsToMany(\\' . $model_base_namespace . $tagName . '::class,"'.$item['relation_table'].'", \'' . $item['target'] . '\', \'' . $item['origin'] . '\');
     }
                     ' . PHP_EOL;
                         break;

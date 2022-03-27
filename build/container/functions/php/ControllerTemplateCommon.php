@@ -48,7 +48,7 @@ trait ControllerTemplateCommon
          * @var Application $this ->app
          */
         $api_doc = config('api_doc');
-        if ($api_doc == 'swagger') {
+        if ($api_doc == 'swagger' && !in_array('create',$this->getCurrentSetting('no_swagger_actions',[]))) {
             $template = $this->getStoreNote();
         } else {
             $template = '
@@ -87,7 +87,16 @@ trait ControllerTemplateCommon
         }
         if ($this->getCurrentSetting('relation_save')) {
             $relation_save = '$res->saveRelation($data);';
+        }else{
+            //判断是否有  liaosp/laravel-relation-save 这个包
+            $composer_path = config('frame_path').'composer.json';
+            $composer_file = file_get_contents($composer_path);
+            if (strstr($composer_file,'liaosp/laravel-relation-save')){
+                $relation_save = '$res->saveRelation($data);';
+            }
         }
+
+
 
         $content = '
         $validate = Validator::make($request->all(), $this->model->rule);
@@ -117,6 +126,7 @@ trait ControllerTemplateCommon
              $res =$this->saved($res,$data) ?? $res;
              
          }
+         
          
         
          \DB::commit();
@@ -464,11 +474,12 @@ trait ControllerTemplateCommon
 
     public function buildEditController()
     {
+        $config = $this->getCurrentSetting();
         /**
          * @var Application $this ->app
          */
         $api_doc = config('api_doc');
-        if ($api_doc == 'swagger') {
+        if ($api_doc == 'swagger' && !in_array('edit',$this->getCurrentSetting('no_swagger_actions',[]))) {
             $template = $this->getEditNote();
         } else {
             $template = '
@@ -585,7 +596,11 @@ trait ControllerTemplateCommon
                 if (empty($item['one_show'])) {
                     continue;
                 }
-                $with[] = "'" . $item['table_name'] . "'";
+                $table_name = $item['table_name'];
+                if (!empty($item['relation_name'])){
+                    $table_name = $item['relation_name'];
+                }
+                $with[] = "'" . $table_name . "'";
             }
         }
         if (!empty($with)) {

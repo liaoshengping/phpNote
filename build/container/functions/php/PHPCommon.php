@@ -161,12 +161,13 @@ class PHPCommon extends BaseClient
 
                     $table_name = $item['table_name'];
                     $schema_name = $this->app->tool->struct($item['table_name']);
+
                     if (!is_file(config('frame_mode_path') . $schema_name . '.php')) {
                         Show::block('致命bug，请执行：model ' . $table_name, 'error', 'error');
                     }
                     $relation_name = !empty($item['relation_name']) ? $item['relation_name'] : $item['table_name'];
                     $description = !empty($item['description']) ? $item['description'] : '';
-                    if ($relation['relation'] == 'hasMany') {
+                    if ($relation['relation'] == 'hasMany' ) {
                         $apiDoc .= '
  *      @OA\Property(
  *     property="' . $relation_name . '",
@@ -176,7 +177,19 @@ class PHPCommon extends BaseClient
  *     ref="#/components/schemas/' . $schema_name . '"
  *     )
  *      ),';
-                    } else {
+                    }
+                    elseif ( $relation['relation'] == 'belongsToMany'){
+                        $apiDoc .= '
+ *      @OA\Property(
+ *     property="' . $relation_name . '",
+ *     description="' . $description . '",
+ *     type= "array",
+ *     @OA\Items(
+ *     ref="#/components/schemas/' . $this->app->tool->struct($item['relation_table']) . '"
+ *     )
+ *      ),';
+                    }
+                    else {
                         $apiDoc .= '
  *      @OA\Property(
  *     property="' . $relation_name . '",
@@ -651,7 +664,7 @@ class PHPCommon extends BaseClient
      * 获取当前配置
      * @return array|mixed
      */
-    public function getCurrentSetting($key = '')
+    public function getCurrentSetting($key = '',$default='')
     {
 
 
@@ -680,7 +693,7 @@ class PHPCommon extends BaseClient
         }
 
         if ($key) {
-            return !empty($table[$key]) ? $table[$key] : '';
+            return !empty($table[$key]) ? $table[$key] : $default;
         }
 
 
