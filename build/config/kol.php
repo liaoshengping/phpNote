@@ -87,7 +87,7 @@ return [
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['create', 'list', 'edit', 'show'],
+            'controller_actions' => [ 'list', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -205,7 +205,7 @@ return [
         ],
         'kol' => [
             'name' => 'Kol管理',
-            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'request_method' => 'json',//form表单 json (Json Body的形式),
 
             'fields' => [
                 ''
@@ -244,8 +244,8 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'kol_supplier',
-                            'target' => 'id', //目标表中的字段
-                            'origin' => 'kol_id',//本表的字段
+                            'target' => 'kol_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
@@ -537,6 +537,57 @@ return [
                     'tables' => [
                         [
                             'table_name' => 'project_log_item',
+                            'target' => 'project_log_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ]
+                    ],
+                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'users',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'user_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+                ],
+            ]
+        ],
+        'content' => [
+            'name' => '稿件内容',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => ['create','list','edit','show','delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'content_comment',
                             'target' => 'project_id', //目标表中的字段
                             'origin' => 'id',//本表的字段
                             'list_show' => true,

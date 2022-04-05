@@ -529,32 +529,26 @@ trait ControllerTemplateCommon
 
 
         $content = '
+        
+        
+        
+        
         $keyName = $this->model->getKeyName();
-
         $id = $request->input($keyName);
-
         $model = $this->model->find((int)$id);
-
         if (!$model) {
             return $this->failure(\'不存在id为：\' . $id);
         }
-
-
         $validate = Validator::make($request->all(), $this->model->rule);
-        
         if (!$validate->passes()) {
             return $this->failure($validate->errors()->first());
         }
-        
-        $data = $validate->getData();
-        
+        $params = $validate->getData();
          if (method_exists($this,"handleRequest")){ //处理数据
-
              $data = $this->handleRequest($data);
-             
          }
 
-        $model->fill($data);
+        $model->fill($params);
 
         $res = $model->save();
         
