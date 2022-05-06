@@ -124,7 +124,14 @@ return [
             'create_filter' => ['status', 'code', 'top_pid', 'pid', 'ex_at', 'ip'],//新增过滤字段
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
+            'list_other_params' => [
+                [
+                    'key' => 'append',
+                    'des' => 'percent:首页指标百分比',//首页数据
+                    'required' => 'false',//是否必须
+                ]
 
+            ],
             'relations' => [
                 [
                     'relation' => "hasMany",
@@ -152,6 +159,15 @@ return [
                             'target' => 'project_id', //目标表中的字段
                             'origin' => 'id',//本表的字段
                             'list_show' => false,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'project_kpi',
+                            'target' => 'project_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
@@ -246,6 +262,36 @@ return [
                             'table_name' => 'kol_supplier',
                             'target' => 'kol_id', //目标表中的字段
                             'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+
+                        [
+                            'table_name' => 'platform',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'platform_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'dict',
+                            'relation_name' => 'kol_type',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'kol_type_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'dict',
+                            'relation_name' => 'kol_weight',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'kol_weight_id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
@@ -609,6 +655,128 @@ return [
                             'one_show' => true,
                             'create_relation' => false,//创建时，是否可以关联添加
                         ],
+                    ],
+                ],
+            ]
+        ],
+//        permissions
+        'roles' => [
+            'name' => '角色管理',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => ['create','list','edit','show','delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip','guard_name'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+            'status_delete'=>[
+                'key'=>'status',
+                'value'=>'delete',
+            ],
+            'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+//                        [
+//                            'table_name' => 'content_comment',
+//                            'target' => 'project_id', //目标表中的字段
+//                            'origin' => 'id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+                    ],
+                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+//                        [
+//                            'table_name' => 'users',
+//                            'target' => 'id', //目标表中的字段
+//                            'origin' => 'user_id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ],
+                    ],
+                ],
+                [
+                    'relation' => "belongsToMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'permissions',//多对多关系的表
+//                            'relation_name' => 'project_user',
+                            'relation_table' => 'role_has_permissions',
+                            'target' => 'role_id', //对象表中的字段
+                            'origin' => 'permission_id',//table_name 对应的关系字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
+                ]
+            ]
+        ],
+        'permissions' => [
+            'name' => '权限管理',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => ['create','list','edit','show','delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip','guard_name'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasMany",
+                    'tables' => [
+//                        [
+//                            'table_name' => 'content_comment',
+//                            'target' => 'project_id', //目标表中的字段
+//                            'origin' => 'id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ]
+                    ],
+                ],
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+//                        [
+//                            'table_name' => 'users',
+//                            'target' => 'id', //目标表中的字段
+//                            'origin' => 'user_id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ],
                     ],
                 ],
             ]

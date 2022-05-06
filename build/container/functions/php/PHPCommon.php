@@ -145,8 +145,9 @@ class PHPCommon extends BaseClient
             foreach ($relations as $relation) {
                 foreach ($relation['tables'] as $item) {
                     $table_name = $item['table_name'];
+                    $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
                     $namespace = config('model_namespace_path');
-                    $relationPropertys .= '* @property \\' . $namespace . '\\' . $this->app->tool->struct($table_name) . ' ' . $table_name . PHP_EOL;
+                    $relationPropertys .= '* @property \\' . $namespace . '\\' . $this->app->tool->struct($table_name) . ' ' . $relation_name . PHP_EOL;
                 }
             }
 

@@ -22,6 +22,7 @@ trait ControllerTemplateCommon
     {
         $template = '
     public $model;
+    public $append;
 
     public function __construct()
     {
@@ -465,7 +466,17 @@ trait ControllerTemplateCommon
             $data = $query->paginate();
         }
         
-        
+        if (property_exists($this,\'append\') && $this->append || \request()->input(\'append\')) {
+            if (empty($this->append)){
+                $this->append = \request()->input(\'append\');
+            }
+            if (is_string($this->append)){
+                $this->append = explode(\',\',$this->append);
+            }
+            $data->transform(function ($item) {
+                return $item->append($this->append);
+            });
+        }     
 
         return $this->successData($data);
         ';
@@ -543,12 +554,12 @@ trait ControllerTemplateCommon
         if (!$validate->passes()) {
             return $this->failure($validate->errors()->first());
         }
-        $params = $validate->getData();
+        $data = $validate->getData();
          if (method_exists($this,"handleRequest")){ //处理数据
              $data = $this->handleRequest($data);
          }
 
-        $model->fill($params);
+        $model->fill($data);
 
         $res = $model->save();
         

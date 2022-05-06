@@ -9,5 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class {{controller_base_name}} extends {{frame_controller_base_namespace}}\BaseController
 {
+
     {{content}}
 }
