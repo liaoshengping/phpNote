@@ -625,7 +625,14 @@ return [
             'create_input' => [], //创建需要的字段如果为空取上面的
 
             'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+            'create_other_params'=>[
+//                [
+//                    'key'=>'kol_id',
+//                    'des'=>'选择kol发布',//描述
+//                    'required'=>'false',//是否必须
+//                ],
 
+            ], //创建时额外的参数，用于swagger 生成
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
             'relations' => [

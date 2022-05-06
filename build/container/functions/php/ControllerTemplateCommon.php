@@ -107,21 +107,19 @@ trait ControllerTemplateCommon
         
         $data = $validate->getData();
         
-        if (method_exists($this,"handleRequest")){ //处理数据
 
-             $data = $this->handleRequest($data);
-             
-         }
-        
-        {{auth_store}}
-        
-        if (method_exists($this,"saveBefore")){ //保存之前发生的事
-
-           $data =$this->saveBefore($data) ?? $data;
-             
-         }
         
         try {
+         if (method_exists($this,"handleRequest")){ //处理数据
+
+             $data = $this->handleRequest($data);
+         }
+        {{auth_store}}
+        if (method_exists($this,"saveBefore")){ //保存之前发生的事
+           $data =$this->saveBefore($data) ?? $data;
+         }
+        
+        
          \DB::beginTransaction();
          
          $res = $this->model->create($data);
@@ -142,7 +140,8 @@ trait ControllerTemplateCommon
          
          \DB::rollBack();
          
-          throw new \Exception($e->getMessage());
+         return $this->failure($e->getMessage());
+
          }
         
         if ($res) {
