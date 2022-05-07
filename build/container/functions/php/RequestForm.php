@@ -65,7 +65,7 @@ trait RequestForm
      *      ),';
             $requestForm .= '
      *      @OA\Parameter(
-     *          name="key_word ",
+     *          name="'.config('keyword_name', 'keyword').'",
      *          description="业务中只有存在多个字段查询的比如：订单号/联系人/手机号 才传否则无效",
      *          required=false,
      *          in="query",

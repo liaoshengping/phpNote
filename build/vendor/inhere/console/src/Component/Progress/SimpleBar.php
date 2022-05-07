@@ -72,7 +72,6 @@ class SimpleBar extends NotifyMessage
             $current += $step;
             $percent = ceil(($current / $total) * 100);
 
-
             if ($percent >= 100) {
                 $msg      = $doneMsg ?: $msg;
                 $percent  = 100;
@@ -87,7 +86,7 @@ class SimpleBar extends NotifyMessage
             // printf("\x0D\x1B[2K[%'{$waitChar}-100s] %d%% %s",
             printf(
                 "{$tplPrefix}[%'{$waitChar}-100s] %' 3d%% %s",
-                str_repeat($opts['doneChar'], intval($percent)) . ($finished ? '' : $opts['signChar']),
+                str_repeat($opts['doneChar'], $percent) . ($finished ? '' : $opts['signChar']),
                 $percent,
                 $msg
             );// ♥ ■ ☺ ☻ = #

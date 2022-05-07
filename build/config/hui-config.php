@@ -25,6 +25,7 @@ return [
     'model_namespace_path' => "App\Models",
     'controller_namespace_path' => "App\Http\Controllers",
     'frame_controller_base_namespace' => "\App\Http\Controllers\base",
+    'keyword_name' =>'keyword',
 
     /**
      * 数据库信息
@@ -86,10 +87,19 @@ return [
             'input' => [
 
             ],
-            'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
-
-            'controller_actions' => 'none',
+            'list_keyword_search' =>[
+                [
+                    'key'=>'phone',
+                    'op'=> 'like',
+                ],
+                [
+                    'key'=>'nickname',
+                    'op'=>'like',
+                ]
+            ],
+            'controller_actions' => ['list'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -145,6 +155,7 @@ return [
             ],
 
             'list_created_at_add_time' => 'day',
+
 
             'input' => [
 
