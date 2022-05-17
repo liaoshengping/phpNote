@@ -147,6 +147,7 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | list_keyword_search | 列表关键字搜索 | 列表关键字搜索 |
 | time_between_field | 替换created_at | 区间查询 whereBetween 的字段 比如order_at|
 | list_other_params | 列表的其他参数  | |
+| disable_soft_delete | 关闭软删除  | |
 | list_created_at_add_time | 列表时间筛选结束时间end_at是否加1天 默认day | |
 
 

@@ -527,12 +527,22 @@ return [
             'fields' => [
                 ''
             ],
+            'disable_soft_delete' => true,
+
+            'create_other_params'=>[
+                [
+                    'key'=>'user_id',
+                    'des'=>'用户',//描述
+                    'required'=>'true',//是否必须
+                ],
+
+            ], //创建时额外的参数，用于swagger 生成
             'input' => [
 
             ],
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'controller_actions' => ['create','list','delete'],
+            'controller_actions' => ['create','delete'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 

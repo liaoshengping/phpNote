@@ -520,6 +520,11 @@ class PHPCommon extends BaseClient
             $relation_save = 'use \Liaosp\LaravelRelationSave\SaveRelation;';
         }
 
+        //软删除
+        $soft_delete = $this->getCurrentSetting('disable_soft_delete',false) ? '':'use SoftDeletes;';
+        $this->modeBaseTemplate = str_replace('{{soft_delete}}', $soft_delete,$this->modeBaseTemplate);
+
+
         $this->modeBaseTemplate = str_replace('{{property}}', $propertys, $this->modeBaseTemplate);
         $this->modeBaseTemplate = str_replace('{{apiDoc}}', $schema, $this->modeBaseTemplate);
         $this->modeBaseTemplate = str_replace('{{fillable}}', $fillable, $this->modeBaseTemplate);
