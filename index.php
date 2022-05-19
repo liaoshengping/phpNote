@@ -9,7 +9,7 @@
 
 $res = strtotime('1970-01-01');
 
-echo $res;exit;
+//echo $res;exit;
 
 //echo "hello worldss";exit;
 function getUrl($url){

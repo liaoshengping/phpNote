@@ -1,4 +1,35 @@
 <?php
+include("vendor/autoload.php");
+
+
+$datas = [
+    ['amount' => 1000, 'percent' => 12],
+    ['amount' => 800, 'percent' => 2],
+    ['amount' => 2000, 'percent' => 50],
+];
+
+$inputNum = 3000;
+$result = 0;
+
+$query = collect($datas);
+$sortData = $query->sortBy('amount', SORT_ASC);
+
+
+foreach ($sortData as $key => $val) {
+    if ($val['amount'] > $inputNum) break;
+    $result += bcmul($val['amount'] / 100, $val['percent'], 2);
+    echo $val['amount'] . '*' . $val['percent'] . '%+';
+}
+
+echo '等于' . $result;
+
+
+exit;
+
+
+var_dump($sortData);
+exit;
+
 
 $a = "new string";
 
@@ -6,23 +37,24 @@ xdebug_debug_zval('a');
 
 exit;
 
-include ("vendor/autoload.php");
+include("vendor/autoload.php");
 
 $commont = '状态(0:删除,1:待审核,2:正常)';
 
 $perg_result = array();
 
-preg_match("/([^\s]*)(?:\()(.*)(?:\))/i",$commont,$perg_result);
+preg_match("/([^\s]*)(?:\()(.*)(?:\))/i", $commont, $perg_result);
 
-var_dump($perg_result);exit;
+var_dump($perg_result);
+exit;
 
 
 $name = '帮宝适清新帮拉拉裤XXL28片(15kg以上)加加大码婴儿纸尿裤尿不湿柔软透气';
 
-preg_match('/([A-Z]+)+(\d+)+片/',$name,$data);
+preg_match('/([A-Z]+)+(\d+)+片/', $name, $data);
 
-var_dump($data);exit;
-
+var_dump($data);
+exit;
 
 
 exit;
@@ -43,41 +75,44 @@ exit;
 
 header('Content-type:text/html;charset=utf-8');
 $url = "http://www.baidu.com";
-var_dump(file_get_contents($url));exit;
+var_dump(file_get_contents($url));
+exit;
 
 
-  function MoneyTrimSymbol($money)
+function MoneyTrimSymbol($money)
 {
     $money = floatval($money);
     return $money >= 0 ? '¥' . $money : '-¥' . abs($money);
 }
 
-echo MoneyTrimSymbol(null);exit;
+echo MoneyTrimSymbol(null);
+exit;
 
 
 $goods = ['name' => '222'];
-$list =['name2' => '234234','list' => [[123,12312,1231],[12312]]];
+$list = ['name2' => '234234', 'list' => [[123, 12312, 1231], [12312]]];
 
-$merge = array_merge($goods,$list);
+$merge = array_merge($goods, $list);
 
-var_dump($merge);exit;
+var_dump($merge);
+exit;
 
 
-$arr = array('5','2','0','1','3','1','4');
+$arr = array('5', '2', '0', '1', '3', '1', '4');
 
 function BubbleSort(array $arr)
 {
-    for ($i=0 ; $i <count($arr) ; $i++) {
+    for ($i = 0; $i < count($arr); $i++) {
         //设置一个空变量
         $data = '';
-        for ($j=$i ; $j < count($arr)-1 ; $j++) {
+        for ($j = $i; $j < count($arr) - 1; $j++) {
 
             //if 5 >2  5拿出来  5的位置被下一位取代 下一位编程了5
 
-            if ($arr[$i] > $arr[$j+1]) {
-                $data      = $arr[$i];
-                $arr[$i]   = $arr[$j+1];
-                $arr[$j+1] = $data;
+            if ($arr[$i] > $arr[$j + 1]) {
+                $data = $arr[$i];
+                $arr[$i] = $arr[$j + 1];
+                $arr[$j + 1] = $data;
             }
         }
     }
@@ -89,66 +124,72 @@ print_r(BubbleSort($arr));
 exit;
 
 
- $data = format_money("-50.233");
-var_dump((string)$data);exit;
+$data = format_money("-50.233");
+var_dump((string)$data);
+exit;
 function format_money($money = null)
 {
-   return floatval($money);
+    return floatval($money);
 
 }
 
 exit;
 
 $total_amount = bcmul(1, 1.00, 2);
-var_dump($total_amount);exit;
+var_dump($total_amount);
+exit;
 
-$sum = 9/11;
-echo round(8*$sum,2);exit;
+$sum = 9 / 11;
+echo round(8 * $sum, 2);
+exit;
 
 
 $lastDate = date('Y-m-d', strtotime('last day'));
-echo $lastDate;exit;
-    $date = '2019';
+echo $lastDate;
+exit;
+$date = '2019';
 
-    var_dump(is_numeric($date));exit;
-    $date = strtotime($date);
-    var_dump(date("Y",$date));exit;
-    #拼接获取Code的URL
+var_dump(is_numeric($date));
+exit;
+$date = strtotime($date);
+var_dump(date("Y", $date));
+exit;
+#拼接获取Code的URL
 
-    $url='http://gw.api.alibaba.com/openapi';
+$url = 'http://gw.api.alibaba.com/openapi';
 
-    $appKey='3937604';
+$appKey = '3937604';
 
-    $appSecret ='0RsvFZYVQd';
+$appSecret = '0RsvFZYVQd';
 
-    #回调URL
+#回调URL
 
-    $redirectUrl = 'http://amazon_object.com/api/request/requestlog';
+$redirectUrl = 'http://amazon_object.com/api/request/requestlog';
 
-    #生成签名
+#生成签名
 
-    $code_arr = array(
+$code_arr = array(
 
-        'client_id' => $appKey,
+    'client_id' => $appKey,
 
-        'redirect_uri' => $redirectUrl,
+    'redirect_uri' => $redirectUrl,
 
-        'site' => 'aliexpress'
+    'site' => 'aliexpress'
 
-    );
+);
 
-    ksort($code_arr);
+ksort($code_arr);
 
-    $sign_str = '';
+$sign_str = '';
 
-    foreach ($code_arr as $key=>$val){
+foreach ($code_arr as $key => $val) {
 
-        $sign_str .= $key . $val;
+    $sign_str .= $key . $val;
 
-    }
+}
 
-    $code_sign = strtoupper(bin2hex(hash_hmac("sha1", $sign_str, $appSecret, true)));
-    $get_code_url = 'http://gw.api.alibaba.com/auth/authorize.htm?client_id='.$appKey.'&site=1688&redirect_uri='.$redirectUrl.'&_aop_signature='.$code_sign;
-    echo $get_code_url;
+$code_sign = strtoupper(bin2hex(hash_hmac("sha1", $sign_str, $appSecret, true)));
+$get_code_url = 'http://gw.api.alibaba.com/auth/authorize.htm?client_id=' . $appKey . '&site=1688&redirect_uri=' . $redirectUrl . '&_aop_signature=' . $code_sign;
+echo $get_code_url;
 
 
