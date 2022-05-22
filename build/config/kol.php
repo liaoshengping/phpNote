@@ -115,7 +115,7 @@ return [
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['create', 'list', 'edit', 'show'],
+            'controller_actions' => ['create', 'list', 'edit', 'show','delete'],
 
             'no_swagger_actions' => ['create'],
 //            ['create','list','edit','show','delete'];
@@ -192,7 +192,7 @@ return [
                 ]
             ]
         ],
-//        mobile_verif_code
+
         'mobile_verif_code' => [
             'name' => '手机验证管理',
             'request_method' => 'form',//form表单 json (Json Body的形式),
@@ -229,9 +229,18 @@ return [
             'input' => [
 
             ],
+
+            'list_other_params' => [
+                [
+                    'key' => 'mcn_name',
+                    'des' => 'mcn 机构名称  api/kolSupplier/getMcn 获取',//描述
+                    'required' => 'false',//是否必须
+                ]
+
+            ],
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
 
-            'controller_actions' => ['create', 'edit', 'show', 'delete'],
+            'controller_actions' => ['create', 'edit', 'show', 'delete','list'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -299,6 +308,30 @@ return [
                         ],
                     ],
                 ]
+            ]
+        ],
+        'kol_supplier' => [
+            'name' => 'Kol供应商管理',
+            'request_method' => 'json',//form表单 json (Json Body的形式),
+
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+
+            'controller_actions' => 'none',
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'create_filter' => ['status', 'code', 'ex_at', 'ip'],//新增过滤字段
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+
             ]
         ],
         'kol_type' => [
@@ -676,7 +709,7 @@ return [
                 ],
             ]
         ],
-//        permissions
+
         'roles' => [
             'name' => '角色管理',
             'request_method' => 'form',//form表单 json (Json Body的形式),

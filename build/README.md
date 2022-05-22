@@ -149,6 +149,7 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | list_other_params | 列表的其他参数  | |
 | disable_soft_delete | 关闭软删除  | |
 | list_created_at_add_time | 列表时间筛选结束时间end_at是否加1天 默认day | |
+| 'no_swagger_actions' => ['create'], | 不生成控制器swagger文档| |
 
 
 
