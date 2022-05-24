@@ -230,6 +230,8 @@ return [
 
             ],
 
+            'query_join' => true,//查询是否是join查询
+
             'list_other_params' => [
                 [
                     'key' => 'mcn_name',

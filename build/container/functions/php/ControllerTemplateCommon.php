@@ -418,12 +418,15 @@ trait ControllerTemplateCommon
             $with = '';
         }
         $auth = '';
+
+        $query_join_name = $this->getCurrentSetting('query_join')?$this->app->table->table_name.'.':'';
+
         if (!empty($config['is_auth'])) {
-            $auth = '        ->where("user_id",' . config('auth_user_id') . ')' . PHP_EOL;
+            $auth = '        ->where("'.$query_join_name.'user_id",' . config('auth_user_id') . ')' . PHP_EOL;
         }
 
         if (!empty($config['is_auth_store'])) {
-            $auth = '        ->where("store_id",' . config('auth_store_id') . ')' . PHP_EOL;
+            $auth = '        ->where("'.$query_join_name.'store_id",' . config('auth_store_id') . ')' . PHP_EOL;
         }
 
 
@@ -452,7 +455,7 @@ trait ControllerTemplateCommon
 
        }
 
-        $query->orderBy("created_at","desc");
+        $query->orderBy("'.$query_join_name.'created_at","desc");
 
        ';
 
@@ -679,7 +682,7 @@ trait ControllerTemplateCommon
      */
     public function getRequestQuery()
     {
-
+        $query_join_name = $this->getCurrentSetting('query_join')?$this->app->table->table_name.'.':'';
         $query = '';
         /**
          * @var Application $app
@@ -715,10 +718,10 @@ trait ControllerTemplateCommon
             ->when($' . $item['name'] . ',function ($query)use($' . $item['name'] . '){
                 if (strstr($' . $item['name'] . ',\',\')){
                     $' . $item['name'] . ' = explode(\',\',$' . $item['name'] . ');
-                    $query->whereIn("' . $item['name'] . '", $' . $item['name'] . ');
+                    $query->whereIn("' .$query_join_name. $item['name'] . '", $' . $item['name'] . ');
                 }else{
                     
-                    $query->where("' . $item['name'] . '", $' . $item['name'] . ');
+                    $query->where("' . $query_join_name.$item['name'] . '", $' . $item['name'] . ');
                     
                 }
             })';
@@ -727,13 +730,13 @@ trait ControllerTemplateCommon
                     if (strstr($item['name'], 'name') || strstr($item['name'], '_no')) {
                         $query .= '
             ->when($' . $item['name'] . ',function ($query)use($' . $item['name'] . '){
-                   $query->where("' . $item['name'] . '","like", "%$' . $item['name'] . '%");
+                   $query->where("' .$query_join_name. $item['name'] . '","like", "%$' . $item['name'] . '%");
                
             })';
                     } else {
                         $query .= '
             ->when($' . $item['name'] . ',function ($query)use($' . $item['name'] . '){
-                   $query->where("' . $item['name'] . '", $' . $item['name'] . ');
+                   $query->where("' .$query_join_name.$item['name'] . '", $' . $item['name'] . ');
                
             })';
                     }
@@ -750,7 +753,7 @@ trait ControllerTemplateCommon
 
             $query .= '
            ->when($start_at, function ($query) use ($start_at) {
-                    $query->where("' . $created_at . '", \'>=\', $start_at);
+                    $query->where("' .$query_join_name. $created_at . '", \'>=\', $start_at);
                 })';
 
             $end_at_change = '';
@@ -770,7 +773,7 @@ trait ControllerTemplateCommon
 
            ->when($end_at, function ($query) use ($end_at) {
                     ' . $end_at_change . '
-                    $query->where("' . $created_at . '", \'<\', $end_at);
+                    $query->where("' .$query_join_name. $created_at . '", \'<\', $end_at);
                 })';
         }
 
@@ -788,10 +791,10 @@ trait ControllerTemplateCommon
             foreach ($this->getCurrentSetting('list_keyword_search') as $item) {
                 if ($item['op'] == 'like') {
                     $keywordTemplate .= '
-                       $query->orWhere("' . $item['key'] . '","' . $item['op'] . '","%$' . config('keyword_name', 'keyword') . '%");';
+                       $query->orWhere("' .$query_join_name. $item['key'] . '","' . $item['op'] . '","%$' . config('keyword_name', 'keyword') . '%");';
                 } else {
                     $keywordTemplate .= '
-                       $query->orWhere("' . $item['key'] . '","' . $item['op'] . '","$' . config('keyword_name', 'keyword') . '");';
+                       $query->orWhere("' .$query_join_name. $item['key'] . '","' . $item['op'] . '","$' . config('keyword_name', 'keyword') . '");';
                 }
 
             }
