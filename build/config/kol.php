@@ -129,6 +129,11 @@ return [
                     'key' => 'append',
                     'des' => 'percent:首页指标百分比',//首页数据
                     'required' => 'false',//是否必须
+                ] ,
+                [
+                    'key' => 'scene',
+                    'des' => 'recent：近期上线',
+                    'required' => 'false',
                 ]
 
             ],
