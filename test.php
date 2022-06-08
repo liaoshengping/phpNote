@@ -2,6 +2,38 @@
 include("vendor/autoload.php");
 
 
+//报告工时
+
+$arr = [
+    '2022年5月26日19:41:23' => '2022年5月26日21:46:47',
+    '2022年5月28日09:23:00' => '2022年5月28日12:01:49',
+    '2022年5月28日13:32:07' => '2022年5月28日16:42:27',
+    '2022年5月29日11:02:09' => '2022年5月29日12:23:31',
+    '2022年5月29日20:23:34' => '2022年5月29日22:54:57',
+];
+
+$total = 0;
+foreach ($arr as $start => $end){
+    $start = str_replace('年','-',$start);
+    $start = str_replace('月','-',$start);
+    $start = str_replace('日',' ',$start);
+    $end = str_replace('年','-',$end);
+    $end = str_replace('月','-',$end);
+    $end = str_replace('日',' ',$end);
+
+    $start = strtotime($start);
+    $end = strtotime($end);
+
+    $total+= ($end-$start);
+
+}
+
+echo $total/3600;
+
+
+exit;
+
+
 $datas = [
     ['amount' => 1000, 'percent' => 12],
     ['amount' => 800, 'percent' => 2],
