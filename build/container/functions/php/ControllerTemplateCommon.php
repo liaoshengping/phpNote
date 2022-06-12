@@ -552,20 +552,31 @@ trait ControllerTemplateCommon
         if (!$model) {
             return $this->failure(\'不存在id为：\' . $id);
         }
-        $validate = Validator::make($request->all(), $this->model->rule);
-        if (!$validate->passes()) {
-            return $this->failure($validate->errors()->first());
-        }
-        $data = $validate->getData();
+        
+         $data = $request->all();
+        
          if (method_exists($this,"handleRequest")){ //处理数据
              $data = $this->handleRequest($data);
          }
+        
+        $validate = Validator::make($data,property_exists($this,\'rule\')?$this->rule:$this->model->rule);
+        
+        if (!$validate->passes()) {
+            return $this->failure($validate->errors()->first());
+        }
+    
 
         $model->fill($data);
 
         $res = $model->save();
         
         {{relation_save}}
+
+         if (method_exists($this,"saved")){ //保存之后发生的事
+
+             $res =$this->saved($model,$data) ?? $res;
+             
+         }
 
         if ($res) {
             return $this->successData($model);
@@ -660,7 +671,14 @@ trait ControllerTemplateCommon
           $query = $this->model{{with}};
         }
         $res = $query->find((int)$id);
+        
+        
+        if (method_exists($this,"findOne")){ 
 
+            $res =$this->findOne($res) ?? $res;
+
+        }
+        
         if ($res) {
             return $this->successData($res);
         } else {
