@@ -100,6 +100,22 @@ return [
                     'tables' => [
 
                     ],
+                ],
+                [
+                    'relation' => "belongsToMany",
+                    'tables' => [
+                        [
+                            'table_name' => 'roles',//多对多关系的表
+                            'relation_name' => 'user_role',
+                            'relation_table' => 'model_has_roles',
+                            'target' => 'role_id', //对象表中的字段
+                            'origin' => 'model_id',//table_name 对应的关系字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                    ],
                 ]
             ]
         ],
@@ -127,12 +143,12 @@ return [
             'list_other_params' => [
                 [
                     'key' => 'append',
-                    'des' => 'percent:首页指标百分比',//首页数据
+                    'des' => 'percent:首页指标百分比  ',//首页数据
                     'required' => 'false',//是否必须
                 ] ,
                 [
                     'key' => 'scene',
-                    'des' => 'recent：近期上线',
+                    'des' => 'recent：近期上线 ; active:正在进行的项目',
                     'required' => 'false',
                 ]
 
@@ -808,6 +824,15 @@ return [
                             'table_name' => 'users',
                             'target' => 'id', //目标表中的字段
                             'origin' => 'user_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+                        [
+                            'table_name' => 'kol',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'kol_id',//本表的字段
                             'list_show' => true,
                             'list_exist' => false,
                             'one_show' => true,
