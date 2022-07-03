@@ -40,9 +40,18 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
             'Psr\\Cache\\' => 10,
             'Philo\\Blade\\' => 12,
         ),
+        'O' => 
+        array (
+            'OSS\\' => 4,
+        ),
         'M' => 
         array (
             'MillionMile\\GetEnv\\' => 19,
+        ),
+        'L' => 
+        array (
+            'League\\MimeTypeDetection\\' => 25,
+            'League\\Flysystem\\' => 17,
         ),
         'I' => 
         array (
@@ -53,6 +62,8 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
             'Illuminate\\Events\\' => 18,
             'Illuminate\\Contracts\\' => 21,
             'Illuminate\\Container\\' => 21,
+            'Iidestiny\\LaravelFilesystemOss\\' => 31,
+            'Iidestiny\\Flysystem\\Oss\\' => 24,
         ),
         'F' => 
         array (
@@ -132,9 +143,21 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         array (
             0 => __DIR__ . '/..' . '/philo/laravel-blade/src',
         ),
+        'OSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
+        ),
         'MillionMile\\GetEnv\\' => 
         array (
             0 => __DIR__ . '/..' . '/millionmile/get_env/src',
+        ),
+        'League\\MimeTypeDetection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
+        ),
+        'League\\Flysystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
         'Inhere\\Console\\' => 
         array (
@@ -163,6 +186,14 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         'Illuminate\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
+        ),
+        'Iidestiny\\LaravelFilesystemOss\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/iidestiny/laravel-filesystem-oss/src',
+        ),
+        'Iidestiny\\Flysystem\\Oss\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/iidestiny/flysystem-oss/src',
         ),
         'FormBuilder\\' => 
         array (
