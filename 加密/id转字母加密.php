@@ -131,5 +131,8 @@ function alphaID($in, $to_num = false, $pad_up = false, $passKey = null)
 
 
 
-echo alphaID(10001,false,5,'liaosp');
+echo alphaID(2,false,5,'liaosp');
+
+
+
 
