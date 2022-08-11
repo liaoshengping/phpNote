@@ -16,6 +16,7 @@ class Dog{
      */
     public function say()
     {
+
         echo "wang !";
     }
 
