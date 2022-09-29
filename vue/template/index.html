@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+</head>
+<body>
+
+<div id="app">
+    <page-a></page-a>
+    <menu-component title='我就是引入的子组件'></menu-component>
+
+    <van-progress :percentage="50" ></van-progress>
+    <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="info-o">
+        sad
+    </van-notice-bar>
+    <van-cell-group>
+        <van-cell title="单元格" value="内容"></van-cell>
+        <van-cell title="单元格" value="内容" label="描述信息" ></van-cell>
+    </van-cell-group>
+
+    <van-button type="primary">主要按钮</van-button>
+
+    <van-dropdown-menu active-color="red">
+        <van-dropdown-item v-model="value1" :options="option1" />
+        <van-dropdown-item v-model="value2" :options="option2" />
+        <van-dropdown-item v-model="value2" :options="option2" />
+    </van-dropdown-menu>
+    <van-cell is-link title="基础用法" @click="show = true" />
+    <van-action-sheet v-model="show" :actions="actions" @select="onSelect" />
+
+
+
+</div>
+
+
+<template id="menucomponent">
+    <div>
+        <div>子组件</div>
+        <div>{{title}}</div>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+<script>
+    let MenuComponent = {
+        name: 'MenuComponent',
+        template: '#menucomponent',
+        props: ['title']
+    };
+
+
+    //pageA.js
+    // setTimeout(function (){
+    Vue.component('page-a', {
+        template: '<div>{{message}}<van-cell title="选择单个日期" :value="date" @click="show1 = true" ></van-cell><van-calendar v-model="show1" @confirm="onConfirm" ></van-calendar></div>',
+        data() {
+            return {
+                message: '我是page-a',
+                date:'',
+                show1: false,
+            }
+        },
+        methods: {
+            onConfirm(date) {
+                this.show = false;
+                this.date = this.formatDate(date);
+            },
+            formatDate(date) {
+                return `${date.getMonth() + 1}/${date.getDate()}`;
+            },
+        },
+        created() {
+            console.log(this.$route)
+        }
+    })
+    // },1000)
+
+    new Vue({
+        el: '#app',
+        data:{
+            date:'',
+            show: false,
+            show1: false,
+            actions: [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }],
+            value1: 'c',
+            value2: 0,
+            value3:'',
+            option2: [
+                { text: '全部商品', value: 0 },
+                { text: '新款商品', value: 1 },
+                { text: '活动商品', value: 2 },
+            ],
+            option1: [
+                { text: '默认排序', value: 'a' },
+                { text: '好评排序', value: 'b' },
+                { text: '销量排序', value: 'c' },
+            ],
+            option3: [
+                { text: '测试', value: '' },
+
+            ],
+        },
+
+        components: {
+            MenuComponent
+        },
+        methods: {
+            onSelect(item) {
+                // 默认情况下点击选项时不会自动收起
+                // 可以通过 close-on-click-action 属性开启自动收起
+                this.show = false;
+                this.$dialog.alert({
+                    title: '标题',
+                    message: '弹窗内容',
+                }).then(() => {
+                    // on close
+                });
+            },
+
+            onConfirm(date) {
+                this.show = false;
+                this.date = this.formatDate(date);
+            },
+        },
+    });
+
+    Vue.use(vant.Lazyload);
+
+</script>
+</body>
+</html>

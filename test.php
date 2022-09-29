@@ -1,5 +1,21 @@
 <?php
+
 include("vendor/autoload.php");
+
+
+//$client = new \GuzzleHttp\Client();
+//
+//$data =$client->get('http://www.baidu.com/baidu?isource=infinity&iname=baidu&itype=web&tn=02003390_42_hao_pg&ie=utf-8&wd=%E5%BF%AB%E9%80%92');
+//
+//var_dump($data->getBody()->getContents());exit;
+
+
+$obj = new Liaosp\Express\Express();
+$res = $obj->number('JDX010974197524');
+
+var_dump($res);exit;
+
+
 
 
 //报告工时
