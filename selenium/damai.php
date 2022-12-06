@@ -22,18 +22,15 @@ $driver = RemoteWebDriver::create($serverUrl, $capabilities);
 //可学习点击事件
 //https://github.com/luanloose/api-mc-experiencia/blob/8f5d31d8017a27f3d452501a303689891dd94a64/app/Http/Controllers/McDonalds.php#L188
 //https://github.com/greenpeace/planet4-selenium-tests/blob/e732e68a040ee16b7f300b6ae00f8c23d3ca0417/tests/p4/CarouselHeader.php
+//https://github.com/greenpeace/planet4-selenium-tests/blob/e732e68a040ee16b7f300b6ae00f8c23d3ca0417/tests/p4/Tasks.php
 
-$arr = [
-    '原创设计可爱圣诞节帽子发箍女发卡发夹头箍鸭嘴夹子发饰头饰饰品',
-    '圣诞节装饰品创意小灯笼摆件桌面场景布置儿童礼物小礼品拍摄道具',
-];
 
 //for ($day=0;$day<32;$day++){
 //    $date = \Carbon\Carbon::parse('2022-04-01')->addDays($day)->timestamp;
     $driver->get('https://kzurl02.cn/dCKdK');
     for ($i = 1; $i < 10000; $i++) {
         echo '到了';
-        sleep(25);
+        sleep(2);
 
 
 

@@ -3,33 +3,63 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>test</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css"/>
 </head>
 <body>
 
+<style>
+    .my-swipe .van-swipe-item {
+        color: #fff;
+        font-size: 20px;
+        line-height: 150px;
+        text-align: center;
+        background-color: #39a9ed;
+    }
+</style>
+
 <div id="app">
+
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" height="150">
+        <van-swipe-item v-for="(image ,index ) in option1">
+            <van-image :src="image.url"/>
+        </van-swipe-item>
+    </van-swipe>
+
+    <van-swipe :autoplay="3000" indicator-color="white" height="150">
+        <van-swipe-item v-for="(image ,index ) in option1">
+            <van-row type="flex" justify="space-around">
+                <van-col v-for="(icon , index) in option2" span="4" >
+                    <van-image width="50px" height="50px" style="padding: 10px"  round :src="icon.url"/>
+                </van-col>
+            </van-row>
+        </van-swipe-item>
+    </van-swipe>
+
+
+
     <page-a></page-a>
+
+
     <menu-component title='我就是引入的子组件'></menu-component>
 
-    <van-progress :percentage="50" ></van-progress>
+    <van-progress :percentage="50"></van-progress>
     <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="info-o">
-        sad
+
     </van-notice-bar>
     <van-cell-group>
         <van-cell title="单元格" value="内容"></van-cell>
-        <van-cell title="单元格" value="内容" label="描述信息" ></van-cell>
+        <van-cell title="单元格" value="内容" label="描述信息"></van-cell>
     </van-cell-group>
 
     <van-button type="primary">主要按钮</van-button>
 
     <van-dropdown-menu active-color="red">
-        <van-dropdown-item v-model="value1" :options="option1" />
-        <van-dropdown-item v-model="value2" :options="option2" />
-        <van-dropdown-item v-model="value2" :options="option2" />
+        <van-dropdown-item v-model="value1" :options="option1"/>
+        <van-dropdown-item v-model="value2" :options="option2"/>
+        <van-dropdown-item v-model="value2" :options="option2"/>
     </van-dropdown-menu>
-    <van-cell is-link title="基础用法" @click="show = true" />
-    <van-action-sheet v-model="show" :actions="actions" @select="onSelect" />
-
+    <van-cell is-link title="基础用法" @click="show = true"/>
+    <van-action-sheet v-model="show" :actions="actions" @select="onSelect"/>
 
 
 </div>
@@ -44,7 +74,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+<!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+
 <script>
+
+    const token = ''
+
     let MenuComponent = {
         name: 'MenuComponent',
         template: '#menucomponent',
@@ -59,7 +94,7 @@
         data() {
             return {
                 message: '我是page-a',
-                date:'',
+                date: '',
                 show1: false,
             }
         },
@@ -80,33 +115,71 @@
 
     new Vue({
         el: '#app',
-        data:{
-            date:'',
+        data: {
+            loading: true,
+            date: '',
             show: false,
             show1: false,
-            actions: [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }],
+            actions: [{name: '选项一'}, {name: '选项二'}, {name: '选项三'}],
             value1: 'c',
             value2: 0,
-            value3:'',
+            value3: '',
             option2: [
-                { text: '全部商品', value: 0 },
-                { text: '新款商品', value: 1 },
-                { text: '活动商品', value: 2 },
+                {
+                    text:'电影票',
+                    value: 0,
+                    url: 'https://jj.dmjvip.com/storage/image/20220907/753ffec03b743ef38dba30c98e328b8b.png'
+                },
+                {
+                    text:'电影票',
+                    value: 0,
+                    url: 'https://jj.dmjvip.com/storage/image/20220907/753ffec03b743ef38dba30c98e328b8b.png'
+                },
+                {
+                    text:'电影票',
+                    value: 0,
+                    url: 'https://jj.dmjvip.com/storage/image/20220907/753ffec03b743ef38dba30c98e328b8b.png'
+                },
+                {
+                    text:'电影票',
+                    value: 0,
+                    url: 'https://jj.dmjvip.com/storage/image/20220907/753ffec03b743ef38dba30c98e328b8b.png'
+                },
+                {
+                    text:'电影票',
+                    value: 0,
+                    url: 'https://jj.dmjvip.com/storage/image/20220907/753ffec03b743ef38dba30c98e328b8b.png'
+                },
+
+
             ],
             option1: [
-                { text: '默认排序', value: 'a' },
-                { text: '好评排序', value: 'b' },
-                { text: '销量排序', value: 'c' },
+                {
+                    text: '默认排序',
+                    value: 'a',
+                    url: 'https://jj.dmjvip.com/storage/image/20220906/e15d918966f1176154bab90e22eff9d2.png'
+                },
+                {
+                    text: '好评排序',
+                    value: 'b',
+                    url: 'https://jj.dmjvip.com/storage/image/20220906/e15d918966f1176154bab90e22eff9d2.png',
+                },
+                {
+                    text: '销量排序',
+                    value: 'c',
+                    url: 'https://jj.dmjvip.com/storage/image/20220906/e15d918966f1176154bab90e22eff9d2.png'
+                }
+                ,
             ],
             option3: [
-                { text: '测试', value: '' },
-
+                {text: '测试', value: ''},
             ],
         },
 
         components: {
             MenuComponent
-        },
+        }
+        ,
         methods: {
             onSelect(item) {
                 // 默认情况下点击选项时不会自动收起
@@ -118,14 +191,18 @@
                 }).then(() => {
                     // on close
                 });
-            },
+            }
+            ,
 
             onConfirm(date) {
                 this.show = false;
                 this.date = this.formatDate(date);
-            },
-        },
-    });
+            }
+            ,
+        }
+        ,
+    })
+    ;
 
     Vue.use(vant.Lazyload);
 
