@@ -21,7 +21,12 @@ $driver = RemoteWebDriver::create($serverUrl, $capabilities);
 
 //可学习点击事件
 //https://github.com/luanloose/api-mc-experiencia/blob/8f5d31d8017a27f3d452501a303689891dd94a64/app/Http/Controllers/McDonalds.php#L188
+//https://github.com/greenpeace/planet4-selenium-tests/blob/e732e68a040ee16b7f300b6ae00f8c23d3ca0417/tests/p4/CarouselHeader.php
 
+$arr = [
+    '原创设计可爱圣诞节帽子发箍女发卡发夹头箍鸭嘴夹子发饰头饰饰品',
+    '圣诞节装饰品创意小灯笼摆件桌面场景布置儿童礼物小礼品拍摄道具',
+];
 
 //for ($day=0;$day<32;$day++){
 //    $date = \Carbon\Carbon::parse('2022-04-01')->addDays($day)->timestamp;
@@ -33,10 +38,12 @@ $driver = RemoteWebDriver::create($serverUrl, $capabilities);
 
 
         $click = $driver->findElement(
-            \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(@class, "buy-btn")]['.$i.']')
-//            \Facebook\WebDriver\WebDriverBy::
+            \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(text(), "'.$arr[$i-1].'")]')
+//            \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(@class, "buy-btn")][1]')
+//            \Facebook\WebDriver\WebDriverBy::cssSelector('.list-view-section-body:nth-child('.$i.') .buy-btn')
         );
 
+//        var_dump($click->getText());
         $click->click();
 
         sleep(2);
