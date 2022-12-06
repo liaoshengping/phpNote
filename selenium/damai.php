@@ -33,14 +33,15 @@ $arr = [
     $driver->get('https://kzurl02.cn/dCKdK');
     for ($i = 1; $i < 10000; $i++) {
         echo '到了';
-        sleep(2);
+        sleep(25);
 
 
 
         $click = $driver->findElement(
-            \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(text(), "'.$arr[$i-1].'")]')
+//            \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(text(), "'.$arr[$i-1].'")]')
 //            \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(@class, "buy-btn")][1]')
 //            \Facebook\WebDriver\WebDriverBy::cssSelector('.list-view-section-body:nth-child('.$i.') .buy-btn')
+            \Facebook\WebDriver\WebDriverBy::cssSelector('.goods-item-wrap:nth-child('.$i.')')
         );
 
 //        var_dump($click->getText());
