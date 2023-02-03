@@ -19,12 +19,13 @@ $driver = RemoteWebDriver::create($serverUrl, $capabilities);
 
 $driver->get('https://www.ray052.com/');
 
-while (true){
+sleep(5);
+//while (true){
 
     file_put_contents(__DIR__.'/html/ray.html',$driver->getPageSource());
-    sleep(1);
 
-}
+//
+//}
 
 
 $html = file_get_contents(__DIR__.'/html/ray.html');
@@ -52,13 +53,9 @@ $data = \QL\QueryList::html($html)
     ->range('.match-card')
     ->queryData();
 
-var_dump($data);exit;
+file_put_contents(__DIR__.'/json/ray.json',json_encode($data,JSON_UNESCAPED_UNICODE));
 
-//echo count($data);exit;
-foreach ($data as $datum) {
-    var_dump($datum);
-}
-
+echo '保存json成功';
 
 
 ?>
