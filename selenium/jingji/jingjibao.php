@@ -48,7 +48,7 @@ $capabilities->setCapability('user-agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWe
 //)->getAttribute('src');
 //
 //$driver->get($newWindow);
-
+//
 //while (true) {
 //
 //    file_put_contents(__DIR__ . '/html/jingjibao.html', $driver->getPageSource());
@@ -59,29 +59,28 @@ $capabilities->setCapability('user-agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWe
 
 
 
-$html = file_get_contents(__DIR__.'/html/jingjibao.html.html');
+$html = file_get_contents(__DIR__.'/html/jingjibao.html');
 //$data = \QL\QueryList::get('https://cms.demo.tecmz.com/news')
 $data = \QL\QueryList::html($html)
 //    ->find('.match-card-list .match-card section')->map(function ($row){
 //    return $row->find('.bet-odds')->texts()->all();
 //});
 
-//var_dump($data);
     // 设置采集规则
     ->rules([
-        'teamName'=>array('.tournament-name','text'),
-        'gameLogo'=>array('.game-icon','data-src'),
-        'matchStatus'=>array('.match-status','text'),
+        'teamName'=>array('.tooltip__text:eq(0)','text'),
+        'gameLogo'=>array('.lip-container__top span img','src'),
+        'matchStatus'=>array('.inplayBtn','text'),
 
-        'leftTeamLogo'=>array('.left-contain .team-logo','data-src'),
-        'leftTeamName'=>array('.left-contain .odds-name','text'),
-        'leftTeamAdds'=>array('.left-contain .bet-odds','text'),
+        'leftTeamLogo'=>array('.ti-container__home div img','src'),
+        'leftTeamName'=>array('.ti-container__home .tooltip__text','text'),
+        'leftTeamAdds'=>array('.ti-container__home .rate__rate','text'),
 
-        'rightTeamLogo'=>array('.right-contain .team-logo','data-src'),
-        'rightTeamName'=>array('.right-contain .odds-name','text'),
-        'rightTeamAdds'=>array('.right-contain .bet-odds','text'),
+        'rightTeamLogo'=>array('.ti-container__away div img','src'),
+        'rightTeamName'=>array('.ti-container__away .tooltip__text','text'),
+        'rightTeamAdds'=>array('.ti-container__away .rate__rate','text'),
     ])
-    ->range('.match-card')
+    ->range('.event-row')
     ->queryData();
 
 
