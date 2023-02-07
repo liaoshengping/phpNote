@@ -2,6 +2,7 @@
 
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 include ("../../vendor/autoload.php");
+include_once ('match.php');
 
 $serverUrl = 'http://localhost:4444';
 
@@ -20,12 +21,12 @@ $driver = RemoteWebDriver::create($serverUrl, $capabilities);
 $driver->get('https://www.ray052.com/');
 
 sleep(5);
-//while (true){
+while (true){
 
     file_put_contents(__DIR__.'/html/ray.html',$driver->getPageSource());
 
 //
-//}
+
 
 
 $html = file_get_contents(__DIR__.'/html/ray.html');
@@ -55,7 +56,7 @@ $data = \QL\QueryList::html($html)
 
 file_put_contents(__DIR__.'/json/ray.json',json_encode($data,JSON_UNESCAPED_UNICODE));
 
-echo '保存json成功';
-
+doMatch();
+}
 
 ?>

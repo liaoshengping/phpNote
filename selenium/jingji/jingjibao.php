@@ -4,6 +4,7 @@
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 
 include("../../vendor/autoload.php");
+include_once ('match.php');
 
 $serverUrl = 'http://localhost:4444';
 
@@ -20,77 +21,85 @@ $capabilities->setCapability('user-agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWe
 $driver = RemoteWebDriver::create($serverUrl, $capabilities);
 $driver->manage()->window()->maximize();
 
-$driver->get('https://www.jingjibao.today/TfGame');
 
-sleep(2);
+while (true){
+
+    $save = true;
+
+    $driver->get('https://www.jingjibao.today/TfGame');
+
+    sleep(2);
 
 //点击 朕已阅
-$driver->findElement(
-    \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(text(), "朕已阅")]')
-)->click();
+    $driver->findElement(
+        \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(text(), "朕已阅")]')
+    )->click();
 
 //输入用户名
-$driver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector('.header_input_box .input_box input')) // find search input element
-->sendKeys('lsplsp1'); // fill the search box
+    $driver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector('.header_input_box .input_box input')) // find search input element
+    ->sendKeys('lsplsp1'); // fill the search box
 //输入密码
-$driver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector('.pwd .input_box input')) // find search input element
-->sendKeys('aa0597'); // fill the search box
+    $driver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector('.pwd .input_box input')) // find search input element
+    ->sendKeys('aa0597'); // fill the search box
 //点击登录
-$driver->findElement(
-    \Facebook\WebDriver\WebDriverBy::cssSelector('.login_btn')
-)->click();
-sleep(2);
+    $driver->findElement(
+        \Facebook\WebDriver\WebDriverBy::cssSelector('.login_btn')
+    )->click();
+    sleep(2);
 //再进入竞技宝
-$driver->get('https://www.jingjibao.today/TfGame');
-sleep(2);
-$newWindow = $driver->findElement(
-    \Facebook\WebDriver\WebDriverBy::cssSelector('iframe')
-)->getAttribute('src');
+    $driver->get('https://www.jingjibao.today/TfGame');
+    sleep(2);
+    $newWindow = $driver->findElement(
+        \Facebook\WebDriver\WebDriverBy::cssSelector('iframe')
+    )->getAttribute('src');
 
-$driver->get($newWindow);
+    $driver->get($newWindow);
 
-//while (true) {
-    sleep(6);
-    file_put_contents(__DIR__ . '/html/jingjibao.html', $driver->getPageSource());
 
-    echo '保存成功';
+
+    while ($save) {
+//    sleep(6);
+        file_put_contents(__DIR__ . '/html/jingjibao.html', $driver->getPageSource());
+
+//    echo '保存成功';
 //}
 
+        if (strstr($driver->getPageSource(),'Token已无效')){
+            $save = false;
+        }
 
 
-
-$html = file_get_contents(__DIR__.'/html/jingjibao.html');
+        $html = file_get_contents(__DIR__ . '/html/jingjibao.html');
 //$data = \QL\QueryList::get('https://cms.demo.tecmz.com/news')
-$data = \QL\QueryList::html($html)
+        $data = \QL\QueryList::html($html)
 //    ->find('.match-card-list .match-card section')->map(function ($row){
 //    return $row->find('.bet-odds')->texts()->all();
 //});
 
-    // 设置采集规则
-    ->rules([
-        'teamName'=>array('.tooltip__text:eq(0)','text'),
-        'gameLogo'=>array('.lip-container__top span img','src'),
-        'matchStatus'=>array('.inplayBtn','text'),
+            // 设置采集规则
+            ->rules([
+                'teamName' => array('.tooltip__text:eq(0)', 'text'),
+                'gameLogo' => array('.lip-container__top span img', 'src'),
+                'matchStatus' => array('.inplayBtn', 'text'),
 
-        'leftTeamLogo'=>array('.ti-container__home div img','src'),
-        'leftTeamName'=>array('.ti-container__home .tooltip__text','text'),
-        'leftTeamAdds'=>array('.ti-container__home .rate__rate','text'),
+                'leftTeamLogo' => array('.ti-container__home div img', 'src'),
+                'leftTeamName' => array('.ti-container__home .tooltip__text', 'text'),
+                'leftTeamAdds' => array('.ti-container__home .rate__rate', 'text'),
 
-        'rightTeamLogo'=>array('.ti-container__away div img','src'),
-        'rightTeamName'=>array('.ti-container__away .tooltip__text','text'),
-        'rightTeamAdds'=>array('.ti-container__away .rate__rate','text'),
-    ])
-    ->range('.event-row')
-    ->queryData();
+                'rightTeamLogo' => array('.ti-container__away div img', 'src'),
+                'rightTeamName' => array('.ti-container__away .tooltip__text', 'text'),
+                'rightTeamAdds' => array('.ti-container__away .rate__rate', 'text'),
+            ])
+            ->range('.event-row')
+            ->queryData();
 
 
-file_put_contents(__DIR__.'/json/jingjibao.json',json_encode($data,JSON_UNESCAPED_UNICODE));
+        file_put_contents(__DIR__ . '/json/jingjibao.json', json_encode($data, JSON_UNESCAPED_UNICODE));
 
-echo '保存json成功';
+        doMatch();
+//        echo '保存json成功';
 
-//var_dump($data);exit;
-//
-////echo count($data);exit;
-//foreach ($data as $datum) {
-//    var_dump($datum);
-//}
+    }
+}
+
+
