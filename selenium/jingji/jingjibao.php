@@ -19,7 +19,7 @@ $capabilities->setCapability('userAgent', 'Mozilla/5.0 (Windows NT 6.1) AppleWeb
 $capabilities->setCapability('user-agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36');
 // Chrome
 $driver = RemoteWebDriver::create($serverUrl, $capabilities);
-$driver->manage()->window()->maximize();
+
 
 
 while (true){
@@ -30,6 +30,7 @@ while (true){
 
     sleep(2);
 
+    $driver->manage()->window()->maximize();
 //点击 朕已阅
     $driver->findElement(
         \Facebook\WebDriver\WebDriverBy::xpath('//div[contains(text(), "朕已阅")]')
