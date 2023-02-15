@@ -112,5 +112,118 @@ return [
 
             ]
         ],
+
+        'sys_course' => [
+            'name' => '教程',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['list','show'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+
+
+
+            ]
+        ],
+
+        'sys_history' => [
+            'name' => '历史数据',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['list','show'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+
+
+
+            ]
+        ],
+        'user_message' => [
+            'name' => '用户交流',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['create','list','show'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+
+
+
+            ]
+        ],
+        'plan_code' => [
+            'name' => '方案数据',
+            'request_method' => 'form',//form表单 json (Json Body的形式),
+            'fields' => [
+                ''
+            ],
+            'input' => [
+
+            ],
+            'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
+            'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
+
+            'controller_actions' => ['create','list','edit','show','delete'],
+//            ['create','list','edit','show','delete'];
+            'create_input' => [], //创建需要的字段如果为空取上面的
+
+            'edit_input' => [],//编辑需要的字段 如果为空取上面的
+
+            'relations' => [
+                [
+                    'relation' => "hasOne",
+                    'tables' => [
+                        [
+                            'table_name' => 'plan',
+                            'target' => 'id', //目标表中的字段
+                            'origin' => 'plan_id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
+
+                    ],
+
+                ]
+
+
+            ]
+        ],
 ]
 ];
