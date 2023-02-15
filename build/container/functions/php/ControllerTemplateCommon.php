@@ -120,7 +120,7 @@ trait ControllerTemplateCommon
          }
         
         
-         \DB::beginTransaction();
+         DB::beginTransaction();
          
          $res = $this->model->create($data);
         
@@ -134,11 +134,11 @@ trait ControllerTemplateCommon
          
          
         
-         \DB::commit();
+         DB::commit();
          
          }catch (\Exception $e){
          
-         \DB::rollBack();
+         DB::rollBack();
          
          return $this->failure($e->getMessage());
 

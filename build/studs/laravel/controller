@@ -6,6 +6,7 @@ namespace {{base_model_namespace_path}};
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class {{controller_base_name}} extends {{frame_controller_base_namespace}}\BaseController
 {

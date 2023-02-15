@@ -18,10 +18,10 @@ const WORK_NAME = 'yibage';
 
 return [
     "frame" => LARAVEL,
-    'frame_path' => FRAME_PATH,
-    'frame_controller_path' => FRAME_PATH . "app\Http\Controllers/",
-    'frame_modebase_path' => FRAME_PATH . 'app\Models\base\\',
-    'frame_mode_path' => FRAME_PATH . "app\Models/",
+    'frame_path' => xenv("yuce_path",FRAME_PATH),
+    'frame_controller_path' => xenv("yuce_path",FRAME_PATH) . "app\Http\Controllers/",
+    'frame_modebase_path' => xenv("yuce_path",FRAME_PATH) . 'app\Models\base\\',
+    'frame_mode_path' => xenv("yuce_path",FRAME_PATH) . "app\Models/",
     'base_model_namespace_path' => "App\Models\base",
     'model_namespace_path' => "App\Models",
     'controller_namespace_path' => "App\Http\Controllers",
@@ -75,8 +75,8 @@ return [
      * 数据差异性
      */
     "tables" => [
-        'users' => [
-            'name' => '用户管理',
+        'plan' => [
+            'name' => '方案',
             'request_method' => 'form',//form表单 json (Json Body的形式),
             'fields' => [
                 ''
@@ -87,7 +87,7 @@ return [
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => [ 'list', 'show'],
+            'controller_actions' => ['create','list','edit','delete', 'show'],
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -96,9 +96,17 @@ return [
             'relations' => [
 
                 [
-                    'relation' => "hasOne",
+                    'relation' => "hasMany",
                     'tables' => [
-
+                        [
+                            'table_name' => 'plan_code',
+                            'target' => 'plan_id', //目标表中的字段
+                            'origin' => 'id',//本表的字段
+                            'list_show' => true,
+                            'list_exist' => false,
+                            'one_show' => true,
+                            'create_relation' => false,//创建时，是否可以关联添加
+                        ],
                     ],
                 ],
 
