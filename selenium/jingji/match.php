@@ -53,7 +53,7 @@ function doMatch(){
 //            if (!empty($fileData[date('Y-m-d').'-'.$item['teamKey']])){
                 $value = $fileData[date('Y-m-d').'-'.$item['teamKey']]??0;
                 if ($resultWin > $value){
-                    $fileData[date('Y-m-d').'-'.$item['teamKey']] = '可下注100:'.$item['ray']['leftTeamAdds'].'对冲'.$item['other']['rightTeamAdds'].'赢'.$resultWin.'元';
+                    $fileData[date('Y-m-d').'-'.$key] = '可下注100:'.$item['ray']['leftTeamAdds'].'对冲'.$item['other']['rightTeamAdds'].'赢'.$resultWin.'元';
                     file_put_contents(__DIR__.'/cache/cache',json_encode($fileData,JSON_UNESCAPED_UNICODE));
                 }
 //            }
@@ -70,7 +70,7 @@ function doMatch(){
 //            if (!empty($fileData[date('Y-m-d').'-'.$item['teamKey']])){
                 $value = $fileData[date('Y-m-d').'-'.$item['teamKey']] ?? 0;
                 if ($resultWin > $value){
-                    $fileData[date('Y-m-d').'-'.$item['teamKey']] = '可下注100:'.$item['other']['leftTeamAdds'].'对冲'.$item['ray']['rightTeamAdds'].'赢'.$resultWin.'元';
+                    $fileData[date('Y-m-d').'-'.$key] = '可下注100:'.$item['other']['leftTeamAdds'].'对冲'.$item['ray']['rightTeamAdds'].'赢'.$resultWin.'元'.date('Y-m-d H:i:s');
                     file_put_contents(__DIR__.'/cache/cache',json_encode($fileData,JSON_UNESCAPED_UNICODE));
                 }
 //            }
