@@ -25,7 +25,10 @@ while (true){
 
     file_put_contents(__DIR__.'/html/ray.html',$driver->getPageSource());
 
-//
+    if (is_int((time() - (strtotime(date('Y-m-d'))))/600)){
+        $driver->navigate()->refresh();
+        sleep(2);
+    }
 
 
 

@@ -65,6 +65,11 @@ while (true){
 //    echo '保存成功';
 //}
 
+        if (is_int((time() - (strtotime(date('Y-m-d'))))/600)){
+            $driver->navigate()->refresh();
+            sleep(2);
+        }
+
         if (strstr($driver->getPageSource(),'Token已无效')){
             $save = false;
         }
