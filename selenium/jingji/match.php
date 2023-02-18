@@ -10,9 +10,10 @@ function doMatch(){
 
 
     $jingjibao = json_decode(file_get_contents(__DIR__.'/json/jingjibao.json'),true);
+    if (empty($jingjibao)) return;
 
     $ray = json_decode(file_get_contents(__DIR__.'/json/ray.json'),true);
-
+    if (empty($ray)) return;
 
     $result = [];
 
