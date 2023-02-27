@@ -150,7 +150,11 @@ return [
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
 
-            'controller_actions' => ['list','show'],
+            'no_swagger_actions' => ['create'],
+            'controller_actions' => ['list','show','create'],
+
+            'create_filter' => ['sort', 'status', 'content'],//新增过滤字段
+
 //            ['create','list','edit','show','delete'];
             'create_input' => [], //创建需要的字段如果为空取上面的
 
