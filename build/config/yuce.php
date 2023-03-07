@@ -82,7 +82,7 @@ return [
                 ''
             ],
             'input' => [
-
+                'code_type'
             ],
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
