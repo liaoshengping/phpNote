@@ -29,7 +29,7 @@ function decode($string = '', $skey = 'tsxcc') {
 
 }
 
-$data = encode(json_encode(['pid' => 1,'rid' => 2]));
+$data = encode(json_encode(['pid' => 19999999,'rid' => 29888878787]));
 
 echo $data.PHP_EOL;
 
