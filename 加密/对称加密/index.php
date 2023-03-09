@@ -29,7 +29,7 @@ function decode($string = '', $skey = 'tsxcc') {
 
 }
 
-$data = encode('alksdjflajskldjflksdjlfjslkdjflsdjflk');
+$data = encode('我爱中国');
 
 echo $data.PHP_EOL;
 
