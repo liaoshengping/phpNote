@@ -86,10 +86,10 @@ return [
             ],
             'is_auth' => false,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
-
+            'create_input' => ['name','code_num','plan_type'], //创建需要的字段如果为空取上面的
             'controller_actions' => ['create','list','edit','delete', 'show'],
 //            ['create','list','edit','show','delete'];
-            'create_input' => [], //创建需要的字段如果为空取上面的
+//            'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
 
