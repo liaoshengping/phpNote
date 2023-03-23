@@ -92,7 +92,17 @@ return [
 //            'create_input' => [], //创建需要的字段如果为空取上面的
 
             'edit_input' => [],//编辑需要的字段 如果为空取上面的
-
+            /**
+             * [
+             *   name:'liaosp',
+             *   plan_code:[
+             *      {
+             *
+            'name':'liaosp',
+             * }
+             * ]
+             * ]
+             */
             'relations' => [
 
                 [
