@@ -198,6 +198,13 @@ trait RequestForm
         $api_prefix = config('api_prefix');
         $tags = $this->getThisTags();
 
+       if ($this->getCurrentSetting('description')){
+           $desc = $this->getCurrentSetting('description');
+       }else{
+           $desc = $tags;
+       }
+
+
         $template = '
     /**
      * @OA\Post(
@@ -205,7 +212,7 @@ trait RequestForm
      *      operationId="' . $api_prefix . '/' . $this->app->table->table_name . '/store",
      *      tags={"' . $tags . '"},
      *      summary="' . $tags . '创建",
-     *      description="' . $tags . '提交创建",
+     *      description="' . $desc . '提交创建",
 {{request}}
      
      *     @OA\Response(
