@@ -12,8 +12,8 @@ const LARVAL_FORNT = "larval_fornt";
 const VUE_ELEMENT = "vue_element";
 
 
-const FRAME_PATH = 'E:\linuxdir\php\yuce/';
-const WORK_NAME = 'yibage';
+const FRAME_PATH = '';
+const WORK_NAME = '';
 
 
 return [
