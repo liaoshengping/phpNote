@@ -8,19 +8,21 @@ use container\Application;
 use Inhere\Console\Util\Show;
 
 
-trait LaravelAdmin
+trait DcatAdmin
 {
 
     private $AdminTemplate;
+    private $AdminEmptyTemplate;
 
     private $ControllerPath;
+    private $ControllerEmptyPath;
 
     private $filterTemplate;
 
     /**
      * 生成laravel控制器
      */
-    public function buildLaravelAdminController()
+    public function buildDcatAdminController()
     {
         //检查admin 控制器是否存在
         /**
@@ -28,11 +30,11 @@ trait LaravelAdmin
          */
         $app = $this->app;
 
-        if (!$this->checkPath()) {
+        if (!$this->checkDcatPath()) {
             return false;
         }
 
-        $this->AdminTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/admin_controller');
+        $this->AdminTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/dcat/base_controller');
 
         //基础
         $this->AdminTemplate = str_replace('{{name}}', $this->getThisTags(), $this->AdminTemplate);
@@ -40,14 +42,14 @@ trait LaravelAdmin
         $this->AdminTemplate = str_replace('{{ClassName}}', $app->className, $this->AdminTemplate);
 
         //列表
-        $column = $this->column();
+        $column = $this->dcatColumn();
         $this->AdminTemplate = str_replace('{{column}}', $column, $this->AdminTemplate);
         //详情
-        $field = $this->field();
+        $field = $this->dcatField();
         $this->AdminTemplate = str_replace('{{field}}', $field, $this->AdminTemplate);
 
         //表单编辑
-        $form = $this->form();
+        $form = $this->dcatForm();
         $this->AdminTemplate = str_replace('{{form}}', $form, $this->AdminTemplate);
 
 
@@ -61,19 +63,25 @@ trait LaravelAdmin
         $route = $frame_path . 'app/Admin/routes.php';
         $routesFile = file_get_contents($route);
 
+
         $controllerName = $app->className . 'Controller';
         $remark = '//@router请勿修改和删除这个';
         $name = '$router->resource("' . $app->className . '", ' . $controllerName . '::class);';
+
+
+
         $res_name = $name . PHP_EOL;
         $res_name = $res_name . $remark;
         do {
             if (strstr($routesFile, $name)) {
-                break;
-            }
-            if (!strstr($routesFile, $remark)) {
-                Show::block('请在routes.php添加' . $remark);
+                Show::warning('路由已存在' . $name);
                 return false;
             }
+            if (!strstr($routesFile, $remark)) {
+                Show::error('请在routes.php添加' . $remark);
+                return false;
+            }
+
         } while (false);
 
         //数据库添加 菜单名称
@@ -85,6 +93,12 @@ trait LaravelAdmin
         Show::block('路由配置成功' . $route);
 
         //数据库添加菜单路径
+        $dir = $frame_path.'app/database/migrations';
+
+        $this->AdminTemplate = file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/dcat/base_controller');
+
+        //
+
 
 
     }
@@ -93,7 +107,7 @@ trait LaravelAdmin
      * 检查路径
      * @return bool
      */
-    public function checkPath()
+    public function checkDcatPath()
     {
         /**
          * @var Application $app
@@ -103,9 +117,19 @@ trait LaravelAdmin
         //model name
         $ControllerName = $app->className . 'Controller';
         $frame_path = config('frame_path');
+
+        $dir = $frame_path.'app/Admin/Controllers/base';
+        //目录
+        if (!is_dir($dir)){
+            mkdir($dir,0777);
+        }
+
         $Controller = $frame_path . 'app/Admin/Controllers/' . $ControllerName . '.php';
         $exsit = is_file($Controller);
-        $this->ControllerPath = $Controller;
+
+        $this->ControllerEmptyPath = $Controller;
+        $this->ControllerPath = $frame_path . 'app/Admin/Controllers/base/' . $app->className . 'BaseController' . '.php';
+
 
         if (is_file($this->ControllerPath) && $this->getCurrentSetting('no_cover_admin')) {
             Show::block('错误已经设置不可以强制覆盖：' . $this->ControllerPath, 'error', 'error');
@@ -119,7 +143,7 @@ trait LaravelAdmin
     /**
      * 列表
      */
-    private function column()
+    private function dcatColumn()
     {
         $list = '';
         /**
@@ -208,7 +232,7 @@ trait LaravelAdmin
     /**
      * 详情
      */
-    private function field()
+    private function dcatField()
     {
         $list = '';
         /**
@@ -247,7 +271,7 @@ trait LaravelAdmin
     /**
      * 编辑
      */
-    private function form()
+    private function dcatForm()
     {
         /**
          * @var Application $app

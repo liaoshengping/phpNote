@@ -52,7 +52,6 @@ class Table extends BaseClient
 where table_schema = '{$db_name}'
 and table_name = '{$table_name}' ORDER BY ORDINAL_POSITION ASC");
 
-
         if (empty($databaseInfo)) {
             throw new \Exception("查询不到数据库数据:" . $table_name);
         }

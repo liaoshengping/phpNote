@@ -3,6 +3,7 @@
 namespace container\functions\php;
 
 use container\core\BaseClient;
+use container\functions\php\laravel\DcatAdmin;
 use container\functions\php\laravel\LaravelAdmin;
 use Inhere\Console\Util\Show;
 
@@ -11,6 +12,7 @@ class PHPCommon extends BaseClient
     use ControllerTemplateCommon;
     use RequestForm;
     use LaravelAdmin;
+    use DcatAdmin;
 
     /**
      * 模型
@@ -121,8 +123,11 @@ class PHPCommon extends BaseClient
                 $this->buildModel();
                 $this->buildLaravelAdminController();
                 break;
+            case 'dcat'://dcat-admin 生成控制器
+                $this->buildModelBase();
+                $this->buildModel();
+                $this->buildDcatAdminController();
                 break;
-
         }
 
 
@@ -751,6 +756,21 @@ class PHPCommon extends BaseClient
 
     }
 
+    //生成名字根据正则
+    public function getMsgPreg($field)
+    {
+
+
+        $result = '';
+        preg_match("/(?:msg)+(?:\[)(.*)(?:\])/i", $field, $result);
+
+        if (empty($result[1])) {
+            return $field;
+        }
+        return $result[1];
+
+    }
+
 
     /**
      * get scence field
@@ -810,7 +830,7 @@ class PHPCommon extends BaseClient
     {
         $config = $this->getCurrentSetting();
 
-        $tags = !empty($config['name']) ? $config['name'] : $this->app->table->table_format_name;
+        $tags = !empty($config['name']) ? $config['name'] : $this->getMsgPreg($this->app->table->table_format_name);
         return $tags;
     }
 

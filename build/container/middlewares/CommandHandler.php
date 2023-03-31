@@ -20,7 +20,8 @@ class CommandHandler implements Middlewares
         'modelbase  table_name' => '只生成模型的base', // key-value
         'modelapi  tablename' => '生成api和模型',//
         'l-admin  tablename' => '生成Laravel-admin 控制器',//
-        'html filename' => '生成Laravel-admin 控制器',//
+        'dcat  tablename' => '生成Dcat-admin 控制器',//
+        'html filename' => '生成静态页',//
     ];
 
     /**
@@ -47,6 +48,7 @@ class CommandHandler implements Middlewares
             case 'model':
             case "modelapi":
             case 'admin': //laravel-admin
+            case 'dcat': //dcat-admin
                 $app->table->queryCurrentTableInfo($argvs[2]);
                 break;
             case 'html':

@@ -1,5 +1,13 @@
 <?php
 
+include ("vendor/autoload.php");
+
+echo date("Y-m-d", strtotime("last day of -1 month", time()));
+exit;
+
+echo date('Y-m-d', strtotime('-2 month'));
+
+exit;
 
 $data = file_get_contents('https://m.duanqu.com/?_ariver_appid=3000000082492472&_mp_code=tb&transition=present&page=pages%2Fgoods%2Fgoods%3Fid%3D101%26goods_id%3D683516332721%26uu%3DHXKJ%26dd%3D__AID__%26cc%3D__CID__%26platform_code%3Dtoutiao');
 
