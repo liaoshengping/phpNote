@@ -13,9 +13,19 @@ eie
 数据库生成规则
 
 * rule[required] //laravel 判空
+* rule[required|unique|min:1|max:50] // 规则 如最小长度 最大长度 唯一
 * 枚举 类型(a_cat:小程序分类,web:网页,other:其他)
 * 如果表中的status包含delete 字眼，删除则是修改状态，同样在列表中也排除delete的的状态数据
 * help[这里是帮助文档] laravel-admin 后台字段帮助
+* msg[注释] 
+* fieldHide // 字段不显示
+* fieldDisable // 字段禁止编辑
+* search // 搜索字段
+* belongsTo[表名] // belongsTo[shop_type] 一对一
+* hasOne[表名] // hasOne[order] 一对一
+* hasMany[表名1,表名2] // hasMany[goods_sku,goods_put_info] 一对多关联
+* notDelete // 表不能删除
+* notEdit // 表不能编辑
 
 
 |  名称   | 说明  ||
