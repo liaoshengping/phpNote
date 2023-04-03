@@ -150,7 +150,7 @@ class PHPCommon extends BaseClient
             foreach ($relations as $relation) {
                 foreach ($relation['tables'] as $item) {
                     $table_name = $item['table_name'];
-                    $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
+                    $relation_name = !empty($item['relation_name']) ? $item['relation_name'] : $item['table_name'];
                     $namespace = config('model_namespace_path');
                     $relationPropertys .= '* @property \\' . $namespace . '\\' . $this->app->tool->struct($table_name) . ' ' . $relation_name . PHP_EOL;
                 }
@@ -173,7 +173,7 @@ class PHPCommon extends BaseClient
                     }
                     $relation_name = !empty($item['relation_name']) ? $item['relation_name'] : $item['table_name'];
                     $description = !empty($item['description']) ? $item['description'] : '';
-                    if ($relation['relation'] == 'hasMany' ) {
+                    if ($relation['relation'] == 'hasMany') {
                         $apiDoc .= '
  *      @OA\Property(
  *     property="' . $relation_name . '",
@@ -183,8 +183,7 @@ class PHPCommon extends BaseClient
  *     ref="#/components/schemas/' . $schema_name . '"
  *     )
  *      ),';
-                    }
-                    elseif ( $relation['relation'] == 'belongsToMany'){
+                    } elseif ($relation['relation'] == 'belongsToMany') {
                         $apiDoc .= '
  *      @OA\Property(
  *     property="' . $relation_name . '",
@@ -194,8 +193,7 @@ class PHPCommon extends BaseClient
  *     ref="#/components/schemas/' . $this->app->tool->struct($item['relation_table']) . '"
  *     )
  *      ),';
-                    }
-                    else {
+                    } else {
                         $apiDoc .= '
  *      @OA\Property(
  *     property="' . $relation_name . '",
@@ -401,9 +399,9 @@ class PHPCommon extends BaseClient
                     $rules[$item['name']] = $inter_perg;
                 }
             }
-            if (!empty($item['enum'])){
+            if (!empty($item['enum'])) {
                 //如果是枚举
-                $enum_rule = 'in:'.implode(',',array_keys($item['enum']));
+                $enum_rule = 'in:' . implode(',', array_keys($item['enum']));
 
                 if (!empty($rules[$item['name']])) {
                     $rules[$item['name']] .= '|' . $enum_rule;
@@ -521,13 +519,13 @@ class PHPCommon extends BaseClient
             $schema = str_replace('{{apiDocProperty}}', $apiProperty, $schema);
         }
         //关联配置
-        if ($this->getCurrentSetting('relation_save')){
+        if ($this->getCurrentSetting('relation_save')) {
             $relation_save = 'use \Liaosp\LaravelRelationSave\SaveRelation;';
         }
 
         //软删除
-        $soft_delete = $this->getCurrentSetting('disable_soft_delete',false) ? '':'use SoftDeletes;';
-        $this->modeBaseTemplate = str_replace('{{soft_delete}}', $soft_delete,$this->modeBaseTemplate);
+        $soft_delete = $this->getCurrentSetting('disable_soft_delete', false) ? '' : 'use SoftDeletes;';
+        $this->modeBaseTemplate = str_replace('{{soft_delete}}', $soft_delete, $this->modeBaseTemplate);
 
 
         $this->modeBaseTemplate = str_replace('{{property}}', $propertys, $this->modeBaseTemplate);
@@ -675,7 +673,7 @@ class PHPCommon extends BaseClient
      * 获取当前配置
      * @return array|mixed
      */
-    public function getCurrentSetting($key = '',$default='')
+    public function getCurrentSetting($key = '', $default = '')
     {
 
 
@@ -757,18 +755,42 @@ class PHPCommon extends BaseClient
     }
 
     //生成名字根据正则
-    public function getMsgPreg($field)
+    public function getMsgPreg($field, $bool = false)
     {
 
+        $result = preg_match('/msg\[(.*?)\]/', $field, $matches);
 
-        $result = '';
-        preg_match("/(?:msg)+(?:\[)(.*)(?:\])/i", $field, $result);
-
-        if (empty($result[1])) {
+        if ($result === false || $result === 0) {
+            if ($bool) return false;
             return $field;
+        } else {
+            return $matches[1];
         }
-        return $result[1];
 
+    }
+
+    //验证规则
+    public function getRulePreg($field)
+    {
+
+        $result = preg_match('/rule\[(.*?)\]/', $field, $matches);
+        if ($result === false) {
+            return false;
+        } elseif ($result === 0) {
+            return false;
+        } else {
+            return $matches[1];
+        }
+
+    }
+
+    //字段是否是图片
+    public function isImage($field)
+    {
+        if (strstr($field, 'image')) {
+            return true;
+        }
+        return false;
     }
 
 

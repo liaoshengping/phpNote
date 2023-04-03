@@ -55,6 +55,10 @@ class {{ClassName}}BaseController extends AdminController
     {
         return Form::make(new {{ClassName}}(), function (Form $form) {
             {{tools}}
+        $id = '';
+        if ($form->isEditing()){
+            $id = ','.$form->getKey();
+        }
             {{form}}
         });
     }

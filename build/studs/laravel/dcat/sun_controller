@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Admin\Controllers;
+
+use App\Admin\Controllers\base\{{class}}BaseController;
+
+
+class {{class}}Controller extends {{class}}BaseController
+{
+
+}

@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $data =\Illuminate\Support\Facades\DB::table('admin_menu')
+            ->where('uri','{{uri}}')
+            ->first();
+        if (!empty($data)){
+            return;
+        }
+
+        $create = [
+            'title' => '{{title}}',
+            'uri' => '{{uri}}',
+        ];
+
+        \Illuminate\Support\Facades\DB::table('admin_menu')->insert($create);
+
+
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+
+    }
+};

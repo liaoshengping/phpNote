@@ -11,6 +11,7 @@
         "millionmile/get_env": "^1.0",
         "philo/laravel-blade": "^3.1",
         "xaboy/form-builder": "~2.0",
-        "iidestiny/laravel-filesystem-oss": "2"
+        "iidestiny/laravel-filesystem-oss": "2",
+        "overtrue/laravel-lang": "^6.0"
     }
 }
