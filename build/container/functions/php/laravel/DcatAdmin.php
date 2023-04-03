@@ -177,6 +177,8 @@ trait DcatAdmin
         $filter = '';
         foreach ($app->struct->struct as $item) {
 
+
+
             if (strstr($item['name'], 'name')) {
                 $filter .= '       $filter->like("' . $item['name'] . '", "' . $item["comment"] . '");' . PHP_EOL;
                 continue;
@@ -230,6 +232,7 @@ trait DcatAdmin
         $this->AdminTemplate = str_replace("{{action}}", $action, $this->AdminTemplate);
         foreach ($app->struct->struct as $item) {
 
+            if (strstr($item['origin_comment'],'fieldHide')) continue;
             if (in_array($item['name'], ['updated_at', 'deleted_at'])) continue;
 
             if ($item['name'] == 'image_url') {
@@ -246,6 +249,10 @@ trait DcatAdmin
                     $comment = 'id';
                 }
                 $extend = '';
+
+                if ($this->getPergByRule('help',$item['origin_comment'])){
+                    $extend.='->help("'.$this->getPergByRule('help',$item['origin_comment']).'")';
+                }
 
                 if ($this->isImage($item['comment'])) {
                     $extend .= "->image('',50,50)";
@@ -331,6 +338,7 @@ trait DcatAdmin
 
         foreach ($app->struct->struct as $item) {
 
+            if (strstr($item['origin_comment'],'fieldHide')) continue;
 
             if (in_array($item['name'], config('exclude_fillable'))) continue;
             if ($item['name'] == 'lng' || $item['name'] == 'lat') {
@@ -376,6 +384,25 @@ trait DcatAdmin
                 $extend.='->required()';
             }
 
+            //帮助生成
+            if ($this->getPergByRule('help',$item['origin_comment'])){
+                $extend.='->help("'.$this->getPergByRule('help',$item['origin_comment']).'")';
+            }
+
+            //是否禁用
+            if (strstr($item['origin_comment'],'fieldDisable')){
+                $extend.='->disable()';
+            }
+
+            //默认值
+            if ($item['default']){
+                $extend.='->default("'.$item['default'].'")';
+            }
+
+
+
+
+
 
 //             preg_match('/msg\[(.*?)\]/','msg[商户权限] belongsTo[admin_roles] relationField[adminRoles.name]', $matches);
 //             var_dump($matches);exit;
@@ -400,6 +427,12 @@ trait DcatAdmin
 
             $msg = $this->getMsgPreg($item['origin_comment']);
 
+            $getEnums =$this->enums($item['name'],$item['origin_comment']);
+
+            if ($getEnums){
+                $msg = $getEnums['key_note'];
+            }
+
 
             if ($enum) {
                 $list .= '       $form->select("' . $item['name'] . '", __("' . $msg . '"))->options(' . $app->className . '::' . $item['name'] . ')' .$extend. $default_str . $help_str . ';' . PHP_EOL;
@@ -421,6 +454,7 @@ trait DcatAdmin
 
 
                 if ($this->isImage($item['comment'])) {
+                    $extend.='->autoUpload()';
                     $list .= '       $form->image("' . $item['name'] . '", __("' . $msg . '"))'.$extend . $default_str . $help_str . ';' . PHP_EOL;
                     continue;
                 }

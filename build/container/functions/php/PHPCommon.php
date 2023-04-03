@@ -769,6 +769,24 @@ class PHPCommon extends BaseClient
 
     }
 
+    /**
+     * 统一获取规则
+     * @param $str
+     * @param $field
+     * @return false|mixed
+     */
+    public function getPergByRule($str,$field){
+        $result = preg_match('/'.$str.'\[(.*?)\]/', $field, $matches);
+        if ($result === false) {
+            return false;
+        } elseif ($result === 0) {
+            return false;
+        } else {
+            return $matches[1];
+        }
+
+    }
+
     //验证规则
     public function getRulePreg($field)
     {

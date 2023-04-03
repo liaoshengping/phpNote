@@ -25,7 +25,38 @@ return new class extends Migration
             'uri' => '{{uri}}',
         ];
 
-        \Illuminate\Support\Facades\DB::table('admin_menu')->insert($create);
+         $menu_id = \Illuminate\Support\Facades\DB::table('admin_menu')->insertGetId($create);
+
+           $data = \Illuminate\Support\Facades\DB::table('admin_permissions')
+               ->where('slug', '{{uri}}')
+               ->first();
+           if (!empty($data)) {
+               return;
+           }
+
+           //菜單表
+           $createPermission = [
+               'name' => '{{title}}',
+               'slug' => '{{uri}}',
+           ];
+           $permission_id = \Illuminate\Support\Facades\DB::table('admin_permissions')->insertGetId($createPermission);
+
+
+           $data = \Illuminate\Support\Facades\DB::table('admin_permission_menu')
+               ->where('permission_id', $permission_id)
+               ->where('menu_id', $menu_id)
+               ->first();
+           if (!empty($data)) {
+               return;
+           }
+           //菜單表
+           $createPermission = [
+               'permission_id' => $permission_id,
+               'menu_id' => $menu_id,
+           ];
+
+           \Illuminate\Support\Facades\DB::table('admin_permission_menu')->insert($createPermission);
+
 
 
     }

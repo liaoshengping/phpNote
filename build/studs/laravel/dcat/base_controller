@@ -18,7 +18,7 @@ class {{ClassName}}BaseController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Merchant(), function (Grid $grid) {
+        return Grid::make(new {{ClassName}}(), function (Grid $grid) {
 
                   {{action}}
                   {{orderBy}}
@@ -55,6 +55,10 @@ class {{ClassName}}BaseController extends AdminController
     {
         return Form::make(new {{ClassName}}(), function (Form $form) {
             {{tools}}
+
+         //去除底部查看
+         $form->disableViewCheck();
+
         $id = '';
         if ($form->isEditing()){
             $id = ','.$form->getKey();
