@@ -38,6 +38,7 @@ return new class extends Migration
            $createPermission = [
                'name' => '{{title}}',
                'slug' => '{{uri}}',
+               'http_path' => '/{{uri}}/*,/{{uri}}',
            ];
            $permission_id = \Illuminate\Support\Facades\DB::table('admin_permissions')->insertGetId($createPermission);
 

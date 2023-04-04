@@ -68,8 +68,41 @@ class Struct extends BaseClient
                 $struct_one['comment'] = $rule_name;
             }
 
+
+
+            //处理关联关系
+            $relationRepo = [
+                'hasMany',
+                'hasOne',
+                'belongsTo',
+            ];
+
+            foreach ($relationRepo as $relationStr){
+                $rule = $this->app->phpcommon->getPergByRule($relationStr,$struct_one['origin_comment']);
+                if ($rule){
+                    foreach (explode(',',$rule) as $relationTable) {
+                        $temp = [];
+                        if (strstr($relationTable,':')){
+                            $arr = explode(':',$relationTable);
+                            $temp['table_name'] = $arr[0];
+                            unset($arr[0]);
+                            $temp['params'] = array_values($arr);
+                        }else{
+                            $temp['table_name'] = $relationTable;
+                        }
+
+
+                        $struct_one['relation'][$relationStr][] = $temp;
+                    }
+                }
+            }
+
+
+
+
             $this->struct[] = $struct_one;
         }
+
         if ($this->app->frame = LARAVEL) {
             $set = config('auto_build_time') ?? [];
             $is_build = false;

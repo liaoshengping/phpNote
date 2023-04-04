@@ -134,6 +134,14 @@ class Laravel extends PHPCommon
     public function buildRelation()
     {
 
+        //数据表生成的关联模型
+        $relationTable = $this->generateRelation();
+        if ($relationTable){
+            $this->modelRelationTemplate = $relationTable;
+            return  $relationTable;
+        }
+
+
         $relations = $this->getRelation();
 
 
@@ -199,6 +207,9 @@ class Laravel extends PHPCommon
 
 
         }
+
+
+
 
         $this->modelRelationTemplate = $tamplate;
 

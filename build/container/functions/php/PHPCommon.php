@@ -5,6 +5,7 @@ namespace container\functions\php;
 use container\core\BaseClient;
 use container\functions\php\laravel\DcatAdmin;
 use container\functions\php\laravel\LaravelAdmin;
+use container\functions\php\laravel\RelationBuildByTable;
 use Inhere\Console\Util\Show;
 
 class PHPCommon extends BaseClient
@@ -13,6 +14,7 @@ class PHPCommon extends BaseClient
     use RequestForm;
     use LaravelAdmin;
     use DcatAdmin;
+    use RelationBuildByTable;
 
     /**
      * 模型
@@ -43,6 +45,8 @@ class PHPCommon extends BaseClient
      * @var
      */
     public $modelRelationTemplate;
+
+
 
     /**
      * eq:
