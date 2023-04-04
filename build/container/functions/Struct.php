@@ -9,6 +9,7 @@ use container\core\BaseClient;
 class Struct extends BaseClient
 {
     public $struct;
+    public $structRelation;
 
     /**
      * 结构
@@ -23,6 +24,7 @@ class Struct extends BaseClient
 
         $container = [];
         foreach ($table as $item) {
+
             $container[] = $item['COLUMN_NAME'];
 
             $struct_one = [
@@ -69,39 +71,52 @@ class Struct extends BaseClient
             }
 
 
-
             //处理关联关系
             $relationRepo = [
                 'hasMany',
                 'hasOne',
                 'belongsTo',
             ];
-
-            foreach ($relationRepo as $relationStr){
-                $rule = $this->app->phpcommon->getPergByRule($relationStr,$struct_one['origin_comment']);
-                if ($rule){
-                    foreach (explode(',',$rule) as $relationTable) {
+            foreach ($relationRepo as $relationStr) {
+                $rule = $this->app->phpcommon->getPergByRule($relationStr, $struct_one['origin_comment']);
+                if ($rule) {
+                    foreach (explode(',', $rule) as $relationTable) {
                         $temp = [];
-                        if (strstr($relationTable,':')){
-                            $arr = explode(':',$relationTable);
+                        if (strstr($relationTable, ':')) {
+                            $arr = explode(':', $relationTable);
                             $temp['table_name'] = $arr[0];
+                            $relation_table_name = $temp['table_name'];
+
                             unset($arr[0]);
                             $temp['params'] = array_values($arr);
-                        }else{
+                        } else {
                             $temp['table_name'] = $relationTable;
-                        }
+                            $relation_table_name = $relationTable;
 
+                        }
+                        $temp['relationName'] = camel_case($relation_table_name);
+                        $temp['className'] = $this->app->tool->struct($relation_table_name);;
+                        $this->structRelation[$relationStr][] = $temp['relationName'];
 
                         $struct_one['relation'][$relationStr][] = $temp;
+
                     }
                 }
             }
 
 
+            //belongsTo 的关联的名字
+            if (!empty($struct_one['relation']['belongsTo'][0]['table_name'])) {
 
+                $belongName = $this->getTableName($struct_one['relation']['belongsTo'][0]['table_name'], $struct_one['origin_comment']);
+
+                $struct_one['belongName'] =  $struct_one['relation']['belongsTo'][0]['relationName'].'.'.$belongName;
+
+            }
 
             $this->struct[] = $struct_one;
         }
+
 
         if ($this->app->frame = LARAVEL) {
             $set = config('auto_build_time') ?? [];
@@ -151,10 +166,11 @@ SQL;
     /**
      * 返回这个字段所有信息 包括枚举信息
      */
-    public function getFieldByKey($key){
+    public function getFieldByKey($key)
+    {
 
         foreach ($this->struct as $item) {
-            if ($item['name'] == $key){
+            if ($item['name'] == $key) {
                 return $item;
             }
         }
@@ -218,6 +234,50 @@ SQL;
             return false;
         }
         return $result[1];
+
+    }
+
+    /**
+     * 获取关键名称 ,长得比较像名称的
+     */
+    public function getTableName($table, $originCommont)
+    {
+
+        if ($name = $this->app->phpcommon->getPergByRule('belongsName',$originCommont)){
+            return $name;
+        }
+
+
+        $db_name = config('database');
+        $dataTableInfo = $this->app->db->query("select * from information_schema.columns
+where table_schema = '{$db_name}'
+and table_name = '{$table}' ORDER BY ORDINAL_POSITION ASC");
+
+        if (empty($dataTableInfo)) {
+            throw new \Exception('belongsTo关联表没有数据');
+        }
+        //有名字就返名称
+        foreach ($dataTableInfo as $item) {
+            if (strstr($item['COLUMN_NAME'], 'name')) {
+                return $item['COLUMN_NAME'];
+            }
+        }
+
+        foreach ($dataTableInfo as $item) {
+            if (strstr($item['COLUMN_COMMENT'], '名')) {
+                return $item['COLUMN_NAME'];
+            }
+        }
+
+        foreach ($dataTableInfo as $item) {
+            if (strstr($item['COLUMN_TYPE'], 'varchar')) {
+                return $item['COLUMN_NAME'];
+            }
+        }
+
+        foreach ($dataTableInfo as $item) {
+            return $item['COLUMN_NAME'];
+        }
 
     }
 

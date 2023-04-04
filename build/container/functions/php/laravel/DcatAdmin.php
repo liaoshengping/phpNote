@@ -5,6 +5,7 @@ namespace container\functions\php\laravel;
 
 
 use container\Application;
+use functions\Log;
 use Inhere\Console\Util\Show;
 
 
@@ -58,7 +59,10 @@ trait DcatAdmin
 
         //列表
         $column = $this->dcatColumn();
+        $columnRelation = $this->dcatColumnRelation();
+
         $this->AdminTemplate = str_replace('{{column}}', $column, $this->AdminTemplate);
+        $this->AdminTemplate = str_replace('{{relation}}', $columnRelation, $this->AdminTemplate);
         //详情
         $field = $this->dcatField();
         $this->AdminTemplate = str_replace('{{field}}', $field, $this->AdminTemplate);
@@ -178,7 +182,6 @@ trait DcatAdmin
         foreach ($app->struct->struct as $item) {
 
 
-
             if (strstr($item['name'], 'name')) {
                 $filter .= '       $filter->like("' . $item['name'] . '", "' . $item["comment"] . '");' . PHP_EOL;
                 continue;
@@ -232,7 +235,7 @@ trait DcatAdmin
         $this->AdminTemplate = str_replace("{{action}}", $action, $this->AdminTemplate);
         foreach ($app->struct->struct as $item) {
 
-            if (strstr($item['origin_comment'],'fieldHide')) continue;
+            if (strstr($item['origin_comment'], 'fieldHide')) continue;
             if (in_array($item['name'], ['updated_at', 'deleted_at'])) continue;
 
             if ($item['name'] == 'image_url') {
@@ -250,15 +253,21 @@ trait DcatAdmin
                 }
                 $extend = '';
 
-                if ($this->getPergByRule('help',$item['origin_comment'])){
-                    $extend.='->help("'.$this->getPergByRule('help',$item['origin_comment']).'")';
+                if ($this->getPergByRule('help', $item['origin_comment'])) {
+                    $extend .= '->help("' . $this->getPergByRule('help', $item['origin_comment']) . '")';
                 }
 
                 if ($this->isImage($item['comment'])) {
                     $extend .= "->image('',50,50)";
                 }
 
-                $list .= '       $grid->column("' . $item['name'] . '", __("' . $comment . '"))' . $extend . ';' . PHP_EOL;
+                $columnName = $item['name'];
+
+                if (!empty($item['belongName'])){
+                    $columnName =  $item['belongName'];
+                }
+
+                $list .= '       $grid->column("' . $columnName . '", __("' . $comment . '"))' . $extend . ';' . PHP_EOL;
             }
 
         }
@@ -338,7 +347,7 @@ trait DcatAdmin
 
         foreach ($app->struct->struct as $item) {
 
-            if (strstr($item['origin_comment'],'fieldHide')) continue;
+            if (strstr($item['origin_comment'], 'fieldHide')) continue;
 
             if (in_array($item['name'], config('exclude_fillable'))) continue;
             if ($item['name'] == 'lng' || $item['name'] == 'lat') {
@@ -380,28 +389,24 @@ trait DcatAdmin
 //            var_dump($item);exit;
             //拓展
             $extend = '';
-            if (strstr($item['origin_comment'],'required')){
-                $extend.='->required()';
+            if (strstr($item['origin_comment'], 'required')) {
+                $extend .= '->required()';
             }
 
             //帮助生成
-            if ($this->getPergByRule('help',$item['origin_comment'])){
-                $extend.='->help("'.$this->getPergByRule('help',$item['origin_comment']).'")';
+            if ($this->getPergByRule('help', $item['origin_comment'])) {
+                $extend .= '->help("' . $this->getPergByRule('help', $item['origin_comment']) . '")';
             }
 
             //是否禁用
-            if (strstr($item['origin_comment'],'fieldDisable')){
-                $extend.='->disable()';
+            if (strstr($item['origin_comment'], 'fieldDisable')) {
+                $extend .= '->disable()';
             }
 
             //默认值
-            if ($item['default']){
-                $extend.='->default("'.$item['default'].'")';
+            if ($item['default']) {
+                $extend .= '->default("' . $item['default'] . '")';
             }
-
-
-
-
 
 
 //             preg_match('/msg\[(.*?)\]/','msg[商户权限] belongsTo[admin_roles] relationField[adminRoles.name]', $matches);
@@ -409,43 +414,43 @@ trait DcatAdmin
 
 
             //兼容编辑时唯一性
-            if ($this->getRulePreg($item['origin_comment'],true)){
-                $rule = explode('|',$this->getRulePreg($item['origin_comment'],true));
+            if ($this->getRulePreg($item['origin_comment'], true)) {
+                $rule = explode('|', $this->getRulePreg($item['origin_comment'], true));
                 $resultRule = [];
-                foreach ($rule as $validate){
-                    if (strstr($validate,'unique')){
-                        $resultRule[]  = $validate.'{$id}';
+                foreach ($rule as $validate) {
+                    if (strstr($validate, 'unique')) {
+                        $resultRule[] = $validate . '{$id}';
                         continue;
                     }
-                    $resultRule[]  = $validate;
+                    $resultRule[] = $validate;
                 }
 
-                $resultRule = implode('|',$resultRule);
+                $resultRule = implode('|', $resultRule);
 
-                $extend.='->rules("'.$resultRule.'")';
+                $extend .= '->rules("' . $resultRule . '")';
             }
 
             $msg = $this->getMsgPreg($item['origin_comment']);
 
-            $getEnums =$this->enums($item['name'],$item['origin_comment']);
+            $getEnums = $this->enums($item['name'], $item['origin_comment']);
 
-            if ($getEnums){
+            if ($getEnums) {
                 $msg = $getEnums['key_note'];
             }
 
 
             if ($enum) {
-                $list .= '       $form->select("' . $item['name'] . '", __("' . $msg . '"))->options(' . $app->className . '::' . $item['name'] . ')' .$extend. $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '       $form->select("' . $item['name'] . '", __("' . $msg . '"))->options(' . $app->className . '::' . $item['name'] . ')' . $extend . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
 
             if ($item['type'] == 'int') {
-                $list .= '       $form->number("' . $item['name'] . '", __("' . $msg . '"))'.$extend . $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '       $form->number("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
             } else {
 
                 $comment = $this->getMsgPreg($item['origin_comment']);
 
-                if ($item['name'] == 'role_id'){
+                if ($item['name'] == 'role_id') {
 
                 }
                 if ($item['name'] == $app->table->pk) {
@@ -454,16 +459,16 @@ trait DcatAdmin
 
 
                 if ($this->isImage($item['comment'])) {
-                    $extend.='->autoUpload()';
-                    $list .= '       $form->image("' . $item['name'] . '", __("' . $msg . '"))'.$extend . $default_str . $help_str . ';' . PHP_EOL;
+                    $extend .= '->autoUpload()';
+                    $list .= '       $form->image("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
                     continue;
                 }
                 if (strstr($item['comment'], 'mobile')) {
-                    $list .= '       $form->mobile("' . $item['name'] . '", __("' . $msg . '"))' .$extend. $default_str . $help_str . ';' . PHP_EOL;
+                    $list .= '       $form->mobile("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
                     continue;
                 }
 
-                $list .= '       $form->text("' . $item['name'] . '", __("' . $msg . '"))' .$extend. $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '       $form->text("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
 
 
             }
@@ -473,6 +478,21 @@ trait DcatAdmin
 
         }
         return $list;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function dcatColumnRelation()
+    {
+        $structRelation = $this->app->struct->structRelation;
+        if (empty($structRelation['belongsTo'])) return '';
+
+        $temp = implode(',', $structRelation['belongsTo']);
+
+        return '$grid->model()->with("' . $temp . '");';
+
     }
 
 }

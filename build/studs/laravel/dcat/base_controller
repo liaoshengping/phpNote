@@ -19,7 +19,7 @@ class {{ClassName}}BaseController extends AdminController
     protected function grid()
     {
         return Grid::make(new {{ClassName}}(), function (Grid $grid) {
-
+                  {{relation}}
                   {{action}}
                   {{orderBy}}
                   {{filter}}
