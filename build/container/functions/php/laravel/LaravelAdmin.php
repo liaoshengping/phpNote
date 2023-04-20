@@ -108,7 +108,7 @@ trait LaravelAdmin
         $this->ControllerPath = $Controller;
 
         if (is_file($this->ControllerPath) && $this->getCurrentSetting('no_cover_admin')) {
-            Show::block('错误已经设置不可以强制覆盖：' . $this->ControllerPath, 'error', 'error');
+            Show::block('错误已经设置不可以强制覆盖1：' . $this->ControllerPath, 'error', 'error');
             return false;
         }
 

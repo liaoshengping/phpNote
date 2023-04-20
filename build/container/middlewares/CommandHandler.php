@@ -33,6 +33,7 @@ class CommandHandler implements Middlewares
         $app->console->init();
 
         $argvs = $app->params['argv'];
+        $app->todo = $argvs[1];
 //        $userInput = Interact::readln('Your name:');
 //        Show::block('是你输入的是', 'success', 'error');
         if (count($argvs) < 2) {
@@ -42,6 +43,9 @@ class CommandHandler implements Middlewares
         if (empty($argvs[2])) {
             Show::aList($this->help, '指示');
             throw new \Exception("请填写表名/文件名");
+        }
+        if ($argvs[2]  == 'all'){
+            return true;
         }
 
         switch ($argvs[1]) {
@@ -60,6 +64,6 @@ class CommandHandler implements Middlewares
                 break;
         }
 
-        $app->todo = $argvs[1];
+
     }
 }

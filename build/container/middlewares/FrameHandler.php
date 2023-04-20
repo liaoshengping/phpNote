@@ -13,6 +13,11 @@ class FrameHandler implements Middlewares
 
     public function handle(Application $app)
     {
+
+        $argvs = $app->params['argv'];
+
+        $app->projectName = $argvs[0];
+
         //生成BaseModel
         switch (config('frame')) {
             case THINKPHP:

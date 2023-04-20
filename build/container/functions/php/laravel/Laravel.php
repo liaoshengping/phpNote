@@ -134,13 +134,15 @@ class Laravel extends PHPCommon
     public function buildRelation()
     {
 
-        //数据表生成的关联模型
-        $relationTable = $this->generateRelation();
-        if ($relationTable){
-            $this->modelRelationTemplate = $relationTable;
-            return  $relationTable;
-        }
 
+
+        //数据表生成的关联模型
+//        $relationTable = $this->generateRelation();
+//
+//        if ($relationTable){
+//            $this->modelRelationTemplate = $relationTable;
+//            return  $relationTable;
+//        }
 
         $relations = $this->getRelation();
 
@@ -150,6 +152,7 @@ class Laravel extends PHPCommon
         }
         $tamplate = '';
         foreach ($relations as $table_name => $relation) {
+
 
 
             $originName = $this->app->tool->struct($table_name);
@@ -199,8 +202,16 @@ class Laravel extends PHPCommon
     }
                     ' . PHP_EOL;
                         break;
+                    case 'belongsTo':
+                        $tamplate .= '
+   public function ' . $relation_name . '()
+    {
+        return $this->belongsTo(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')'  . ';
+    }
+                    ' . PHP_EOL;
+                        break;
                     default:
-                        throw new \Exception('config relations的配置中，缺少类型：' . $item['relation']);
+                        throw new \Exception('config relations的配置中，缺少类型：' . $relation['relation']);
                         break;
                 }
             }

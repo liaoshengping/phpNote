@@ -6,6 +6,7 @@ namespace container\functions;
 
 use common\cache;
 use container\core\BaseClient;
+use functions\Log;
 use Inhere\Console\Util\Show;
 
 class Table extends BaseClient
@@ -98,6 +99,25 @@ table_name ");
                 return $item['COLUMN_NAME'];
             }
       }
+    }
+
+
+    /**
+     * 获取所有表信息
+     */
+    public function getAllTables(){
+
+        $db_name = 'cid';
+
+        $dataTableInfo = $this->app->db->query("SELECT
+*
+FROM
+information_schema.tables 
+WHERE
+table_schema = '{$db_name}'
+ORDER BY
+table_name ");
+        return $dataTableInfo;
     }
 
 

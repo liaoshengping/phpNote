@@ -37,11 +37,14 @@ trait RelationBuildByTable
 
                     $frame_mode_path =config('frame_mode_path').$ModelClass.'.php';
 
-                    if (!is_file($frame_mode_path)){
+
+                    $argv = $this->app->params['argv'];
+                    if ($argv[2] != 'all' && !is_file($frame_mode_path)){
                         Show::error('搞什么，关联的模型不存在，先去生成模型去吧'.$frame_mode_path, 'error', 'error');
+
                     }
 
-                    $relationResult.= $this->$function($ModelClass,$relationName,$tableRelation);
+                    $relationResult.= $this->$function($ModelClass,$relationName,$tableRelation,$item);
 
                 }
 
@@ -54,8 +57,9 @@ trait RelationBuildByTable
         return $relationResult;
     }
 
-    public function hasManyRelation($ModelClass,$relationName,$structInfo){
-        $foreignKey = $structInfo['table_name'].'_id';
+    public function hasManyRelation($ModelClass,$relationName,$structInfo,$item){
+
+        $foreignKey = $item['tabel_name'].'_id';
         $ownerKey = 'id';
 
         if (!empty($structInfo['params'][1])){
@@ -74,7 +78,7 @@ trait RelationBuildByTable
 
         return $temp;
     }
-    public function hasOneRelation($ModelClass,$relationName,$structInfo){
+    public function hasOneRelation($ModelClass,$relationName,$structInfo,$item){
         $foreignKey = $structInfo['table_name'].'_id';
         $ownerKey = 'id';
 
@@ -94,7 +98,7 @@ trait RelationBuildByTable
 
         return $temp;
     }
-    public function belongsToRelation($ModelClass,$relationName,$structInfo){
+    public function belongsToRelation($ModelClass,$relationName,$structInfo,$item){
 
         $foreignKey = $structInfo['table_name'].'_id';
         $ownerKey = 'id';

@@ -5,8 +5,10 @@ namespace container\functions\php\laravel;
 
 
 use container\Application;
+use container\functions\php\laravel\project\Cid;
 use functions\Log;
 use Inhere\Console\Util\Show;
+use Predis\Pipeline\Pipeline;
 
 
 trait DcatAdmin
@@ -148,6 +150,12 @@ trait DcatAdmin
             mkdir($dir, 0777);
         }
 
+       if (!is_file($dir.'/BaseAdminController.php')){
+           file_put_contents($dir.'/BaseAdminController.php', file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/dcat/base_admin_controller'));
+       }
+
+
+
         $Controller = $frame_path . 'app/Admin/Controllers/' . $ControllerName . '.php';
         $exsit = is_file($Controller);
 
@@ -155,10 +163,10 @@ trait DcatAdmin
         $this->ControllerPath = $frame_path . 'app/Admin/Controllers/base/' . $app->className . 'BaseController' . '.php';
 
 
-        if (is_file($this->ControllerPath) && $this->getCurrentSetting('no_cover_admin')) {
-            Show::block('错误已经设置不可以强制覆盖：' . $this->ControllerPath, 'error', 'error');
-            return false;
-        }
+//        if (is_file($this->ControllerPath) && $this->getCurrentSetting('no_cover_admin')) {
+//            Show::block('错误已经设置不可以强制覆盖2：' . $this->ControllerPath, 'error', 'error');
+//            return false;
+//        }
 
 
         return true;
@@ -181,15 +189,25 @@ trait DcatAdmin
         $filter = '';
         foreach ($app->struct->struct as $item) {
 
+            if (strstr($item['origin_comment'],'fieldHide')) continue;
+            if (strstr($item['origin_comment'],'listHide')) continue;
+
+            if ($item['name']  == 'id') continue;
+
+            if (strstr($item['origin_comment'],'search')){
+                $filter .= '$filter->equal("'.$item["name"].'", "'.$this->getMsgPreg($item["origin_comment"]).'");';
+                continue;
+            }
 
             if (strstr($item['name'], 'name')) {
-                $filter .= '       $filter->like("' . $item['name'] . '", "' . $item["comment"] . '");' . PHP_EOL;
+                $filter .= '       $filter->like("' . $item['name'] . '", "' . $this->getMsgPreg( $item["origin_comment"]) . '");' . PHP_EOL;
                 continue;
             }
             //枚举筛选
             if (!empty($item['enum'])) {
+//                var_dump($item);exit;
                 $enumsClass = $app->className . '::' . $item['name'];
-                $filter .= '       $filter->in("' . $item["name"] . '","' . $item['comment'] . '")->checkbox(' . $enumsClass . ');' . PHP_EOL;
+                $filter .= '       $filter->in("' . $item["name"] . '","' . $this->getMsgPreg($item["enum_name"]). '")->checkbox(' . $enumsClass . ');' . PHP_EOL;
             }
             //时间筛选
             if ($item['name'] == 'created_at') {
@@ -198,14 +216,17 @@ trait DcatAdmin
             }
 
 
+
+
         }
         if ($filter) {
             $template = '
         $grid->batchActions(function (Grid\Tools\BatchActions $batch) {
             $batch->disableDelete();
          });
-            
+        
             $grid->filter(function($filter){
+                $filter->expand(false);
     {{filter}}
 });';
             $template = str_replace('{{filter}}', $filter, $template);
@@ -220,22 +241,29 @@ trait DcatAdmin
         $this->AdminTemplate = str_replace("{{orderBy}}", $orderBy, $this->AdminTemplate);
 
         //操作
-        $action = '$grid->actions(function ($actions) {
+        $action = '$grid->actions(function ($actions)use($then) {
+
+            if (method_exists($then,"addGridAction")){
+                $actions = $then->addGridAction($actions);
+            }
 
             // 去掉删除
-            $actions->disableDelete();
+            //$actions->disableDelete();
         
             // 去掉编辑
             //$actions->disableEdit();
         
             // 去掉查看
-            //$actions->disableView();
+            $actions->disableView();
 });';
 
         $this->AdminTemplate = str_replace("{{action}}", $action, $this->AdminTemplate);
         foreach ($app->struct->struct as $item) {
 
+            if (strstr($item['origin_comment'],'listHide'))continue;
+            if (config('admin_hide_id') && $item['name'] == 'id') continue;
             if (strstr($item['origin_comment'], 'fieldHide')) continue;
+            if (strstr($item['origin_comment'],'listHide')) continue;
             if (in_array($item['name'], ['updated_at', 'deleted_at'])) continue;
 
             if ($item['name'] == 'image_url') {
@@ -257,7 +285,7 @@ trait DcatAdmin
                     $extend .= '->help("' . $this->getPergByRule('help', $item['origin_comment']) . '")';
                 }
 
-                if ($this->isImage($item['comment'])) {
+                if ($this->isImage($item['origin_comment'])) {
                     $extend .= "->image('',50,50)";
                 }
 
@@ -329,9 +357,11 @@ trait DcatAdmin
         $lng = false;
         //右上角的操作按钮
         $tools = '$form->tools(function (Form\Tools $tools) {
+        
+
 
         // 去掉`列表`按钮
-        //$tools->disableList();
+        $tools->disableList();
     
         // 去掉`删除`按钮
         $tools->disableDelete();
@@ -344,10 +374,13 @@ trait DcatAdmin
        });';
         $this->AdminTemplate = str_replace('{{tools}}', $tools, $this->AdminTemplate);
 
+        $init = '';
+        $this->AdminTemplate = str_replace('{{init}}', $init, $this->AdminTemplate);
 
         foreach ($app->struct->struct as $item) {
-
+            if (config('admin_hide_id') && $item['name'] == 'id') continue;
             if (strstr($item['origin_comment'], 'fieldHide')) continue;
+            if (strstr($item['origin_comment'], 'formHide')) continue;
 
             if (in_array($item['name'], config('exclude_fillable'))) continue;
             if ($item['name'] == 'lng' || $item['name'] == 'lat') {
@@ -438,14 +471,36 @@ trait DcatAdmin
                 $msg = $getEnums['key_note'];
             }
 
+            //Cid项目
+            if ($this->app->projectName == 'cid' && $item['name']  == 'merchant_id'){
+
+                $list.= '
+        if (method_exists($then,"merchant")){
+                    $then->merchant($form);
+                }else{
+                    $form->select("merchant_id", __("商户"))->options(\App\Models\Merchant::query()->pluck("company_name as text","id"))->required()->rules("required");
+                }
+        ';
+                continue;
+            }
+
 
             if ($enum) {
                 $list .= '       $form->select("' . $item['name'] . '", __("' . $msg . '"))->options(' . $app->className . '::' . $item['name'] . ')' . $extend . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
+            if (!empty($item['belongClass'])){
+                $list .= '       $form->select("' . $item['name'] . '", __("' . $msg . '"))->options(\App\Models\\'.$item['belongClass'].'::query()->pluck("'.$item["belongNameOne"].' as text","id"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
+                continue;
+            }
+
+
+
+
+
 
             if ($item['type'] == 'int') {
-                $list .= '       $form->number("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '       $form->number("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
             } else {
 
                 $comment = $this->getMsgPreg($item['origin_comment']);
@@ -457,26 +512,33 @@ trait DcatAdmin
                     $comment = 'id';
                 }
 
+                if ($this->isImage($item['origin_comment'])) {
 
-                if ($this->isImage($item['comment'])) {
+
                     $extend .= '->autoUpload()';
-                    $list .= '       $form->image("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
+                    $list .= '       $form->image("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
                     continue;
                 }
-                if (strstr($item['comment'], 'mobile')) {
-                    $list .= '       $form->mobile("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
+                if (strstr($item['origin_comment'], 'mobile')) {
+                    $list .= '       $form->mobile("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
                     continue;
                 }
 
-                $list .= '       $form->text("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '       $form->text("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
 
 
             }
 
-            //处理枚举
+
 
 
         }
+        $list.='
+        if (method_exists($then,"customForm")){
+             $then->customForm($form);
+            
+        }
+           ';
         return $list;
     }
 
@@ -489,9 +551,10 @@ trait DcatAdmin
         $structRelation = $this->app->struct->structRelation;
         if (empty($structRelation['belongsTo'])) return '';
 
-        $temp = implode(',', $structRelation['belongsTo']);
-
-        return '$grid->model()->with("' . $temp . '");';
+        $temp = implode(',', array_map(function ($item){
+            return "'$item'";
+        },$structRelation['belongsTo']));
+        return '$grid->model()->with([' . $temp . ']);';
 
     }
 

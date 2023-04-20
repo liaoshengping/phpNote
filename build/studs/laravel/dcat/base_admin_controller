@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Admin\Controllers\base;
+
+use Dcat\Admin\Http\Controllers\AdminController;
+
+class BaseAdminController extends AdminController
+{
+
+}

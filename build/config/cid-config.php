@@ -50,6 +50,9 @@ return [
     'validate_int' => 'integer',
     'validate_number' => 'numeric',
 
+
+    'admin_hide_id' =>true, //隐藏admin 的id
+
     //文档地址
     'document_path' => FRAME_PATH . 'document',
 
@@ -75,8 +78,8 @@ return [
      * 数据差异性
      */
     "tables" => [
-        'plan' => [
-            'name' => '方案',
+        'goods' => [
+            'name' => '商品管理',
             'request_method' => 'form',//form表单 json (Json Body的形式),
             'fields' => [
                 ''
@@ -87,7 +90,7 @@ return [
             'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
             'create_input' => ['name','code_num','plan_type'], //创建需要的字段如果为空取上面的
-            'controller_actions' => ['create','list','edit','delete', 'show'],
+            'controller_actions' => [ 'show'],
 //            ['create','list','edit','show','delete'];
 //            'create_input' => [], //创建需要的字段如果为空取上面的
 
@@ -105,20 +108,20 @@ return [
              */
             'relations' => [
 
-                [
-                    'relation' => "hasMany",
-                    'tables' => [
-                        [
-                            'table_name' => 'plan_code',
-                            'target' => 'plan_id', //目标表中的字段
-                            'origin' => 'id',//本表的字段
-                            'list_show' => true,
-                            'list_exist' => false,
-                            'one_show' => true,
-                            'create_relation' => false,//创建时，是否可以关联添加
-                        ],
-                    ],
-                ],
+//                [
+//                    'relation' => "hasMany",
+//                    'tables' => [
+//                        [
+//                            'table_name' => 'plan_code',
+//                            'target' => 'plan_id', //目标表中的字段
+//                            'origin' => 'id',//本表的字段
+//                            'list_show' => true,
+//                            'list_exist' => false,
+//                            'one_show' => true,
+//                            'create_relation' => false,//创建时，是否可以关联添加
+//                        ],
+//                    ],
+//                ],
 
             ]
         ],

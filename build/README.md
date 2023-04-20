@@ -18,16 +18,20 @@ eie
 * 如果表中的status包含delete 字眼，删除则是修改状态，同样在列表中也排除delete的的状态数据
 * help[这里是帮助文档] laravel-admin 后台字段帮助
 * msg[注释]  // msg[商品名称]
+* 
 * fieldHide // 字段不显示
 * fieldDisable // 字段禁止编辑
 * editDisable // 编辑不可操作，新增可以
+* notDelete // 表不能删除
+* notEdit // 表不能编辑
+* formHide 表单隐藏
 * search // 搜索字段
+* 
 * belongsTo[表名] // belongsTo[shop_type] 一对一
 * hasOne[表名] // hasOne[order] 一对一
 * hasMany[表名1,表名2] // hasMany[goods_sku,goods_put_info] 一对多关联
 * relationField[表名.字段名] //  relationField[merchant.name] hasOne或hasMany 关联表字段ID，列表需要展示关联表字段名称
-* notDelete // 表不能删除
-* notEdit // 表不能编辑
+
 
 
 
@@ -250,5 +254,10 @@ $this->getCurrentSetting()  获取当前表的设置，想 request_method 的方
 | list_exist | 是否展示列表是否存在 | 用于laravel 中的 withHas |
 | one_show | 详情接口是否展示 | bool |
 | create_relation | 创建时候是否关联可添加 | bool |
+
+
+## 代码方法
+
+- 获取所有数据库表信息 $this->table->getAllTables()
 
 

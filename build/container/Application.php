@@ -31,6 +31,7 @@ class Application extends ContainerBase
     public $todo = '';
     public $frame = '';
     public $className;//目标对象的classname
+    public $projectName;//项目 比如 cid 或者 yuce
 
     /**
      * 服务提供者
@@ -55,7 +56,35 @@ class Application extends ContainerBase
 
     public function run()
     {
+        $argvs = $this->params['argv'];
+        if ($argvs[2] == 'all') {
+            $this->handleAll();
+            return true;
+        }
 
+        $this->runFrame();
+
+    }
+
+    /**
+     * 处理所有
+     * @return bool
+     * @throws \Exception
+     */
+    public function handleAll()
+    {
+
+        foreach ($this->table->getAllTables() as $tableInfo) {
+            $table_name = $tableInfo['TABLE_NAME'];
+            $this->params['argv'][2] = $table_name;
+            (new self($this->params))->run();
+        }
+        return true;
+
+    }
+
+    public function runFrame()
+    {
         /**
          * 请在这边添加框架
          * @var Thinkphp

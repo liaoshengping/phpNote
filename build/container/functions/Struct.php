@@ -10,6 +10,7 @@ class Struct extends BaseClient
 {
     public $struct;
     public $structRelation;
+    public $compatibleRelation = [];//兼容config里面的Relation配置
 
     /**
      * 结构
@@ -25,6 +26,7 @@ class Struct extends BaseClient
         $container = [];
         foreach ($table as $item) {
 
+
             $container[] = $item['COLUMN_NAME'];
 
             $struct_one = [
@@ -33,6 +35,7 @@ class Struct extends BaseClient
                 'comment' => $item['COLUMN_COMMENT'],
                 'default' => $item['COLUMN_DEFAULT'],
                 'origin_comment' => $item['COLUMN_COMMENT'],
+                'tabel_name' => $item['TABLE_NAME'],
             ];
             if ($struct_one['name'] == 'created_at' && empty($item['commont'])) {
                 $struct_one['comment'] = '创建时间';
@@ -57,7 +60,9 @@ class Struct extends BaseClient
             $enum = $this->enums($item['COLUMN_NAME'], $item['COLUMN_COMMENT']);
 
             if ($enum) {
+
                 $struct_one['comment'] = $enum['key_note'];
+                $struct_one['enum_name'] = $enum['key_note'];
                 $struct_one['enum'] = $enum['data'];
 
             }
@@ -92,8 +97,45 @@ class Struct extends BaseClient
                         } else {
                             $temp['table_name'] = $relationTable;
                             $relation_table_name = $relationTable;
-
                         }
+
+
+                        $foreignKey = $item['TABLE_NAME'] . '_id';
+                        $ownerKey = 'id';
+
+
+                        switch ($relationStr) {
+                            case 'belongsTo':
+                                $foreignKey = $relation_table_name.'_id';
+                                break;
+                            default:
+                                if (!empty($structInfo['params'][1])) {
+                                    $foreignKey = $structInfo['params'][1];
+                                }
+                                if (!empty($structInfo['params'][0])) {
+                                    $ownerKey = $structInfo['params'][0];
+                                }
+                                break;
+                        }
+
+
+                        $this->compatibleRelation[] = [
+                            'relation' => $relationStr,
+                            'tables' => [
+                                [
+                                    'table_name' => $relation_table_name,
+                                    'relation_name' => camel_case($relation_table_name),
+                                    'target' => $foreignKey, //目标表中的字段
+                                    'origin' => $ownerKey,//本表的字段
+                                    'list_show' => true,
+                                    'list_exist' => false,
+                                    'one_show' => true,
+                                    'create_relation' => false,//创建时，是否可以关联添加
+                                ],
+                            ],
+                        ];
+
+
                         $temp['relationName'] = camel_case($relation_table_name);
                         $temp['className'] = $this->app->tool->struct($relation_table_name);;
                         $this->structRelation[$relationStr][] = $temp['relationName'];
@@ -110,13 +152,16 @@ class Struct extends BaseClient
 
                 $belongName = $this->getTableName($struct_one['relation']['belongsTo'][0]['table_name'], $struct_one['origin_comment']);
 
-                $struct_one['belongName'] =  $struct_one['relation']['belongsTo'][0]['relationName'].'.'.$belongName;
+                $struct_one['belongName'] = $struct_one['relation']['belongsTo'][0]['relationName'] . '.' . $belongName;
+
+                $struct_one['belongClass'] = $struct_one['relation']['belongsTo'][0]['className'];
+
+                $struct_one['belongNameOne'] = $belongName;
 
             }
 
             $this->struct[] = $struct_one;
         }
-
 
         if ($this->app->frame = LARAVEL) {
             $set = config('auto_build_time') ?? [];
@@ -138,9 +183,9 @@ SQL;
                 }
             }
 
-            if ($is_build) {
-                throw new \Exception('请重试，或执行migrate');
-            }
+//            if ($is_build) {
+//                throw new \Exception('请重试，或执行migrate');
+//            }
 
 
         }
@@ -243,7 +288,7 @@ SQL;
     public function getTableName($table, $originCommont)
     {
 
-        if ($name = $this->app->phpcommon->getPergByRule('belongsName',$originCommont)){
+        if ($name = $this->app->phpcommon->getPergByRule('belongsName', $originCommont)) {
             return $name;
         }
 

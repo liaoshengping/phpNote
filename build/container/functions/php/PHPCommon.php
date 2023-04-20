@@ -145,6 +145,7 @@ class PHPCommon extends BaseClient
         $relationPropertys = '';
         $apiDoc = '';
         $relations = $this->getRelation();
+
         do {
             if (empty($relations)) {
                 break;
@@ -596,7 +597,7 @@ class PHPCommon extends BaseClient
                 $kv = explode(':', $v);
                 if (empty($kv)) return false;
                 if (empty($kv[1])) return false;
-                $result['data'][$kv[0]] = $kv[1];
+                $result['data'][trim($kv[0])] = trim($kv[1]);
 
             }
 
@@ -656,8 +657,12 @@ class PHPCommon extends BaseClient
     public function getRelation()
     {
         $table = $this->getCurrentSetting();
+
+
         if (empty($table['relations'])) {
-            return [];
+
+            return $this->app->struct->compatibleRelation; //表里面的关联关系，后期可以做成合并的方式
+
         }
 
         return $table['relations'];
@@ -745,16 +750,22 @@ class PHPCommon extends BaseClient
     //生成验证规则
     public function validateData($field)
     {
-        if (empty($field)) {
-            return false;
-        }
-        $result = '';
-        preg_match("/(?:rule)+(?:\[)(.*)(?:\])/i", $field, $result);
+        $str = $field;
+        $arr = array();
 
-        if (empty($result[1])) {
-            return false;
+// Define a regular expression pattern
+        $pattern = "/(\w+)\[([^\]]+)\]/";
+
+// Search for matches in the string and extract the variable names and values
+        preg_match_all($pattern, $str, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $arr[$match[1]] = $match[2];
         }
-        return $result[1];
+        if (!empty($arr['rule'])){
+            return $arr['rule'];
+        }
+
+        return false;
 
     }
 
@@ -762,14 +773,30 @@ class PHPCommon extends BaseClient
     public function getMsgPreg($field, $bool = false)
     {
 
-        $result = preg_match('/msg\[(.*?)\]/', $field, $matches);
 
-        if ($result === false || $result === 0) {
-            if ($bool) return false;
-            return $field;
-        } else {
-            return $matches[1];
+
+        $str = $field;
+        $arr = array();
+
+// Define a regular expression pattern
+        $pattern = "/(\w+)\[([^\]]+)\]/";
+
+// Search for matches in the string and extract the variable names and values
+        preg_match_all($pattern, $str, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $arr[$match[1]] = $match[2];
         }
+        if (!empty($arr['msg'])){
+
+            return $arr['msg'];
+        }
+
+        if ($bool){
+            return  false;
+        }
+        return $field;
+
+
 
     }
 
@@ -779,15 +806,41 @@ class PHPCommon extends BaseClient
      * @param $field
      * @return false|mixed
      */
-    public function getPergByRule($str,$field){
-        $result = preg_match('/'.$str.'\[(.*?)\]/', $field, $matches);
-        if ($result === false) {
-            return false;
-        } elseif ($result === 0) {
-            return false;
-        } else {
-            return $matches[1];
+    public function getPergByRule($rule,$field){
+        $str = 'msg[供应商商品ID] help[如淘宝商品ID投放页] rule[required] search';
+//
+//        $pattern = "/(\w+)\[([^\]]+)\]/";
+//
+//        preg_match_all($pattern, $str, $matches, PREG_SET_ORDER);
+//        foreach ($matches as $match) {
+//            $arr[$match[1]] = $match[2];
+//        }
+//
+//        var_dump($arr);exit;
+//
+//
+//        exit;
+
+        $str = $field;
+        $arr = array();
+
+// Define a regular expression pattern
+        $pattern = "/(\w+)\[([^\]]+)\]/";
+
+// Search for matches in the string and extract the variable names and values
+        preg_match_all($pattern, $str, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $arr[$match[1]] = $match[2];
         }
+
+        if (!empty($arr[$rule])){
+            return $arr[$rule];
+        }
+
+
+        return false;
+
+
 
     }
 
@@ -795,14 +848,23 @@ class PHPCommon extends BaseClient
     public function getRulePreg($field)
     {
 
-        $result = preg_match('/rule\[(.*?)\]/', $field, $matches);
-        if ($result === false) {
-            return false;
-        } elseif ($result === 0) {
-            return false;
-        } else {
-            return $matches[1];
+        $str = $field;
+        $arr = array();
+
+// Define a regular expression pattern
+        $pattern = "/(\w+)\[([^\]]+)\]/";
+
+// Search for matches in the string and extract the variable names and values
+        preg_match_all($pattern, $str, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $arr[$match[1]] = $match[2];
         }
+        if (!empty($arr['rule'])){
+            return $arr['rule'];
+        }
+
+
+        return false;
 
     }
 
