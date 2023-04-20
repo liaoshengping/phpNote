@@ -25,8 +25,6 @@ class Struct extends BaseClient
 
         $container = [];
         foreach ($table as $item) {
-
-
             $container[] = $item['COLUMN_NAME'];
 
             $struct_one = [

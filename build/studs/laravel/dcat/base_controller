@@ -25,6 +25,8 @@ class {{ClassName}}BaseController extends BaseAdminController
                   {{action}}
                   {{orderBy}}
                   {{filter}}
+                  {{disableEdit}}
+                  {{disableAdd}}
                   {{column}}
 
             $grid->filter(function (Grid\Filter $filter) {

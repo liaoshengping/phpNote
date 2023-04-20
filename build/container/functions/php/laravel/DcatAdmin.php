@@ -240,6 +240,19 @@ trait DcatAdmin
         //默认倒叙
         $this->AdminTemplate = str_replace("{{orderBy}}", $orderBy, $this->AdminTemplate);
 
+
+        $disableDelete = '//$actions->disableDelete();';
+
+        if (strstr($this->app->table->table_comment,'disableDelete') || strstr($this->app->table->table_comment,'notDelete')){
+            $disableDelete = '$actions->disableDelete();';
+        }
+
+        $disableEdit = '//$actions->disableEdit();';
+
+        if (strstr($this->app->table->table_comment,'disableEdit')){
+            $disableEdit = '$actions->disableEdit();';
+        }
+
         //操作
         $action = '$grid->actions(function ($actions)use($then) {
 
@@ -248,16 +261,30 @@ trait DcatAdmin
             }
 
             // 去掉删除
-            //$actions->disableDelete();
-        
+            '.$disableDelete.'
             // 去掉编辑
-            //$actions->disableEdit();
+            '.$disableEdit.'
         
             // 去掉查看
             $actions->disableView();
 });';
 
+        $disableAdd = '';
+        if (strstr($app->table->table_comment,'disableAdd')){
+            $disableAdd = '$grid->disableCreateButton();';
+        }
+
+
+        if (strstr($this->app->table->table_comment,'disableEdit')){
+            $disableEdit = '$grid->disableQuickEditButton();';
+        }
+
+
         $this->AdminTemplate = str_replace("{{action}}", $action, $this->AdminTemplate);
+        $this->AdminTemplate = str_replace("{{disableEdit}}", $disableEdit, $this->AdminTemplate);
+        $this->AdminTemplate = str_replace("{{disableAdd}}", $disableAdd, $this->AdminTemplate);
+
+
         foreach ($app->struct->struct as $item) {
 
             if (strstr($item['origin_comment'],'listHide'))continue;
@@ -265,6 +292,7 @@ trait DcatAdmin
             if (strstr($item['origin_comment'], 'fieldHide')) continue;
             if (strstr($item['origin_comment'],'listHide')) continue;
             if (in_array($item['name'], ['updated_at', 'deleted_at'])) continue;
+
 
             if ($item['name'] == 'image_url') {
                 $list .= '$grid->column("image_url", __("图片"))->image();';
