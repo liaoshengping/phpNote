@@ -187,12 +187,24 @@ trait DcatAdmin
 
         $template = '';
         $filter = '';
+
         foreach ($app->struct->struct as $item) {
+
+//            if ($item['name'] == 'platform_type'){
+//                var_dump($item);exit;
+//            }
 
             if (strstr($item['origin_comment'],'fieldHide')) continue;
             if (strstr($item['origin_comment'],'listHide')) continue;
 
             if ($item['name']  == 'id') continue;
+
+            //枚举筛选
+            if (!empty($item['enum'])) {
+                $enumsClass = $app->className . '::' . $item['name'];
+                $filter .= '       $filter->in("' . $item["name"] . '","' . $this->getMsgPreg($item["enum_name"]). '")->checkbox(' . $enumsClass . ');' . PHP_EOL;
+                continue;
+            }
 
             if (strstr($item['origin_comment'],'search')){
                 $filter .= '$filter->equal("'.$item["name"].'", "'.$this->getMsgPreg($item["origin_comment"]).'");';
@@ -203,12 +215,10 @@ trait DcatAdmin
                 $filter .= '       $filter->like("' . $item['name'] . '", "' . $this->getMsgPreg( $item["origin_comment"]) . '");' . PHP_EOL;
                 continue;
             }
-            //枚举筛选
-            if (!empty($item['enum'])) {
+//            if ($item['name'] == 'platform_type'){
 //                var_dump($item);exit;
-                $enumsClass = $app->className . '::' . $item['name'];
-                $filter .= '       $filter->in("' . $item["name"] . '","' . $this->getMsgPreg($item["enum_name"]). '")->checkbox(' . $enumsClass . ');' . PHP_EOL;
-            }
+//            }
+
             //时间筛选
             if ($item['name'] == 'created_at') {
                 $filter .= '     $filter->between("created_at", "创建时间")->datetime();';
@@ -409,6 +419,7 @@ trait DcatAdmin
             if (config('admin_hide_id') && $item['name'] == 'id') continue;
             if (strstr($item['origin_comment'], 'fieldHide')) continue;
             if (strstr($item['origin_comment'], 'formHide')) continue;
+            if (strstr($item['origin_comment'], 'editHide')) continue;
 
             if (in_array($item['name'], config('exclude_fillable'))) continue;
             if ($item['name'] == 'lng' || $item['name'] == 'lat') {
@@ -543,7 +554,7 @@ trait DcatAdmin
                 if ($this->isImage($item['origin_comment'])) {
 
 
-                    $extend .= '->autoUpload()';
+                    $extend .= '->autoUpload()->retainable()';
                     $list .= '       $form->image("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
                     continue;
                 }
