@@ -246,7 +246,18 @@ trait DcatAdmin
 
         $orderBy = '';
 
-        $orderBy = '$grid->model()->orderBy(\'created_at\',\'desc\');';
+
+
+        $orderBy = '
+         if (method_exists($then,"orderBy")){
+              $then->orderBy($grid);
+            }else{
+              $grid->model()->orderBy(\'created_at\',\'desc\');
+            }
+        
+        ';
+
+
         //默认倒叙
         $this->AdminTemplate = str_replace("{{orderBy}}", $orderBy, $this->AdminTemplate);
 
