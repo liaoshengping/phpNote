@@ -25,6 +25,7 @@ eie
 * notDelete // 表不能删除
 * notEdit // 表不能编辑
 * formHide 表单隐藏
+* listHide 列表隐藏
 * search // 搜索字段
 * 
 * belongsTo[表名] // belongsTo[shop_type] 一对一

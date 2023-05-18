@@ -20,7 +20,7 @@ class {{ClassName}}BaseController extends BaseAdminController
         $then = $this;
         return Grid::make(new {{ClassName}}(), function (Grid $grid)use($then) {
 
-
+                  {{init}}
                   {{relation}}
                   {{action}}
                   {{orderBy}}

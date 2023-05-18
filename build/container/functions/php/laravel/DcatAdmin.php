@@ -229,13 +229,31 @@ trait DcatAdmin
 
 
         }
+
+
+        $gridInit = '
+         if (method_exists($then,"gridInit")){
+              $then->gridInit($grid);
+            }
+        ';
+
+
+        //默认倒叙
+        $this->AdminTemplate = str_replace("{{init}}", $gridInit, $this->AdminTemplate);
+
         if ($filter) {
             $template = '
         $grid->batchActions(function (Grid\Tools\BatchActions $batch) {
             $batch->disableDelete();
          });
         
-            $grid->filter(function($filter){
+            $grid->filter(function($filter)use($then){
+            
+            if (method_exists($then,"gridFilter")){
+                $then->gridFilter($filter);
+                return;
+            }
+                
                 $filter->expand(false);
     {{filter}}
 });';
@@ -322,7 +340,8 @@ trait DcatAdmin
 
             $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
             if ($enum) {
-                $list .= '       $grid->column("' . $item['name'] . '", __("' . $enum['key_note'] . '"))->using(' . $app->className . '::' . $item['name'] . ');' . PHP_EOL;
+                $list .= '
+                method_exists($then,"column_'.$item['name'].'")?$then->column_'.$item['name'].'($grid):$grid->column("' . $item['name'] . '", __("' . $enum['key_note'] . '"))->using(' . $app->className . '::' . $item['name'] . ');' . PHP_EOL;
             } else {
                 $comment = $this->getMsgPreg($item['comment']);
                 if ($item['name'] == $app->table->pk) {
@@ -344,7 +363,10 @@ trait DcatAdmin
                     $columnName =  $item['belongName'];
                 }
 
-                $list .= '       $grid->column("' . $columnName . '", __("' . $comment . '"))' . $extend . ';' . PHP_EOL;
+                $methodExstsColumnName = str_replace('.','_',$columnName);
+
+                $list.='
+                method_exists($then,"column_'.$methodExstsColumnName.'")?$then->column_'.$methodExstsColumnName.'($grid):$grid->column("' . $columnName . '", __("' . $comment . '"))' . $extend . ';'. PHP_EOL;
             }
 
         }
@@ -431,11 +453,31 @@ trait DcatAdmin
             if (strstr($item['origin_comment'], 'fieldHide')) continue;
             if (strstr($item['origin_comment'], 'formHide')) continue;
             if (strstr($item['origin_comment'], 'editHide')) continue;
-
             if (in_array($item['name'], config('exclude_fillable'))) continue;
+
+            //Cid项目--例外
+            if ($this->app->projectName == 'cid' && $item['name']  == 'merchant_id'){
+
+                $list.= '
+        if (method_exists($then,"merchant")){
+                    $then->merchant($form);
+                }else{
+                    $form->select("merchant_id", __("商户"))->options(\App\Models\Merchant::query()->pluck("company_name as text","id"))->required()->rules("required");
+                }
+        ';
+                continue;
+            }
+
+
+            $fieldName = $item['name'];
+
+            $list.='               
+         method_exists($then,"form_'.$fieldName.'")?$then->form_'.$fieldName.'($form):';
+
+
             if ($item['name'] == 'lng' || $item['name'] == 'lat') {
                 if ($lng == false) {
-                    $list .= '       $form->latlong("lat", "lng", "经纬度")->default(["lat" =>23.129102812719083, "lng" =>113.26416495256126]);' . PHP_EOL;
+                    $list .= '$form->latlong("lat", "lng", "经纬度")->default(["lat" =>23.129102812719083, "lng" =>113.26416495256126]);' . PHP_EOL;
                 }
                 $lng = true;
                 continue;
@@ -452,14 +494,13 @@ trait DcatAdmin
             }
             if ($item['name'] == $app->table->pk) {
 
-                $list .= '       
-       $form->text("' . $item['name'] . '", __("' . 'id' . '"))->disable()' . $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '$form->text("' . $item['name'] . '", __("' . 'id' . '"))->disable()' . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
 
             //如果用到userid
             if ($item['name'] == 'user_id' && config('user_id_translate_the_name')) {
-                $list .= '       $form->text("' . config('user_id_translate_the_name') . '", __("用户"))->disable()' . $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '$form->text("' . config('user_id_translate_the_name') . '", __("用户"))->disable()' . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
             //图片判断
@@ -521,26 +562,15 @@ trait DcatAdmin
                 $msg = $getEnums['key_note'];
             }
 
-            //Cid项目
-            if ($this->app->projectName == 'cid' && $item['name']  == 'merchant_id'){
 
-                $list.= '
-        if (method_exists($then,"merchant")){
-                    $then->merchant($form);
-                }else{
-                    $form->select("merchant_id", __("商户"))->options(\App\Models\Merchant::query()->pluck("company_name as text","id"))->required()->rules("required");
-                }
-        ';
-                continue;
-            }
 
 
             if ($enum) {
-                $list .= '       $form->select("' . $item['name'] . '", __("' . $msg . '"))->options(' . $app->className . '::' . $item['name'] . ')' . $extend . $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '$form->select("' . $item['name'] . '", __("' . $msg . '"))->options(' . $app->className . '::' . $item['name'] . ')' . $extend . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
             if (!empty($item['belongClass'])){
-                $list .= '       $form->select("' . $item['name'] . '", __("' . $msg . '"))->options(\App\Models\\'.$item['belongClass'].'::query()->pluck("'.$item["belongNameOne"].' as text","id"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
+                $list .= '$form->select("' . $item['name'] . '", __("' . $msg . '"))->options(\App\Models\\'.$item['belongClass'].'::query()->pluck("'.$item["belongNameOne"].' as text","id"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
 
@@ -550,7 +580,7 @@ trait DcatAdmin
 
 
             if ($item['type'] == 'int') {
-                $list .= '       $form->number("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
+                $list .= '$form->number("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
             } else {
 
                 $comment = $this->getMsgPreg($item['origin_comment']);
@@ -566,15 +596,15 @@ trait DcatAdmin
 
 
                     $extend .= '->autoUpload()->retainable()';
-                    $list .= '       $form->image("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
+                    $list .= '$form->image("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
                     continue;
                 }
                 if (strstr($item['origin_comment'], 'mobile')) {
-                    $list .= '       $form->mobile("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
+                    $list .= '$form->mobile("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
                     continue;
                 }
 
-                $list .= '       $form->text("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
+                $list .= '$form->text("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
 
 
             }

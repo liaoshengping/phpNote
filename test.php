@@ -2,6 +2,26 @@
 
 include ("vendor/autoload.php");
 
+
+
+$url = 'https://movie.douban.com/cinema/search/hangzhou/?start=0&q=&city_id=118172';
+
+var_dump(file_get_contents($url));exit;
+
+
+
+$data = file_get_contents(__DIR__.'/xingbake');
+
+$str = '';
+foreach (json_decode($data,true)['data'] as $item){
+
+    $str.= $item['restaurantName'];
+    $str.= "(".$item['restaurantAddress'].")".PHP_EOL;
+
+}
+file_put_contents('xingbake.result',$str);
+echo $str;exit;
+
 echo date("Y-m-d", strtotime("last day of -1 month", time()));
 exit;
 
