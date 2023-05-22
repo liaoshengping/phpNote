@@ -239,7 +239,7 @@ trait DcatAdmin
 
 
         //默认倒叙
-        $this->AdminTemplate = str_replace("{{init}}", $gridInit, $this->AdminTemplate);
+        $this->AdminTemplate = str_replace("{{gridInit}}", $gridInit, $this->AdminTemplate);
 
         if ($filter) {
             $template = '
