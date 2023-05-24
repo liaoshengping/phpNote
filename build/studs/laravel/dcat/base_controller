@@ -28,10 +28,6 @@ class {{ClassName}}BaseController extends BaseAdminController
                   {{disableEdit}}
                   {{disableAdd}}
                   {{column}}
-
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-            });
              if (method_exists($then,'gridSet')){
                  $this->gridSet($grid);
              };

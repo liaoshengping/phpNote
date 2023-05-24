@@ -4,6 +4,7 @@
 namespace container\functions\php\laravel;
 
 
+use App\Models\Merchant;
 use container\Application;
 use container\functions\php\laravel\project\Cid;
 use functions\Log;
@@ -190,7 +191,7 @@ trait DcatAdmin
 
         foreach ($app->struct->struct as $item) {
 
-//            if ($item['name'] == 'platform_type'){
+//            if ($item['name'] == 'merchant_id'){
 //                var_dump($item);exit;
 //            }
 
@@ -207,7 +208,14 @@ trait DcatAdmin
             }
 
             if (strstr($item['origin_comment'],'search')){
-                $filter .= '$filter->equal("'.$item["name"].'", "'.$this->getMsgPreg($item["origin_comment"]).'");';
+                if (!empty($item['belongClass'])){
+
+                    $filter .= '$filter->equal("'.$item["name"].'", "'.$this->getMsgPreg($item["origin_comment"]).'")->select(\\'.config('model_namespace_path').'\\'.$item["belongClass"].'::query()->pluck("'.$item['belongNameOne'].'","id"));'.PHP_EOL;
+
+                }else{
+                    $filter .= '$filter->equal("'.$item["name"].'", "'.$this->getMsgPreg($item["origin_comment"]).'");'.PHP_EOL;
+
+                }
                 continue;
             }
 
