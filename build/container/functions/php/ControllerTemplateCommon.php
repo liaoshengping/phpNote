@@ -375,7 +375,9 @@ trait ControllerTemplateCommon
          *  列表
         **/   
         public function lists(Request $request){
+        
          {{content}}
+         
          }';
         }
 
@@ -388,15 +390,7 @@ trait ControllerTemplateCommon
         $requestForm = $this->getRequestFormByScence('list');
 
         $template = str_replace('{{request}}', $requestForm, $template);
-//        } else {
-//            //json 请求
-//            $requestJson = '     *     @OA\RequestBody(
-//     *         description="请用标准的json请求，可到json.cn 验证json",
-//     *         required=true,
-//     *         @OA\JsonContent(ref="#/components/schemas/' . $this->app->{$this->app->frame}->classModelName . '")
-//     *     ),';
-//            $template = str_replace('{{request}}', $requestJson, $template);
-//        }
+
 
         $with = [];
         $relations = $this->getRelation();
@@ -412,11 +406,29 @@ trait ControllerTemplateCommon
                 $with[] = "'" . $relation_name . "'";
             }
         }
+
+        $withCondition = '';
+
         if (!empty($with)) {
-            $with = '->with([' . implode(",", $with) . '])' . PHP_EOL;
+
+            $withCondition = '
+         $with = property_exists($this,"with");
+         if($with){
+         $with = $this->with;
+         }else{
+             $with = [' . implode(",", $with) . '];
+         }
+            ';
+
+            $with = '->when($with,function($query)use($with){$query->with($with);})' . PHP_EOL;
+
         } else {
             $with = '';
         }
+
+
+
+
         $auth = '';
 
         $query_join_name = $this->getCurrentSetting('query_join')?$this->app->table->table_name.'.':'';
@@ -436,7 +448,7 @@ trait ControllerTemplateCommon
         $content = '
         
         {{getRequestQuery}}
-        
+        {{with}}
         $query = $this->model' . $with . $auth . $getRequestQuery;
 
         $status_delete = $this->getCurrentSetting('status_delete');
@@ -484,6 +496,7 @@ trait ControllerTemplateCommon
         ';
 
         $content = str_replace('{{getRequestQuery}}', $this->requestFieldsTemplate, $content);
+        $content = str_replace('{{with}}', $withCondition, $content);
         return [
             'document' => '文档',
             'template' => str_replace('{{content}}', $content, $template),
