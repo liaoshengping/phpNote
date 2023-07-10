@@ -317,7 +317,7 @@ trait DcatAdmin
 });';
 
         $disableAdd = '';
-        if (strstr($app->table->table_comment,'disableAdd')){
+        if (strstr($app->table->table_comment,'disableAdd') || strstr($app->table->table_comment,'disableCreate')){
             $disableAdd = '$grid->disableCreateButton();';
         }
 

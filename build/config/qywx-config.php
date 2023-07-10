@@ -31,7 +31,7 @@ return [
      * 数据库信息
      */
     "host" => xenv('host'),
-    "database" => 'cid',
+    "database" => 'union-server',
     "port" => xenv("port", "3306"),
     "username" => xenv("username", "root"),
     "password" => xenv("password", "root"),
