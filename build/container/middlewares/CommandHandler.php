@@ -32,7 +32,10 @@ class CommandHandler implements Middlewares
     {
         $app->console->init();
 
+
         $argvs = $app->params['argv'];
+
+
         $app->todo = $argvs[1];
 //        $userInput = Interact::readln('Your name:');
 //        Show::block('是你输入的是', 'success', 'error');
@@ -47,7 +50,6 @@ class CommandHandler implements Middlewares
         if ($argvs[2]  == 'all'){
             return true;
         }
-
         switch ($argvs[1]) {
             case 'model':
             case "modelapi":

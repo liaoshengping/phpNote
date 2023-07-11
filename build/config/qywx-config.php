@@ -40,6 +40,7 @@ return [
     "enum_path" => "",//没有则不创建，或在model中定义,
     "database_file_name" => "database-edu-manager",
     'prefix' => "",
+    'is_auto_build_time' =>false,
     'auto_build_time' => [
         'created_at',
         'updated_at',
@@ -49,6 +50,7 @@ return [
     //框架区别
     'validate_int' => 'integer',
     'validate_number' => 'numeric',
+
 
 
     'admin_hide_id' =>true, //隐藏admin 的id

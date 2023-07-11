@@ -74,7 +74,10 @@ class Application extends ContainerBase
     public function handleAll()
     {
 
+//        var_dump($this->table->getAllTables());exit;
+
         foreach ($this->table->getAllTables() as $tableInfo) {
+
             $table_name = $tableInfo['TABLE_NAME'];
             $this->params['argv'][2] = $table_name;
             (new self($this->params))->run();

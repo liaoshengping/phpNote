@@ -23,6 +23,7 @@ class Struct extends BaseClient
             throw new \Exception("空的数据库结构");
         }
 
+//        var_dump($table);exit;
         $container = [];
         foreach ($table as $item) {
             $container[] = $item['COLUMN_NAME'];
@@ -161,7 +162,7 @@ class Struct extends BaseClient
             $this->struct[] = $struct_one;
         }
 
-        if ($this->app->frame = LARAVEL) {
+        if ($this->app->frame = LARAVEL && config('is_auto_build_time')) {
             $set = config('auto_build_time') ?? [];
             $is_build = false;
             foreach ($set as $i) {
@@ -297,7 +298,7 @@ where table_schema = '{$db_name}'
 and table_name = '{$table}' ORDER BY ORDINAL_POSITION ASC");
 
         if (empty($dataTableInfo)) {
-            throw new \Exception('belongsTo关联表没有数据');
+            throw new \Exception('belongsTo关联表没有数据:'.$table);
         }
         //有名字就返名称
         foreach ($dataTableInfo as $item) {

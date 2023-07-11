@@ -72,6 +72,7 @@ class PHPCommon extends BaseClient
     public function run()
     {
 
+
         $this->classBaseName = $this->app->className . "Base";
         $this->classModelName = $this->app->className;
         //覆盖即可
@@ -236,9 +237,8 @@ class PHPCommon extends BaseClient
             }
         }
         if (empty($hidden)) {
-            $hidden = '';
+            $hidden = [];
         }
-
         $this->modeBaseTemplate = str_replace('{{hidden}}', 'protected $hidden = [' . implode(',', $hidden) . '];', $this->modeBaseTemplate);
 
     }

@@ -52,7 +52,6 @@ class Table extends BaseClient
         $databaseInfo = $this->app->db->query("select * from information_schema.columns
 where table_schema = '{$db_name}'
 and table_name = '{$table_name}' ORDER BY ORDINAL_POSITION ASC");
-
         if (empty($databaseInfo)) {
             throw new \Exception("查询不到数据库数据:" . $table_name);
         }
@@ -107,7 +106,8 @@ table_name ");
      */
     public function getAllTables(){
 
-        $db_name = 'cid';
+        $db_name = config('database');
+
 
         $dataTableInfo = $this->app->db->query("SELECT
 *
