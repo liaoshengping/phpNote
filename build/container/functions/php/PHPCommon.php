@@ -530,7 +530,12 @@ class PHPCommon extends BaseClient
 
         //软删除
         $soft_delete = $this->getCurrentSetting('disable_soft_delete', false) ? '' : 'use SoftDeletes;';
+        if (config('disable_soft_delete')){
+            $soft_delete = '';
+        }
+
         $this->modeBaseTemplate = str_replace('{{soft_delete}}', $soft_delete, $this->modeBaseTemplate);
+        $this->modeBaseTemplate = str_replace('{{BaseModel}}', config('base_base_model','BaseModel'), $this->modeBaseTemplate);
 
 
         $this->modeBaseTemplate = str_replace('{{property}}', $propertys, $this->modeBaseTemplate);
@@ -644,7 +649,6 @@ class PHPCommon extends BaseClient
 
 
 //        $this->modeTemplate = iconv("CP1257","UTF-8", $this->modeTemplate);
-
         file_put_contents($frame_mode_path, $this->modeTemplate);
 
         Show::block('生成成功' . $frame_mode_path, 'success', 'success');

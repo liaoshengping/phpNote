@@ -15,23 +15,26 @@ const VUE_ELEMENT = "vue_element";
 const FRAME_PATH = '';
 const WORK_NAME = '';
 
+const MODEL = 'Member';
 
 return [
     "frame" => LARAVEL,
     'frame_path' => xenv("qywx_path",FRAME_PATH),
     'frame_controller_path' => xenv("qywx_path",FRAME_PATH) . "app\Http\Controllers/",
-    'frame_modebase_path' => xenv("qywx_path",FRAME_PATH) . 'app\Models\base\\',
-    'frame_mode_path' => xenv("qywx_path",FRAME_PATH) . "app\Models/",
-    'base_model_namespace_path' => "App\Models\base",
-    'model_namespace_path' => "App\Models",
+    'frame_modebase_path' => xenv("qywx_path",FRAME_PATH) . 'app\Models\base\\'.MODEL.'\\',
+    'frame_mode_path' => xenv("qywx_path",FRAME_PATH) . "app\Models/".MODEL.'/',
+    'base_model_namespace_path' => "App\Models\base\\".MODEL,
+    'model_namespace_path' => "App\Models\\".MODEL,
     'controller_namespace_path' => "App\Http\Controllers",
     'frame_controller_base_namespace' => "\App\Http\Controllers\base",
+    'base_base_model' => 'BaseMemberModel', //模型的模型继承的类
+    'disable_soft_delete' => true, //是否软删除
 
     /**
      * 数据库信息
      */
     "host" => xenv('host'),
-    "database" => 'union-server',
+    "database" => 'mb_member',
     "port" => xenv("port", "3306"),
     "username" => xenv("username", "root"),
     "password" => xenv("password", "root"),
@@ -76,6 +79,8 @@ return [
 
     'user_id_translate_the_name' => '',//后台管理 user_id 转化为users.nickname 并disable，不需要可不写 试了下没用，再研究
 
+
+
     /**
      * 数据差异性
      */
@@ -92,7 +97,7 @@ return [
             'is_auth' => true,//只可以获取自己的信息，结合auth_user_id 使用
             'no_cover_admin' => true,//创建laravel-admin 后台数据不可以强制覆盖
             'create_input' => ['name','code_num','plan_type'], //创建需要的字段如果为空取上面的
-            'controller_actions' => [ 'show'],
+            'controller_actions' => ['show'],
 //            ['create','list','edit','show','delete'];
 //            'create_input' => [], //创建需要的字段如果为空取上面的
 
