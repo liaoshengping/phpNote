@@ -50,7 +50,7 @@ class CommandHandler implements Middlewares
         if ($argvs[2]  == 'all'){
             return true;
         }
-        switch ($argvs[1]) {
+        switch ($argvs[1]??'') {
             case 'model':
             case "modelapi":
             case 'admin': //laravel-admin
@@ -62,7 +62,7 @@ class CommandHandler implements Middlewares
                 break;
             default:
                 Show::aList($this->help, '指示');
-                throw new \Exception("尚未开发指令:" . $argvs[1]);
+                throw new \Exception("尚未开发指令:" . $argvs[1]??'');
                 break;
         }
 
