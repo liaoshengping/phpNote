@@ -1,8 +1,13 @@
 <?php
-
 include ("vendor/autoload.php");
 
 
+$data = [];
+
+if (empty($data['kkk']['data'])){
+    echo 'empty';exit;
+}
+exit;
 
 $url = 'https://movie.douban.com/cinema/search/hangzhou/?start=0&q=&city_id=118172';
 
