@@ -20,7 +20,6 @@ trait Oapi
     public function handleOapi(){
 
         $action = $this->app->argvs[2];
-
         switch ($action){
 
             default:
