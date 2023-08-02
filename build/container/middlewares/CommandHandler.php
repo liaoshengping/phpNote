@@ -22,6 +22,7 @@ class CommandHandler implements Middlewares
         'l-admin  tablename' => '生成Laravel-admin 控制器',//
         'dcat  tablename' => '生成Dcat-admin 控制器',//
         'html filename' => '生成静态页',//
+        'oapi tablename' => '生成一整套的接口',
     ];
 
     /**
@@ -55,6 +56,7 @@ class CommandHandler implements Middlewares
             case "modelapi":
             case 'admin': //laravel-admin
             case 'dcat': //dcat-admin
+            case 'oapi': //dcat-admin
                 $app->table->queryCurrentTableInfo($argvs[2]);
                 break;
             case 'html':

@@ -29,6 +29,7 @@ use Inhere\Console\Util\Show;
 class Application extends ContainerBase
 {
     public $todo = '';
+    public $argvs = [];
     public $frame = '';
     public $className;//目标对象的classname
     public $projectName;//项目 比如 cid 或者 yuce

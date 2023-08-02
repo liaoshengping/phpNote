@@ -5,6 +5,7 @@ namespace container\functions\php;
 use container\core\BaseClient;
 use container\functions\php\laravel\DcatAdmin;
 use container\functions\php\laravel\LaravelAdmin;
+use container\functions\php\laravel\Oapi\Oapi;
 use container\functions\php\laravel\RelationBuildByTable;
 use Inhere\Console\Util\Show;
 
@@ -15,6 +16,7 @@ class PHPCommon extends BaseClient
     use LaravelAdmin;
     use DcatAdmin;
     use RelationBuildByTable;
+    use Oapi;
 
     /**
      * 模型
@@ -106,7 +108,6 @@ class PHPCommon extends BaseClient
         //关联关系写入注释
         $this->buildRelationToNote();
 
-
         switch ($this->app->todo) {
             case 'modelbase':
                 $this->buildModelBase();
@@ -119,6 +120,9 @@ class PHPCommon extends BaseClient
                 $this->buildModelBase();
                 $this->buildModel();
                 $this->buildController();
+                break;
+            case 'oapi':
+                $this->handleOapi();
                 break;
 //                $this->buildValidate();
 //                $this->buildRedpository();
