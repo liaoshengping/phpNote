@@ -15,7 +15,7 @@ const VUE_ELEMENT = "vue_element";
 const FRAME_PATH = '';
 const WORK_NAME = '';
 
-const MODEL = 'Member';
+const MODEL = 'MbSystem';
 
 return [
     "frame" => LARAVEL,
@@ -29,8 +29,9 @@ return [
     'frame_controller_base_namespace' => "\App\Http\Controllers\base",
 //    'base_base_model' => 'BaseMemberModel', //模型的模型继承的类
     'disable_soft_delete' => true, //是否软删除
-    //
-    //    "frame" => LARAVEL,
+
+
+//    "frame" => LARAVEL,
 //    'frame_path' => xenv("qywx_path",FRAME_PATH),
 //    'frame_controller_path' => xenv("qywx_path",FRAME_PATH) . "app\Http\Controllers/",
 //    'frame_modebase_path' => xenv("qywx_path",FRAME_PATH) . 'app\Models\base\\'.MODEL.'\\',
@@ -39,14 +40,15 @@ return [
 //    'model_namespace_path' => "App\Models\\".MODEL,
 //    'controller_namespace_path' => "App\Http\Controllers",
 //    'frame_controller_base_namespace' => "\App\Http\Controllers\base",
-//    'base_base_model' => 'BaseMemberModel', //模型的模型继承的类
+//    'base_base_model' => 'Base'.MODEL.'Model', //模型的模型继承的类
 //    'disable_soft_delete' => true, //是否软删除
 
     /**
      * 数据库信息
      */
     "host" => xenv('host'),
-    "database" => 'union-server',
+    "database" => 'mb_system',
+//    "database" => 'union-server',
     "port" => xenv("port", "3306"),
     "username" => xenv("username", "root"),
     "password" => xenv("password", "root"),
