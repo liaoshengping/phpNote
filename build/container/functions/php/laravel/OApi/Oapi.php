@@ -110,14 +110,20 @@ TEXT;
 
             $nullable = '?';
 
-            if ($value["is_nullable"] == 'YES'){
-                $nullable = '';
-            }
+//            if ($value["is_nullable"] == 'YES'){
+//                $nullable = '';
+//            }
 
             $type = 'string';
             if (strstr($value['type'], 'int')) {
                 $type = 'int';
             }
+
+            if (strstr($value['type'], 'decimal')) {
+                $type = 'float';
+            }
+//            float
+
             $str .= '        public '.$nullable.'' . $type . ' $' . $value['name'] . ',' . PHP_EOL;
         }
 
