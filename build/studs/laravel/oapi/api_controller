@@ -67,7 +67,8 @@ class {{ActionClass}} extends ApiController
      */
     public function update({{ClassName}}Request $request, $id):JsonResponse
     {
-        $this->repository->update($id, $request->all());
+        $form = {{ClassName}}Form::from($request);
+        $this->repository->update($id, $form->toArray());
         return $this->response->ok();
     }
 
