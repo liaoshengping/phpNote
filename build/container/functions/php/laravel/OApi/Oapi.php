@@ -39,6 +39,21 @@ trait Oapi
                 foreach (array_keys($this->help) as $subAction) {
                     $this->oapi($subAction);
                 }
+
+                $routeName = str_replace('_', '-', $this->app->table->table_name);
+                $className = $this->app->className;
+                //路由
+                $text = <<<TEXT
+    // {{ClassName}}
+    Route::get('{{routeName}}', '{{ClassName}}Controller@index');
+    Route::post('{{routeName}}', '{{ClassName}}Controller@store');
+    Route::put('{{routeName}}/{id}', '{{ClassName}}Controller@update');
+    Route::delete('{{routeName}}/{id}', '{{ClassName}}Controller@delete');
+TEXT;
+                $text = str_replace('{{routeName}}',$routeName,$text);
+                $text = str_replace('{{ClassName}}',$className,$text);
+                Show::success(PHP_EOL.$text);
+
                 break;
             default:
                 Show::aList($this->help, '指示');
@@ -83,12 +98,27 @@ trait Oapi
 
         foreach ($this->app->struct->struct as $value) {
 
-            if ($value['name'] == 'id') continue;
+
+            if (in_array($value['name'],[
+                'created_at',
+                'id',
+                'updated_at',
+                'deleted_at',
+            ])){
+                continue;
+            }
+
+            $nullable = '?';
+
+            if ($value["is_nullable"] == 'YES'){
+                $nullable = '';
+            }
+
             $type = 'string';
             if (strstr($value['type'], 'int')) {
                 $type = 'int';
             }
-            $str .= '        public ?' . $type . ' $' . $value['name'] . ',' . PHP_EOL;
+            $str .= '        public '.$nullable.'' . $type . ' $' . $value['name'] . ',' . PHP_EOL;
         }
 
         return $str;
@@ -98,18 +128,19 @@ trait Oapi
     {
         $str = '';
 
-        if (config('app_name') != 'oct'){
+        if (config('app_name') != 'oct') {
             return $str;
         }
 
+
         foreach ($this->app->struct->struct as $value) {
 
-            if ($value['name'] == 'user_id'){
-                $str.='        $this->user_id = Auth::id();'.PHP_EOL;
+            if ($value['name'] == 'user_id') {
+                $str .= '        $this->user_id = Auth::id();' . PHP_EOL;
             }
 
-            if ($value['name'] == 'company_id'){
-                $str.='        Auth::user()->company_id;'.PHP_EOL;
+            if ($value['name'] == 'company_id') {
+                $str .= '        Auth::user()->company_id;' . PHP_EOL;
             }
 
         }

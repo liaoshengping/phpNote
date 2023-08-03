@@ -35,6 +35,7 @@ class Struct extends BaseClient
                 'default' => $item['COLUMN_DEFAULT'],
                 'origin_comment' => $item['COLUMN_COMMENT'],
                 'tabel_name' => $item['TABLE_NAME'],
+                'is_nullable' => $item['IS_NULLABLE'],
             ];
             if ($struct_one['name'] == 'created_at' && empty($item['commont'])) {
                 $struct_one['comment'] = '创建时间';
