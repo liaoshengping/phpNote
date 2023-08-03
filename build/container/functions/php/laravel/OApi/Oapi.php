@@ -78,6 +78,8 @@ TEXT;
         $template = str_replace('{{FormField}}', $this->formField(), $template);
         $template = str_replace('{{FormInit}}', $this->formInit(), $template);
 
+        $template = str_replace('{{RequestRule}}', $this->requestRule(), $template);
+
         $path = config('frame_' . $action . '_path') . $actionName . '.php';
 
         if (file_exists($path)) {
@@ -151,6 +153,46 @@ TEXT;
 
         }
         return $str;
+    }
+
+
+    public function requestRule(){
+
+        $default = '
+        $action = Str::after(Route::currentRouteAction(), "@");
+        return match ($action) {
+            "store" => [],
+            default => [],
+        };
+        ';
+
+        $tableName = $this->app->table->table_name;
+
+        foreach ($this->app->struct->struct as $value){
+            if ($value['name'] == 'name'){
+                return '
+        $user = Auth::user();
+        $except = request()->route("id");
+        $action = Str::after(Route::currentRouteAction(), "@");
+
+        return match ($action) {
+            "store" => [
+                "name" => ["required", "max:100", "unique:'.$tableName.',name,null,id,company_id," . $user->company_id],
+            ],
+            "update" => [
+                "name" => ["required", "max:100", "unique:'.$tableName.',name," . $except . ",id,company_id," . $user->company_id],
+            ],
+            default => [],
+        };
+                ';
+            }
+        }
+
+        return $default;
+
+
+
+        
     }
 
 

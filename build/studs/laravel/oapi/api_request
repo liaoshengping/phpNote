@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class {{ActionClass}} extends FormRequest
@@ -13,14 +14,11 @@ class {{ActionClass}} extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        $action = Str::after(Route::currentRouteAction(), '@');
 
-        return match ($action) {
-            'store' => [],
-            default => [],
-        };
+{{RequestRule}}
+
     }
 
     /**

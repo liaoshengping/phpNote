@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DataTransfers\{{ClassName}}Form;
+use App\Http\Requests\{{ClassName}}Request;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\{{Repository}};
@@ -18,11 +20,11 @@ class {{ActionClass}} extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param  Request  $request
+     * @param  {{ClassName}}Request  $request
      * @return JsonResponse
      * @throws \Exception
      */
-    public function index(Request $request):JsonResponse
+    public function index({{ClassName}}Request $request):JsonResponse
     {
         $search = $request->all();
         $resources = $this->repository->query()->filter($search)->get();
@@ -32,14 +34,16 @@ class {{ActionClass}} extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  {{ClassName}}Request  $request
      * @return JsonResponse
      * @throws \Exception
      */
     public function store(Request $request):JsonResponse
     {
-        $resource = $this->repository->create($request->all());
+        $form = {{ClassName}}Form::from($request);
+        $resource = $this->repository->create($form->toArray());
         return $this->response->withCreated($resource);
+
     }
 
     /**
@@ -57,11 +61,11 @@ class {{ActionClass}} extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  {{ClassName}}Request  $request
      * @param  int  $id
      * @return JsonResponse
      */
-    public function update(Request $request, $id):JsonResponse
+    public function update({{ClassName}}Request $request, $id):JsonResponse
     {
         $this->repository->update($id, $request->all());
         return $this->response->ok();
