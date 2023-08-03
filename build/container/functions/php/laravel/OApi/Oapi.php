@@ -48,6 +48,7 @@ trait Oapi
     Route::get('{{routeName}}', '{{ClassName}}Controller@index');
     Route::post('{{routeName}}', '{{ClassName}}Controller@store');
     Route::put('{{routeName}}/{id}', '{{ClassName}}Controller@update');
+    Route::get('{{routeName}}/{id}', '{{ClassName}}Controller@show');
     Route::delete('{{routeName}}/{id}', '{{ClassName}}Controller@delete');
 TEXT;
                 $text = str_replace('{{routeName}}',$routeName,$text);
@@ -148,7 +149,7 @@ TEXT;
             }
 
             if ($value['name'] == 'company_id') {
-                $str .= '        Auth::user()->company_id;' . PHP_EOL;
+                $str .= '        $this->company_id = Auth::user()->company_id;' . PHP_EOL;
             }
 
         }

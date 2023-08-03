@@ -38,7 +38,7 @@ class {{ActionClass}} extends ApiController
      * @return JsonResponse
      * @throws \Exception
      */
-    public function store(Request $request):JsonResponse
+    public function store({{ClassName}}Request $request):JsonResponse
     {
         $form = {{ClassName}}Form::from($request);
         $resource = $this->repository->create($form->toArray());
