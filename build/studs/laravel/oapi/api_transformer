@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Transformers;
+
+use App\Models\{{ClassName}};
+use League\Fractal\TransformerAbstract;
+
+class {{ActionClass}} extends TransformerAbstract
+{
+    public function transform({{ClassName}} $detail)
+    {
+        return $detail->toArray();
+    }
+}

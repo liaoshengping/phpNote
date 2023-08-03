@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+
+class {{ActionClass}} extends FormRequest
+{
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $action = Str::after(Route::currentRouteAction(), '@');
+
+        return match ($action) {
+            'store' => [],
+            default => [],
+        };
+    }
+
+    /**
+     * Get validate messages
+     *
+     * @return array|string[]
+     */
+    public function messages()
+    {
+        return [];
+    }
+}

@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\{{ClassName}};
+
+class {{ActionClass}} extends Repository
+{
+    public string $modelClass = {{ClassName}}::class;
+}

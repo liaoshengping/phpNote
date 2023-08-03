@@ -18,11 +18,12 @@ const WORK_NAME = '';
 const MODEL = 'MbSystem';
 
 return [
+    'app_name' =>'oct',
     "frame" => LARAVEL,
-    'frame_path' => xenv("qywx_path",FRAME_PATH),
-    'frame_controller_path' => xenv("qywx_path",FRAME_PATH) . "app\Http\Controllers/",
-    'frame_modebase_path' => xenv("qywx_path",FRAME_PATH) . 'app\Models\base\\',
-    'frame_mode_path' => xenv("qywx_path",FRAME_PATH) . "app\Models/",
+    'frame_path' => xenv("oct_path",FRAME_PATH),
+    'frame_controller_path' => xenv("oct_path",FRAME_PATH) . "app\Http\Controllers\Api/",
+    'frame_modebase_path' => xenv("oct_path",FRAME_PATH) . 'app\Models\base\\',
+    'frame_mode_path' => xenv("oct_path",FRAME_PATH) . "app\Models/",
     'base_model_namespace_path' => "App\Models\base",
     'model_namespace_path' => "App\Models",
     'controller_namespace_path' => "App\Http\Controllers",
@@ -31,11 +32,18 @@ return [
     'disable_soft_delete' => true, //是否软删除
 
 
+    'frame_filter_path' => xenv("oct_path",FRAME_PATH) . "app\Filters/",
+    'frame_request_path' => xenv("oct_path",FRAME_PATH) . "app\Http\Requests/",
+    'frame_transformer_path' => xenv("oct_path",FRAME_PATH) . "app\Transformers/",
+    'frame_repository_path' => xenv("oct_path",FRAME_PATH) . "app\Repositories/",
+    'frame_form_path' => xenv("oct_path",FRAME_PATH) . "app\DataTransfers/",
+
+
 //    "frame" => LARAVEL,
-//    'frame_path' => xenv("qywx_path",FRAME_PATH),
-//    'frame_controller_path' => xenv("qywx_path",FRAME_PATH) . "app\Http\Controllers/",
-//    'frame_modebase_path' => xenv("qywx_path",FRAME_PATH) . 'app\Models\base\\'.MODEL.'\\',
-//    'frame_mode_path' => xenv("qywx_path",FRAME_PATH) . "app\Models/".MODEL.'/',
+//    'frame_path' => xenv("oct_path",FRAME_PATH),
+//    'frame_controller_path' => xenv("oct_path",FRAME_PATH) . "app\Http\Controllers/",
+//    'frame_modebase_path' => xenv("oct_path",FRAME_PATH) . 'app\Models\base\\'.MODEL.'\\',
+//    'frame_mode_path' => xenv("oct_path",FRAME_PATH) . "app\Models/".MODEL.'/',
 //    'base_model_namespace_path' => "App\Models\base\\".MODEL,
 //    'model_namespace_path' => "App\Models\\".MODEL,
 //    'controller_namespace_path' => "App\Http\Controllers",
@@ -52,7 +60,6 @@ return [
     "port" => xenv("port", "3306"),
     "username" => xenv("username", "root"),
     "password" => xenv("password", "root"),
-
     "fornt" => "",
     "enum_path" => "",//没有则不创建，或在model中定义,
     "database_file_name" => "database-edu-manager",
@@ -68,7 +75,7 @@ return [
     'validate_int' => 'integer',
     'validate_number' => 'numeric',
 
-
+    'plural_model' =>false, //复数 false 为 User  数据表什么样，模型也怎么样： true
 
     'admin_hide_id' =>true, //隐藏admin 的id
 

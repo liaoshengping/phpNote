@@ -1,7 +1,7 @@
 <?php
 
 namespace container;
-
+//include ("../vendor/autoload.php");
 use container\core\ContainerBase;
 use container\functions\go\gin\Gin;
 use container\functions\htmlv1\bootstrap_official\Bootstrap;
@@ -58,6 +58,7 @@ class Application extends ContainerBase
     public function run()
     {
         $argvs = $this->params['argv'];
+        $this->argvs = $argvs;
         if ($argvs[2] == 'all') {
             $this->handleAll();
             return true;

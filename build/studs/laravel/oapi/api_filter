@@ -1,0 +1,18 @@
+<?php
+
+
+namespace App\Filters;
+
+use EloquentFilter\ModelFilter;
+
+class {{ActionClass}} extends ModelFilter
+{
+
+    public function state($state): {{ActionClass}}
+    {
+        $states = explode(',', $state);
+
+        return $this->whereIn('state', $states);
+    }
+
+}

@@ -78,7 +78,7 @@ class PHPCommon extends BaseClient
         $this->classBaseName = $this->app->className . "Base";
         $this->classModelName = $this->app->className;
         //覆盖即可
-        $this->app->frame;
+
         if (!is_dir(APP_PATH . "/studs/" . $this->app->frame)) {
             throw new \Exception("请添加模版" . APP_PATH . "/studs/" . $this->app->frame . '/model_base');
         }

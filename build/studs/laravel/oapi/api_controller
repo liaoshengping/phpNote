@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Repositories\{{Repository}};
+
+class {{ActionClass}} extends ApiController
+{
+    private {{Repository}} $repository;
+
+    public function beforeAction()
+    {
+        $this->repository = app({{Repository}}::class);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  Request  $request
+     * @return JsonResponse
+     * @throws \Exception
+     */
+    public function index(Request $request):JsonResponse
+    {
+        $search = $request->all();
+        $resources = $this->repository->query()->filter($search)->get();
+        return $this->response->withData($resources, true);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return JsonResponse
+     * @throws \Exception
+     */
+    public function store(Request $request):JsonResponse
+    {
+        $resource = $this->repository->create($request->all());
+        return $this->response->withCreated($resource);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function show($id):JsonResponse
+    {
+        $resource = $this->repository->findOrFail($id);
+        return $this->response->withData($resource);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function update(Request $request, $id):JsonResponse
+    {
+        $this->repository->update($id, $request->all());
+        return $this->response->ok();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function delete($id):JsonResponse
+    {
+        $this->repository->delete($id);
+        return $this->response->withNoContent();
+    }
+}

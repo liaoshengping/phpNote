@@ -46,7 +46,16 @@ class Table extends BaseClient
         if ($prefix) {
             $new_table_name = str_replace($prefix, '', $table_name);
         }
+        //去除最后一个s
+        if (!config('plural_model',true)){
+            $last_char = substr($new_table_name, -1);
+            if ($last_char == 's') {
+                $new_table_name = substr($new_table_name, 0, -1);
+            }
+        }
         $this->app->className = $this->app->tool->struct($new_table_name);
+
+
         $db_name = config('database');
 
         $databaseInfo = $this->app->db->query("select * from information_schema.columns
