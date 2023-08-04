@@ -27,7 +27,11 @@ class {{ActionClass}} extends ApiController
     public function index({{ClassName}}Request $request):JsonResponse
     {
         $search = $request->all();
-        $resources = $this->repository->query()->filter($search)->orderBy('id','desc')->get();
+        $resources = $this->repository
+            ->query()
+            ->filter($search)
+            ->orderBy('id', 'desc')
+            ->paginate($request->get('size'));
         return $this->response->withData($resources, true);
     }
 
