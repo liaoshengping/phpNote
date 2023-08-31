@@ -15,7 +15,7 @@ const VUE_ELEMENT = "vue_element";
 const FRAME_PATH = '';
 const WORK_NAME = '';
 
-//const MODEL = 'MbSystem';
+//const MODEL = 'MbGoods';
 
 return [
     "frame" => LARAVEL,
@@ -47,8 +47,8 @@ return [
      * 数据库信息
      */
     "host" => xenv('host'),
-    "database" => 'mb_system',
-//    "database" => 'union-server',
+//    "database" => 'mb_goods',
+    "database" => 'union-server',
     "port" => xenv("port", "3306"),
     "username" => xenv("username", "root"),
     "password" => xenv("password", "root"),
