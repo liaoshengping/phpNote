@@ -1,0 +1,20 @@
+{
+  "code": 1,
+  "msg": "成功",
+  "data": {
+    "payId": "1698399089",
+    "orderId": "202310271731286675",
+    "payType": 1,
+    "price": 0.01,
+    "reallyPrice": 0.01,
+    "payUrl": "https://epay.jylt.cc/api/enQrcode?url\u003dwxp://f2f1ZYdoUPaKxcHl6tf0G-2ZkttOJhVdfdImVIF6AaZ2s8ndDEQB3khhzzuAPTtc0cFa",
+    "isAuto": 0,
+    "state": 0,
+    "timeOut": 5,
+    "date": 1698399088458,
+    "goodsName": "商品名称",
+    "mchId": "1698387051"
+  },
+  "success": 1,
+  "error": -1
+}
