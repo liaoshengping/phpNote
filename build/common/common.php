@@ -7,7 +7,6 @@ const APP_PATH = __DIR__ . '/..';
 
 function xenv($name, $default = null)
 {
-
     Env::loadFile('.env');
     return Env::get($name, $default);
 }

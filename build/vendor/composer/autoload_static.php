@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
+class ComposerStaticInitb4adc47f09beedfc829b0aa1222644bc
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -37,12 +37,9 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
+            'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
             'Philo\\Blade\\' => 12,
-        ),
-        'O' => 
-        array (
-            'OSS\\' => 4,
         ),
         'M' => 
         array (
@@ -50,8 +47,7 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         ),
         'L' => 
         array (
-            'League\\MimeTypeDetection\\' => 25,
-            'League\\Flysystem\\' => 17,
+            'League\\Pipeline\\' => 16,
         ),
         'I' => 
         array (
@@ -62,8 +58,6 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
             'Illuminate\\Events\\' => 18,
             'Illuminate\\Contracts\\' => 21,
             'Illuminate\\Container\\' => 21,
-            'Iidestiny\\LaravelFilesystemOss\\' => 31,
-            'Iidestiny\\Flysystem\\Oss\\' => 24,
         ),
         'F' => 
         array (
@@ -72,6 +66,7 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         'D' => 
         array (
             'Doctrine\\Inflector\\' => 19,
+            'Doctrine\\Deprecations\\' => 22,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
             'Doctrine\\Common\\Annotations\\' => 28,
@@ -135,6 +130,10 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Psr\\Clock\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/clock/src',
+        ),
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
@@ -143,21 +142,13 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         array (
             0 => __DIR__ . '/..' . '/philo/laravel-blade/src',
         ),
-        'OSS\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
-        ),
         'MillionMile\\GetEnv\\' => 
         array (
             0 => __DIR__ . '/..' . '/millionmile/get_env/src',
         ),
-        'League\\MimeTypeDetection\\' => 
+        'League\\Pipeline\\' => 
         array (
-            0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
-        ),
-        'League\\Flysystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/flysystem/src',
+            0 => __DIR__ . '/..' . '/league/pipeline/src',
         ),
         'Inhere\\Console\\' => 
         array (
@@ -187,14 +178,6 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
         ),
-        'Iidestiny\\LaravelFilesystemOss\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/iidestiny/laravel-filesystem-oss/src',
-        ),
-        'Iidestiny\\Flysystem\\Oss\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/iidestiny/flysystem-oss/src',
-        ),
         'FormBuilder\\' => 
         array (
             0 => __DIR__ . '/..' . '/xaboy/form-builder/src',
@@ -203,9 +186,13 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
         ),
+        'Doctrine\\Deprecations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations',
+        ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
+            0 => __DIR__ . '/..' . '/doctrine/lexer/src',
         ),
         'Doctrine\\Common\\Inflector\\' => 
         array (
@@ -233,9 +220,9 @@ class ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit21c8a47d025e6f9f83dc4090fd4392fb::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb4adc47f09beedfc829b0aa1222644bc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb4adc47f09beedfc829b0aa1222644bc::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb4adc47f09beedfc829b0aa1222644bc::$classMap;
 
         }, null, ClassLoader::class);
     }

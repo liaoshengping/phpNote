@@ -14,7 +14,6 @@ const VUE_ELEMENT = "vue_element";
 
 const FRAME_PATH = '';
 const WORK_NAME = '';
-
 const MODEL = 'MbSystem';
 
 return [
@@ -55,7 +54,7 @@ return [
      * 数据库信息
      */
     "host" => xenv('host'),
-    "database" => 'octopus-api',
+    "database" => xenv('oct_database_name','octopus-api'),
 //    "database" => 'union-server',
     "port" => xenv("port", "3306"),
     "username" => xenv("username", "root"),

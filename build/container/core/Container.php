@@ -29,7 +29,7 @@ class Container implements \ArrayAccess
 
     public function offsetExists($offset)
     {
-        // TODO: Implement offsetExists() method.
+       return true;
     }
 
     public function offsetGet($offset)

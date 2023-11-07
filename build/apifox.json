@@ -1,0 +1,66 @@
+{
+  "apiCollection": [
+    {
+      "name" : "根目录",
+      "items" : [
+        {
+          "name" : "生产加工",
+          "items" : [
+            {
+              "name" : "工人记功",
+              "items" : [
+                {
+                  "name" : "列表",
+                  "api" : {
+                    "method": "get",
+                    "path" : "/api/worker-records",
+                    "parameters" : [
+                      {
+                        "query" : {
+                          "required" : false,
+                          "name" : "page",
+                          "type" : "int",
+                          "description": "页码"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name" : "详情",
+                  "api" : {
+                    "method": "delete",
+                    "path" : "/api/worker-records/{id}"
+                  }
+                },
+                {
+                  "name" : "修改",
+                  "api" : {
+                    "method": "put",
+                    "path" : "/api/worker-records/{id}"
+                  }
+                },
+                {
+                  "name" : "新增",
+                  "api" : {
+                    "method": "post",
+                    "path" : "/api/worker-records"
+                  }
+                },
+                {
+                  "name" : "删除",
+                  "api" : {
+                    "method": "delete",
+                    "path" : "/api/worker-records/{id}"
+                  }
+                }
+
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+}
