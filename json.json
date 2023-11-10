@@ -1,43 +1,34 @@
-|×Ö¶Î|ÀàĞÍ|ÔÊĞí¿Õ|Ä¬ÈÏ|×¢ÊÍ||
-|:----    |:-------    |:--- |----|------      ||
-|coupon_id |int(10) unsigned |NO | NULL | ÓÅ»İÈ¯id||
-|coupon_no |varchar(32) |NO |  | ÓÅ»İÈ¯Âë||
-|discounts_id |int(10) unsigned |NO | 0 | ÓÅ»İID|
-|discounts_no |varchar(32) |NO |  | ÓÅ»İ±àÂë|
-|discounts_type |varchar(32) |NO |  | ÓÅ»İÀàĞÍ coupon_code.ÓÅ»İÂë,full_reduction.Âú¼õ,rebate.ÕÛ¿Û,stand_ty.Á¢¼õ|
-|issue_type |varchar(32) |NO |  | ·¢·ÅÀàĞÍ platform.Æ½Ì¨,store.ÉÌµê|
-|issue_store_id |int(10) |YES | 0 | µêÆÌID|
-|face_value |decimal(20,2) |NO | 0.00 | ÓÅ»İÈ¯ÃæÖµ|
-|rebate |smallint(5) |NO | 0 | ÕÛ¿Û|
-|store_available_type |varchar(32) |NO |  | ÉÌµê¿ÉÓÃÀàĞÍ all_store.ËùÓĞÉÌµê,part_store.²¿·ÖÉÌµê|
-|store_available_set |text |YES | NULL | µêÆÌ¿ÉÓÃ¼¯ºÏ|
-|store_unavailable_set |text |YES | NULL | µêÆÌ²»¿ÉÓÃ¼¯ºÏ|
-|cate_available_type |varchar(32) |NO |  | ·ÖÀà¿ÉÓÃÀàĞÍ all_cate.ËùÓĞ·ÖÀà,part_cate.²¿·Ö·ÖÀà|
-|cate_available_set |text |YES | NULL | ¿ÉÓÃ·ÖÀà¼¯ºÏ|
-|cate_unavailable_set |text |YES | NULL | ²»¿ÉÓÃ·ÖÀà¼¯ºÏ|
-|goods_available_type |varchar(32) |NO |  | ÉÌÆ·¿ÉÓÃÀàĞÍ all_goods.È«²¿ÉÌÆ·,part_goods.²¿·ÖÉÌÆ·|
-|goods_available_set |text |YES | NULL | ÉÌÆ·¿ÉÓÃ¼¯ºÏ|
-|goods_unavailable_set |text |YES | NULL | ÉÌÆ·²»¿ÉÓÃ¼¯ºÏ|
-|spec_available_set |text |YES | NULL | ¹æ¸ñ¿ÉÓÃ¼¯ºÏ|
-|spec_unavailable_set |text |YES | NULL | ¹æ¸ñ²»¿ÉÓÃ¼¯ºÏ|
-|threshold_using_switch |tinyint(1) |NO | 0 | Ê¹ÓÃÃÅ¼÷¿ª¹Ø 0.¹Ø±Õ,1.¿ªÆô|
-|threshold_amount |decimal(20,2) |NO | 0.00 | ÃÅ¼÷½ğ¶î|
-|active_both_switch |tinyint(1) |NO | 0 | »î¶¯²¢´æ¿ª¹Ø 0.¹Ø±Õ,1.¿ªÆô|
-|validity_begin_time |int(10) |NO | 0 | ¹Ì¶¨ÓĞĞ§ÆÚ¿ªÊ¼Ê±¼ä|
-|validity_end_time |int(10) |NO | 0 | ÓĞĞ§ÆÚ½áÊøÊ±¼ä|
-|tip_expire_time |int(10) |NO | 0 | ¹ıÆÚÇ°ÌáĞÑÊ±¼ä|
-|tip_count |tinyint(1) |NO | 0 | ÒÑÌáĞÑ´ÎÊı|
-|tip_last_time |int(10) |NO | 0 | ×îºóÌáĞÑÊ±¼ä|
-|get_user_id |int(10) unsigned |YES | 0 | »ñÈ¡ÓÃ»§ID|
-|order_id |int(10) |NO | 0 | ¶©µ¥ID|
-|order_no |varchar(32) |NO |  | ¶©µ¥ºÅ|
-|order_store_id |int(10) |NO | 0 | ¶©µ¥ÉÌµêID|
-|coupon_state |varchar(32) |NO |  | ÓÅ»İÈ¯×´Ì¬ get.ÁìÈ¡,use.Ê¹ÓÃ,cancel.×÷·Ï,expire.¹ıÆÚ|
-|charge_off_state |varchar(32) |NO |  | ºËÏú×´Ì¬|
-|get_time |int(10) |NO | 0 | ÁìÈ¡Ê±¼ä|
-|use_time |int(10) |NO | 0 | Ê¹ÓÃÊ±¼ä|
-|cancel_time |int(10) |NO | 0 | ×÷·ÏÊ±¼ä|
-|expire_time |int(10) |NO | 0 | ¹ıÆÚÊ±¼ä|
-|charge_off_time |int(10) |NO | 0 | ºËÏúÊ±¼ä|
-|discounts_log_id |int(10) |NO | 0 | ÓÅ»İÈÕÖ¾ID|
-|coupon_log_id |int(10) unsigned |NO | 0 | ÓÅ»İÈ¯ÈÕÖ¾ID|
+{
+  "apiCollection": [
+    {
+      "name" : "æ ¹ç›®å½•",
+      "items" : [
+        {
+          "name" : "åŠ å·¥è®¢å•",
+          "items" : [
+            {
+              "name" : "åŠ å·¥å°ç»„",
+              "items" : [
+                {
+                  "name" : "åˆ—è¡¨",
+                  "api" : {
+                    "method": "get",
+                    "path" : "/api/work-tems"
+                  }
+                },
+                {
+                  "name" : "æ–°å¢",
+                  "api" : {
+                    "method": "post",
+                    "path" : "/api/work-tems"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+}

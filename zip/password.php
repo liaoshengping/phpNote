@@ -13,7 +13,7 @@ if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === tru
 
     // 设置密码
     $password = '1212'; // 设置你的密码
-    $zip->setPassword($password);
+//    $zip->setPassword($password);
 
     $files = new RecursiveIteratorIterator(
         new RecursiveDirectoryIterator($dir),

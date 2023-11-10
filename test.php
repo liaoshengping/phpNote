@@ -1,4 +1,12 @@
 <?php
+
+
+$data =file_get_contents('https://m.smxs.com/12shengxiao/tu/218481.html');
+
+var_dump($data);exit;
+exit;
+
+
 include ("vendor/autoload.php");
 
 

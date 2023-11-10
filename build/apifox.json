@@ -4,16 +4,16 @@
       "name" : "根目录",
       "items" : [
         {
-          "name" : "生产加工",
+          "name" : "库存管理v2",
           "items" : [
             {
-              "name" : "工人记功",
+              "name" : "库存",
               "items" : [
                 {
                   "name" : "列表",
                   "api" : {
                     "method": "get",
-                    "path" : "/api/worker-records",
+                    "path" : "/api/inventories",
                     "parameters" : [
                       {
                         "query" : {
@@ -30,28 +30,28 @@
                   "name" : "详情",
                   "api" : {
                     "method": "delete",
-                    "path" : "/api/worker-records/{id}"
+                    "path" : "/api/transfers/{id}"
                   }
                 },
                 {
                   "name" : "修改",
                   "api" : {
                     "method": "put",
-                    "path" : "/api/worker-records/{id}"
+                    "path" : "/api/transfers/{id}"
                   }
                 },
                 {
                   "name" : "新增",
                   "api" : {
                     "method": "post",
-                    "path" : "/api/worker-records"
+                    "path" : "/api/transfers"
                   }
                 },
                 {
                   "name" : "删除",
                   "api" : {
                     "method": "delete",
-                    "path" : "/api/worker-records/{id}"
+                    "path" : "/api/transfers/{id}"
                   }
                 }
 
