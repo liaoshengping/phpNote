@@ -12,7 +12,7 @@ $zipFilePath = 'D:\BaiduNetdiskDownload\34省考+国考PDF\first.zip';
 // 如果压缩包创建成功
 if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
 
-    $password = '1212'; // 设置你的密码
+    $password = '51DP'; // 设置你的密码
 
     $files = new RecursiveIteratorIterator(
         new RecursiveDirectoryIterator($dir),
