@@ -7,12 +7,22 @@ $keyPair = openssl_pkey_new(array(
 ));
 openssl_pkey_export($keyPair, $privateKey);
 $publicKey = openssl_pkey_get_details($keyPair)['key'];
-
+$bizContent = [
+    'parkingId' => '10388',
+    'carNumber' => '苏A36105',
+    'chrgSeq' => 1,
+    'chrgType' => 1,
+    'chrgTime' => 1,
+    'chrgMny' => 1,
+    'shopType' => 7,
+    'sign' => 'sign'
+];
 // 要签名的消息
-$message = "Hello, World!";
+$message = json_encode($bizContent,JSON_UNESCAPED_UNICODE);
 // 对消息进行散列
 $hash = hash('sha256', $message, true);
 // 使用私钥进行加密，生成数字签名
+//var_dump($privateKey);exit;
 openssl_sign($hash, $signature, $privateKey, OPENSSL_ALGO_SHA256);
 // 将消息、数字签名和公钥一起发送给对方
 $data = array(

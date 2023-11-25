@@ -1,5 +1,39 @@
 <?php
 
+// 创建 RSA 密钥对
+$config = array(
+    "digest_alg" => "sha256",
+    "private_key_bits" => 2048,
+    "private_key_type" => OPENSSL_KEYTYPE_RSA,
+);
+
+// 生成密钥对
+$rsaKey = openssl_pkey_new($config);
+
+// 获取私钥
+openssl_pkey_export($rsaKey, $privateKey);
+
+// 获取公钥
+$publicKey = openssl_pkey_get_details($rsaKey)['key'];
+
+// 要加密的原始数据
+$data = "Hello, world!";
+
+// 使用公钥加密数据
+openssl_public_encrypt($data, $encrypted, $publicKey, OPENSSL_PKCS1_OAEP_PADDING);
+
+// 打印加密后的数据
+echo base64_encode($encrypted);
+exit;
+
+
+$encrypted = '123'; //wyJy7dTITM1EBaQzVmT+lw==
+$key = '1234567891234567';
+$iv = '1234567891234567';
+echo base64_encode(openssl_encrypt($encrypted,"AES-128-CBC",$key,OPENSSL_RAW_DATA,$iv));
+
+exit;
+
 
 $data =file_get_contents('https://m.smxs.com/12shengxiao/tu/218481.html');
 
