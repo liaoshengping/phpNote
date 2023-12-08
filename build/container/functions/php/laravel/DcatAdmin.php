@@ -517,6 +517,27 @@ trait DcatAdmin
                 continue;
             }
 
+            if ($item['name'] == 'date') {
+                $list .= '$form->date(\'date\',\'日期\');';
+                continue;
+            }
+
+            if ($item['name'] == 'content') {
+                $list .= '$form->textarea(\'content\',\'内容\');';
+                continue;
+            }
+
+            if ($item['name'] == 'logo') {
+                $list .= '$form->image(\'logo\',\'Logo\');';
+                continue;
+            }
+            $msg = $this->getMsgPreg($item['origin_comment']);
+
+            if ($item['name'] == 'image') {
+                $list .= '$form->image(\'image\',\''.$msg.'\');';
+                continue;
+            }
+
             $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
 //            var_dump($item);exit;
             //拓展
@@ -562,7 +583,6 @@ trait DcatAdmin
                 $extend .= '->rules("' . $resultRule . '")';
             }
 
-            $msg = $this->getMsgPreg($item['origin_comment']);
 
             $getEnums = $this->enums($item['name'], $item['origin_comment']);
 
