@@ -345,13 +345,26 @@ trait DcatAdmin
                 $list .= '$grid->column("image_url", __("图片"))->image();';
                 continue;
             }
+            $comment = $this->getMsgPreg($item['comment']);
 
             $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
+
+
+
+            if (strstr($item['name'],'is_') || strstr($item['origin_comment'],'bool')){
+
+                $list .= '
+                method_exists($then,"column_'.$item['name'].'")?$then->column_'.$item['name'].'($grid):$grid->column("' . $item['name'] . '", __("' . $comment . '"))->bool();' . PHP_EOL;
+
+                continue;
+            }
+
             if ($enum) {
                 $list .= '
                 method_exists($then,"column_'.$item['name'].'")?$then->column_'.$item['name'].'($grid):$grid->column("' . $item['name'] . '", __("' . $enum['key_note'] . '"))->using(' . $app->className . '::' . $item['name'] . ');' . PHP_EOL;
+
             } else {
-                $comment = $this->getMsgPreg($item['comment']);
+
                 if ($item['name'] == $app->table->pk) {
                     $comment = 'id';
                 }
@@ -527,6 +540,7 @@ trait DcatAdmin
                 continue;
             }
 
+
             if ($item['name'] == 'logo') {
                 $list .= '$form->image(\'logo\',\'Logo\');';
                 continue;
@@ -535,6 +549,11 @@ trait DcatAdmin
 
             if ($item['name'] == 'image') {
                 $list .= '$form->image(\'image\',\''.$msg.'\');';
+                continue;
+            }
+
+            if (strstr($item['name'],'is_') || strstr($item['origin_comment'],'bool')){
+                $list .= '$form->switch(\''.$item['name'].'\',\''.$msg.'\');';
                 continue;
             }
 
