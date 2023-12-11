@@ -342,7 +342,7 @@ trait DcatAdmin
 
 
             if ($item['name'] == 'image_url') {
-                $list .= '$grid->column("image_url", __("图片"))->image();';
+                $list .= '$grid->column("image_url", __("图片"))->image("", 80, 80);';
                 continue;
             }
             $comment = $this->getMsgPreg($item['comment']);
@@ -526,7 +526,7 @@ trait DcatAdmin
             }
             //图片判断
             if ($item['name'] == 'image_url') {
-                $list .= '$form->image(\'image_url\',\'图片\');';
+                $list .= '$form->image(\'image_url\',\'图片\')->autoUpload();';
                 continue;
             }
 
@@ -542,13 +542,13 @@ trait DcatAdmin
 
 
             if ($item['name'] == 'logo') {
-                $list .= '$form->image(\'logo\',\'Logo\');';
+                $list .= '$form->image(\'logo\',\'Logo\')->autoUpload();';
                 continue;
             }
             $msg = $this->getMsgPreg($item['origin_comment']);
 
             if ($item['name'] == 'image') {
-                $list .= '$form->image(\'image\',\''.$msg.'\');';
+                $list .= '$form->image(\'image\',\''.$msg.'\')->autoUpload();';
                 continue;
             }
 
