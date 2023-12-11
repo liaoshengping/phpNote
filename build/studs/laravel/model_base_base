@@ -4,14 +4,82 @@
 namespace App\Models\base;
 
 
+use App\Http\Middleware\ApiAuth;
+use App\Models\Scopes\MerchantGlobalScope;
+use App\Models\Scopes\TemplateTypeGlobalScope;
+use App\Models\Scopes\UserIdGlobalScope;
+use Dcat\Admin\Admin;
 use Illuminate\Database\Eloquent\Model;
+use Dcat\Admin\Traits\HasDateTimeFormatter;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class BaseModel extends Model
 {
+    /**
+     * 图片数组
+     * @var string[]
+     */
+    protected $casts = [
+        'img_items'  => 'json'
+    ];
+
+    use HasDateTimeFormatter;
+    use SoftDeletes;
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new MerchantGlobalScope()); //查询商户id
+        static::addGlobalScope(new UserIdGlobalScope()); //全局UserId
+        static::addGlobalScope(new TemplateTypeGlobalScope()); //查询模板类型
+
+
+        static::saving(function ($model) {
+
+
+
+            // 这里编写 saving 生命周期的逻辑
+            $columns = $model->getFillable();
+//            $columns = Schema::getColumnListing($table);
+
+            $hasMerchantId = false;
+
+            foreach ($columns as $column) {
+                if ($column == 'merchant_id') {
+                    $hasMerchantId = true;
+                    break;
+                }
+            }
+
+
+           if (ApiAuth::$from == ApiAuth::FROM_USERAPI && in_array('user_id',$columns) && Auth::id()){
+               $model->user_id = Auth::id();
+           }
+
+
+
+            if (!$hasMerchantId) return true;
+
+            if (!Admin::user()) return true;
+
+            if (!Admin::user()->merchant_id) return true;
+
+
+            $model->merchant_id = Admin::user()->merchant_id;
+
+        });
+    }
+
 
     public function __construct(array $attributes = [])
     {
-        $pageSize = request()->input('pageSize',10);//数量
+        $pageSize = request()->input('pageSize', 10);//数量
         $this->setPerPage($pageSize);
 
         parent::__construct($attributes);
@@ -22,4 +90,102 @@ class BaseModel extends Model
     {
         return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
     }
+
+
+    /**
+     * 获取真实链接
+     */
+    public function getRealUrl($path)
+    {
+        if (!$path){
+            return $path;
+        }
+        //admin 后台的不自动转化，因为如果是网络资源，直接会把数据给删了，在多图的时候，如果存在网络上就不会了
+        if ( Admin::user() ) {
+            return $path;
+        };
+
+
+        $lastChar = substr($path, -1);
+
+        //是一个数组
+        if ($lastChar === ']' && json_decode($path)) {
+            $temp = [];
+            foreach (json_decode($path) as $item) {
+                $temp[] = $this->getRealUrl($item);
+            }
+            return $temp;
+        }
+
+
+        if (url()->isValidUrl($path) || mb_strpos($path, 'data:image') === 0) {
+            $src = $path;
+        } else {
+            $src = Storage::disk(config('admin.upload.disk'))->url($path);
+        }
+
+        return $src;
+
+    }
+
+    public function getImageAttribute($key)
+    {
+        return $this->getRealUrl($key);
+    }
+
+    /**
+     * 图片
+     * @param $key
+     */
+    public function getPicUrlAttribute($key)
+    {
+        return $this->getRealUrl($key);
+    }
+    /**
+     * 图片
+     * @param $key
+     */
+    public function getHeadAttribute($key)
+    {
+        return $this->getRealUrl($key);
+    }
+    /**
+     * 图片
+     * @param $key
+     */
+    public function getIconAttribute($key)
+    {
+        return $this->getRealUrl($key);
+    }
+
+    public function getImgItemsAttribute($key)
+    {
+        if (empty($key)) return [];
+
+        if (is_array($key)) return  $key;
+
+        $key = json_decode($key,true);
+
+        foreach ($key as &$item){
+            if (empty($item['url'])){
+                continue;
+            }
+
+            $item['url'] = $this->getRealUrl($item['url']);
+
+        }
+
+        return  $key;
+
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFillable(): array
+    {
+        return $this->fillable;
+    }
+
+
 }

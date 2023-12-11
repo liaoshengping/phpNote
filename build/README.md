@@ -18,6 +18,7 @@ eie
 * 如果表中的status包含delete 字眼，删除则是修改状态，同样在列表中也排除delete的的状态数据
 * help[这里是帮助文档] laravel-admin 后台字段帮助
 * msg[注释]  // msg[商品名称]
+* multipleImage  包含这个字段的为多图json保存
 * 
 * fieldHide // 字段不显示
 * fieldDisable // 字段禁止编辑

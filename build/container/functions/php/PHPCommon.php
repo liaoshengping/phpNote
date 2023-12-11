@@ -7,6 +7,7 @@ use container\functions\php\laravel\DcatAdmin;
 use container\functions\php\laravel\LaravelAdmin;
 use container\functions\php\laravel\Oapi\Oapi;
 use container\functions\php\laravel\RelationBuildByTable;
+use Illuminate\Support\Arr;
 use Inhere\Console\Util\Show;
 
 class PHPCommon extends BaseClient
@@ -47,7 +48,6 @@ class PHPCommon extends BaseClient
      * @var
      */
     public $modelRelationTemplate;
-
 
 
     /**
@@ -104,6 +104,8 @@ class PHPCommon extends BaseClient
 
         //处理关联
         $this->buildRelation();
+
+        $this->buildAppend();
 
         //关联关系写入注释
         $this->buildRelationToNote();
@@ -534,12 +536,12 @@ class PHPCommon extends BaseClient
 
         //软删除
         $soft_delete = $this->getCurrentSetting('disable_soft_delete', false) ? '' : 'use SoftDeletes;';
-        if (config('disable_soft_delete')){
+        if (config('disable_soft_delete')) {
             $soft_delete = '';
         }
 
         $this->modeBaseTemplate = str_replace('{{soft_delete}}', $soft_delete, $this->modeBaseTemplate);
-        $this->modeBaseTemplate = str_replace('{{BaseModel}}', config('base_base_model','BaseModel'), $this->modeBaseTemplate);
+        $this->modeBaseTemplate = str_replace('{{BaseModel}}', config('base_base_model', 'BaseModel'), $this->modeBaseTemplate);
 
 
         $this->modeBaseTemplate = str_replace('{{property}}', $propertys, $this->modeBaseTemplate);
@@ -769,7 +771,7 @@ class PHPCommon extends BaseClient
         foreach ($matches as $match) {
             $arr[$match[1]] = $match[2];
         }
-        if (!empty($arr['rule'])){
+        if (!empty($arr['rule'])) {
             return $arr['rule'];
         }
 
@@ -780,7 +782,6 @@ class PHPCommon extends BaseClient
     //生成名字根据正则
     public function getMsgPreg($field, $bool = false)
     {
-
 
 
         $str = $field;
@@ -794,16 +795,15 @@ class PHPCommon extends BaseClient
         foreach ($matches as $match) {
             $arr[$match[1]] = $match[2];
         }
-        if (!empty($arr['msg'])){
+        if (!empty($arr['msg'])) {
 
             return $arr['msg'];
         }
 
-        if ($bool){
-            return  false;
+        if ($bool) {
+            return false;
         }
         return $field;
-
 
 
     }
@@ -814,7 +814,8 @@ class PHPCommon extends BaseClient
      * @param $field
      * @return false|mixed
      */
-    public function getPergByRule($rule,$field){
+    public function getPergByRule($rule, $field)
+    {
         $str = 'msg[供应商商品ID] help[如淘宝商品ID投放页] rule[required] search';
 //
 //        $pattern = "/(\w+)\[([^\]]+)\]/";
@@ -841,13 +842,12 @@ class PHPCommon extends BaseClient
             $arr[$match[1]] = $match[2];
         }
 
-        if (!empty($arr[$rule])){
+        if (!empty($arr[$rule])) {
             return $arr[$rule];
         }
 
 
         return false;
-
 
 
     }
@@ -867,7 +867,7 @@ class PHPCommon extends BaseClient
         foreach ($matches as $match) {
             $arr[$match[1]] = $match[2];
         }
-        if (!empty($arr['rule'])){
+        if (!empty($arr['rule'])) {
             return $arr['rule'];
         }
 
@@ -978,6 +978,33 @@ class PHPCommon extends BaseClient
 
         return $data;
 
+    }
+
+    /**
+     * 字段修改
+     * @return void
+     */
+    public function buildAppend()
+    {
+        $append = '';
+        foreach ($this->app->struct->struct as $item) {
+
+            if (strstr($item['origin_comment'], 'multipleImage')) {
+                $className = $this->app->tool->struct($item['name']);
+                $append .= ' 
+    public function getFirst'.$className.'Attribute($key)
+    {
+        if (is_array($this->'.$item["name"].')){
+            return Arr::first($this->'.$item["name"].');
+        }
+        if (json_decode($this->'.$item["name"].')){
+            return Arr::first(json_decode($this->'.$item["name"].'));
+        }
+    }';
+            }
+
+        }
+        $this->modeBaseTemplate = str_replace('{{append}}', $append, $this->modeBaseTemplate);
     }
 
 

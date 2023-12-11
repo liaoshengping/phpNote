@@ -270,6 +270,8 @@ trait DcatAdmin
         }
         $this->AdminTemplate = str_replace("{{filter}}", $template, $this->AdminTemplate);
 
+
+
         $orderBy = '';
 
 
@@ -288,11 +290,13 @@ trait DcatAdmin
         $this->AdminTemplate = str_replace("{{orderBy}}", $orderBy, $this->AdminTemplate);
 
 
-        $disableDelete = '//$actions->disableDelete();';
+        $disableDelete = '//$actions->disableDelete($this->disableDelete);';
 
         if (strstr($this->app->table->table_comment,'disableDelete') || strstr($this->app->table->table_comment,'notDelete')){
-            $disableDelete = '$actions->disableDelete();';
+            $disableDelete = '$actions->disableDelete($this->disableDelete);';
         }
+
+
 
         $disableEdit = '//$actions->disableEdit();';
 
@@ -315,6 +319,11 @@ trait DcatAdmin
             // 去掉查看
             $actions->disableView();
 });';
+
+        if (strstr($app->table->table_comment,'canDelete')){
+            $action.='
+            $grid->disableDeleteButton(false);';
+        }
 
         $disableAdd = '';
         if (strstr($app->table->table_comment,'disableAdd') || strstr($app->table->table_comment,'disableCreate')){
@@ -341,10 +350,18 @@ trait DcatAdmin
             if (in_array($item['name'], ['updated_at', 'deleted_at'])) continue;
 
 
+
+
+            if (strstr($item['origin_comment'],'multipleImage')){
+                $list .= '$grid->column("first_'.$item['name'].'", __("首图"))->image("", 80, 80);';
+                continue;
+            }
+
             if ($item['name'] == 'image_url') {
                 $list .= '$grid->column("image_url", __("图片"))->image("", 80, 80);';
                 continue;
             }
+
             $comment = $this->getMsgPreg($item['comment']);
 
             $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
@@ -524,11 +541,7 @@ trait DcatAdmin
                 $list .= '$form->text("' . config('user_id_translate_the_name') . '", __("用户"))->disable()' . $default_str . $help_str . ';' . PHP_EOL;
                 continue;
             }
-            //图片判断
-            if ($item['name'] == 'image_url') {
-                $list .= '$form->image(\'image_url\',\'图片\')->autoUpload();';
-                continue;
-            }
+
 
             if ($item['name'] == 'date') {
                 $list .= '$form->date(\'date\',\'日期\');';
@@ -536,7 +549,7 @@ trait DcatAdmin
             }
 
             if ($item['name'] == 'content') {
-                $list .= '$form->textarea(\'content\',\'内容\');';
+                $list .= '$form->editor(\'content\',\'内容\');';
                 continue;
             }
 
@@ -547,8 +560,19 @@ trait DcatAdmin
             }
             $msg = $this->getMsgPreg($item['origin_comment']);
 
-            if ($item['name'] == 'image') {
-                $list .= '$form->image(\'image\',\''.$msg.'\')->autoUpload();';
+            if (strstr($item['origin_comment'],'multipleImage')) {
+                $list .= '$form->multipleImage(\''.$item['name'].'\',\''.$msg.'\')->autoUpload();';
+                continue;
+            }
+
+            if (in_array($item['name'],['image_url','image'])) {
+                $list .= '$form->image(\''.$item['name'].'\',\''.$msg.'\')->autoUpload();';
+                continue;
+            }
+
+            //图片判断
+            if ($item['name'] == '') {
+                $list .= '$form->image(\'image_url\',\'图片\')->autoUpload();';
                 continue;
             }
 

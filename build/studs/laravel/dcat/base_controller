@@ -10,6 +10,9 @@ use Dcat\Admin\Show;
 class {{ClassName}}BaseController extends BaseAdminController
 {
     public $title = '{{name}}';
+
+    public $disableDelete = true;
+
     /**
      * Make a grid builder.
      *
@@ -31,7 +34,7 @@ class {{ClassName}}BaseController extends BaseAdminController
              if (method_exists($then,'gridSet')){
                  $this->gridSet($grid);
              };
-        });
+        })->setDialogFormDimensions('1280px','670px');
     }
 
     /**

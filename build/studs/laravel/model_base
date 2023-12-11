@@ -6,6 +6,7 @@
 
 namespace {{namespace}};
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 /**
  * Class {{ClassName}}
 {{property}}
@@ -31,6 +32,8 @@ class {{ClassName}} extends {{BaseModel}}
     {{enums}}
 
     {{relation}}
+
+    {{append}}
 
     protected $autoWriteTimestamp = true;
     protected $createTime = 'created_at';
