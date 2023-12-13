@@ -389,6 +389,7 @@ trait ControllerTemplateCommon
 //        if ($request_method != 'json') {
         $requestForm = $this->getRequestFormByScence('list');
 
+
         $template = str_replace('{{request}}', $requestForm, $template);
 
 

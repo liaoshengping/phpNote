@@ -133,6 +133,7 @@ trait RequestForm
             }
 
 
+
             if (in_array($item['name'], $allhidden)) {
                 continue;
             }
@@ -179,11 +180,11 @@ trait RequestForm
      *          required=false,
      *          in="query",
      *      ),';
-
             }
 
 
         }
+
 
 
         return $requestForm;

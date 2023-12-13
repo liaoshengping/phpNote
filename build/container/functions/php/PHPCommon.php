@@ -960,8 +960,9 @@ class PHPCommon extends BaseClient
 
             if (strstr($item['name'], 'name')
                 || strstr($item['name'], '_no')
-                || strstr($item['name'], '_id')
+                || strstr($item['name'], 'id')
                 || !empty($item['enum'])
+
             ) {
                 $data[] = $item['name'];
                 continue;

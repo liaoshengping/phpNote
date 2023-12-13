@@ -25,6 +25,7 @@ eie
 * editDisable // 编辑不可操作，新增可以
 * notDelete // 表不能删除
 * notEdit // 表不能编辑
+* notAddAdmin //表不能后台添加
 * formHide 表单隐藏
 * listHide 列表隐藏
 * search // 搜索字段
