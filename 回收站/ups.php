@@ -4,7 +4,7 @@ $apiUrl = 'https://secure.shippingapis.com/ShippingAPI.dll';
 
 // USPS API Credentials
 $userId = '9SIMPL93B2765';
-$password = 'ON307255MB2264Y';
+$password = 'XXXXXXX';
 
 // Barcode Number of the original label
 $barcodeNumber = '420322579200190353014500000024';
