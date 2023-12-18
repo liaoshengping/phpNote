@@ -476,7 +476,9 @@ trait ControllerTemplateCommon
         $content .= '
         
         if ($request->input(\'all\')) {
-            $data = $query->get();
+             if ($size = $request->input(\'pageSize\')) {
+                $query->limit($size);
+            }
         } else {
             $data = $query->paginate();
         }
