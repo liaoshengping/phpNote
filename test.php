@@ -1,5 +1,9 @@
 <?php
 
+
+$img = file_get_contents('https://img.wowo6.com/2c3128b1e81fecb9930ead6e39505d3e.jpg?imageView2/0/w/400');
+file_put_contents('test.png',$img);exit;
+
 // 创建 RSA 密钥对
 $config = array(
     "digest_alg" => "sha256",
