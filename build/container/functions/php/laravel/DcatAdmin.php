@@ -485,7 +485,6 @@ trait DcatAdmin
 
         $init = '';
         $this->AdminTemplate = str_replace('{{init}}', $init, $this->AdminTemplate);
-
         foreach ($app->struct->struct as $item) {
             if (config('admin_hide_id') && $item['name'] == 'id') continue;
             if (strstr($item['origin_comment'], 'fieldHide')) continue;
@@ -508,6 +507,9 @@ trait DcatAdmin
 
 
             $fieldName = $item['name'];
+            if (($item['name'] == 'lng' || $item['name'] == 'lat') && $lng) {
+                continue;
+            }
 
             $list.='               
          method_exists($then,"form_'.$fieldName.'")?$then->form_'.$fieldName.'($form):';
