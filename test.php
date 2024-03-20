@@ -1,6 +1,75 @@
 <?php
 
 
+$start_date = strtotime('2020-01-01');
+$end_date = strtotime('2024-03-19');
+
+// 创建一个空数组来存储日志
+$log_array = array();
+
+// 循环遍历日期范围，并将每天的日期添加到日志数组中
+$current_date = $start_date;
+while ($current_date <= $end_date) {
+    // 这里可以加入你的日志记录逻辑，例如向$log_array添加元素
+    $log_array[] = [
+        'start' => $current_date,
+        'end' => strtotime('+1 day', $current_date)
+    ]; // 将日期格式化为字符串并添加到数组中
+    $current_date = strtotime('+1 day', $current_date); // 增加一天
+}
+
+$year = [
+    '2020' => [
+        9000,
+        15000,
+        2000,
+    ],
+    '2021' => [
+        30000, //每天销售额在 随机 最低三万
+        50000, //每天销售额在 随机 最高五万
+        2000, //每单价格 100 ~ 10000区间订单
+    ],
+    '2022' => [
+        9000,
+        25000,
+        6000,
+    ],
+    '2023' => [
+        3000000,
+        4000000,
+        5000,
+    ],
+    '2024' => [
+        3000000,
+        4000000,
+        10000,
+    ],
+];
+
+foreach ($log_array as $value){
+    $start = $value['start'];
+    $end = $value['end'];
+
+
+    $amount = 0;
+
+    $current_year = date('Y',$start_date);
+
+    $current_year = $year[$current_year];
+
+    while ($amount < rand($current_year[0],$current_year[1])){
+        $orderAmount = rand(100,($current_year[2]*100))/100;
+        $amount+=$orderAmount;
+        $time = rand($start,$end);
+
+    }
+
+}
+exit;
+
+var_dump($log_array);exit;
+
+
 $img = file_get_contents('https://img.wowo6.com/2c3128b1e81fecb9930ead6e39505d3e.jpg?imageView2/0/w/400');
 file_put_contents('test.png',$img);exit;
 

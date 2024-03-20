@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dom-to-image-more": "^3.2.0",
+    "nvm": "^0.0.4"
+  }
+}

@@ -8,9 +8,6 @@ const html2canvas = require('html2canvas');
 
 
 
-
-
-
 const { JSDOM } = jsdom;
 const dom = new JSDOM(`<!DOCTYPE html><p id="myElement">Hello world</p>`);
 window = dom.window;
