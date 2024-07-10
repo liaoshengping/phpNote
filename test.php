@@ -1,5 +1,8 @@
 <?php
 
+$data = file_get_contents('https://v3-web.douyinvod.com/a68ee460d5e158efdc740995d5fb18bb/667bda93/video/tos/cn/tos-cn-ve-15c001-alinc2/oIGA4WetUQnOuAgAj6egbZDuj3oV9agACE73yB/?a=6383&ch=11&cr=3&dr=0&lr=all&cd=0%7C0%7C0%7C3&cv=1&br=710&bt=710&cs=2&ds=6&ft=rVWEerwwZRLGsk~o2PDS6kFgAX1tGkKPHf9eFYIa8Dr12nzXT&mime_type=video_mp4&qs=11&rc=Ojc5PGRkaWVoaTloZGg6PEBpamQ0bTM6ZnVxaDMzNGkzM0A1MDVfMjZeXjQxXmEwY142YSNibDNfcjRnZW9gLS1kLS9zcw%3D%3D&btag=80000e00010000&cquery=100o_101n_100B_100x_100z&dy_q=1719385687&feature_id=eb4c918b9cc575f3dbb154e6c6a43e47&l=2024062615080632A33725C00BAB019956&__vid=7185345014006926652');
+var_dump($data);exit;
+
 
 $start_date = strtotime('2020-01-01');
 $end_date = strtotime('2024-03-19');
