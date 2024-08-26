@@ -1,11 +1,11 @@
 <?php
 
 // 初始资金
-$initialBalance = 1000;
+$initialBalance = 100000;
 // 当前资金
 $currentBalance = $initialBalance;
 // 赌注（初始为1）
-$bet = 10;
+$bet = 1;
 // 倍投次数计数器
 $doubleBetCount = 0;
 $selectedSide = 0;
@@ -15,7 +15,7 @@ $selectedSide = 0;
 $count = 0;
 // 模拟赌局
 do {
-    if ($count >= 20){
+    if ($count >= 50){
         break;
     }
     echo '第'.$count.'局'.PHP_EOL;
@@ -26,7 +26,7 @@ do {
     // 判断结果
     if ($result == $selectedSide) {
         // 赢了，增加资金，赢得的金额为投注的0.98倍
-        $winAmount = $bet *1.2;
+        $winAmount = $bet *0.98;
         $currentBalance += $winAmount;
         echo "赢了，赢得{$winAmount}元，当前余额：{$currentBalance}元，继续下一轮。\n";
         $bet = 10; // 重置赌注
@@ -44,10 +44,10 @@ do {
 
         // 增加倍投次数和赌注
         $doubleBetCount++;
-        $bet *= 2;
+        $bet = $bet + $bet;
 
         // 检查倍投次数是否达到上限
-        if ($doubleBetCount >= 5) {
+        if ($doubleBetCount >= 20) {
             echo "已达到倍投次数上限，不再倍投。\n";
             $bet = 1;
             $selectedSide = rand(0, 1);
