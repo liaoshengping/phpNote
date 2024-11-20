@@ -34,7 +34,7 @@ eie
 * hasOne[表名] // hasOne[order] 一对一
 * hasMany[表名1,表名2] // hasMany[goods_sku,goods_put_info] 一对多关联
 * relationField[表名.字段名] //  relationField[merchant.name] hasOne或hasMany 关联表字段ID，列表需要展示关联表字段名称
-
+* relationName[想要取的名] belongsTo 多个的场景使用
 
 
 

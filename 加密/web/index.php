@@ -1,0 +1,8 @@
+<script src="ar-aes.js"></script>
+
+
+<script>
+    e = 'ZsrUCVLPQ9BBFHn/n7i3+NpV5lJCfDkCJsbilVSJoid58Dpmfu6VUtvXstcy2fovmLMCzF7edeK06X2JBobOrRup2EY2rwgNGelyjcE/TxFpfGH3E2gYac8eGYCRL3C0VZjQ8j03Dln2/ZlHydpyEQvwS4JmxKklcwHoqtkB15CEMXo1GoJCOffo8gHb+jBdpPzb0jRdFg8Oqcb1zP37BIwXmTsb0oXOF0M1B4MHVLzXC+oboNa7ef7mTqkHBz2p57KsT5iEplPLmSCH2Vr5Mdos+bdMiR3bAge5wK9JX41d74n8QVNuEGwPHd7bd0E9JCRpdC4gniOTnMcLEVLYhc3ILj2wz+f1ob7TBEVotmsSecsbTnqhAWiiMGuxS38Gu/+g5HjkQOXKp3QrjiD5UHkdxO0iWOdNj46o76RqrZDoX6L9z3UGjrNyi4u/Rsb7ZELR8eHd8VL4A979fUaewk+K9/eI8QO7NB35JtTGVy91lA8zNCmEAK6Qh6qpEkogUr+G+iIOutBoun63wWR+Yk2hrcWTEUWeTxac6fAEEllIyaSlBFSuMjaLxq7uYTXcLJjj8T0Ndps418SiOZs47oieGBOwC9Xkb9eXXxGGvziOewggwqM/rdqKnWju4ecLl3u/21NTlWPw3Dempmd3+3bpD0sSSqrDZQjBaNWL7mZLtdScooliaq76gzAz3u6P'
+    var data = AES.decrypt(e,'5232557b2c46da39','1724661709357097')
+    console.log(data)
+</script>
