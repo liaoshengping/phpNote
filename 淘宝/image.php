@@ -2,7 +2,7 @@
 
 
 include("./vendor/autoload.php");
-$word = '体育直播';
+$word = '自助台球高清';
 $url = 'https://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1704506869590_R&pv=&ic=&nc=1&z=&hd=&latest=&copyright=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&dyTabStr=MCwzLDEsMiw2LDQsNSw4LDcsOQ%3D%3D&ie=utf-8&sid=&word=' . urlencode($word) . '&f=3&oq=&rsp=-1';
 
 //file_put_contents('test.png',file_get_contents('https://img1.baidu.com/it/u=2574972620,1754170611&fm=253&fmt=auto&app=120&f=JPEG?w=1050&h=800'));

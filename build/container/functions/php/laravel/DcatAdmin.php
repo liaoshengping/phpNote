@@ -702,8 +702,8 @@ trait DcatAdmin
     public function dcatColumnRelation()
     {
         $structRelation = $this->app->struct->structRelation;
+//        var_dump($structRelation);exit;
         if (empty($structRelation['belongsTo'])) return '';
-
         $temp = implode(',', array_map(function ($item){
             return "'$item'";
         },$structRelation['belongsTo']));

@@ -153,7 +153,7 @@ class Laravel extends PHPCommon
         $tamplate = '';
         foreach ($relations as $table_name => $relation) {
 
-
+//            var_dump($relations);exit;
 
             $originName = $this->app->tool->struct($table_name);
 
@@ -170,7 +170,12 @@ class Laravel extends PHPCommon
                 }
 
                 $relation_name = !empty($item['relation_name'])?$item['relation_name']:$item['table_name'];
-
+                $relation_where = $item['relation_where']??'';
+                $relation_where_str = '';
+                if ($relation_where){
+                    $relation_where_arr = explode(':',$relation_where);
+                    $relation_where_str = "->where('".$relation_where_arr[0]."','".$relation_where_arr[1]."')";
+                }
                 switch ($relationName) {
                     case 'hasMany':
                         $limitStr = '';
@@ -181,7 +186,7 @@ class Laravel extends PHPCommon
                         $tamplate .= '
    public function ' . $relation_name . '()
     {
-        return $this->hasMany(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')' . $limitStr . ';
+        return $this->hasMany(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')' .$relation_where_str. $limitStr . ';
     }
                     ' . PHP_EOL;
                         break;
@@ -189,7 +194,7 @@ class Laravel extends PHPCommon
                         $tamplate .= '
    public function ' . $relation_name . '()
     {
-        return $this->hasOne(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\');
+        return $this->hasOne(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')'.$relation_where_str.';
     }
                     ' . PHP_EOL;
                         break;
@@ -198,7 +203,7 @@ class Laravel extends PHPCommon
                         $tamplate .= '
    public function ' . $relation_name . '()
     {
-        return $this->belongsToMany(\\' . $model_base_namespace . $tagName . '::class,"'.$item['relation_table'].'", \'' . $item['origin'] . '\', \'' .$item['target']. '\');
+        return $this->belongsToMany(\\' . $model_base_namespace . $tagName . '::class,"'.$item['relation_table'].'", \'' . $item['origin'] . '\', \'' .$item['target']. '\')'.$relation_where_str.';
     }
                     ' . PHP_EOL;
                         break;
@@ -206,7 +211,7 @@ class Laravel extends PHPCommon
                         $tamplate .= '
    public function ' . $relation_name . '()
     {
-        return $this->belongsTo(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')'  . ';
+        return $this->belongsTo(\\' . $model_base_namespace . $tagName . '::class, \'' . $item['target'] . '\', \'' . $item['origin'] . '\')'  .$relation_where_str. ';
     }
                     ' . PHP_EOL;
                         break;

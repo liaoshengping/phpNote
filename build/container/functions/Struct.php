@@ -84,6 +84,8 @@ class Struct extends BaseClient
             ];
             foreach ($relationRepo as $relationStr) {
                 $rule = $this->app->phpcommon->getPergByRule($relationStr, $struct_one['origin_comment']);
+                $relationName = $this->app->phpcommon->getPergByRule('relationName', $struct_one['origin_comment']);
+                $relationWhere = $this->app->phpcommon->getPergByRule('relationWhere', $struct_one['origin_comment']);
                 if ($rule) {
                     foreach (explode(',', $rule) as $relationTable) {
                         $temp = [];
@@ -103,10 +105,14 @@ class Struct extends BaseClient
                         $foreignKey = $item['TABLE_NAME'] . '_id';
                         $ownerKey = 'id';
 
-
                         switch ($relationStr) {
                             case 'belongsTo':
-                                $foreignKey = $relation_table_name.'_id';
+                                if ($relationName){
+                                    $foreignKey = $item['COLUMN_NAME'];
+                                }else{
+                                    $foreignKey = $relation_table_name.'_id';
+
+                                }
                                 break;
                             default:
                                 if (!empty($structInfo['params'][1])) {
@@ -119,12 +125,14 @@ class Struct extends BaseClient
                         }
 
 
+
                         $this->compatibleRelation[] = [
                             'relation' => $relationStr,
                             'tables' => [
                                 [
                                     'table_name' => $relation_table_name,
-                                    'relation_name' => camel_case($relation_table_name),
+                                    'relation_name' => camel_case(!empty($relationName)?$relationName:$relation_table_name),
+                                    'relation_where' => $relationWhere, //关联条件
                                     'target' => $foreignKey, //目标表中的字段
                                     'origin' => $ownerKey,//本表的字段
                                     'list_show' => true,
@@ -135,8 +143,8 @@ class Struct extends BaseClient
                             ],
                         ];
 
-
-                        $temp['relationName'] = camel_case($relation_table_name);
+                        $relationName = !empty($relationName)?$relationName:$relation_table_name;
+                        $temp['relationName'] = camel_case($relationName);
                         $temp['className'] = $this->app->tool->struct($relation_table_name);;
                         $this->structRelation[$relationStr][] = $temp['relationName'];
 

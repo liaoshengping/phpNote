@@ -670,7 +670,6 @@ class PHPCommon extends BaseClient
 
 
         if (empty($table['relations'])) {
-
             return $this->app->struct->compatibleRelation; //表里面的关联关系，后期可以做成合并的方式
 
         }
