@@ -278,7 +278,6 @@ trait LaravelAdmin
 });';
         $this->AdminTemplate = str_replace('{{tools}}', $tools, $this->AdminTemplate);
 
-
         foreach ($app->struct->struct as $item) {
 
 
@@ -319,6 +318,7 @@ trait LaravelAdmin
 
             $enum = !empty($this->enums[$item['name']]) ? $this->enums[$item['name']] : '';
             if ($enum) {
+
                 $list .= '       $form->select("' . $item['name'] . '", __("' . $enum['key_note'] . '"))->options(' . $app->className . '::' . $item['name'] . ')' . $default_str . $help_str . ';' . PHP_EOL;
             } else {
 
