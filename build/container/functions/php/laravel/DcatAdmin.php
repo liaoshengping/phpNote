@@ -523,7 +523,9 @@ trait DcatAdmin
                 continue;
             }
             $default_str = '';
+
             if (!empty($item['default'])) {
+
                 $default_str = '->default("' . $item['default'] . '")';
             }
 
@@ -560,7 +562,7 @@ trait DcatAdmin
             }
 
             if (in_array($item['name'],['text','memo','remark'])) {
-                $list .= '$form->textarea(\'text\',\''.$item["comment"].'\');';
+                $list .= '$form->textarea(\''.$item['name'].'\',\''.$item["comment"].'\');';
                 continue;
             }
 
@@ -655,9 +657,9 @@ trait DcatAdmin
                 continue;
             }
             if (!empty($item['belongClass'])){
-
+                $required = strstr($item['origin_comment'],'required') ? "->required()":"";
                 if (strstr($item['origin_comment'],'radio')){
-                    $required = strstr($item['origin_comment'],'required') ? "->required()":"";
+
                     $list .= '$form->radio("' . $item['name'] . '", __("' . $msg . '"))'.$required.'->options(\App\Models\\'.$item['belongClass'].'::query()->pluck("'.$item["belongNameOne"].' as text","id"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
 
                 }else{
