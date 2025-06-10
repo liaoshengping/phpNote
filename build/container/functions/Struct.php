@@ -307,6 +307,9 @@ where table_schema = '{$db_name}'
 and table_name = '{$table}' ORDER BY ORDINAL_POSITION ASC");
 
         if (empty($dataTableInfo)) {
+            echo "select * from information_schema.columns
+where table_schema = '{$db_name}'
+and table_name = '{$table}' ORDER BY ORDINAL_POSITION ASC";
             throw new \Exception('belongsTo关联表没有数据:'.$table);
         }
         //有名字就返名称

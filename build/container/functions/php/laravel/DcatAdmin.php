@@ -504,7 +504,7 @@ trait DcatAdmin
         ';
                 continue;
             }
-
+            $required = strstr($item['origin_comment'],'required') ? "->required()":"";
 
             $fieldName = $item['name'];
             if (($item['name'] == 'lng' || $item['name'] == 'lat') && $lng) {
@@ -562,7 +562,7 @@ trait DcatAdmin
             }
 
             if (in_array($item['name'],['text','memo','remark'])) {
-                $list .= '$form->textarea(\''.$item['name'].'\',\''.$item["comment"].'\');';
+                $list .= '$form->textarea(\''.$item['name'].'\',\''.$item["comment"].'\')'.$help_str.';';
                 continue;
             }
 
@@ -657,7 +657,7 @@ trait DcatAdmin
                 continue;
             }
             if (!empty($item['belongClass'])){
-                $required = strstr($item['origin_comment'],'required') ? "->required()":"";
+
                 if (strstr($item['origin_comment'],'radio')){
 
                     $list .= '$form->radio("' . $item['name'] . '", __("' . $msg . '"))'.$required.'->options(\App\Models\\'.$item['belongClass'].'::query()->pluck("'.$item["belongNameOne"].' as text","id"))' . $extend . $default_str . $help_str . ';' . PHP_EOL;
@@ -676,7 +676,7 @@ trait DcatAdmin
 
 
             if ($item['type'] == 'int') {
-                $list .= '$form->number("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
+                $list .= '$form->number("' . $item['name'] . '", __("' . $msg . '"))' . $extend .$required. $default_str  . ';' . PHP_EOL;
             } else {
 
                 $comment = $this->getMsgPreg($item['origin_comment']);
@@ -700,7 +700,7 @@ trait DcatAdmin
                     continue;
                 }
 
-                $list .= '$form->text("' . $item['name'] . '", __("' . $msg . '"))' . $extend . $default_str  . ';' . PHP_EOL;
+                $list .= '$form->text("' . $item['name'] . '", __("' . $msg . '"))' .$required. $extend . $default_str  . ';' . PHP_EOL;
 
 
             }
