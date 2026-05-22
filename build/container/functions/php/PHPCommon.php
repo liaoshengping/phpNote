@@ -634,7 +634,9 @@ class PHPCommon extends BaseClient
         if (!is_file(config('frame_modebase_path') . '/BaseModel.php')) {
             file_put_contents(config('frame_modebase_path') . '/BaseModel.php', file_get_contents(APP_PATH . "/studs/" . $this->app->frame . '/model_base_base'));
         }
-
+        if(empty($this->modelRelationTemplate)){
+            $this->modelRelationTemplate = '';
+        }
         $this->modeBaseTemplate = str_replace('{{relation}}', $this->modelRelationTemplate, $this->modeBaseTemplate);
 
 

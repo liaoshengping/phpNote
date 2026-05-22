@@ -34,7 +34,7 @@ class HeaderUtils
      * Example:
      *
      *     HeaderUtils::split('da, en-gb;q=0.8', ',;')
-     *     // => ['da'], ['en-gb', 'q=0.8']]
+     *     # returns [['da'], ['en-gb', 'q=0.8']]
      *
      * @param string $separators List of characters to split on, ordered by
      *                           precedence, e.g. ',', ';=', or ',;='
@@ -164,8 +164,8 @@ class HeaderUtils
      */
     public static function makeDisposition(string $disposition, string $filename, string $filenameFallback = ''): string
     {
-        if (!\in_array($disposition, [self::DISPOSITION_ATTACHMENT, self::DISPOSITION_INLINE])) {
-            throw new \InvalidArgumentException(sprintf('The disposition must be either "%s" or "%s".', self::DISPOSITION_ATTACHMENT, self::DISPOSITION_INLINE));
+        if (!\in_array($disposition, [self::DISPOSITION_ATTACHMENT, self::DISPOSITION_INLINE], true)) {
+            throw new \InvalidArgumentException(\sprintf('The disposition must be either "%s" or "%s".', self::DISPOSITION_ATTACHMENT, self::DISPOSITION_INLINE));
         }
 
         if ('' === $filenameFallback) {
@@ -256,7 +256,7 @@ class HeaderUtils
     private static function groupParts(array $matches, string $separators, bool $first = true): array
     {
         $separator = $separators[0];
-        $separators = substr($separators, 1);
+        $separators = substr($separators, 1) ?: '';
         $i = 0;
 
         if ('' === $separators && !$first) {
@@ -286,7 +286,11 @@ class HeaderUtils
         }
 
         foreach ($partMatches as $matches) {
-            $parts[] = '' === $separators ? self::unquote($matches[0][0]) : self::groupParts($matches, $separators, false);
+            if ('' === $separators && '' !== $unquoted = self::unquote($matches[0][0])) {
+                $parts[] = $unquoted;
+            } elseif ($groupedParts = self::groupParts($matches, $separators, false)) {
+                $parts[] = $groupedParts;
+            }
         }
 
         return $parts;

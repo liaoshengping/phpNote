@@ -27,12 +27,12 @@ class Container implements \ArrayAccess
         return $this;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
        return true;
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
 
         if(isset($this->instances[$offset])){
@@ -48,12 +48,12 @@ class Container implements \ArrayAccess
     }
 
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->values[$offset] = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
 
     }

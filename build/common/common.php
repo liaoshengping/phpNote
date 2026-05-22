@@ -50,4 +50,9 @@ function config($name = '', $default = null)
     return $config[$name] ?? $default;
 }
 
+function camel_case(string $str): string
+{
+    return lcfirst(str_replace(['_', '-'], '', ucwords($str, '_-')));
+}
+
 
